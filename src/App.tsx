@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RouteNames from './lib/utils/routenames';
 
+// App.tsx
 function App() {
   const router = createBrowserRouter([
     {
