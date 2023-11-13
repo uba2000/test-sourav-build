@@ -1,15 +1,9 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import RouteNames from './lib/utils/routenames';
+import { RouterProvider } from 'react-router-dom';
+import useRouterRoutes from './hooks/useRouterRoutes';
 
 // App.tsx
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: RouteNames.home,
-      element: '',
-      children: [],
-    },
-  ]);
+  const router = useRouterRoutes()
 
   return (
     <div className="App">

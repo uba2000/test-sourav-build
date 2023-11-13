@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  @apply font-main-font text-intel-white;
+}
+
+body {
+  @apply bg-gaming-navy;
+}
