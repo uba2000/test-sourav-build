@@ -1,4 +1,3 @@
-import React from 'react'
 import ImageFigure from '../../../../../components/ImageFigure'
 import CircleCloseIcon from '../../../../../assets/circle-close-icon.svg'
 import PolygonContainer from '../../../../../components/PolygonContainer/PolygonContainer'
