@@ -2,14 +2,135 @@
 @tailwind components;
 @tailwind utilities;
 
+/* IntelOne Display Font */
+@font-face {
+  font-family: "IntelOneDisplayBold";
+  src:
+    url("./assets/fonts/intelone/display/intelone-display-bold.woff2")
+      format("woff2"),
+    url("./assets/fonts/intelone/display/intelone-display-bold.woff")
+      format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IntelOneDisplayMedium";
+  src:
+    url("./assets/fonts/intelone/display/intelone-display-medium.woff2")
+      format("woff2"),
+    url("./assets/fonts/intelone/display/intelone-display-medium.woff")
+      format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IntelOneDisplayRegular";
+  src:
+    url("./assets/fonts/intelone/display/intelone-display-regular.woff2")
+      format("woff2"),
+    url("./assets/fonts/intelone/display/intelone-display-regular.woff")
+      format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IntelOneDisplayLight";
+  src:
+    url("./assets/fonts/intelone/display/intelone-display-light.woff2")
+      format("woff2"),
+    url("./assets/fonts/intelone/display/intelone-display-light.woff")
+      format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* IntelOne BodyText Font */
+@font-face {
+  font-family: "IntelOneBodyTextBold";
+  src:
+    url("./assets/fonts/intelone/bodytext/intelone-text-bold.woff2")
+      format("woff2"),
+    url("./assets/fonts/intelone/bodytext/intelone-text-bold.woff")
+      format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IntelOneBodyTextMedium";
+  src:
+    url("./assets/fonts/intelone/bodytext/intelone-text-medium.woff2")
+      format("woff2"),
+    url("./assets/fonts/intelone/bodytext/intelone-text-medium.woff")
+      format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IntelOneBodyTextRegular";
+  src:
+    url("./assets/fonts/intelone/bodytext/intelone-text-regular.woff2")
+      format("woff2"),
+    url("./assets/fonts/intelone/bodytext/intelone-text-regular.woff")
+      format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IntelOneBodyTextLight";
+  src:
+    url("./assets/fonts/intelone/bodytext/intelone-text-light.woff2")
+      format("woff2"),
+    url("./assets/fonts/intelone/bodytext/intelone-text-light.woff")
+      format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
 * {
   color: inherit;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  @apply font-main-font text-intel-white;
+  @apply font-IntelOneBodyTextRegular text-body text-intel-white;
+}
+
+#root,
+.App {
+  @apply min-h-screen;
+}
+
+.App {
+  @apply flex flex-col;
 }
 
 body {
-  @apply bg-gaming-navy;
+  @apply min-h-screen;
+}
+
+.scroll-design::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.scroll-design::-webkit-scrollbar-track,
+::-webkit-scrollbar-track {
+  background: tran;
+  -webkit-box-shadow: inset 0 0 6px #efeff1;
+  box-shadow: inset 0 0 6px #efeff1;
+}
+
+.scroll-design::-webkit-scrollbar-track {
+  border-radius: 4rem;
+}
+
+.scroll-design::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb {
+  background: #dae0e6;
+  border-radius: 4rem;
 }

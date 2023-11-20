@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router-dom';
-import useRouterRoutes from './hooks/useRouterRoutes';
+import useRouterRoutes from './lib/hooks/useRouterRoutes';
 
 // App.tsx
 function App() {

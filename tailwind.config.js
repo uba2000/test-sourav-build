@@ -5,6 +5,16 @@ export default {
     extend: {
       fontFamily: {
         "main-font": ["IntelOne Display", "sans-serif"],
+        /* IntelOne Display Font */
+        IntelOneDisplayBold: ["IntelOneDisplayBold", "sans-serif"],
+        IntelOneDisplayMedium: ["IntelOneDisplayMedium", "sans-serif"],
+        IntelOneDisplayRegular: ["IntelOneDisplayRegular", "sans-serif"],
+        IntelOneDisplayLight: ["IntelOneDisplayLight", "sans-serif"],
+        /* IntelOne BodyText Font */
+        IntelOneBodyTextBold: ["IntelOneBodyTextBold", "sans-serif"],
+        IntelOneBodyTextMedium: ["IntelOneBodyTextMedium", "sans-serif"],
+        IntelOneBodyTextRegular: ["IntelOneBodyTextRegular", "sans-serif"],
+        IntelOneBodyTextLight: ["IntelOneBodyTextLight", "sans-serif"],
       },
       fontSize: {
         h1: [
@@ -15,11 +25,27 @@ export default {
             fontWeight: "700",
           },
         ],
+        "M-h1": [
+          "24px",
+          {
+            lineHeight: "24px",
+            letterSpacing: "1px",
+            fontWeight: "700",
+          },
+        ],
         h2: [
           "36px",
           {
             lineHeight: "36px",
-            letterSpacing: "-0.36px",
+            letterSpacing: "1px",
+            fontWeight: "700",
+          },
+        ],
+        "M-h2": [
+          "20px",
+          {
+            lineHeight: "20px",
+            letterSpacing: "0.7px",
             fontWeight: "700",
           },
         ],
@@ -27,15 +53,23 @@ export default {
           "22px",
           {
             lineHeight: "24px",
-            letterSpacing: "-0.2px",
+            letterSpacing: "0.7px",
+            fontWeight: "700",
+          },
+        ],
+        "M-h3": [
+          "16px",
+          {
+            lineHeight: "16px",
+            letterSpacing: "0.7px",
             fontWeight: "700",
           },
         ],
         body: [
           "16px",
           {
-            lineHeight: "24px",
-            letterSpacing: "-0.096px",
+            lineHeight: "22px",
+            letterSpacing: "0.1px",
             fontWeight: "400",
           },
         ],
@@ -44,12 +78,17 @@ export default {
         // Gaming
         "gaming-navy": "#0A001F",
         "gaming-blue": "#00FFFC",
+        "gaming-yellow": "#FFF217",
+        "gaming-cobalt": "#0040FF",
 
         // General
         "intel-cobalt-s2": "#000864",
+        "intel-cobalt-t1": "#5B69FF",
         "intel-e-blue": "#00C7FD",
+        "intel-e-blue-t1": "#7BDEFF",
         "intel-e-gray": "#808080",
         "intel-e-gray-s1": "#525252",
+        "intel-e-gray-s2": "#262626",
         "intel-e-gray-t1": "#AEAEAE",
         "intel-e-gray-t3": "#F6F6F6",
         "intel-white": "#FFFFFF",
@@ -57,5 +96,6 @@ export default {
       },
     },
   },
-  plugins: [],
+  // eslint-disable-next-line no-undef
+  plugins: [require("tailwind-scrollbar-hide")],
 };

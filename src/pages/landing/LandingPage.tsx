@@ -3,10 +3,14 @@ import PageWrapper from '../../components/Wrappers/PageWrapper'
 import CardWithNotch from '../../components/CardWithNotch/CardWithNotch'
 import { Fragment, useMemo } from 'react'
 
-import RetailerIcon from '../../assets/retailer-logo.png'
+// import RetailerIcon from '../../assets/retailer-logo.png'
 import InfoPointer from '../../assets/info-pointer.svg'
 import BuildScrewIcon from '../../assets/build-screw.svg'
 import FindMagnifierIcon from '../../assets/find-magnifier.svg'
+import LandingHeroImage from '../../assets/landing-page-hero-image.svg'
+import LandingHeroMobileImage from '../../assets/landing-page-hero-image-moble.svg'
+import { Link } from 'react-router-dom'
+import RouteNames from '../../lib/utils/routenames'
 
 type LandingPointsType = {
   title: string,
@@ -19,27 +23,24 @@ function LandingPage() {
     { title: 'Set your targets', description: 'Game titles. Resolution. FPS. Tell us what you want, we’ll deliver the performance you need.' },
     { title: 'Choose your weapons', description: 'Compare components or systems for performance, specs and price to find the right fit.' },
     { title: 'Optimize, Maximize', description: 'Fine tune preferences to perfect your build.' },
-  ], [])
+  ], []);
 
   return (
-    <div className="bg-[url(/landing-page-hero-image.svg)] bg-no-repeat bg-top min-h-[779px]">
+    <div className="relative bg-no-repeat bg-top md:min-h-screen min-h-screen bg-contain">
       <PageWrapper>
-      {/* Hero Section */}
-        <div className="bg-transparent py-6 flex flex-col gap-y-6 mb-[160px]">
-          <div className="flex justify-end">
-            <div className='opacity-[0.6] py-3 px-6'>
-              <ImageFigure width={194} height={37} icon={RetailerIcon} />
-            </div>
+        {/* Hero Section */}
+        <img src={LandingHeroImage} className='md:absolute object-center md:block hidden left-1/2 -translate-x-1/2 top-0 w-full max-w-[1200px]' />
+        <div className="bg-transparent pb-6 md:mt-[85px] mt-[22px] flex relative z-10 flex-col gap-y-6 md:mb-[160px] md:min-h-[unset] min-h-[240px]">
+          <div className="text-center relative z-10">
+            <h1 className="md:text-h1 text-M-h1 font-IntelOneDisplayBold md:mb-4 mb-1">Up your game</h1>
+            <h2 className='md:text-h2 text-M-h2 font-IntelOneDisplayMedium'>Build or find your next gaming PC</h2>
           </div>
-          <div className="text-center">
-            <h1 className="text-h1 mb-4">Up your game</h1>
-            <h2 className='text-h2 font-medium'>Build or find your next gaming PC</h2>
-          </div>
+          <img src={LandingHeroMobileImage} className='absolute left-0 top-0 w-full object-center object-contain md:hidden block' />
           <div className=""></div>
         </div>
 
-        <div className="bg-transparent py-6 flex flex-col gap-y-11">
-          <div className="grid grid-cols-3 grid-rows-[188px] gap-x-[46px] max-w-[1024px] mx-auto w-full">
+        <div className="bg-transparent relative z-10 py-6 flex flex-col gap-y-11">
+          <div className="grid md:grid-cols-3 md:grid-rows-[188px] gap-y-3 grid-cols-1 gap-x-[46px] max-w-[1024px] mx-auto w-full md:px-0 px-10">
             {LandingPoints.map((d, index) => (
               <Fragment key={index}>
                 <CardWithNotch>
@@ -48,8 +49,8 @@ function LandingPage() {
                       <ImageFigure icon={InfoPointer} />
                     </div>
                     <div className='flex flex-col gap-y-3'>
-                      <h3 className="text-h3">{d.title}</h3>
-                      <p>
+                      <h3 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">{d.title}</h3>
+                      <p className='text-sm md:text-base'>
                         {d.description}
                       </p>
                     </div>
@@ -59,27 +60,28 @@ function LandingPage() {
             ))}
           </div>
 
-          <div className="flex max-w-fit mx-auto">
-            <button type='button' className='relative flex -mr-[65px]'>
-              <div className='flex items-center gap-x-4 min-h-[68px] bg-gaming-blue'>
-                <div className='p-[10px]'>
-                  <ImageFigure icon={BuildScrewIcon} width={48} />
+          <div className="grid md:grid-cols-2 grid-cols-1 max-w-[450px] w-full gap-x-[36px] gap-y-4 mx-auto">
+            <Link to={RouteNames.buildPreferenceIndex} className='flex justify-center'>
+              <button type='button' className='relative flex py-3 px-4 bg-gaming-blue'>
+                <div className='flex items-center gap-x-2'>
+                  <div>
+                    <ImageFigure icon={BuildScrewIcon} width={20} />
+                  </div>
+                  <span className='md:text-lg md:leading-[18px] text-base whitespace-nowrap text-intel-cobalt-s2 font-IntelOneDisplayMedium font-bold'>Build a gaming PC</span>
                 </div>
-                <span className='text-xl text-intel-cobalt-s2 font-bold'>Build a gaming PC</span>
-              </div>
-              {/* <ImageFigure icon={BuildBtnNotch} width={68} /> */}
-              <div className='border-t-[68px] bg-transparent border-t-gaming-blue border-r-[68px] border-r-transparent' />
-            </button>
-            <button type='button' className='relative flex'>
-              {/* <ImageFigure icon={FindBtnNotch} width={68} /> */}
-              <div className='border-b-[68px] bg-transparent border-b-intel-e-blue border-l-[68px] border-l-transparent' />
-              <div className='flex items-center gap-x-4 min-h-[68px] bg-intel-e-blue'>
-                <span className='text-xl text-intel-cobalt-s2 font-bold'>Find a gaming PC</span>
-                <div className='p-[10px]'>
-                  <ImageFigure icon={FindMagnifierIcon} width={48} />
+              </button>
+            </Link>
+
+            <div className='flex justify-center'>
+              <button type='button' className='relative flex py-3 px-4 bg-intel-e-blue-t1'>
+                <div className='flex items-center gap-x-2'>
+                  <div>
+                    <ImageFigure icon={FindMagnifierIcon} width={20} />
+                  </div>
+                  <span className='md:text-lg md:leading-[18px] text-base whitespace-nowrap text-intel-cobalt-s2 font-IntelOneDisplayMedium font-bold'>Find a gaming PC</span>
                 </div>
-              </div>
-            </button>
+              </button>
+            </div>
           </div>
         </div>
       </PageWrapper>

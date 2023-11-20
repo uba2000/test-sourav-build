@@ -1,5 +1,12 @@
 const RouteNames = {
-  home: '/',
+  home: "/",
+
+  // Build PC
+  buildPreferenceIndex: "/build-preference",
+  buildPC: "/build-pc",
+  buildPCFromScratch: "/build-pc/scratch",
+  buildChooseComponent: "/build-pc/choose-component",
+  buildCompareComponent: "/build-pc/compare-component",
 };
 
 export default RouteNames;
