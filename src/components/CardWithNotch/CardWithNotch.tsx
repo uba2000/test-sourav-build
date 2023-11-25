@@ -4,6 +4,7 @@ import clsx from 'clsx';
 interface ICardWithNotch {
   children: React.ReactNode;
   notchHeight?: 'normal' | 'small';
+  backgroundColor?: string;
   
   btl?: boolean;
   btr?: boolean;
@@ -12,7 +13,7 @@ interface ICardWithNotch {
 }
 
 function CardWithNotch({
-  children, notchHeight = 'normal',
+  children, notchHeight = 'normal', backgroundColor,
   btl=true, btr=false, bbl=false, bbr=true
 }: ICardWithNotch) {
   const _topWidthSize = useMemo(() => {
@@ -59,8 +60,12 @@ function CardWithNotch({
     }
   }, [bbl, bbr, notchHeight]);
 
+  const _style = useMemo(() => ({
+    '--background-color': backgroundColor || 'rgba(255,255,255,0.2)'
+  } as React.CSSProperties | undefined), [backgroundColor])
+
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col' style={_style}>
       <div className={clsx(
         { 'h-[16px]': notchHeight === 'normal' },
         { 'h-[8px]': notchHeight === 'small' },
@@ -71,16 +76,16 @@ function CardWithNotch({
         { 'before:border-b-[8px] before:border-l-[8px] before:-left-2': notchHeight === 'small' && btl },
         { 'after:border-b-[8px] after:border-r-[8px] after:-right-2': notchHeight === 'small' && btr },
 
-        'bg-[rgba(255,255,255,0.2)] relative',
+        'bg-[var(--background-color)] relative',
 
-        { "before:border-b-[rgba(255,255,255,0.2)] before:border-l-transparent before:w-0 before:h-0 ml-auto": btl },
+        { "before:border-b-[var(--background-color)] before:border-l-transparent before:w-0 before:h-0 ml-auto": btl },
         { "before:content-[''] before:absolute": btl },
 
-        { "after:border-b-[rgba(255,255,255,0.2)] after:border-r-transparent after:w-0 after:h-0 mr-auto": btr },
+        { "after:border-b-[var(--background-color)] after:border-r-transparent after:w-0 after:h-0 mr-auto": btr },
         { "after:content-[''] after:absolute": btr },
       )} style={{ width: `calc(100% - ${_topWidthSize})`, margin: (btl && btr) ? '0 auto' : '' }} />
 
-      <div className="flex-1 bg-[rgba(255,255,255,0.2)]">
+      <div className="flex-1 bg-[var(--background-color)]">
         {children}
       </div>
 
@@ -94,12 +99,12 @@ function CardWithNotch({
         { 'before:border-t-[8px] before:border-r-[8px] before:-right-2': notchHeight === 'small' && bbr },
         { 'after:border-t-[8px] after:border-l-[8px] after:-left-2': notchHeight === 'small' && bbl },
 
-        'bg-[rgba(255,255,255,0.2)] relative',
+        'bg-[var(--background-color)] relative',
 
-        { "before:border-t-[rgba(255,255,255,0.2)] before:border-r-transparent before:w-0 before:h-0 mr-auto": bbr },
+        { "before:border-t-[var(--background-color)] before:border-r-transparent before:w-0 before:h-0 mr-auto": bbr },
         { "before:content-[''] before:absolute": bbr },
 
-        { "after:border-t-[rgba(255,255,255,0.2)] after:border-l-transparent after:w-0 after:h-0 ml-auto": bbl },
+        { "after:border-t-[var(--background-color)] after:border-l-transparent after:w-0 after:h-0 ml-auto": bbl },
         { "after:content-[''] after:absolute": bbl },
       )} style={{width: `calc(100% - ${_bottomWidthSize})`, margin: (bbl && bbr) ? '0 auto' : ''}}  />
     </div>

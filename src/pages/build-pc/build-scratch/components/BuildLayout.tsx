@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useLayoutEffect, useState } from 'react'
 import PolygonContainer from '../../../../components/PolygonContainer/PolygonContainer';
 import ImageFigure from '../../../../components/ImageFigure';
 import clsx from 'clsx';
@@ -19,16 +19,23 @@ import NavRightArrow from '../../../../assets/right-scroll-arrow.svg'
 import useBuildPCStages from '../../../../lib/hooks/useBuildPCStages';
 import { matchRoutes, useLocation } from 'react-router-dom';
 import CardWithNotch from '../../../../components/CardWithNotch/CardWithNotch';
+import { IBuildStages } from '../../../../lib/types/context-types';
+import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
 
 interface IBuildLayout {
   children: React.ReactNode;
   isCompareMode?: boolean;
 }
 
-const buildRoutes = [{ path: "/build-pc" }, { path: "/build-pc/scratch" }]
+const buildRoutes = [
+  { path: "/build-pc" },
+  { path: "/build-pc/build" },
+  { path: "/build-pc/scratch" },
+]
 
 function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
   const { buildStages } = useBuildPCStages()
+  const { currentBuild } = useBuildPCContext()
   
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(buildRoutes, location)
@@ -116,7 +123,8 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
               </div>
               {/* Right main section */}
               {/* Right price section */}
-              <div className="hidden justify-end gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
+              {currentBuild.length === buildStages.length && (
+              <div className="flex justify-end gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
                 <PolygonContainer className='min-w-[246px]'>
                   <div className="flex flex-wrap px-5 gap-x-3 items-center h-full">
                     <span className='text-[rgba(255,255,255,0.75)] text-xs whitespace-nowrap font-IntelOneBodyTextMedium'>Estimated price:</span>
@@ -127,7 +135,7 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
                   </div>
                 </PolygonContainer>
                 <div className='flex items-center'>
-                  <Button variant='secondary' disabled className='flex-grow'>
+                  <Button variant='secondary' className='flex-grow'>
                     <div className="flex gap-[6px] items-center py-2 px-3">
                       <ImageFigure icon={CartIcon} width={20} />
                       <span className="text-black font-IntelOneBodyTextMedium whitespace-nowrap text-sm">Add all to cart</span>
@@ -135,6 +143,7 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
                   </Button>
                 </div>
               </div>
+              )}
               {/* Right price section */}
             </div>
             {/* Mobile right bar */}
@@ -161,13 +170,7 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
                   <div className='mr-[20px] px-[9px] ml-[20px] flex gap-x-[6px] overflow-auto scrollbar-hide'>
                     {buildStages.map((d) => (
                       <Fragment key={_.uniqueId()}>
-                        <CardWithNotch notchHeight='small' btl={false} bbr={false} bbl>
-                          <div className="relative w-full min-w-[36px] h-5 cursor-pointer">
-                            <div className="relative w-full h-full flex justify-center items-center">
-                              <ImageFigure icon={d.icon} width={20} />
-                            </div>
-                          </div>
-                        </CardWithNotch>
+                        <BuildSidebarItem data={d} screenSize='mobile' />
                       </Fragment>
                     ))}
                   </div>
@@ -191,13 +194,7 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
                 <div className='px-[9px] pb-2 flex flex-col gap-y-2'>
                   {buildStages.map((d) => (
                     <Fragment key={_.uniqueId()}>
-                      <CardWithNotch notchHeight='small' btl={false} bbr={false} bbl>
-                        <div className="relative w-full h-8 cursor-pointer">
-                          <div className="relative w-full h-full flex justify-center items-center">
-                            <ImageFigure icon={d.icon} width={36} />
-                          </div>
-                        </div>
-                      </CardWithNotch>
+                      <BuildSidebarItem data={d} screenSize='desktop' />
                     </Fragment>
                   ))}
                 </div>
@@ -221,6 +218,87 @@ BuildLayout.HeaderTitle = function BuildLayoutHeaderTitle({ title, subTitle }: {
       <p className='text-sm font-IntelOneBodyTextRegular'>
         {subTitle}
       </p>
+      )}
+    </div>
+  )
+}
+
+const componentBuildRoutes = [
+  { path: "/build-pc/choose-component/:category_slug" },
+]
+
+interface IBuildSidebarItem {
+  data: IBuildStages;
+  screenSize: 'mobile' | 'desktop'
+}
+
+function BuildSidebarItem({ data, screenSize }: IBuildSidebarItem) {
+  const location = useLocation()
+  const isOnBuildRoutes = matchRoutes(componentBuildRoutes, location)
+  
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState('')
+
+  const { currentBuild } = useBuildPCContext()
+
+  useLayoutEffect(() => {
+    const _a_processor_exist = currentBuild.find((d) => d.category_slug === data.slug);
+    setIsCompleted(Boolean(_a_processor_exist))
+  }, [currentBuild, data.slug])
+
+  useLayoutEffect(() => { 
+    if (isCompleted) {
+      setBackgroundColor('#1E2EB8')
+    }
+  }, [isCompleted])
+
+  useEffect(() => { 
+    if (isOnBuildRoutes) {
+      
+      if (isOnBuildRoutes[0].params.category_slug === data.slug) {
+        setIsSelected(isOnBuildRoutes[0].params.category_slug === data.slug)
+        setBackgroundColor('#00FFFC')
+        setIsCompleted(false)
+      }
+    }
+  }, [data.slug, isOnBuildRoutes])
+
+  return (
+    <div>
+      {screenSize === 'mobile' && (
+        <CardWithNotch backgroundColor={backgroundColor} notchHeight='small' btl={false} bbr={false} bbl>
+          <div className="relative w-full min-w-[36px] h-5 cursor-pointer">
+            <div className="relative w-full h-full flex justify-center items-center">
+              {/* <ImageFigure icon={data.icon} width={20} /> */}
+              <div className={clsx(
+                "w-5 h-5",
+                { "text-white": isCompleted && !isSelected },
+                { "text-intel-cobalt-s2": isSelected && !isCompleted },
+              )}>
+                {data.icon}
+              </div>
+            </div>
+          </div>
+        </CardWithNotch>
+      )}
+
+      {screenSize === 'desktop' && (
+        <CardWithNotch backgroundColor={backgroundColor} notchHeight='small' btl={false} bbr={false} bbl>
+          <div className="relative w-full h-8 cursor-pointer">
+            <div className="relative w-full h-full flex justify-center items-center">
+              {/* <ImageFigure icon={data.icon} width={36} /> */}
+              <div className={clsx(
+                "w-9 h-9",
+                { "text-white": isCompleted && !isSelected },
+                { "text-intel-cobalt-s2": isSelected && !isCompleted },
+                )}
+              >
+                {data.icon}
+              </div>
+            </div>
+          </div>
+        </CardWithNotch>
       )}
     </div>
   )

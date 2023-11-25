@@ -7,14 +7,14 @@ import Button from '../../../../../components/Button/Button'
 import RightArrow from '../../../../../assets/right-arrow-white.svg'
 
 interface ISingleCompareComponents {
-  handleToggleSingleDetails: () => void
+  handleToggleSingleDetails: (_id: string) => void
 }
 
 function SingleCompareComponents({handleToggleSingleDetails}: ISingleCompareComponents) {
   return (
     <div className='flex flex-col gap-y-4'>
       <div className="flex justify-end">
-        <button type='button' className="cursor-pointer" onClick={() => handleToggleSingleDetails()}>
+        <button type='button' className="cursor-pointer" onClick={() => handleToggleSingleDetails('')}>
           <ImageFigure icon={CircleCloseIcon} width={16} />
         </button>
       </div>

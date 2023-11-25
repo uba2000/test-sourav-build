@@ -1,30 +1,29 @@
 import PolygonContainer from '../../../../../components/PolygonContainer/PolygonContainer'
 import ImageFigure from '../../../../../components/ImageFigure'
+import { IBuildComponent } from '../../../../../lib/types/context-types';
+import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge';
+import StarRatingComponent from '../../../../../components/StarRatingComponent/StarRatingComponent';
 
 import ProcessorImg from '../../../../../assets/processor-i9.svg'
-import RightArrow from '../../../../../assets/right-arrow-white.svg'
-import Button from '../../../../../components/Button/Button'
-import StarRatingComponent from '../../../../../components/StarRatingComponent/StarRatingComponent'
-import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge'
-import { IBuildComponent } from '../../../../../lib/types/context-types'
+import CartIcon from '../../../../../assets/add-cart.svg'
 
 interface IChooseComponentItem {
   selected?: boolean;
   onClick?: (_id: string) => void;
-  addToBuild?: (_id: string) => void;
+  addToCart?: (_id: string) => void;
   data: IBuildComponent;
 }
 
-function ChooseComponentItem({
-  selected = false, onClick = () => { }, addToBuild = () => { }, data
+function BuildItem({
+  selected = true, onClick = () => { }, addToCart = () => { },
+  data
 }: IChooseComponentItem) {
-  
   function itemClick() {
-    onClick(data._id);
+    onClick('');
   }
 
-  function handleAddToBuild() {
-    addToBuild(data._id);
+  function handleAddToCart() {
+    addToCart(data._id);
   }
 
   return (
@@ -36,15 +35,21 @@ function ChooseComponentItem({
           </div>
         </div>
         <div className="flex-grow">
-          <div className="flex gap-1 justify-between mb-[6px]">
-            <h4 className="font-IntelOneBodyTextBold text-sm whitespace-wrap flex-grow leading-[14px] h-[42px] line-clamp-3 cursor-pointer" onClick={() => itemClick()}>
-              {data?.title}
-            </h4>
+          <div className="flex gap-1 justify-between mb-[4px]">
+            <div>
+              <p className="text-[10px] leading-[10px] font-IntelOneBodyTextMedium mb-[6px] uppercase">
+                {data?.category_slug?.replace('-', ' ')}
+              </p>
+              <h4 className="font-IntelOneBodyTextBold text-sm whitespace-wrap flex-grow leading-[14px] h-[42px] line-clamp-3 cursor-pointer" onClick={() => itemClick()}>
+                {data?.title}
+              </h4>
+            </div>
 
             <div className="flex flex-col items-end gap-y-1">
               <CompatibilityBadge />
               <StarRatingComponent />
-              <div className="font-IntelOneBodyTextMedium text-[11px] leading-[11px]"># Reviews</div>
+              <div className="font-IntelOneBodyTextMedium text-[11px] leading-[11px]">####</div>
+              <div className="font-IntelOneBodyTextMedium text-[11px] leading-[11px]">Reviews</div>
             </div>
           </div>
 
@@ -63,14 +68,16 @@ function ChooseComponentItem({
                 Watts
               </span>
             </div>
-            <div className="flex flex-col gap-y-1 items-end">
+            <div className="flex flex-col justify-between gap-y-1 items-end">
               <span className='font-IntelOneBodyTextMedium'>$$$$</span>
-              <Button variant='cobalt' onClick={() => handleAddToBuild()}>
-                <div className="flex gap-x-[6px] items-center py-1 px-2 text-xs">
-                  Add to build
-                  <ImageFigure icon={RightArrow} width={12} />
+              <button type='button' className="flex gap-x-[6px] items-center" onClick={() => handleAddToCart()}>
+                <div className='font-IntelOneBodyTextRegular text-sm'>
+                  Add to cart
                 </div>
-              </Button>
+                <div className='bg-[#FFF100] flex justify-center items-center p-[3px] h-[22px] w-[22px]'>
+                  <ImageFigure icon={CartIcon} width={13} />
+                </div>
+              </button>
             </div>
           </div>
         </div>
@@ -79,4 +86,4 @@ function ChooseComponentItem({
   )
 }
 
-export default ChooseComponentItem
+export default BuildItem

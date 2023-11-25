@@ -1,7 +1,7 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M3.0957 10.7992V13.3799H5.67635V10.7992H3.0957Z" fill="white" style="fill:white;fill:white;fill-opacity:1;"/>
-<path d="M28.9022 18.5417V14.6708H26.3215V13.3805V12.2579C26.3215 11.4579 25.6635 10.7998 24.8635 10.7998H20.5151L17.857 13.3805H23.7409V19.8192H16.4247L13.8828 22.4127H26.3215V19.8192V18.5417H28.9022Z" fill="white" style="fill:white;fill:white;fill-opacity:1;"/>
-<path d="M5.67635 18.9677H5.61183L5.67635 18.9161V14.6709H3.0957V19.8322V20.929C3.0957 21.729 3.81828 22.4128 4.61828 22.4128H7.57312L10.1151 19.8193H5.67635V18.9677Z" fill="white" style="fill:white;fill:white;fill-opacity:1;"/>
-<path d="M6.9668 10.8125V13.3931H11.3668L14.0249 10.8125H6.9668Z" fill="white" style="fill:white;fill:white;fill-opacity:1;"/>
-<path d="M22.748 6.92871H19.9609L8.82542 17.5739H14.0383L5.59961 26.2835H8.30929L18.6448 15.6384H13.5996L22.748 6.92871Z" fill="white" style="fill:white;fill:white;fill-opacity:1;"/>
+<svg style="width:100%;height:100%;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.0957 10.7992V13.3799H5.67635V10.7992H3.0957Z" fill="currentColor" style="fill:currentColor;fill:currentColor;fill-opacity:1;"/>
+<path d="M28.9022 18.5417V14.6708H26.3215V13.3805V12.2579C26.3215 11.4579 25.6635 10.7998 24.8635 10.7998H20.5151L17.857 13.3805H23.7409V19.8192H16.4247L13.8828 22.4127H26.3215V19.8192V18.5417H28.9022Z" fill="currentColor" style="fill:currentColor;fill:currentColor;fill-opacity:1;"/>
+<path d="M5.67635 18.9677H5.61183L5.67635 18.9161V14.6709H3.0957V19.8322V20.929C3.0957 21.729 3.81828 22.4128 4.61828 22.4128H7.57312L10.1151 19.8193H5.67635V18.9677Z" fill="currentColor" style="fill:currentColor;fill:currentColor;fill-opacity:1;"/>
+<path d="M6.9668 10.8125V13.3931H11.3668L14.0249 10.8125H6.9668Z" fill="currentColor" style="fill:currentColor;fill:currentColor;fill-opacity:1;"/>
+<path d="M22.748 6.92871H19.9609L8.82542 17.5739H14.0383L5.59961 26.2835H8.30929L18.6448 15.6384H13.5996L22.748 6.92871Z" fill="currentColor" style="fill:currentColor;fill:currentColor;fill-opacity:1;"/>
 </svg>

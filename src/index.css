@@ -97,7 +97,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  @apply font-IntelOneBodyTextRegular text-body text-intel-white;
+  @apply font-IntelOneBodyTextRegular text-body;
 }
 
 #root,
@@ -110,7 +110,7 @@
 }
 
 body {
-  @apply min-h-screen;
+  @apply min-h-screen text-intel-white;
 }
 
 .scroll-design::-webkit-scrollbar {
