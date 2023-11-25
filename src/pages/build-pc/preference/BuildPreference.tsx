@@ -1,4 +1,5 @@
-import { Fragment, useMemo, useState } from "react"
+import { Fragment, useEffect, useMemo, useState } from "react"
+import _ from "lodash"
 import clsx from "clsx"
 
 import Button from "../../../components/Button/Button"
@@ -15,15 +16,18 @@ import RightArrow from "../../../assets/right-arrow.svg"
 import Step3Resolution from "./components/Step3Resolution/Step3Resolution"
 import { useNavigate } from "react-router-dom"
 import RouteNames from "../../../lib/utils/routenames"
+import useBuildPCContext from "../../../lib/hooks/contextHooks/useBuildPCContext"
 
 function BuildPreference() {
   const navigate = useNavigate();
+  const { preferences } = useBuildPCContext()
   const preferenceStages = useMemo(() => [
     <Step1GameType />,
     <Step2FPS />,
     <Step3Resolution />
   ], [])
 
+  const [canProceed, setCanProceed] = useState(false);
   const [currentStage, setCurrentStage] = useState(0);
 
   function nextStage() {
@@ -31,6 +35,7 @@ function BuildPreference() {
       navigate(RouteNames.buildPC, { replace: true })
       return;
     }
+    setCanProceed(false)
     setCurrentStage(prev => prev + 1)
   }
 
@@ -41,6 +46,16 @@ function BuildPreference() {
       window.history.back();
     }
   }
+
+  useEffect(() => { 
+    if ((currentStage === 0 && (preferences.game_type_title.length > 0))
+      || ((currentStage === 1) && preferences.gaming_fps)
+      || (currentStage === 2 && preferences.gaming_resolution)) {
+      setCanProceed(true)
+    } else {
+      setCanProceed(false)
+    }
+  }, [preferences.game_type_title, currentStage, preferences.gaming_fps, preferences.gaming_resolution])
 
   return (
     <PageWrapper>
@@ -64,8 +79,8 @@ function BuildPreference() {
               <p className="text-[rgba(255,255,255,0.75)] uppercase text-xs w-[80px] text-center block">TARGETS</p>
               <div className="flex items-center gap-x-[9px]">
                 <div className="flex gap-[2px]">
-                  {preferenceStages.map((_, index) => (
-                    <Fragment>
+                  {preferenceStages.map((__, index) => (
+                    <Fragment key={_.uniqueId()}>
                       <div className={clsx('min-w-[24px] h-1', {
                         'bg-gaming-blue': currentStage >= index,
                         'bg-[rgba(255,255,255,0.2)]': currentStage < index,
@@ -87,7 +102,7 @@ function BuildPreference() {
 
         <div className="max-w-[1026px] mx-auto mb-6 md:px-0 px-6">
           <div className="max-w-[930px]  flex justify-end mt-6">
-            <Button onClick={() => nextStage()} className="py-2 px-6">
+            <Button disabled={!canProceed} onClick={() => nextStage()} className="py-2 px-6">
               <div className="flex gap-2 items-center">
                 <span className="text-intel-e-gray-s2 text-[15px] font-IntelOneBodyTextMedium leading-[15px]">Next</span>
                 <ImageFigure icon={RightArrow} width={12} />

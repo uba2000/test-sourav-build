@@ -1,44 +1,23 @@
 import { Fragment, useMemo, useState } from 'react'
 import PreferenceLayout from '../PreferenceLayout/PreferenceLayout'
 import _ from 'lodash';
-import type { IFPSTypesItem } from './types';
 import FPSItem from './FPSItem';
 
-import Desktop60FPS from '../../../../../assets/fps/FPS—ghostrunner2-timelapse—desktop—60.mp4'
-import Desktop60FPSThumb from '../../../../../assets/fps/60fps-thumbnail.svg'
-import Desktop120FPS from '../../../../../assets/fps/FPS—ghostrunner2-timelapse—desktop—120.mp4'
-import Desktop120FPSThumb from '../../../../../assets/fps/120fps-thumbnail.svg'
-import Desktop180FPS from '../../../../../assets/fps/FPS—ghostrunner2-timelapse—desktop—180.mp4'
-import Desktop180FPSThumb from '../../../../../assets/fps/180fps-thumbnail.svg'
 import clsx from 'clsx';
+import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext';
+import { IFPSTypesItem } from '../../../../../lib/types/context-types';
 
 function Step2FPS() {
+  const { setGamingPreference, preferenceFPSTypes } = useBuildPCContext()
   const [selectedFPS, setSelectedFPS] = useState<string | null>(null);
   const [currentVideoTime, setCurrentVideoTime] = useState<number>(0)
 
-  const fpsTypes = useMemo<IFPSTypesItem[]>(() => [
-    {
-      _id: _.uniqueId(),
-      fps: '180+ FPS',
-      video: Desktop180FPS,
-      thumbnail: Desktop180FPSThumb,
-    },
-    {
-      _id: _.uniqueId(),
-      fps: '120-179 FPS',
-      video: Desktop120FPS,
-      thumbnail: Desktop120FPSThumb,
-    },
-    {
-      _id: _.uniqueId(),
-      fps: '60-119 FPS',
-      video: Desktop60FPS,
-      thumbnail: Desktop60FPSThumb,
-    },
-  ], [])
+  const fpsTypes = useMemo<IFPSTypesItem[]>(() => preferenceFPSTypes, [preferenceFPSTypes])
 
-  function selectFPS(_id: string) {
-    setSelectedFPS(_id)
+  function selectFPS(_id: string, index: number) {
+    setSelectedFPS(_id);
+    const _selectedFPS = preferenceFPSTypes[index];
+    setGamingPreference('gaming_fps', _selectedFPS.fps);
   }
 
   function updateCurrentTime(_currentTime: number) {
@@ -53,11 +32,11 @@ function Step2FPS() {
       />
 
       <div className="max-w-[930px] grid grid-cols-3 place-content-around gap-x-[18px] mb-[30px]">
-        {fpsTypes.map((d) => (
+        {fpsTypes.map((d, index) => (
           <Fragment key={_.uniqueId()}>
             <button
               type='button'
-              onClick={() => selectFPS(d._id)}
+              onClick={() => selectFPS(d._id, index)}
               className={clsx(
                 "flex cursor-pointer justify-center items-center md:min-w-[160px] md:max-w-[160px] max-w-fit",
                 "md:min-h-[48px] min-h-[36px] px-6 bg-[rgba(255,255,255,0.2)] mx-auto relative",

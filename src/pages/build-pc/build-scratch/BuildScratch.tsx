@@ -9,8 +9,10 @@ import InfoPointer from '../../../assets/info-pointer.svg'
 import RightArrow from '../../../assets/right-arrow.svg'
 import { useNavigate } from 'react-router-dom';
 import RouteNames from '../../../lib/utils/routenames';
+import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext';
 
 function BuildScratch() {
+  const { preferences } = useBuildPCContext()
   const navigate = useNavigate()
 
   function startBuildFromScratch() {
@@ -19,9 +21,9 @@ function BuildScratch() {
 
   return (
     <BuildLayout>
-      <BuildLayout.HeaderTitle title='Ready to build?' />
+      {/* <BuildLayout.HeaderTitle title='Ready to build?' /> */}
 
-      <div className="mt-4 flex flex-col gap-y-4">
+      <div className="flex flex-col gap-y-4">
         <CardWithNotch notchHeight='small'>
           <div className="py-1 pl-4 pr-5 flex gap-2">
             <div>
@@ -32,10 +34,10 @@ function BuildScratch() {
               <p className='text-sm'>
                 Need help getting started? We’ll show you a complete set of components that you can edit as you like. 
               </p>
-              <div>
-                <Button className='py-1 px-2'>
+              <div className='pb-2'>
+                <Button className='py-[6px] px-2'>
                   <div className="flex items-center gap-x-2">
-                    <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>Performance</span>
+                    <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>View your system</span>
                     <ImageFigure icon={RightArrow} width={12} />
                   </div>
                 </Button>
@@ -45,7 +47,7 @@ function BuildScratch() {
         </CardWithNotch>
 
         <CardWithNotch notchHeight='small'>
-          <div className="py-1 pl-4 pr-5 flex gap-2 cursor-pointer" onClick={() => startBuildFromScratch()}>
+          <div className="py-1 pl-4 pr-5 flex gap-2">
             <div>
               <ImageFigure icon={InfoPointer} />
             </div>
@@ -54,6 +56,14 @@ function BuildScratch() {
               <p className='text-sm'>
                 Select a product category to review and choose components for your build. 
               </p>
+              <div className='pb-2'>
+                <Button onClick={() => startBuildFromScratch()} className='py-[6px] px-2'>
+                  <div className="flex items-center gap-x-2">
+                    <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>Choose your components</span>
+                    <ImageFigure icon={RightArrow} width={12} />
+                  </div>
+                </Button>
+              </div>
             </div>
           </div>
         </CardWithNotch>
@@ -61,7 +71,7 @@ function BuildScratch() {
         <div className="py-2 px-3 flex flex-col gap-y-2">
           <h3 className="font-IntelOneBodyTextBold">Build with confidence</h3>
           <p className='text-sm font-IntelOneBodyTextRegular'>
-            Need help getting started? We’ll show you a complete set of components that you can edit as you like. 
+            These components have been selected to deliver FPS and resolution you want for your games. All components shown are compatible with each other. 
           </p>
         </div>
 
@@ -72,29 +82,40 @@ function BuildScratch() {
             </div>
 
             <div className="grid grid-cols-2">
-              <div>
-                <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-[rgba(255,255,255,0.75)]">
-                  FPS
-                </h6>
-                <p className='text-sm'>
-                  120-179
-                </p>
+              <div className='flex flex-col gap-y-2'>
+                <div>
+                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-[rgba(255,255,255,0.75)]">
+                    FPS
+                  </h6>
+                  <p className='text-sm'>
+                    {preferences.gaming_fps}
+                  </p>
+                </div>
+
+                <div>
+                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-[rgba(255,255,255,0.75)]">
+                    Resolution
+                  </h6>
+                  <p className='text-sm'>
+                    {preferences.gaming_resolution}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-[rgba(255,255,255,0.75)]">
-                  Games
-                </h6>
-                <p className='text-sm'>
-                  League of Legends, Fortnight, Valorant
-                </p>
-              </div>
-              <div>
-                <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-[rgba(255,255,255,0.75)]">
-                  Resolution
-                </h6>
-                <p className='text-sm'>
-                  1080p
-                </p>
+              <div className='flex flex-col gap-y-2'>
+                <div>
+                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-[rgba(255,255,255,0.75)]">
+                    Games
+                  </h6>
+                  <p className='text-sm'>
+                    {preferences.game_type_title.map((d, index) => (
+                      <>
+                        {d}
+                        {index < (preferences.game_type_title.length - 1) && ', '}
+                      </>
+                    ))}
+                    {/* League of Legends, Fortnight, Valorant */}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

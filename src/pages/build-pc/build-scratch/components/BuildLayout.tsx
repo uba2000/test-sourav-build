@@ -13,12 +13,12 @@ import ExternalIcon from "../../../../assets/nav-external-link-icon.svg"
 import CartIcon from '../../../../assets/cart.svg'
 
 import BuildSpanner from '../../../../assets/component-icons/build.svg'
-import IconBackground from '../../../../assets/component-icons/icon-background.svg'
 import Image3D from '../../../../assets/assets-3d/build-3d-image.svg'
 import NavLeftArrow from '../../../../assets/left-scroll-arrow.svg'
 import NavRightArrow from '../../../../assets/right-scroll-arrow.svg'
 import useBuildPCStages from '../../../../lib/hooks/useBuildPCStages';
 import { matchRoutes, useLocation } from 'react-router-dom';
+import CardWithNotch from '../../../../components/CardWithNotch/CardWithNotch';
 
 interface IBuildLayout {
   children: React.ReactNode;
@@ -116,7 +116,7 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
               </div>
               {/* Right main section */}
               {/* Right price section */}
-              <div className="flex justify-end gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
+              <div className="hidden justify-end gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
                 <PolygonContainer className='min-w-[246px]'>
                   <div className="flex flex-wrap px-5 gap-x-3 items-center h-full">
                     <span className='text-[rgba(255,255,255,0.75)] text-xs whitespace-nowrap font-IntelOneBodyTextMedium'>Estimated price:</span>
@@ -147,7 +147,7 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
                   )}
                 >
                   <ImageFigure icon={BuildSpanner} width={23} />
-                  <span className='font-IntelOneBodyTextMedium text-[10px] whitespace-nowrap'>My Build</span>
+                  <span className='font-IntelOneBodyTextMedium text-[10px] leading-[9px] whitespace-nowrap'>My Build</span>
                 </div>
               </PolygonContainer>
               <PolygonContainer btr={false} bbr={false} leftBorder={false} className='flex-grow w-[calc(100%_-_69px)] -ml-[1px]'>
@@ -161,14 +161,13 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
                   <div className='mr-[20px] px-[9px] ml-[20px] flex gap-x-[6px] overflow-auto scrollbar-hide'>
                     {buildStages.map((d) => (
                       <Fragment key={_.uniqueId()}>
-                        <div className="relative w-12 min-w-[48px] min-h-[48px] h-12 cursor-pointer">
-                          <div className="absolute ">
-                            <ImageFigure icon={IconBackground} width={48} />
+                        <CardWithNotch notchHeight='small' btl={false} bbr={false} bbl>
+                          <div className="relative w-full min-w-[36px] h-5 cursor-pointer">
+                            <div className="relative w-full h-full flex justify-center items-center">
+                              <ImageFigure icon={d.icon} width={20} />
+                            </div>
                           </div>
-                          <div className="relative w-full h-full flex justify-center items-center">
-                            <ImageFigure icon={d.icon} width={36} />
-                          </div>
-                        </div>
+                        </CardWithNotch>
                       </Fragment>
                     ))}
                   </div>
@@ -192,14 +191,13 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
                 <div className='px-[9px] pb-2 flex flex-col gap-y-2'>
                   {buildStages.map((d) => (
                     <Fragment key={_.uniqueId()}>
-                      <div className="relative w-12 h-12 cursor-pointer">
-                        <div className="absolute ">
-                          <ImageFigure icon={IconBackground} width={48} />
+                      <CardWithNotch notchHeight='small' btl={false} bbr={false} bbl>
+                        <div className="relative w-full h-8 cursor-pointer">
+                          <div className="relative w-full h-full flex justify-center items-center">
+                            <ImageFigure icon={d.icon} width={36} />
+                          </div>
                         </div>
-                        <div className="relative w-full h-full flex justify-center items-center">
-                          <ImageFigure icon={d.icon} width={36} />
-                        </div>
-                      </div>
+                      </CardWithNotch>
                     </Fragment>
                   ))}
                 </div>

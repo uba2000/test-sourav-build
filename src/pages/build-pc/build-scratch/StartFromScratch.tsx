@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import RouteNames from '../../../lib/utils/routenames'
 import ImageFigure from '../../../components/ImageFigure'
 import RightArrow from '../../../assets/right-arrow.svg'
+// import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext'
 
 function StartFromScratch() {
   const navigate = useNavigate()
@@ -13,6 +14,9 @@ function StartFromScratch() {
   function goToChooseComponent() {
     navigate(`${RouteNames.buildChooseComponent}/processor`)
   }
+
+  // const buildState = useBuildPCContext()
+
 
   return (
     <BuildLayout>
@@ -24,7 +28,7 @@ function StartFromScratch() {
             <p className='text-sm'>
               Choose a processor, GPU and motherboard to get started.  Then fill out the remaining components for a complete system. 
             </p>
-            <div>
+            <div className='pb-2'>
               <Button className='py-1 px-2' onClick={() => goToChooseComponent()}>
                 <div className="flex items-center gap-x-2">
                   <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>Select a processor</span>

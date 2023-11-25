@@ -1,41 +1,21 @@
 import PreferenceLayout from '../PreferenceLayout/PreferenceLayout'
 
 import FullResImage from '../../../../../assets/res/full-res-image.svg'
-import Desktop4KResImage from '../../../../../assets/res/resolution-4k-desktop.svg'
-import Desktop4KResFullImage from '../../../../../assets/res/resolution-4k-desktop.png'
-import DesktopQHDResImage from '../../../../../assets/res/resolution-qhd-desktop.svg'
-import DesktopQHDResFullImage from '../../../../../assets/res/resolution-qhd-desktop.png'
-import DesktopFHDResImage from '../../../../../assets/res/resolution-hd-desktop.svg'
-import DesktopFHDResFullImage from '../../../../../assets/res/resolution-hd-desktop.png'
+
 import { Fragment, useMemo, useState } from 'react'
 import _ from 'lodash'
 import clsx from 'clsx'
+import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
 
 function Step3Resolution() {
-  const resolutions = useMemo(() => [
-    {
-      title: '4K UHD=',
-      res: '2160P',
-      image: Desktop4KResImage,
-      fullImage: Desktop4KResFullImage,
-    },
-    {
-      title: 'QHD=',
-      res: '1440P',
-      image: DesktopQHDResImage,
-      fullImage: DesktopQHDResFullImage,
-    },
-    {
-      title: 'FHD=',
-      res: '1080P',
-      image: DesktopFHDResImage,
-      fullImage: DesktopFHDResFullImage,
-    },
-  ], [])
+  const { setGamingPreference, preferenceResolutions } = useBuildPCContext()
+  const resolutions = useMemo(() => preferenceResolutions, [preferenceResolutions])
+
   const [selectedRESIndex, setSelectedRESIndex] = useState<number | null>(null);
 
   function selectRESIndex(index: number) {
     setSelectedRESIndex(index)
+    setGamingPreference('gaming_resolution', `${preferenceResolutions[index - 1].title} ${preferenceResolutions[index - 1].res}`)
   }
 
   return (
