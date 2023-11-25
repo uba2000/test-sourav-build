@@ -64,8 +64,8 @@ function PolygonContainer({
         />
         {btr && (
         <svg className='absolute -right-2 z-10' width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_3319_108092)">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M0.400879 -0.000488396L0.00146494 -0.000488375L0.0014649 1.01431L6.98666 7.99951L8.00146 7.99951L8.00146 7.6001L0.400879 -0.000488396Z" fill="currentColor" fill-opacity="0.75"/>
+          <g clipPath="url(#clip0_3319_108092)">
+          <path fillRule="evenodd" clipRule="evenodd" d="M0.400879 -0.000488396L0.00146494 -0.000488375L0.0014649 1.01431L6.98666 7.99951L8.00146 7.99951L8.00146 7.6001L0.400879 -0.000488396Z" fill="currentColor" fillOpacity="0.75"/>
           </g>
           <defs>
           <clipPath id="clip0_3319_108092">
@@ -77,8 +77,8 @@ function PolygonContainer({
 
         {btl && (
         <svg className='absolute -left-2 z-10' width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_3319_108081)">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.59912 -0.000488396L7.99854 -0.000488375L7.99854 1.01431L1.01334 7.99951L-0.00146399 7.99951L-0.00146433 7.6001L7.59912 -0.000488396Z" fill="currentColor" fill-opacity="0.75"/>
+          <g clipPath="url(#clip0_3319_108081)">
+          <path fillRule="evenodd" clipRule="evenodd" d="M7.59912 -0.000488396L7.99854 -0.000488375L7.99854 1.01431L1.01334 7.99951L-0.00146399 7.99951L-0.00146433 7.6001L7.59912 -0.000488396Z" fill="currentColor" fillOpacity="0.75"/>
           </g>
           <defs>
           <clipPath id="clip0_3319_108081">
@@ -132,8 +132,8 @@ function PolygonContainer({
       >
         {bbl && (
         <svg className='absolute -left-2 z-10' width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_3319_108114)">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.59912 8.00049L7.99854 8.00049L7.99854 6.98569L1.01334 0.00048966L-0.00146399 0.000489323L-0.00146433 0.399903L7.59912 8.00049Z" fill="currentColor" fill-opacity="0.75"/>
+          <g clipPath="url(#clip0_3319_108114)">
+          <path fillRule="evenodd" clipRule="evenodd" d="M7.59912 8.00049L7.99854 8.00049L7.99854 6.98569L1.01334 0.00048966L-0.00146399 0.000489323L-0.00146433 0.399903L7.59912 8.00049Z" fill="currentColor" fillOpacity="0.75"/>
           </g>
           <defs>
           <clipPath id="clip0_3319_108114">
@@ -145,8 +145,8 @@ function PolygonContainer({
 
         {bbr && (
           <svg className='absolute -right-2 z-10' width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_3319_108122)">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.400879 8.00049L0.00146494 8.00049L0.0014649 6.98569L6.98666 0.00048966L8.00146 0.000489323L8.00146 0.399903L0.400879 8.00049Z" fill="currentColor" fill-opacity="0.75"/>
+            <g clipPath="url(#clip0_3319_108122)">
+            <path fillRule="evenodd" clipRule="evenodd" d="M0.400879 8.00049L0.00146494 8.00049L0.0014649 6.98569L6.98666 0.00048966L8.00146 0.000489323L8.00146 0.399903L0.400879 8.00049Z" fill="currentColor" fillOpacity="0.75"/>
             </g>
             <defs>
             <clipPath id="clip0_3319_108122">
