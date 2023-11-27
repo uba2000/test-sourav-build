@@ -82,15 +82,19 @@ export type IPreBuiltBuild = IBuildComponent;
 export interface IBuildPCContext {
   preferences: BuildPCPreferenceType;
   preferenceFPSTypes: IFPSTypesItem[];
-  preferenceResolutions: IPreferenceResolutions[];
   preferenceGameTypes: PreferenceGameType[];
+  preferenceResolutions: IPreferenceResolutions[];
+
+  currentBuildStage: number;
+  buildStages: IBuildStages[];
+  currentBuild: IBuildComponent[];
+
   setGamingPreference: (
     field: keyof BuildPCPreferenceType,
     value: string | string[],
   ) => void;
 
-  buildStages: IBuildStages[];
-  currentBuild: IBuildComponent[];
   addComponentToBuild: (props: IAddToBuildProps) => void;
+
   resetApp: () => void;
 }

@@ -38,7 +38,11 @@ const buildRoutes = [
 
 function BuildLayout({children, isCompareMode=false, stagesStatus='auto', buildModel}: IBuildLayout) {
   const { buildStages } = useBuildPCStages()
-  const { currentBuild, resetApp } = useBuildPCContext()
+  const {
+    currentBuild,
+    resetApp,
+    currentBuildStage: currentStage
+  } = useBuildPCContext()
 
   // states of the 3D model
   // 1. empty view for initial state
@@ -48,21 +52,6 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', buildM
   
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(buildRoutes, location)
-
-  // TODO: this stage tracking should be in store
-  const [currentStage] = useState(-1);
-
-  // function nextStage() {
-  //   setCurrentStage(prev => prev + 1)
-  // }
-
-  // function previousStage() {
-  //   if (currentStage > 0) {
-  //     setCurrentStage(prev => prev - 1)
-  //   } else {
-  //     window.history.back();
-  //   }
-  // }
 
   return (
     <PageWrapper>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import _ from "lodash"
 
 import type { IAddToBuildProps, IBuildComponent, IBuildStages } from "../../types/context-types"
@@ -22,8 +22,16 @@ import WindowsImg from '../../../assets/component-products/windows.png'
 import PowerSupplyImg from '../../../assets/component-products/powersupply.png'
 import CoolingImg from '../../../assets/component-products/cooling.png'
 import CaseImg from '../../../assets/component-products/case.png'
+import { matchRoutes, useLocation } from "react-router-dom"
+
+const componentBuildRoutes = [
+  { path: "/build-pc/choose-component/:category_slug" },
+]
 
 function useBuildByComponentContext() {
+  const location = useLocation()
+  const isOnBuildRoutes = matchRoutes(componentBuildRoutes, location)
+
   const cpuItems = useMemo<IBuildComponent[]>(() => [
     {
       _id: _.uniqueId(),
@@ -314,6 +322,7 @@ function useBuildByComponentContext() {
   ])
 
   const [currentBuild, setCurrentBuild] = useState<IBuildComponent[]>([])
+  const [currentBuildStage, setCurrentBuildStage] = useState<number>(-1);
 
   function addToBuild({ category_slug, component_id }: IAddToBuildProps) {
     const _buildStages = [...buildStages];
@@ -328,11 +337,10 @@ function useBuildByComponentContext() {
       const _index_in_build = currentBuild.length;
       if (_current_component && _current_build_category) {
         _current_component.category_slug = _current_build_category.slug;
-        console.log([
-          _current_component,
-            ...currentBuild,
-          ]);
-        
+        // console.log([
+        //   _current_component,
+        //     ...currentBuild,
+        //   ]);
 
         setCurrentBuild(
           (prev) => [
@@ -357,9 +365,20 @@ function useBuildByComponentContext() {
     setCurrentBuild([]);
   }
 
+  useEffect(() => { 
+    if (isOnBuildRoutes) {
+      
+      const _currentIndex = buildStages.findIndex(
+        (d) => d.slug === isOnBuildRoutes[0].params.category_slug,
+      )
+      setCurrentBuildStage(_currentIndex)
+    }
+  }, [isOnBuildRoutes])
+
   return {
     buildStages,
     currentBuild,
+    currentBuildStage,
 
     addComponentToBuild: addToBuild,
     resetPCBuild,
