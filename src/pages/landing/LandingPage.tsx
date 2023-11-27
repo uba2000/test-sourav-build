@@ -62,7 +62,7 @@ function LandingPage() {
 
           <div className="grid md:grid-cols-2 grid-cols-1 max-w-[450px] w-full gap-x-[36px] gap-y-4 mx-auto">
             <Link to={RouteNames.buildPreferenceIndex} className='flex justify-center'>
-              <button type='button' className='relative flex py-3 px-4 bg-gaming-blue'>
+              <button type='button' className='relative flex py-3 px-4 bg-gaming-blue hover:bg-gaming-blue-hover'>
                 <div className='flex items-center gap-x-2'>
                   <div>
                     <ImageFigure icon={BuildScrewIcon} width={20} />
@@ -73,7 +73,7 @@ function LandingPage() {
             </Link>
 
             <div className='flex justify-center'>
-              <button type='button' className='relative flex py-3 px-4 bg-intel-e-blue-t1'>
+              <button type='button' className='relative flex py-3 px-4 bg-intel-e-blue-t1 hover:bg-intel-e-blue-t1-hover'>
                 <div className='flex items-center gap-x-2'>
                   <div>
                     <ImageFigure icon={FindMagnifierIcon} width={20} />

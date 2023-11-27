@@ -26,7 +26,7 @@ function Step3Resolution() {
       />
 
       <div className='flex max-w-[930px] md:flex-nowrap flex-wrap'>
-        <div className='relative max-w-full md:min-w-[550px] min-w-full md:-mr-8'>
+        <div className='relative max-w-full min-h-[187px] md:min-w-[550px] min-w-full md:-mr-8'>
           <img src={FullResImage} alt="" className='object-contain w-full h-full' />
         </div>
 

@@ -78,14 +78,18 @@ export default {
         // Gaming
         "gaming-navy": "#0A001F",
         "gaming-blue": "#00FFFC",
+        "gaming-blue-disabled": "rgba(0, 255, 255, 0.60)",
+        "gaming-blue-hover": "#9FF",
         "gaming-yellow": "#FFF217",
         "gaming-cobalt": "#0040FF",
 
         // General
+        "intel-20-cobalt": "#192FBF",
         "intel-cobalt-s2": "#000864",
         "intel-cobalt-t1": "#5B69FF",
         "intel-e-blue": "#00C7FD",
-        "intel-e-blue-t1": "#7BDEFF",
+        "intel-e-blue-t1": "#4FE1FF",
+        "intel-e-blue-t1-hover": "#9BEDFF",
         "intel-e-gray": "#808080",
         "intel-e-gray-s1": "#525252",
         "intel-e-gray-s2": "#262626",

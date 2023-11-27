@@ -16,10 +16,10 @@ function Button({ children, disabled = false, variant = 'primary', onClick = () 
       disabled={disabled}
       onClick={onClick}
       className={clsx(' min-w-[75px]', {
-        'bg-gaming-blue': variant === 'primary',
-        'bg-gaming-yellow': variant === 'secondary',
-        'bg-intel-cobalt-t1': variant === 'cobalt',
-      }, 'disabled:bg-[#575757]', className)}
+        'bg-gaming-blue disabled:bg-gaming-blue-disabled hover:bg-gaming-blue-hover': variant === 'primary',
+        'bg-gaming-yellow disabled:bg-[#575757]': variant === 'secondary',
+        'bg-intel-cobalt-t1 disabled:bg-[#575757]': variant === 'cobalt',
+      },className)}
     >
       {children}
     </button>

@@ -110,7 +110,7 @@ const BuildGamePreferences = [
     image: Roblox,
   },
   {
-    _id: _.uniqueId(),
+    _id: "no-preference",
     title: "No preference",
     image: null,
   },
