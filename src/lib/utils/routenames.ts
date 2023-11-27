@@ -11,6 +11,9 @@ const RouteNames = {
 
   // Preconfigured System
   preconfiguredSystemIndex: "/build-pc/preconfigured",
+
+  // Reset Session
+  resetSessionPage: "/reset-session",
 };
 
 export default RouteNames;

@@ -79,6 +79,9 @@ export interface IAddToBuildProps {
 
 export type IPreBuiltBuild = IBuildComponent;
 
+export type AddToRetailerUsersCartPropsType = {
+  state: "single" | "complete";
+};
 export interface IBuildPCContext {
   preferences: BuildPCPreferenceType;
   preferenceFPSTypes: IFPSTypesItem[];
@@ -97,4 +100,5 @@ export interface IBuildPCContext {
   addComponentToBuild: (props: IAddToBuildProps) => void;
 
   resetApp: () => void;
+  addToRetailerUsersCart: (props: AddToRetailerUsersCartPropsType) => void;
 }

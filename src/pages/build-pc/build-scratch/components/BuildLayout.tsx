@@ -41,6 +41,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', buildM
   const {
     currentBuild,
     resetApp,
+    addToRetailerUsersCart,
     currentBuildStage: currentStage
   } = useBuildPCContext()
 
@@ -52,6 +53,10 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', buildM
   
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(buildRoutes, location)
+
+  function handleAddAllToCart() {
+    addToRetailerUsersCart({ state: 'complete' })
+  }
 
   return (
     <PageWrapper>
@@ -123,7 +128,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', buildM
               </div>
               {/* Right main section */}
               {/* Right price section */}
-              {currentBuild.length === buildStages.length && (
+              {(currentBuild.length === buildStages.length || stagesStatus === 'complete') && (
               <div className="flex justify-end gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
                 <PolygonContainer className='min-w-[246px]'>
                   <div className="flex flex-wrap px-5 gap-x-3 items-center h-full">
@@ -135,7 +140,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', buildM
                   </div>
                 </PolygonContainer>
                 <div className='flex items-center'>
-                  <Button variant='secondary' className='flex-grow'>
+                  <Button variant='secondary' className='flex-grow' onClick={() => handleAddAllToCart()}>
                     <div className="flex gap-[6px] items-center py-2 px-3">
                       <ImageFigure icon={CartIcon} width={20} />
                       <span className="text-black font-IntelOneBodyTextMedium whitespace-nowrap text-sm">Add all to cart</span>

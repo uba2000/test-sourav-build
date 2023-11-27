@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 import { Outlet, matchRoutes, useLocation } from 'react-router-dom';
 import BuildPCContextWrapper from './BuildPCContextWrapper';
+import RouteNames from '../../lib/utils/routenames';
 
 const normalFlow = [{ path: "/" }]
-const preferenceFlow = [{ path: "/build-preference" }]
-const buildFlow = [{ path: "/build-pc/*" }]
+const preferenceFlow = [{ path: RouteNames.buildPreferenceIndex }]
+const buildFlow = [{ path: "/build-pc/*" }, { path: RouteNames.resetSessionPage }]
 
 export default function MainWrapper() {
   const location = useLocation()

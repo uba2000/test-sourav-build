@@ -9,6 +9,7 @@ import ChooseComponents from '../../pages/build-pc/build-scratch/ChooseComponent
 import CompareComponents from '../../pages/build-pc/build-scratch/CompareComponents/CompareComponents';
 import MyBuild from '../../pages/build-pc/build-scratch/MyBuild/MyBuild';
 import PreconfigedSystems from '../../pages/build-pc/preconfiged-systems/PreconfigedSystems';
+import ResetSession from '../../pages/reset-session/ResetSession';
 
 function useRouterRoutes() {
   const router = createBrowserRouter([
@@ -47,6 +48,10 @@ function useRouterRoutes() {
         {
           path: RouteNames.preconfiguredSystemIndex,
           element: <PreconfigedSystems />
+        },
+        {
+          path: RouteNames.resetSessionPage,
+          element: <ResetSession />
         },
       ],
     },
