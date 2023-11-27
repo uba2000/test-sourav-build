@@ -23,7 +23,7 @@ jobs:
           cache: "yarn"
 
       - name: Install NPM Dependensies
-        run: yarn Install
+        run: yarn install
 
       - name: Build Application
         run: vite build
