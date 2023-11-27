@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import type { IFPSTypesItem } from './types';
 import { useCallback, useEffect, useRef } from 'react';
+import type { IFPSTypesItem } from '../../../../../lib/types/context-types';
 
 interface IFPSItem {
   updateCurrentTime: (_currentTime: number) => void;

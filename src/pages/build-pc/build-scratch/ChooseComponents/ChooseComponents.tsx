@@ -28,7 +28,7 @@ function ChooseComponents() {
   const stageDetails = useMemo<IBuildStages>(() => getStageData(_category_slug as string), [])
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [canCompare, setCanCompare] = useState(stageDetails?.canCompare)
+  const [canCompare] = useState(stageDetails?.canCompare)
   const [showSingleDetails, setShowSingleDetails] = useState(false);
   const [itemsToCompare, setItemsToCompare] = useState<string[]>([])
 
