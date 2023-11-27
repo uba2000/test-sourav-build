@@ -26,4 +26,4 @@ jobs:
         run: yarn install
 
       - name: Build Application
-        run: vite build
+        run: yarn build
