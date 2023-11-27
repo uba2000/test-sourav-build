@@ -15,19 +15,32 @@ export type PreferenceGameType =
 export interface IBuildComponent {
   _id: string;
   title: string;
-  cores: string;
+  cores?: string;
   rating: number;
-  frequency: string;
-  powerConsumption: string;
+  frequency?: string;
+  powerConsumption?: string;
   image: string;
   category_slug?: IBuildStages["slug"];
+  specs?: {
+    spec_title: string;
+    spec_value: string;
+  }[];
 }
 
 export interface IBuildStages {
   icon: string | React.ReactNode;
   title: string;
   short_name: string;
-  slug: string;
+  slug:
+    | "processor"
+    | "graphics-card"
+    | "motherboard"
+    | "memory"
+    | "storage"
+    | "case"
+    | "cooling"
+    | "power-supply"
+    | "os";
   canCompare?: boolean;
   items: IBuildComponent[];
   // contains id/index of selected item on the build array
@@ -64,6 +77,8 @@ export interface IAddToBuildProps {
   component_id: IBuildComponent["_id"];
 }
 
+export type IPreBuiltBuild = IBuildComponent;
+
 export interface IBuildPCContext {
   preferences: BuildPCPreferenceType;
   preferenceFPSTypes: IFPSTypesItem[];
@@ -77,4 +92,5 @@ export interface IBuildPCContext {
   buildStages: IBuildStages[];
   currentBuild: IBuildComponent[];
   addComponentToBuild: (props: IAddToBuildProps) => void;
+  resetApp: () => void;
 }

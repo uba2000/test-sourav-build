@@ -18,14 +18,16 @@ import DesktopFHDResFullImage from '../../../assets/res/resolution-hd-desktop.pn
 
 import { BuildPCPreferenceType, IFPSTypesItem } from '../../types/context-types';
 
+const initialPreferences: BuildPCPreferenceType = {
+  game_type_title: [],
+  gaming_fps: '',
+  gaming_resolution: '',
+}
+
 function usePreferencContext() {
   const preferenceGameTypes = useMemo(() => BuildGamePreferences, []);
 
-  const [preferences, setPreferences] = useState<BuildPCPreferenceType>({
-    game_type_title: [],
-    gaming_fps: '',
-    gaming_resolution: '',
-  });
+  const [preferences, setPreferences] = useState<BuildPCPreferenceType>(initialPreferences);
 
   const preferenceFPSTypes = useMemo<IFPSTypesItem[]>(() => [
     {
@@ -69,10 +71,14 @@ function usePreferencContext() {
     },
   ], [])
 
-  function setGamingPreference(field: keyof (typeof preferences), value: string) {
+  function setGamingPreference(field: keyof BuildPCPreferenceType, value: string) {
     if (field) {
       setPreferences(prev => ({...prev, [field]: value}))
     }
+  }
+
+  function resetPreferences() {
+    setPreferences(initialPreferences);
   }
 
   return {
@@ -82,6 +88,7 @@ function usePreferencContext() {
     preferenceResolutions,
 
     setGamingPreference,
+    resetPreferences,
   }
 }
 

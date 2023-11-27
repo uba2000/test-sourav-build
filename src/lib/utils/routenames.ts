@@ -8,6 +8,9 @@ const RouteNames = {
   buildPCFromScratch: "/build-pc/scratch",
   buildChooseComponent: "/build-pc/choose-component",
   buildCompareComponent: "/build-pc/compare-component",
+
+  // Preconfigured System
+  preconfiguredSystemIndex: "/build-pc/preconfigured",
 };
 
 export default RouteNames;

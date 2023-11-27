@@ -8,6 +8,7 @@ import StartFromScratch from '../../pages/build-pc/build-scratch/StartFromScratc
 import ChooseComponents from '../../pages/build-pc/build-scratch/ChooseComponents/ChooseComponents';
 import CompareComponents from '../../pages/build-pc/build-scratch/CompareComponents/CompareComponents';
 import MyBuild from '../../pages/build-pc/build-scratch/MyBuild/MyBuild';
+import PreconfigedSystems from '../../pages/build-pc/preconfiged-systems/PreconfigedSystems';
 
 function useRouterRoutes() {
   const router = createBrowserRouter([
@@ -42,6 +43,10 @@ function useRouterRoutes() {
         {
           path: `${RouteNames.buildCompareComponent}/:category_slug`,
           element: <CompareComponents />
+        },
+        {
+          path: RouteNames.preconfiguredSystemIndex,
+          element: <PreconfigedSystems />
         },
       ],
     },

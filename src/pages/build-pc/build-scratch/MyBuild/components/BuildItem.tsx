@@ -4,8 +4,9 @@ import { IBuildComponent } from '../../../../../lib/types/context-types';
 import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge';
 import StarRatingComponent from '../../../../../components/StarRatingComponent/StarRatingComponent';
 
-import ProcessorImg from '../../../../../assets/processor-i9.svg'
 import CartIcon from '../../../../../assets/add-cart.svg'
+import { Fragment } from 'react';
+import _ from 'lodash';
 
 interface IChooseComponentItem {
   selected?: boolean;
@@ -29,9 +30,9 @@ function BuildItem({
   return (
     <PolygonContainer btl={false} btr={false} bbr={false} borderActive={selected}>
       <div className="px-[6px] flex">
-        <div className="min-w-[94px] flex justify-center items-center">
-          <div className='cursor-pointer' onClick={() => itemClick()}>
-            <ImageFigure icon={ProcessorImg} width={55} height={68} />
+        <div className="max-w-[94px] w-full flex justify-center items-center">
+          <div className='cursor-pointer w-full h-full max-w-[75px] max-h-[75px]' onClick={() => itemClick()}>
+            <ImageFigure icon={data.image} isContainerSize />
           </div>
         </div>
         <div className="flex-grow">
@@ -54,19 +55,15 @@ function BuildItem({
           </div>
 
           <div className="flex justify-between">
-            <div className="flex flex-col gap-y-[2px]">
-              <span className='text-xs font-IntelOneBodyTextRegular'>
-                <span className="text-inherit text-xs font-IntelOneBodyTextMedium">{data?.cores}</span>
-                Cores
-              </span>
-              <span className='text-xs font-IntelOneBodyTextRegular'>
-                <span className="text-inherit text-xs font-IntelOneBodyTextMedium">{data?.frequency}</span>
-                GHz
-              </span>
-              <span className='text-xs font-IntelOneBodyTextRegular'>
-                <span className="text-inherit text-xs font-IntelOneBodyTextMedium">{data?.powerConsumption}</span>
-                Watts
-              </span>
+            <div className="flex flex-col justify-end gap-y-[2px]">
+              {data?.specs?.map((d) => (
+                <Fragment key={_.uniqueId()}>
+                  <span className='text-xs font-IntelOneBodyTextRegular'>
+                    <span className="text-inherit text-xs font-IntelOneBodyTextMedium">{d.spec_value}</span>
+                    {d.spec_title}
+                  </span>
+                </Fragment>
+              ))}
             </div>
             <div className="flex flex-col justify-between gap-y-1 items-end">
               <span className='font-IntelOneBodyTextMedium'>$$$$</span>

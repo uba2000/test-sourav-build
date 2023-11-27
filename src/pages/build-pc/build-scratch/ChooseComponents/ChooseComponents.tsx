@@ -23,9 +23,9 @@ function ChooseComponents() {
   const { addComponentToBuild } = useBuildPCContext()
 
   const componentItems = useMemo(() => currentBuildStage.items, [currentBuildStage.items])
-  const _category_slug = useMemo(() => matches[0].params?.category_slug as string, [matches])
+  const _category_slug = useMemo(() => matches[0].params?.category_slug, [matches])
 
-  const stageDetails = useMemo<IBuildStages>(() => getStageData(_category_slug), [])
+  const stageDetails = useMemo<IBuildStages>(() => getStageData(_category_slug as string), [])
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [canCompare, setCanCompare] = useState(stageDetails?.canCompare)
@@ -60,7 +60,7 @@ function ChooseComponents() {
   }
 
   function handleAddComponentToBuild(_id: string) {
-    addComponentToBuild({ category_slug: _category_slug, component_id: _id })
+    addComponentToBuild({ category_slug: _category_slug as IBuildStages["slug"], component_id: _id })
     navigate(`${RouteNames.buildPCMyBuild}`)
   }
 
@@ -102,7 +102,7 @@ function ChooseComponents() {
               </div>
             </div>
           </PolygonContainer>
-            
+
           <div className=''>
             <span className="uppercase text-xs leading-[10px] text-[rgba(255,255,255,0.75)]">Component specs</span>
           </div>

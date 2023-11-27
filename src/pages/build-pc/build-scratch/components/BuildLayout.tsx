@@ -7,7 +7,7 @@ import _ from 'lodash';
 import PageWrapper from '../../../../components/Wrappers/PageWrapper';
 import Button from '../../../../components/Button/Button';
 
-import BackIcon from "../../../../assets/nav-back-icon.svg"
+// import BackIcon from "../../../../assets/nav-back-icon.svg"
 import ReloadIcon from "../../../../assets/nav-reload-icon.svg"
 import ExternalIcon from "../../../../assets/nav-external-link-icon.svg"
 import CartIcon from '../../../../assets/cart.svg'
@@ -25,35 +25,44 @@ import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCCont
 interface IBuildLayout {
   children: React.ReactNode;
   isCompareMode?: boolean;
+  stagesStatus?: 'complete' | 'auto';
+  buildModel?: string;
 }
 
 const buildRoutes = [
   { path: "/build-pc" },
   { path: "/build-pc/build" },
   { path: "/build-pc/scratch" },
+  { path: "/build-pc/preconfigured" },
 ]
 
-function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
+function BuildLayout({children, isCompareMode=false, stagesStatus='auto', buildModel}: IBuildLayout) {
   const { buildStages } = useBuildPCStages()
-  const { currentBuild } = useBuildPCContext()
+  const { currentBuild, resetApp } = useBuildPCContext()
+
+  // states of the 3D model
+  // 1. empty view for initial state
+  // 2. position for current component
+  // 3. view of selected component
+  // 4. fixed in state of selected components
   
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(buildRoutes, location)
 
   // TODO: this stage tracking should be in store
-  const [currentStage, setCurrentStage] = useState(-1);
+  const [currentStage] = useState(-1);
 
   // function nextStage() {
   //   setCurrentStage(prev => prev + 1)
   // }
 
-  function previousStage() {
-    if (currentStage > 0) {
-      setCurrentStage(prev => prev - 1)
-    } else {
-      window.history.back();
-    }
-  }
+  // function previousStage() {
+  //   if (currentStage > 0) {
+  //     setCurrentStage(prev => prev - 1)
+  //   } else {
+  //     window.history.back();
+  //   }
+  // }
 
   return (
     <PageWrapper>
@@ -62,10 +71,10 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
         <div className="flex mb-2 md:justify-start justify-center">
           <PolygonContainer rightBorder={false} className="-mr-[1px]">
             <div className="px-[10px] flex gap-1">
-              <button type="button" onClick={() => previousStage()}>
+              {/* <button type="button" onClick={() => previousStage()}>
                 <ImageFigure icon={BackIcon} width={36} />
-              </button>
-              <button type="button">
+              </button> */}
+              <button type="button" onClick={() => resetApp()}>
                 <ImageFigure icon={ReloadIcon} width={36} />
               </button>
               <button type="button">
@@ -81,13 +90,15 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
                   {buildStages.map((__, index) => (
                     <Fragment key={_.uniqueId()}>
                       <div className={clsx('min-w-[8px] h-1', {
-                        'bg-gaming-blue': currentStage >= index,
-                        'bg-[rgba(255,255,255,0.2)]': currentStage < index,
+                        'bg-gaming-blue': (currentStage >= index || stagesStatus === 'complete'),
+                        'bg-[rgba(255,255,255,0.2)]': (currentStage < index && stagesStatus === 'auto'),
                       })} />
                     </Fragment>
                   ))}
                 </div>
-                <p className="text-sm font-medium">({currentStage + 1}/{buildStages.length})</p>
+                <p className="text-sm font-medium">
+                  ({stagesStatus === 'auto' ? currentStage + 1 : buildStages.length}/{buildStages.length})
+                </p>
               </div>
             </div>
           </PolygonContainer>
@@ -101,12 +112,12 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
           )}
         >
           {!isCompareMode && (
-            <div className=" flex justify-center items-center">
+            <div className="py-6 flex justify-center items-center">
               <div className='hidden md:block'>
-                <ImageFigure icon={Image3D} width={481} />
+                <ImageFigure icon={buildModel || Image3D} width={481} />
               </div>
               <div className='block md:hidden'>
-                <ImageFigure icon={Image3D} width={190} />
+                <ImageFigure icon={buildModel || Image3D} width={190} />
               </div>
             </div>
           )}
@@ -170,7 +181,7 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
                   <div className='mr-[20px] px-[9px] ml-[20px] flex gap-x-[6px] overflow-auto scrollbar-hide'>
                     {buildStages.map((d) => (
                       <Fragment key={_.uniqueId()}>
-                        <BuildSidebarItem data={d} screenSize='mobile' />
+                        <BuildSidebarItem stagesStatus={stagesStatus} data={d} screenSize='mobile' />
                       </Fragment>
                     ))}
                   </div>
@@ -194,7 +205,7 @@ function BuildLayout({children, isCompareMode=false}: IBuildLayout) {
                 <div className='px-[9px] pb-2 flex flex-col gap-y-2'>
                   {buildStages.map((d) => (
                     <Fragment key={_.uniqueId()}>
-                      <BuildSidebarItem data={d} screenSize='desktop' />
+                      <BuildSidebarItem stagesStatus={stagesStatus} data={d} screenSize='desktop' />
                     </Fragment>
                   ))}
                 </div>
@@ -230,9 +241,10 @@ const componentBuildRoutes = [
 interface IBuildSidebarItem {
   data: IBuildStages;
   screenSize: 'mobile' | 'desktop'
+  stagesStatus?: IBuildLayout['stagesStatus'];
 }
 
-function BuildSidebarItem({ data, screenSize }: IBuildSidebarItem) {
+function BuildSidebarItem({ data, screenSize, stagesStatus='auto' }: IBuildSidebarItem) {
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(componentBuildRoutes, location)
   
@@ -247,8 +259,8 @@ function BuildSidebarItem({ data, screenSize }: IBuildSidebarItem) {
     setIsCompleted(Boolean(_a_processor_exist))
   }, [currentBuild, data.slug])
 
-  useLayoutEffect(() => { 
-    if (isCompleted) {
+  useLayoutEffect(() => {
+    if (isCompleted || stagesStatus === 'complete') {
       setBackgroundColor('#1E2EB8')
     }
   }, [isCompleted])

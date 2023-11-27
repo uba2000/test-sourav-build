@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react"
+import _ from "lodash"
+
 import type { IAddToBuildProps, IBuildComponent, IBuildStages } from "../../types/context-types"
 
 import CPUIcon from '../../../assets/component-icons/cpu.svg?react'
@@ -10,190 +12,219 @@ import ServerIcon from '../../../assets/component-icons/server.svg?react'
 import CPUCoolerIcon from '../../../assets/component-icons/cpu-cooler.svg?react'
 import BatteryIcon from '../../../assets/component-icons/battery.svg?react'
 import WindowsIcon from '../../../assets/component-icons/windows-11.svg?react'
+
 import ProcessorImg from '../../../assets/processor-i9.svg'
-import _ from "lodash"
-
-
+import GPUImg from '../../../assets/component-products/gpus.svg'
+import MotherboardImg from '../../../assets/component-products/motherboard.svg'
+import MemoryImg from '../../../assets/component-products/memory.svg'
+import StorageImg from '../../../assets/component-products/storage.svg'
+import WindowsImg from '../../../assets/component-products/windows.png'
+import PowerSupplyImg from '../../../assets/component-products/powersupply.png'
+import CoolingImg from '../../../assets/component-products/cooling.png'
+import CaseImg from '../../../assets/component-products/case.png'
 
 function useBuildByComponentContext() {
   const cpuItems = useMemo<IBuildComponent[]>(() => [
     {
       _id: _.uniqueId(),
       title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
       rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
       image: ProcessorImg,
-    },
-    {
-      _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
-      rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
+      category_slug: 'processor',
+      specs: [
+        {
+          spec_title: 'Cores',
+          spec_value: '24',
+        },
+        {
+          spec_title: 'GHz',
+          spec_value: '6.0',
+        },
+        {
+          spec_title: 'Watts',
+          spec_value: '125',
+        },
+      ]
     },
   ], [])
   const gpuItems = useMemo<IBuildComponent[]>(() => [
     {
       _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
+      title: 'MSI GeForce RTX 4090 Gaming X Trio',
       rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
-    },
-    {
-      _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
-      rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
+      image: GPUImg,
+      category_slug: 'graphics-card',
+      specs: [
+          {
+            spec_title: 'GB GDDR6',
+            spec_value: '12',
+          },
+          {
+            spec_title: 'MHz',
+            spec_value: '2100',
+          },
+          {
+            spec_title: 'cm Wide',
+            spec_value: '11.5',
+          },
+        ]
     },
   ], [])
   const motherboardItems = useMemo<IBuildComponent[]>(() => [
     {
       _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
+      title: 'ASUS ROG Maximus Z790 Hero Gaming',
       rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
-    },
-    {
-      _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
-      rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
+      image: MotherboardImg,
+      category_slug: 'motherboard',
+      specs: [
+          {
+            spec_title: 'LGA Socket',
+            spec_value: '1700',
+          },
+          {
+            spec_title: 'PCIe',
+            spec_value: '5.0',
+          },
+          {
+            spec_title: 'Memory',
+            spec_value: 'DDR5',
+          },
+        ]
     },
   ], [])
   const memoryItems = useMemo<IBuildComponent[]>(() => [
     {
       _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
+      title: 'Corsair Vengeance 64GB',
       rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
-    },
-    {
-      _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
-      rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
+      image: MemoryImg,
+      category_slug: 'memory',
+      specs: [
+          {
+            spec_title: 'memory',
+            spec_value: 'DDR5',
+          },
+          {
+            spec_title: 'GB DIMMS',
+            spec_value: '2x 16',
+          },
+          {
+            spec_title: 'MHz',
+            spec_value: '6200',
+          },
+        ]
     },
   ], [])
   const memoryStorageItems = useMemo<IBuildComponent[]>(() => [
     {
       _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
+      title: 'Samsung 970 EVO Plus 1TB Internal SSD',
       rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
-    },
-    {
-      _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
-      rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
+      image: StorageImg,
+      category_slug: 'storage',
+      specs: [
+          {
+            spec_title: 'storage',
+            spec_value: 'NVMe',
+          },
+          {
+            spec_title: 'PCIe Gen',
+            spec_value: '4.0',
+          },
+        ]
     },
   ], [])
-  const serverItems = useMemo<IBuildComponent[]>(() => [
+  const caseItems = useMemo<IBuildComponent[]>(() => [
     {
       _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
+      title: 'Corsair iCUE 5000X RGB Mid-Tower ATX',
       rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
-    },
-    {
-      _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
-      rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
+      image: CaseImg,
+      category_slug: 'case',
+      specs: [
+          {
+            spec_title: 'A units',
+            spec_value: 'AAAA',
+          },
+          {
+            spec_title: 'B units',
+            spec_value: 'BBBB',
+          },
+          {
+            spec_title: 'C units',
+            spec_value: 'CCCC',
+          },
+        ]
     },
   ], [])
   const cpuCoolerItems = useMemo<IBuildComponent[]>(() => [
     {
       _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
+      title: 'Corsair iCUE H150i Elite Capellix XT',
       rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
-    },
-    {
-      _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
-      rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
+      image: CoolingImg,
+      category_slug: 'cooling',
+      specs: [
+          {
+            spec_title: 'A units',
+            spec_value: 'AAAA',
+          },
+          {
+            spec_title: 'B units',
+            spec_value: 'BBBB',
+          },
+          {
+            spec_title: 'C units',
+            spec_value: 'CCCC',
+          },
+        ]
     },
   ], [])
   const batteryItems = useMemo<IBuildComponent[]>(() => [
     {
       _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
+      title: 'Corsair RM 1000-Watt ATX Modular Power Supply',
       rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
-    },
-    {
-      _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
-      rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
+      image: PowerSupplyImg,
+      category_slug: 'power-supply',
+      specs: [
+          {
+            spec_title: 'Watt',
+            spec_value: '1000',
+          },
+          {
+            spec_title: 'mm fan',
+            spec_value: '135',
+          },
+          {
+            spec_title: 'modular',
+            spec_value: 'ATX',
+          },
+        ]
     },
   ], [])
   const windowsItems = useMemo<IBuildComponent[]>(() => [
     {
       _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
+      title: 'Microsoft Windows 11 Pro (PC) - English',
       rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
-    },
-    {
-      _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      cores: '24',
-      rating: 5,
-      frequency: '6.0',
-      powerConsumption: '125',
-      image: ProcessorImg,
+      image: WindowsImg,
+      category_slug: 'os',
+      specs: [
+          {
+            spec_title: 'A units',
+            spec_value: 'AAAA',
+          },
+          {
+            spec_title: 'B units',
+            spec_value: 'BBBB',
+          },
+          {
+            spec_title: 'C units',
+            spec_value: 'CCCC',
+          },
+        ]
     },
   ], [])
 
@@ -237,45 +268,45 @@ function useBuildByComponentContext() {
     },
     {
       icon: <MemoryStorageIcon />,
-      title: 'Memory Storage',
-      short_name: 'Memory Storage',
-      slug: 'memory-storage',
+      title: 'Storage',
+      short_name: 'Storage',
+      slug: 'storage',
       component: '',
       items: memoryStorageItems,
       selectedItem: null,
     },
     {
       icon: <ServerIcon />,
-      title: 'Server',
-      short_name: 'Server',
-      slug: 'server',
+      title: 'Case',
+      short_name: 'Case',
+      slug: 'case',
       component: '',
-      items: serverItems,
+      items: caseItems,
       selectedItem: null,
     },
     {
       icon: <CPUCoolerIcon />,
       title: 'CPU Cooler',
       short_name: 'CPU Cooler',
-      slug: 'cpu-cooler',
+      slug: 'cooling',
       component: '',
       items: cpuCoolerItems,
       selectedItem: null,
     },
     {
       icon: <BatteryIcon />,
-      title: 'Battery',
-      short_name: 'Battery',
-      slug: 'battery',
+      title: 'Power',
+      short_name: 'Power',
+      slug: 'power-supply',
       component: '',
       items: batteryItems,
       selectedItem: null,
     },
     {
       icon: <WindowsIcon />,
-      title: 'Windows',
-      short_name: 'Windows',
-      slug: 'windows',
+      title: 'OS',
+      short_name: 'OS',
+      slug: 'os',
       component: '',
       items: windowsItems,
       selectedItem: null,
@@ -296,17 +327,17 @@ function useBuildByComponentContext() {
       // add component to build
       const _index_in_build = currentBuild.length;
       if (_current_component && _current_build_category) {
-        _current_component.category_slug = _current_build_category.slug as string;
+        _current_component.category_slug = _current_build_category.slug;
         console.log([
+          _current_component,
             ...currentBuild,
-            _current_component
           ]);
         
 
         setCurrentBuild(
           (prev) => [
+            _current_component,
             ...prev,
-            _current_component
           ]
         )
       }
@@ -322,11 +353,16 @@ function useBuildByComponentContext() {
     setBuildStages(_buildStages);
   }
 
+  function resetPCBuild() {
+    setCurrentBuild([]);
+  }
+
   return {
     buildStages,
     currentBuild,
 
-    addComponentToBuild: addToBuild
+    addComponentToBuild: addToBuild,
+    resetPCBuild,
   }
 }
 

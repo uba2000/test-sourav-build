@@ -19,6 +19,10 @@ function BuildScratch() {
     navigate(RouteNames.buildPCFromScratch)
   }
 
+  function choosePreconfiged() {
+    navigate(RouteNames.preconfiguredSystemIndex)
+  }
+
   return (
     <BuildLayout>
       {/* <BuildLayout.HeaderTitle title='Ready to build?' /> */}
@@ -35,7 +39,7 @@ function BuildScratch() {
                 Need help getting started? We’ll show you a complete set of components that you can edit as you like. 
               </p>
               <div className='pb-2'>
-                <Button className='py-[6px] px-2'>
+                <Button onClick={() => choosePreconfiged()} className='py-[6px] px-2'>
                   <div className="flex items-center gap-x-2">
                     <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>View your system</span>
                     <ImageFigure icon={RightArrow} width={12} />
