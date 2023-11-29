@@ -72,7 +72,7 @@ function LandingPage() {
               </button>
             </Link>
 
-            <div className='flex justify-center'>
+            <Link target='_blank' to={'https://www.intel.com/'} className='flex justify-center'>
               <button type='button' className='relative flex py-3 px-4 bg-intel-e-blue-t1 hover:bg-intel-e-blue-t1-hover'>
                 <div className='flex items-center gap-x-2'>
                   <div>
@@ -81,7 +81,7 @@ function LandingPage() {
                   <span className='md:text-lg md:leading-[18px] text-base whitespace-nowrap text-intel-cobalt-s2 font-IntelOneDisplayMedium font-bold'>Find a gaming PC</span>
                 </div>
               </button>
-            </div>
+            </Link>
           </div>
         </div>
       </PageWrapper>

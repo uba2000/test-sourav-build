@@ -14,21 +14,32 @@ import ReloadIcon from "../../../assets/nav-reload-icon.svg"
 import ExternalIcon from "../../../assets/nav-external-link-icon.svg"
 import RightArrow from "../../../assets/right-arrow.svg"
 import Step3Resolution from "./components/Step3Resolution/Step3Resolution"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import RouteNames from "../../../lib/utils/routenames"
 import useBuildPCContext from "../../../lib/hooks/contextHooks/useBuildPCContext"
 
 function BuildPreference() {
+  const [searchParams] = useSearchParams();
+  
   const navigate = useNavigate();
   const { preferences, resetApp } = useBuildPCContext()
   const preferenceStages = useMemo(() => [
-    <Step1GameType />,
-    <Step2FPS />,
-    <Step3Resolution />
+    {
+      component: <Step1GameType />,
+      description: ''
+    },
+    {
+      component: <Step2FPS />,
+      description: 'Simulated difference in FPS for display on a wide range of devices. Individual performance and results may vary. '
+    },
+    {
+      component: <Step3Resolution />,
+      description: ''
+    }
   ], [])
 
   const [canProceed, setCanProceed] = useState(false);
-  const [currentStage, setCurrentStage] = useState(0);
+  const [currentStage, setCurrentStage] = useState(parseInt((searchParams.get('s') || '0'), 10));
 
   function nextStage() {
     if (currentStage === preferenceStages.length - 1) {
@@ -37,15 +48,8 @@ function BuildPreference() {
     }
     setCanProceed(false)
     setCurrentStage(prev => prev + 1)
+    navigate(`${RouteNames.buildPreferenceIndex}?s=${currentStage + 1}`)
   }
-
-  // function previousStage() {
-  //   if (currentStage > 0) {
-  //     setCurrentStage(prev => prev - 1)
-  //   } else {
-  //     window.history.back();
-  //   }
-  // }
 
   useEffect(() => { 
     if ((currentStage === 0 && (preferences.game_type_title.length > 0))
@@ -56,6 +60,10 @@ function BuildPreference() {
       setCanProceed(false)
     }
   }, [preferences.game_type_title, currentStage, preferences.gaming_fps, preferences.gaming_resolution])
+
+  useEffect(() => {
+    setCurrentStage(parseInt((searchParams.get('s') || '0'), 10));
+  }, [searchParams])
 
   return (
     <PageWrapper>
@@ -74,9 +82,11 @@ function BuildPreference() {
               </button>
             </div>
           </PolygonContainer>
-          <PolygonContainer className="min-w-[246px]">
+          <PolygonContainer className="min-w-[277px]">
             <div className="flex items-center h-full gap-1 justify-center px-2">
-              <p className="text-[rgba(255,255,255,0.75)] uppercase text-xs w-[80px] text-center block">TARGETS</p>
+              <p className="text-[rgba(255,255,255,0.75)] uppercase text-xs w-[112px] text-center block">
+                Preferences
+              </p>
               <div className="flex items-center gap-x-[9px]">
                 <div className="flex gap-[2px]">
                   {preferenceStages.map((__, index) => (
@@ -94,20 +104,54 @@ function BuildPreference() {
           </PolygonContainer>
         </div>
 
-        <div className="max-w-[1026px] mx-auto md:px-0 px-6">
+        <div className="max-w-[1026px] mx-auto px-6">
           {/* Children Section */}
-          {preferenceStages[currentStage]}
+          <div 
+            className={clsx(
+              { 'hidden': currentStage !== 0 },
+              { 'block': currentStage === 0 },
+            )}
+          >
+            {preferenceStages[0].component}
+          </div>
+          <div 
+            className={clsx(
+              { 'hidden': currentStage !== 1 },
+              { 'block': currentStage === 1 },
+            )}
+          >
+            {preferenceStages[1].component}
+          </div>
+          <div 
+            className={clsx(
+              { 'hidden': currentStage !== 2 },
+              { 'block': currentStage === 2 },
+            )}
+          >
+            {preferenceStages[2].component}
+          </div>
           {/* Children Section */}
         </div>
 
-        <div className="max-w-[1026px] mx-auto mb-6 md:px-0 px-6">
-          <div className="max-w-[930px]  flex justify-end mt-6">
-            <Button disabled={!canProceed} onClick={() => nextStage()} className="py-2 px-6">
-              <div className="flex gap-2 items-center">
-                <span className="text-intel-e-gray-s2 text-[15px] font-IntelOneBodyTextMedium leading-[15px]">Next</span>
-                <ImageFigure icon={RightArrow} width={12} />
-              </div>
-            </Button>
+        <div className="max-w-[1026px] mx-auto mb-6 px-6">
+          <div
+            className={clsx(
+              "max-w-[930px] flex mt-6 gap-6 items-center",
+              {"justify-between": preferenceStages[currentStage].description},
+              {"justify-end": !preferenceStages[currentStage].description},
+            )}
+          >
+            <p className="max-w-[459px] font-IntelOneBodyTextRegular text-intel-e-gray-t1 text-xs">
+              {preferenceStages[currentStage].description}
+            </p>
+            <div>
+              <Button disabled={!canProceed} onClick={() => nextStage()} className="min-w-[103px] py-2 px-6">
+                <div className="flex gap-2 items-center">
+                  <span className="text-intel-e-gray-s2 text-[15px] font-IntelOneBodyTextMedium leading-[15px]">Next</span>
+                  <ImageFigure icon={RightArrow} width={12} />
+                </div>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
