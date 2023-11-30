@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import _ from "lodash"
 
 import type { IAddToBuildProps, IBuildComponent, IBuildStages } from "../../types/context-types"
@@ -22,15 +22,15 @@ import WindowsImg from '../../../assets/component-products/windows.png'
 import PowerSupplyImg from '../../../assets/component-products/powersupply.png'
 import CoolingImg from '../../../assets/component-products/cooling.png'
 import CaseImg from '../../../assets/component-products/case.png'
-import { matchRoutes, useLocation } from "react-router-dom"
+// import { matchRoutes, useLocation } from "react-router-dom"
 
-const componentBuildRoutes = [
-  { path: "/build-pc/choose-component/:category_slug" },
-]
+// const componentBuildRoutes = [
+//   { path: "/build-pc/choose-component/:category_slug" },
+// ]
 
 function useBuildByComponentContext() {
-  const location = useLocation()
-  const isOnBuildRoutes = matchRoutes(componentBuildRoutes, location)
+  // const location = useLocation()
+  // const isOnBuildRoutes = matchRoutes(componentBuildRoutes, location)
 
   const cpuItems = useMemo<IBuildComponent[]>(() => [
     {
@@ -38,6 +38,7 @@ function useBuildByComponentContext() {
       title: 'Intel® Core™ i9-14900KF processor',
       rating: 5,
       image: ProcessorImg,
+      model: ProcessorImg,
       category_slug: 'processor',
       specs: [
         {
@@ -61,6 +62,7 @@ function useBuildByComponentContext() {
       title: 'MSI GeForce RTX 4090 Gaming X Trio',
       rating: 5,
       image: GPUImg,
+      model: GPUImg,
       category_slug: 'graphics-card',
       specs: [
           {
@@ -84,6 +86,7 @@ function useBuildByComponentContext() {
       title: 'ASUS ROG Maximus Z790 Hero Gaming',
       rating: 5,
       image: MotherboardImg,
+      model: MotherboardImg,
       category_slug: 'motherboard',
       specs: [
           {
@@ -107,6 +110,7 @@ function useBuildByComponentContext() {
       title: 'Corsair Vengeance 64GB',
       rating: 5,
       image: MemoryImg,
+      model: MemoryImg,
       category_slug: 'memory',
       specs: [
           {
@@ -130,6 +134,7 @@ function useBuildByComponentContext() {
       title: 'Samsung 970 EVO Plus 1TB Internal SSD',
       rating: 5,
       image: StorageImg,
+      model: StorageImg,
       category_slug: 'storage',
       specs: [
           {
@@ -149,6 +154,7 @@ function useBuildByComponentContext() {
       title: 'Corsair iCUE 5000X RGB Mid-Tower ATX',
       rating: 5,
       image: CaseImg,
+      model: CaseImg,
       category_slug: 'case',
       specs: [
           {
@@ -172,6 +178,7 @@ function useBuildByComponentContext() {
       title: 'Corsair iCUE H150i Elite Capellix XT',
       rating: 5,
       image: CoolingImg,
+      model: CoolingImg,
       category_slug: 'cooling',
       specs: [
           {
@@ -195,6 +202,7 @@ function useBuildByComponentContext() {
       title: 'Corsair RM 1000-Watt ATX Modular Power Supply',
       rating: 5,
       image: PowerSupplyImg,
+      model: PowerSupplyImg,
       category_slug: 'power-supply',
       specs: [
           {
@@ -218,6 +226,7 @@ function useBuildByComponentContext() {
       title: 'Microsoft Windows 11 Pro (PC) - English',
       rating: 5,
       image: WindowsImg,
+      model: WindowsImg,
       category_slug: 'os',
       specs: [
           {
@@ -348,6 +357,7 @@ function useBuildByComponentContext() {
             ...prev,
           ]
         )
+        setCurrentBuildStage((prev) => prev + 1);
       }
       if (_current_component_index && _current_component && _current_build_category) {
         _buildStages[_current_component_index].selectedItem = {
@@ -365,15 +375,17 @@ function useBuildByComponentContext() {
     setCurrentBuild([]);
   }
 
-  useEffect(() => { 
-    if (isOnBuildRoutes) {
+  // useEffect(() => { 
+  //   if (isOnBuildRoutes) {
+  //     console.log('isOnBuildRoutes');
       
-      const _currentIndex = buildStages.findIndex(
-        (d) => d.slug === isOnBuildRoutes[0].params.category_slug,
-      )
-      setCurrentBuildStage(_currentIndex)
-    }
-  }, [isOnBuildRoutes])
+  //     // const _currentIndex = buildStages.findIndex(
+  //     //   (d) => d.slug === isOnBuildRoutes[0].params.category_slug,
+  //     // )
+  //     // setCurrentBuildStage(_currentIndex)
+  //     // setCurrentBuildStage(currentBuild.length)
+  //   }
+  // }, [isOnBuildRoutes])
 
   return {
     buildStages,

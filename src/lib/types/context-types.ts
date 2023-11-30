@@ -20,6 +20,7 @@ export interface IBuildComponent {
   frequency?: string;
   powerConsumption?: string;
   image: string;
+  model?: string;
   category_slug?: IBuildStages["slug"];
   specs?: {
     spec_title: string;
@@ -101,4 +102,11 @@ export interface IBuildPCContext {
 
   resetApp: () => void;
   addToRetailerUsersCart: (props: AddToRetailerUsersCartPropsType) => void;
+
+  currentModelOnStage: string;
+  showCurrentModelSpecs: boolean;
+  viewingCurrentComponentModel: boolean;
+  toggleShowSpecs: () => void;
+  toggleViewingComponentModel: () => void;
+  setCurrentModelOnStage: (model: string) => void;
 }

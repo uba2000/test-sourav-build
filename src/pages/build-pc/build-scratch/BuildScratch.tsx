@@ -16,7 +16,7 @@ function BuildScratch() {
   const navigate = useNavigate()
 
   function startBuildFromScratch() {
-    navigate(RouteNames.buildPCFromScratch)
+    navigate(RouteNames.buildPCMyBuild)
   }
 
   function choosePreconfiged() {
@@ -24,7 +24,7 @@ function BuildScratch() {
   }
 
   return (
-    <BuildLayout>
+    <BuildLayout layout_r_title='Ready to start?'>
       {/* <BuildLayout.HeaderTitle title='Ready to build?' /> */}
 
       <div className="flex flex-col gap-y-4">

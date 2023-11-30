@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useLayoutEffect, useState } from 'react'
+import React, { Fragment, useLayoutEffect, useState } from 'react'
 import PolygonContainer from '../../../../components/PolygonContainer/PolygonContainer';
 import ImageFigure from '../../../../components/ImageFigure';
 import clsx from 'clsx';
@@ -11,7 +11,7 @@ import Button from '../../../../components/Button/Button';
 import ReloadIcon from "../../../../assets/nav-reload-icon.svg"
 import ExternalIcon from "../../../../assets/nav-external-link-icon.svg"
 import CartIcon from '../../../../assets/cart.svg'
-
+import RightArrow from "../../../../assets/right-arrow.svg"
 import BuildSpanner from '../../../../assets/component-icons/build.svg'
 import Image3D from '../../../../assets/assets-3d/build-3d-image.svg'
 import NavLeftArrow from '../../../../assets/left-scroll-arrow.svg'
@@ -26,7 +26,7 @@ interface IBuildLayout {
   children: React.ReactNode;
   isCompareMode?: boolean;
   stagesStatus?: 'complete' | 'auto';
-  buildModel?: string;
+  layout_r_title?: string;
 }
 
 const buildRoutes = [
@@ -36,13 +36,15 @@ const buildRoutes = [
   { path: "/build-pc/preconfigured" },
 ]
 
-function BuildLayout({children, isCompareMode=false, stagesStatus='auto', buildModel}: IBuildLayout) {
+function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout_r_title}: IBuildLayout) {
   const { buildStages } = useBuildPCStages()
   const {
     currentBuild,
     resetApp,
     addToRetailerUsersCart,
-    currentBuildStage: currentStage
+    currentBuildStage: currentStage,
+    currentModelOnStage, toggleShowSpecs,
+    viewingCurrentComponentModel, showCurrentModelSpecs
   } = useBuildPCContext()
 
   // states of the 3D model
@@ -105,26 +107,61 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', buildM
             {"grid md:grid-cols-[auto_484px] grid-cols-1 gap-x-4 gap-y-3": !isCompareMode},
           )}
         >
-          {!isCompareMode && (
-            <div className="py-6 flex justify-center items-center">
+          {/* {!isCompareMode && ( */}
+          <div className="md:py-6 pt-6 flex-col gap-y-4 flex">
+            <div className='flex-grow w-full min-w-[180px] min-h-[180px] flex justify-center items-center'>
               <div className='hidden md:block'>
-                <ImageFigure icon={buildModel || Image3D} width={481} />
+                <ImageFigure icon={currentModelOnStage || Image3D} width={481} />
               </div>
               <div className='block md:hidden'>
-                <ImageFigure icon={buildModel || Image3D} width={190} />
+                <ImageFigure icon={currentModelOnStage || Image3D} width={190} />
               </div>
             </div>
-          )}
+            <div className="flex justify-end md:pr-0 pr-4 min-h-[31px]">
+              {(viewingCurrentComponentModel && !showCurrentModelSpecs) && (
+                <Button className=" py-2 px-4" onClick={() => toggleShowSpecs()}>
+                  <div className="flex gap-2 items-center">
+                    <span className="text-intel-e-gray-s2 text-[15px] font-IntelOneBodyTextMedium leading-[15px]">View specs</span>
+                    <ImageFigure icon={RightArrow} width={12} />
+                  </div>
+                </Button>
+              )}
+            </div>
+          </div>
+          {/* )} */}
           <div className="flex md:flex-nowrap flex-wrap-reverse gap-x-4">
             <div className='flex flex-col flex-grow md:gap-y-2 gap-y-4'>
+              
               {/* Right main section */}
-              <PolygonContainer className='flex-grow max-w-[978px] w-full ml-auto md:block hidden'>
-                <div className="px-6 md:pt-[23px] pt-3 pb-10 min-h-[610px] max-h-[610px] overflow-y-auto scrollbar-hide">
+              <PolygonContainer bbr={false} btl={false} className='flex-grow max-w-[978px] w-full ml-auto md:block hidden'>
+                {layout_r_title && (
+                  <div className="md:px-[26px] px-4 md:py-3 pt-2 pb-[10px] border-b border-[rgba(255,255,255,0.75)]">
+                    <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
+                      {layout_r_title}
+                    </h1>
+                  </div>
+                )}
+                <div
+                  className={clsx(
+                    "px-6 md:pt-[12px] pt-3 pb-10 overflow-y-auto scrollbar-hide",
+                    {"min-h-[610px] max-h-[610px]": !layout_r_title},
+                    {"min-h-[561px] max-h-[561px]": layout_r_title},
+                  )}
+                >
                   {children}
                 </div>
               </PolygonContainer>
-              <div className="pt-3 px-4 overflow-y-auto md:hidden block min-h-[610px]">
-                {children}
+              <div className='md:hidden block'>
+                {layout_r_title && (
+                <div className="md:px-[26px] px-4 md:py-3 pt-2 mt-1 pb-[10px] border-b border-[rgba(255,255,255,0.20)] md:border-[rgba(255,255,255,0.75)]">
+                  <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
+                    {layout_r_title}
+                  </h1>
+                </div>
+                )}
+                <div className="pt-3 px-4 overflow-y-auto min-h-[610px]">
+                  {children}
+                </div>
               </div>
               {/* Right main section */}
               {/* Right price section */}
@@ -184,7 +221,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', buildM
             </div>
             {/* Mobile right bar */}
             {/* Desktop right bar */}
-            <PolygonContainer className='min-w-[68px] md:block hidden' bbr={false} topBackground={isOnBuildRoutes ? 'primary' : null}>
+            <PolygonContainer className='min-w-[68px] md:block hidden' bbr={false} btl={false} topBackground={isOnBuildRoutes ? 'primary' : null}>
               <div>
                 <div
                   className={clsx(
@@ -228,6 +265,16 @@ BuildLayout.HeaderTitle = function BuildLayoutHeaderTitle({ title, subTitle }: {
   )
 }
 
+BuildLayout.HeaderGroup = function BuildLayoutHeaderGroup({ title }: {title: string;}) {
+  return (
+    <div className="md:-mx-6 -mx-4 md:px-[26px] md:-mt-[11px] mb-6 px-4 md:pb-3 pb-[10px] border-b border-[rgba(255,255,255,0.75)]">
+      <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
+        {title}
+      </h1>
+    </div>
+  )
+}
+
 const componentBuildRoutes = [
   { path: "/build-pc/choose-component/:category_slug" },
 ]
@@ -259,7 +306,7 @@ function BuildSidebarItem({ data, screenSize, stagesStatus='auto' }: IBuildSideb
     }
   }, [isCompleted])
 
-  useEffect(() => { 
+  useLayoutEffect(() => { 
     if (isOnBuildRoutes) {
       
       if (isOnBuildRoutes[0].params.category_slug === data.slug) {

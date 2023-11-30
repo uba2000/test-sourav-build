@@ -18,9 +18,7 @@ function StartFromScratch() {
   }
 
   return (
-    <BuildLayout>
-      <BuildLayout.HeaderTitle title='Start from scratch' />
-
+    <BuildLayout layout_r_title='Start from scratch'>
       {currentBuildStageIndex === 0 && (
         <CardWithNotch notchHeight='small'>
           <div className="py-1 px-6 flex gap-2">

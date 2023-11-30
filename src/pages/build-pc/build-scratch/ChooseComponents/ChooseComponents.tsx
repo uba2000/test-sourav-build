@@ -20,7 +20,11 @@ function ChooseComponents() {
   const matches = useMatches();
   const navigate = useNavigate();
   const { getStageData, currentBuildStage } = useBuildPCStages();
-  const { addComponentToBuild } = useBuildPCContext()
+  const {
+    addComponentToBuild,
+    showCurrentModelSpecs,
+    setCurrentModelOnStage, toggleViewingComponentModel,
+  } = useBuildPCContext()
 
   const componentItems = useMemo(() => currentBuildStage.items, [currentBuildStage.items])
   const _category_slug = useMemo(() => matches[0].params?.category_slug, [matches])
@@ -28,25 +32,36 @@ function ChooseComponents() {
   const stageDetails = useMemo<IBuildStages>(() => getStageData(_category_slug as string), [])
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [canCompare] = useState(stageDetails?.canCompare)
-  const [showSingleDetails, setShowSingleDetails] = useState(false);
-  const [itemsToCompare, setItemsToCompare] = useState<string[]>([])
+  // const [canCompare] = useState(stageDetails?.canCompare)
+  // const [canCompare] = useState(false)
+  const [selectedItemID, setSelectedItemID] = useState<string | null>(null)
+  // const [showSingleDetails, setShowSingleDetails] = useState(false);
+  // const [itemsToCompare, setItemsToCompare] = useState<string[]>([])
 
-  function handleToggleSingleDetails(_id: string) {
-    if (!canCompare) {
-      setShowSingleDetails(!showSingleDetails)
-      return;
-    }
+  // function handleToggleSingleDetails(_id: string) {
+  //   if (!canCompare) {
+  //     setShowSingleDetails(!showSingleDetails)
+  //     return;
+  //   }
 
-    // compare two items
-    if (itemsToCompare.length < 2) {
-      setItemsToCompare(prev => [...prev, _id])
-    } else {
-      let _itemsToCompare = [...itemsToCompare];
-      _itemsToCompare.pop();
-      _itemsToCompare = [..._itemsToCompare, _id];
-      setItemsToCompare(_itemsToCompare)
+  //   // compare two items
+  //   if (itemsToCompare.length < 2) {
+  //     setItemsToCompare(prev => [...prev, _id])
+  //   } else {
+  //     let _itemsToCompare = [...itemsToCompare];
+  //     _itemsToCompare.pop();
+  //     _itemsToCompare = [..._itemsToCompare, _id];
+  //     setItemsToCompare(_itemsToCompare)
+  //   }
+  // }
+
+  function onSelectComponentItem(_id: string) {
+    const _item = componentItems.find((d) => d._id === _id);
+    setCurrentModelOnStage(selectedItemID === _id ? '' : _item?.model as string);
+    if (selectedItemID === _id || !selectedItemID) {
+      toggleViewingComponentModel();
     }
+    setSelectedItemID(selectedItemID === _id ? null : _id)
   }
 
   const [compareSelection, setCompareSelection] = useState<'product' | 'compare'>('product')
@@ -65,70 +80,69 @@ function ChooseComponents() {
   }
 
   return (
-    <BuildLayout>
-      {!showSingleDetails && (
+    <BuildLayout layout_r_title={`${!showCurrentModelSpecs ? `Select a ${stageDetails.title.toLowerCase()}` : ''}`}>
+      {!showCurrentModelSpecs && (
         <>
-          <BuildLayout.HeaderTitle
-            title={`Choose a ${stageDetails.title.toLowerCase()}`}
-            subTitle={!canCompare ? '[Short rationale for the selection of these components. ]' : ''}
-          />
-
-          <PolygonContainer>
-            <div className="px-2 flex gap-2 items-center justify-center">
-              <span className="uppercase text-xs leading-[10px] whitespace-nowrap text-[rgba(255,255,255,0.75)]">Component specs</span>
-              <div className="border flex border-intel-cobalt-t1">
-                <button
-                  type='button'
-                  onClick={() => handleCompareSelection('product')}
-                  className={clsx(
-                    "flex items-center gap-x-[6px] py-1 px-2 text-xs font-IntelOneBodyTextMedium",
-                    {"bg-intel-cobalt-t1": compareSelection === 'product'}
-                  )}
-                >
-                  Product
-                  <ImageFigure icon={RightArrow} width={12} />
-                </button>
-                <button
-                  type='button'
-                  onClick={() => handleCompareSelection('compare')}
-                  className={clsx(
-                    "flex items-center gap-x-[6px] py-1 px-2 text-xs font-IntelOneBodyTextMedium",
-                    {"bg-intel-cobalt-t1": compareSelection === 'compare'}
-                  )}
-                >
-                  Comparison
-                  <ImageFigure icon={RightArrow} width={12} />
-                </button>
-              </div>
-            </div>
-          </PolygonContainer>
-
-          <div className=''>
-            <span className="uppercase text-xs leading-[10px] text-[rgba(255,255,255,0.75)]">Component specs</span>
-          </div>
-
-          <div className='flex pl-2 gap-x-3 mb-3 items-center'>
-            <div className="flex-grow text-sm">
-              Select a single {stageDetails.title.toLowerCase()} to view specs
-            </div>
-            <div className="flex item-center min-w-[99px]">
-              <Button variant='cobalt' className='h-fit' onClick={() => viewComparison()}>
-                <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
-                  View specs
-                  <ImageFigure icon={RightArrow} width={12} />
+          {false && (
+            <>
+              <PolygonContainer>
+                <div className="px-2 flex gap-2 items-center justify-center">
+                  <span className="uppercase text-xs leading-[10px] whitespace-nowrap text-[rgba(255,255,255,0.75)]">Component specs</span>
+                  <div className="border flex border-intel-cobalt-t1">
+                    <button
+                      type='button'
+                      onClick={() => handleCompareSelection('product')}
+                      className={clsx(
+                        "flex items-center gap-x-[6px] py-1 px-2 text-xs font-IntelOneBodyTextMedium",
+                        {"bg-intel-cobalt-t1": compareSelection === 'product'}
+                      )}
+                    >
+                      Product
+                      <ImageFigure icon={RightArrow} width={12} />
+                    </button>
+                    <button
+                      type='button'
+                      onClick={() => handleCompareSelection('compare')}
+                      className={clsx(
+                        "flex items-center gap-x-[6px] py-1 px-2 text-xs font-IntelOneBodyTextMedium",
+                        {"bg-intel-cobalt-t1": compareSelection === 'compare'}
+                      )}
+                    >
+                      Comparison
+                      <ImageFigure icon={RightArrow} width={12} />
+                    </button>
+                  </div>
                 </div>
-              </Button>
-            </div>
-          </div>
+              </PolygonContainer>
+
+              <div className=''>
+                <span className="uppercase text-xs leading-[10px] text-[rgba(255,255,255,0.75)]">Component specs</span>
+              </div>
+
+              <div className='flex pl-2 gap-x-3 mb-3 items-center'>
+                <div className="flex-grow text-sm">
+                  Select a single {stageDetails.title.toLowerCase()} to view specs
+                </div>
+                <div className="flex item-center min-w-[99px]">
+                  <Button variant='cobalt' className='h-fit' onClick={() => viewComparison()}>
+                    <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
+                      View specs
+                      <ImageFigure icon={RightArrow} width={12} />
+                    </div>
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
 
           <div className='flex flex-col gap-y-3'>
             {componentItems && componentItems.map((d) => (
               <Fragment key={_.uniqueId()}>
                 <ChooseComponentItem
-                  selected={canCompare ? itemsToCompare.includes(d._id) : false}
+                  selected={d._id === selectedItemID}
                   data={d}
                   addToBuild={(id: string) => handleAddComponentToBuild(id)}
-                  onClick={(_id: string) => handleToggleSingleDetails(_id)}
+                  onClick={(id: string) => onSelectComponentItem(id)}
                 />
               </Fragment>
             ))}
@@ -136,10 +150,8 @@ function ChooseComponents() {
         </>
       )}
 
-      {showSingleDetails && (
-        <SingleCompareComponents
-          handleToggleSingleDetails={(_id: string) => handleToggleSingleDetails(_id)}
-        />
+      {showCurrentModelSpecs && (
+        <SingleCompareComponents />
       )}
     </BuildLayout>
   )

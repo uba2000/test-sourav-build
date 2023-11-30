@@ -5,6 +5,7 @@ import useBuildByComponentContext from '../../lib/hooks/contextHooks/useBuildByC
 import { useNavigate } from 'react-router-dom';
 import RouteNames from '../../lib/utils/routenames';
 import { AddToRetailerUsersCartPropsType, IBuildPCContext } from '../../lib/types/context-types';
+import useBuildPCLayoutContext from '../../lib/hooks/contextHooks/useBuildPCLayoutContext';
 
 function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate()
@@ -12,6 +13,8 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
   const preferenceState = usePreferencContext();
 
   const buildState = useBuildByComponentContext();
+
+  const buildLayoutState = useBuildPCLayoutContext();
 
   const resetApp = useCallback(() => {
     preferenceState.resetPreferences();
@@ -28,12 +31,16 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
   const buildPCState = useMemo(() => {
     return {
       ...preferenceState,
-
       ...buildState,
+      ...buildLayoutState,
       resetApp,
       addToRetailerUsersCart,
     }
-  }, [preferenceState, buildState, resetApp, addToRetailerUsersCart]);
+  }, [
+    preferenceState, buildLayoutState,
+    buildState, resetApp,
+    addToRetailerUsersCart
+  ]);
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

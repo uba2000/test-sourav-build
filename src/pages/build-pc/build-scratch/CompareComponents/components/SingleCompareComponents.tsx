@@ -5,16 +5,19 @@ import StarRatingComponent from '../../../../../components/StarRatingComponent/S
 import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge'
 import Button from '../../../../../components/Button/Button'
 import RightArrow from '../../../../../assets/right-arrow-white.svg'
+import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
 
-interface ISingleCompareComponents {
-  handleToggleSingleDetails: (_id: string) => void
-}
+// interface ISingleCompareComponents {
+//   handleToggleSingleDetails: (_id: string) => void
+// }
 
-function SingleCompareComponents({handleToggleSingleDetails}: ISingleCompareComponents) {
+function SingleCompareComponents() {
+  const { toggleShowSpecs } = useBuildPCContext()
+
   return (
     <div className='flex flex-col gap-y-4'>
       <div className="flex justify-end">
-        <button type='button' className="cursor-pointer" onClick={() => handleToggleSingleDetails('')}>
+        <button type='button' className="cursor-pointer" onClick={() => toggleShowSpecs()}>
           <ImageFigure icon={CircleCloseIcon} width={16} />
         </button>
       </div>

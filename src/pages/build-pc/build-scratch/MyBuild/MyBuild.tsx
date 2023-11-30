@@ -20,9 +20,7 @@ function MyBuild() {
   }
 
   return (
-    <BuildLayout>
-      <BuildLayout.HeaderTitle title='My Build' />
-
+    <BuildLayout layout_r_title='My Build'>
       <div className='flex flex-col gap-y-[10px]'>
         {currentBuildStageIndex === 0 && (
           <CardWithNotch notchHeight='small'>
