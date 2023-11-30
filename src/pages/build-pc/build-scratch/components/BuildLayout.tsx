@@ -286,6 +286,7 @@ interface IBuildSidebarItem {
 }
 
 function BuildSidebarItem({ data, screenSize, stagesStatus='auto' }: IBuildSidebarItem) {
+  // const navigate = useNavigate()
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(componentBuildRoutes, location)
   
@@ -317,8 +318,12 @@ function BuildSidebarItem({ data, screenSize, stagesStatus='auto' }: IBuildSideb
     }
   }, [data.slug, isOnBuildRoutes])
 
+  function goToComponent() {
+    // navigate(`${RouteNames.buildChooseComponent}/${data.slug}`)
+  }
+
   return (
-    <div>
+    <div onClick={() => goToComponent()}>
       {screenSize === 'mobile' && (
         <CardWithNotch backgroundColor={backgroundColor} notchHeight='small' btl={false} bbr={false} bbl>
           <div className="relative w-full min-w-[36px] h-5 cursor-pointer">

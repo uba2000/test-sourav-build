@@ -31,29 +31,7 @@ function ChooseComponents() {
 
   const stageDetails = useMemo<IBuildStages>(() => getStageData(_category_slug as string), [])
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // const [canCompare] = useState(stageDetails?.canCompare)
-  // const [canCompare] = useState(false)
   const [selectedItemID, setSelectedItemID] = useState<string | null>(null)
-  // const [showSingleDetails, setShowSingleDetails] = useState(false);
-  // const [itemsToCompare, setItemsToCompare] = useState<string[]>([])
-
-  // function handleToggleSingleDetails(_id: string) {
-  //   if (!canCompare) {
-  //     setShowSingleDetails(!showSingleDetails)
-  //     return;
-  //   }
-
-  //   // compare two items
-  //   if (itemsToCompare.length < 2) {
-  //     setItemsToCompare(prev => [...prev, _id])
-  //   } else {
-  //     let _itemsToCompare = [...itemsToCompare];
-  //     _itemsToCompare.pop();
-  //     _itemsToCompare = [..._itemsToCompare, _id];
-  //     setItemsToCompare(_itemsToCompare)
-  //   }
-  // }
 
   function onSelectComponentItem(_id: string) {
     const _item = componentItems.find((d) => d._id === _id);

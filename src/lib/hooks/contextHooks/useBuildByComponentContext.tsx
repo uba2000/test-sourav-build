@@ -303,8 +303,8 @@ function useBuildByComponentContext() {
     },
     {
       icon: <CPUCoolerIcon />,
-      title: 'CPU Cooler',
-      short_name: 'CPU Cooler',
+      title: 'CPU Cooling',
+      short_name: 'CPU Cooling',
       slug: 'cooling',
       component: '',
       items: cpuCoolerItems,
@@ -312,8 +312,8 @@ function useBuildByComponentContext() {
     },
     {
       icon: <BatteryIcon />,
-      title: 'Power',
-      short_name: 'Power',
+      title: 'Power Supply',
+      short_name: 'Power Supply',
       slug: 'power-supply',
       component: '',
       items: batteryItems,
@@ -321,7 +321,7 @@ function useBuildByComponentContext() {
     },
     {
       icon: <WindowsIcon />,
-      title: 'OS',
+      title: 'Operating System',
       short_name: 'OS',
       slug: 'os',
       component: '',

@@ -43,23 +43,32 @@ function MyBuild() {
         )}
 
         {(currentBuildStageIndex > 0 && currentBuildStageIndex < buildStages.length) && (
-          <CardWithNotch notchHeight='small'>
-            <div className="py-1 px-6 flex gap-2">
-              <div className='flex flex-col gap-y-2'>
-                <p className='text-sm font-IntelOneBodyTextBold'>
-                  Next, choose a {currentBuildStage.short_name}.
-                </p>
-                <div className='pb-2'>
-                  <Button className='py-1 px-2' onClick={() => goToChooseComponent()}>
-                    <div className="flex items-center gap-x-2">
-                      <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>Select a {currentBuildStage.title}</span>
-                      <ImageFigure icon={RightArrow} width={12} />
-                    </div>
-                  </Button>
-                </div>
+          // <CardWithNotch notchHeight='small'>
+          //   <div className="py-1 px-6 flex gap-2">
+          //     <div className='flex flex-col gap-y-2'>
+          //       <p className='text-sm font-IntelOneBodyTextBold'>
+          //         Next, choose a {currentBuildStage.short_name}.
+          //       </p>
+          //       <div className='pb-2'>
+          //         <Button className='py-1 px-2' onClick={() => goToChooseComponent()}>
+          //           <div className="flex items-center gap-x-2">
+          //             <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>Select a {currentBuildStage.title}</span>
+          //             <ImageFigure icon={RightArrow} width={12} />
+          //           </div>
+          //         </Button>
+          //       </div>
+          //     </div>
+          //   </div>
+          // </CardWithNotch>
+          <div className="flex justify-end items-center gap-x-2">
+            <span className="text-xs font-IntelOneBodyTextMedium"> Next, select a</span>
+            <Button onClick={() => goToChooseComponent()} className="min-w-fit py-2 px-3">
+              <div className="flex gap-2 items-center">
+                <span className="text-intel-e-gray-s2 text-xs font-IntelOneBodyTextMedium leading-[11px]">{currentBuildStage.title}</span>
+                <ImageFigure icon={RightArrow} width={12} />
               </div>
-            </div>
-          </CardWithNotch>
+            </Button>
+          </div>
         )}
 
         {/* list of builds... */}
