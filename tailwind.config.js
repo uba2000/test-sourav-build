@@ -34,9 +34,9 @@ export default {
           },
         ],
         h2: [
-          "36px",
+          "28px",
           {
-            lineHeight: "36px",
+            lineHeight: "28px",
             letterSpacing: "1px",
             fontWeight: "700",
           },
@@ -96,6 +96,9 @@ export default {
         "intel-e-gray-t1": "#AEAEAE",
         "intel-e-gray-t3": "#F6F6F6",
         "intel-white": "#FFFFFF",
+
+        "white-75": "rgba(255,255,255,0.75)",
+        "white-50": "rgba(255, 255, 255, 0.50)",
         // 'bg-linear-gradient-1': '#0A001F, #0A001F00',
       },
     },

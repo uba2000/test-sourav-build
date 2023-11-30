@@ -81,14 +81,14 @@ function BuildScratch() {
 
         <PolygonContainer>
           <div className="pl-5 pr-7 py-2">
-            <div className="border-b-[rgba(255,255,255,0.2)] mb-[6px] border-b uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-[rgba(255,255,255,0.75)]">
+            <div className="border-b-[rgba(255,255,255,0.2)] mb-[6px] border-b uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-white-75">
               Preferences
             </div>
 
             <div className="grid grid-cols-2">
               <div className='flex flex-col gap-y-2'>
                 <div>
-                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-[rgba(255,255,255,0.75)]">
+                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-white-75">
                     FPS
                   </h6>
                   <p className='text-sm'>
@@ -97,7 +97,7 @@ function BuildScratch() {
                 </div>
 
                 <div>
-                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-[rgba(255,255,255,0.75)]">
+                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-white-75">
                     Resolution
                   </h6>
                   <p className='text-sm'>
@@ -107,7 +107,7 @@ function BuildScratch() {
               </div>
               <div className='flex flex-col gap-y-2'>
                 <div>
-                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-[rgba(255,255,255,0.75)]">
+                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-white-75">
                     Games
                   </h6>
                   <p className='text-sm'>

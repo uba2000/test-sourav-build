@@ -84,7 +84,7 @@ function BuildPreference() {
           </PolygonContainer>
           <PolygonContainer className="min-w-[277px]">
             <div className="flex items-center h-full gap-1 justify-center px-2">
-              <p className="text-[rgba(255,255,255,0.75)] uppercase text-xs w-[112px] text-center block">
+              <p className="text-white-75 uppercase text-xs w-[112px] text-center block">
                 Preferences
               </p>
               <div className="flex items-center gap-x-[9px]">

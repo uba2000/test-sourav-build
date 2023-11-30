@@ -80,7 +80,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
           </PolygonContainer>
           <PolygonContainer className="min-w-[246px]">
             <div className="flex items-center h-full gap-1 justify-center px-2">
-              <p className="text-[rgba(255,255,255,0.75)] uppercase text-xs w-[100px] text-center block">Components</p>
+              <p className="text-white-75 uppercase text-xs w-[100px] text-center block">Components</p>
               <div className="flex items-center gap-x-[9px]">
                 <div className="flex gap-[2px]">
                   {buildStages.map((__, index) => (
@@ -135,7 +135,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
               {/* Right main section */}
               <PolygonContainer bbr={false} btl={false} className='flex-grow max-w-[978px] w-full ml-auto md:block hidden'>
                 {layout_r_title && (
-                  <div className="md:px-[26px] px-4 md:py-3 pt-2 pb-[10px] border-b border-[rgba(255,255,255,0.75)]">
+                  <div className="md:px-[26px] px-4 md:py-3 pt-2 pb-[10px] border-b border-white-75">
                     <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
                       {layout_r_title}
                     </h1>
@@ -153,7 +153,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
               </PolygonContainer>
               <div className='md:hidden block'>
                 {layout_r_title && (
-                <div className="md:px-[26px] px-4 md:py-3 pt-2 mt-1 pb-[10px] border-b border-[rgba(255,255,255,0.20)] md:border-[rgba(255,255,255,0.75)]">
+                <div className="md:px-[26px] px-4 md:py-3 pt-2 mt-1 pb-[10px] border-b border-[rgba(255,255,255,0.20)] md:border-white-75">
                   <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
                     {layout_r_title}
                   </h1>
@@ -169,7 +169,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
               <div className="flex justify-end gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
                 <PolygonContainer className='min-w-[246px]'>
                   <div className="flex flex-wrap px-5 gap-x-3 items-center h-full">
-                    <span className='text-[rgba(255,255,255,0.75)] text-xs whitespace-nowrap font-IntelOneBodyTextMedium'>Estimated price:</span>
+                    <span className='text-white-75 text-xs whitespace-nowrap font-IntelOneBodyTextMedium'>Estimated price:</span>
                     <span className=''>
                       <span className='font-IntelOneBodyTextMedium'>$1,589.45 - </span>
                       <span className='text-[22px] font-IntelOneBodyTextMedium'>$3,478.99</span>
@@ -225,7 +225,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
               <div>
                 <div
                   className={clsx(
-                    "border-b border-b-[rgba(255,255,255,0.75)] py-2 px-3 flex flex-col items-center cursor-pointer gap-y-[3px] mb-2",
+                    "border-b border-b-white-75 py-2 px-3 flex flex-col items-center cursor-pointer gap-y-[3px] mb-2",
                     {"bg-gaming-cobalt": isOnBuildRoutes}
                   )}
                 >
@@ -267,7 +267,7 @@ BuildLayout.HeaderTitle = function BuildLayoutHeaderTitle({ title, subTitle }: {
 
 BuildLayout.HeaderGroup = function BuildLayoutHeaderGroup({ title }: {title: string;}) {
   return (
-    <div className="md:-mx-6 -mx-4 md:px-[26px] md:-mt-[11px] mb-6 px-4 md:pb-3 pb-[10px] border-b border-[rgba(255,255,255,0.75)]">
+    <div className="md:-mx-6 -mx-4 md:px-[26px] md:-mt-[11px] mb-6 px-4 md:pb-3 pb-[10px] border-b border-white-75">
       <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
         {title}
       </h1>

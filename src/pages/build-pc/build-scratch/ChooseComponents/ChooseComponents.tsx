@@ -87,7 +87,7 @@ function ChooseComponents() {
             <>
               <PolygonContainer>
                 <div className="px-2 flex gap-2 items-center justify-center">
-                  <span className="uppercase text-xs leading-[10px] whitespace-nowrap text-[rgba(255,255,255,0.75)]">Component specs</span>
+                  <span className="uppercase text-xs leading-[10px] whitespace-nowrap text-white-75">Component specs</span>
                   <div className="border flex border-intel-cobalt-t1">
                     <button
                       type='button'
@@ -116,7 +116,7 @@ function ChooseComponents() {
               </PolygonContainer>
 
               <div className=''>
-                <span className="uppercase text-xs leading-[10px] text-[rgba(255,255,255,0.75)]">Component specs</span>
+                <span className="uppercase text-xs leading-[10px] text-white-75">Component specs</span>
               </div>
 
               <div className='flex pl-2 gap-x-3 mb-3 items-center'>
