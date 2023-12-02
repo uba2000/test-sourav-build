@@ -415,6 +415,7 @@ function useBuildByComponentContext() {
   function resetPCBuild() {
     setCurrentBuild([]);
     setBuildSegment(null)
+    setCurrentBuildStage(-1)
     setBuildStages((prev) => prev.map((pv) => ({
       ...pv,
       items: []
