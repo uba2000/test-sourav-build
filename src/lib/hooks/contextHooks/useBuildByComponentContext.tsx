@@ -126,11 +126,19 @@ function useBuildByComponentContext() {
 
   const {
     data: preferences_feed,
-  } = useSWR(cacheKey, getPreferencesData)
+  } = useSWR(cacheKey, getPreferencesData, {
+    revalidateOnReconnect: false,
+    revalidateOnFocus: false,
+    refreshInterval: 30000,
+  })
 
   const {
     data: portinos_product_feed,
-  } = useSWR(portinosCacheKey, getPortinosInventory)
+  } = useSWR(portinosCacheKey, getPortinosInventory, {
+    revalidateOnReconnect: false,
+    revalidateOnFocus: false,
+    refreshInterval: 30000,
+  })
 
   function addToBuild({ category_slug, component_id }: IAddToBuildProps) {
     const _buildStages = [...buildStages];

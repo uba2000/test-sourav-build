@@ -107,7 +107,11 @@ function usePreferencContext() {
 
   const {
     data: preferences_feed,
-  } = useSWR(cacheKey, getPreferencesData)
+  } = useSWR(cacheKey, getPreferencesData, {
+    revalidateOnReconnect: false,
+    revalidateOnFocus: false,
+    refreshInterval: 30000,
+  })
 
   // filter out titles not choosen and returns estimate max-min fps
   function filterGameTitles(allowed_titles: string[]) {
