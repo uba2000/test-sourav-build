@@ -2,47 +2,47 @@ import { Fragment, useState } from 'react'
 import PreferenceLayout from '../PreferenceLayout/PreferenceLayout'
 import clsx from 'clsx'
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
-import { PreferenceGameType } from '../../../../../lib/types/context-types'
+import { noPreferenceName } from '../../BuildGamePreferences'
 
 function Step1GameType() {
-  const { preferenceGameTypes, setGamingPreference } = useBuildPCContext()
-  const [selectedGame, setSelectedGame] = useState<PreferenceGameType[]>([])
+  const { preferenceGameTypes, setGamingPreference, preferences } = useBuildPCContext()
+  const [selectedGame, setSelectedGame] = useState<string[]>(preferences.game_type_title)
 
-  function selectGame(_id: string) {
+  function selectGame(_title: string) {
     let _items = [...selectedGame];
 
     // check if no preferences is selected
-    const noPreferencExist = _items.find((d) => d._id === 'no-preference');
-    if (noPreferencExist && _id !== 'no-preference') {
-      _items = _items.filter((d) => d._id !== 'no-preference');
-      const _selected_item = preferenceGameTypes.find((d) => d._id === _id);
+    const noPreferencExist = _items.find((d) => d === noPreferenceName);
+    if (noPreferencExist && _title !== noPreferenceName) {
+      _items = _items.filter((d) => d !== noPreferenceName);
+      const _selected_item = preferenceGameTypes.find((d) => d.title === _title)?.title;
       if (_selected_item) {
-        _items.push({ ..._selected_item });
+        _items.push(_selected_item);
       }
       setSelectedGame(_items)
-      setGamingPreference('game_type_title', _items.map((d) => d.title))
+      setGamingPreference('game_type_title', _items)
       return;
     }
 
-    if (_id === 'no-preference') {
+    if (_title === noPreferenceName) {
       // remove all items and add only preference
       _items = [];
     }
 
-    const exists = _items.find((d) => d._id === _id);
+    const exists = _items.find((d) => d === _title);
 
     if (exists) {
       // remove it
-      _items = _items.filter((d) => d._id !== _id);
+      _items = _items.filter((d) => d !== _title);
     } else {
       // add it
-      const _selected_item = preferenceGameTypes.find((d) => d._id === _id);
+      const _selected_item = preferenceGameTypes.find((d) => d.title === _title)?.title;
       if (_selected_item) {
-        _items.push({ ..._selected_item });
+        _items.push(_selected_item);
       }
     }
     setSelectedGame(_items)
-    setGamingPreference('game_type_title', _items.map((d) => d.title))
+    setGamingPreference('game_type_title', _items)
   }
 
   return (
@@ -54,11 +54,11 @@ function Step1GameType() {
 
       <div className="grid md:grid-cols-[repeat(auto-fill,114px)] grid-cols-[repeat(auto-fill,100px)] place-content-center gap-4 grid-row-[repeat(auto-fill,minmax(134px,1fr))]">
         {preferenceGameTypes.map((d) => {
-          const _is_selected = selectedGame.find((data) => data._id === d._id);
+          const _is_selected = selectedGame.find((data) => data === d.title);
 
           return (
             <Fragment key={d._id}>
-              <button type='button' onClick={() => selectGame(d._id)} className="group cursor-pointer min-h-[116px]">
+              <button type='button' onClick={() => selectGame(d.title)} className="group cursor-pointer min-h-[116px]">
                 {d?.image && (
                 <div className={clsx("md:h-[114px] h-[76px]")}>
                   <img src={d?.image as string} className="w-full h-full object-cover object-top" alt="" />

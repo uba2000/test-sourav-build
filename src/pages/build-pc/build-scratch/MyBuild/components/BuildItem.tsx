@@ -30,8 +30,8 @@ function BuildItem({
   return (
     <PolygonContainer btl={false} btr={false} bbr={false} borderActive={selected}>
       <div className="px-[6px] flex">
-        <div className="max-w-[94px] w-full flex justify-center items-center">
-          <div className='cursor-pointer w-full h-full max-w-[75px] max-h-[75px]' onClick={() => itemClick()}>
+        <div className="max-w-[94px] min-w-[94px] w-full flex justify-center items-center">
+          <div className='cursor-pointer w-full h-full max-w-[75px] min-w-[75px] max-h-[75px] min-h-[75px]' onClick={() => itemClick()}>
             <ImageFigure icon={data.image} isContainerSize />
           </div>
         </div>
@@ -41,7 +41,7 @@ function BuildItem({
               <p className="text-[10px] leading-[10px] font-IntelOneBodyTextMedium mb-[6px] uppercase">
                 {data?.category_slug?.replace('-', ' ')}
               </p>
-              <h4 className="font-IntelOneBodyTextBold text-sm whitespace-wrap flex-grow leading-[14px] h-[42px] line-clamp-3 cursor-pointer" onClick={() => itemClick()}>
+              <h4 className="font-IntelOneBodyTextBold text-sm whitespace-wrap flex-grow leading-[14px] h-[42px] line-clamp-3 cursor-pointer max-w-[164px]" onClick={() => itemClick()}>
                 {data?.title}
               </h4>
             </div>

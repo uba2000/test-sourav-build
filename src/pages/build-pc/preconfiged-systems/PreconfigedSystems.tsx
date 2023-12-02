@@ -3,13 +3,20 @@ import _ from 'lodash';
 import BuildLayout from '../build-scratch/components/BuildLayout'
 import usePreBuiltBuilds from '../../../lib/hooks/contextHooks/usePreBuiltBuilds'
 import BuildItem from '../build-scratch/MyBuild/components/BuildItem';
+import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext';
 
 function PreconfigedSystems() {
   const { enthusiast } = usePreBuiltBuilds();
-  const componentItems = useMemo(() => enthusiast.items, [enthusiast])
+  const { predefinedBuilds } = useBuildPCContext();
+  console.log({predefinedBuilds, enthusiast});
+  
+  const componentItems = useMemo(() => predefinedBuilds?.items, [predefinedBuilds])
 
   return (
-    <BuildLayout stagesStatus='complete' buildModel={enthusiast.buildModel}>
+    <BuildLayout
+      stagesStatus='complete'
+      // buildModel={enthusiast.buildModel}
+    >
       <BuildLayout.HeaderTitle
         title={enthusiast.title}
         subTitle={'[Short rationale for the selection of these components. ]'}

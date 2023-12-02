@@ -16,12 +16,12 @@ import DesktopQHDResFullImage from '../../../assets/res/resolution-qhd-desktop.p
 import DesktopFHDResImage from '../../../assets/res/resolution-hd-desktop.svg'
 import DesktopFHDResFullImage from '../../../assets/res/resolution-hd-desktop.png'
 
-import { BuildPCPreferenceType, IFPSTypesItem } from '../../types/context-types';
+import { BuildPCPreferenceType, IFPSTypesItem, IPreferenceResolutions } from '../../types/context-types';
 
 const initialPreferences: BuildPCPreferenceType = {
   game_type_title: [],
-  gaming_fps: '',
-  gaming_resolution: '',
+  gaming_fps: null,
+  gaming_resolution: null,
 }
 
 function usePreferencContext() {
@@ -33,45 +33,58 @@ function usePreferencContext() {
     {
       _id: _.uniqueId(),
       fps: '180+ FPS',
+      range: {
+        min: '180',
+        max: Infinity,
+      },
       video: Desktop180FPS,
       thumbnail: Desktop180FPSThumb,
     },
     {
       _id: _.uniqueId(),
       fps: '120-179 FPS',
+      range: {
+        min: '120',
+        max: '179',
+      },
       video: Desktop120FPS,
       thumbnail: Desktop120FPSThumb,
     },
     {
       _id: _.uniqueId(),
       fps: '60-119 FPS',
+      range: {
+        min: '60',
+        max: '119',
+      },
       video: Desktop60FPS,
       thumbnail: Desktop60FPSThumb,
     },
   ], [])
 
-  const preferenceResolutions = useMemo(() => [
+  const preferenceResolutions = useMemo<IPreferenceResolutions[]>(() => [
     {
-      title: '4K UHD=',
+      title: '4kuhd',
       res: '2160P',
       image: Desktop4KResImage,
       fullImage: Desktop4KResFullImage,
     },
     {
-      title: 'QHD=',
+      title: 'qhd',
       res: '1440P',
       image: DesktopQHDResImage,
       fullImage: DesktopQHDResFullImage,
     },
     {
-      title: 'FHD=',
+      title: 'fhd',
       res: '1080P',
       image: DesktopFHDResImage,
       fullImage: DesktopFHDResFullImage,
     },
   ], [])
 
-  function setGamingPreference(field: keyof BuildPCPreferenceType, value: string) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function setGamingPreference(field: keyof BuildPCPreferenceType, value: string | string[] | IFPSTypesItem) {
     if (field) {
       setPreferences(prev => ({...prev, [field]: value}))
     }

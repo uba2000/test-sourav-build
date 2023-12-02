@@ -130,7 +130,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
           </div>
           {/* )} */}
           <div className="flex md:flex-nowrap flex-wrap-reverse gap-x-4">
-            <div className='flex flex-col flex-grow md:gap-y-2 gap-y-4'>
+            <div className='flex flex-col md:max-w-[400px] flex-grow md:gap-y-2 gap-y-4'>
               
               {/* Right main section */}
               <PolygonContainer bbr={false} btl={false} className='flex-grow max-w-[978px] w-full ml-auto md:block hidden'>

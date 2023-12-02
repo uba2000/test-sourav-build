@@ -1,7 +1,9 @@
-import { useMemo, useState } from "react"
-import _ from "lodash"
+import { useState } from "react"
 
-import type { IAddToBuildProps, IBuildComponent, IBuildStages } from "../../types/context-types"
+import type {
+  BuildPCPreferenceType, IAPortinosProductInFeed, IAddToBuildProps, IBuildComponent,
+  IBuildStages, IBuildStagesSlugs, ICleanPreferenceData, IPortinosProductFeed, IPreconfigedBuild, ProductPredefinedPresets
+} from "../../types/context-types"
 
 import CPUIcon from '../../../assets/component-icons/cpu.svg?react'
 import GPUIcon from '../../../assets/component-icons/gpu.svg?react'
@@ -13,238 +15,24 @@ import CPUCoolerIcon from '../../../assets/component-icons/cpu-cooler.svg?react'
 import BatteryIcon from '../../../assets/component-icons/battery.svg?react'
 import WindowsIcon from '../../../assets/component-icons/windows-11.svg?react'
 
-import ProcessorImg from '../../../assets/processor-i9.svg'
-import GPUImg from '../../../assets/component-products/gpus.svg'
-import MotherboardImg from '../../../assets/component-products/motherboard.svg'
-import MemoryImg from '../../../assets/component-products/memory.svg'
-import StorageImg from '../../../assets/component-products/storage.svg'
-import WindowsImg from '../../../assets/component-products/windows.png'
-import PowerSupplyImg from '../../../assets/component-products/powersupply.png'
-import CoolingImg from '../../../assets/component-products/cooling.png'
-import CaseImg from '../../../assets/component-products/case.png'
+import useSWR from "swr"
+import { buildSlugMap, determineProductSpecs, formatPreferencesData, preconfigedBuildTitles, preferenceBuildSegmentWeight } from "../../utils/util-build-preference"
+import { getPreferencesData, preferenceUrlEndpoint as cacheKey } from "../../api/preferenceAPI"
+import { getPortinosInventory, portinosInventoryEndpoint as portinosCacheKey } from "../../api/portinosAPI"
 // import { matchRoutes, useLocation } from "react-router-dom"
 
 // const componentBuildRoutes = [
 //   { path: "/build-pc/choose-component/:category_slug" },
 // ]
 
+
+const initialPredefinedBuilds = {
+  items: [],
+  buildModel: '',
+  title: ''
+}
+
 function useBuildByComponentContext() {
-  // const location = useLocation()
-  // const isOnBuildRoutes = matchRoutes(componentBuildRoutes, location)
-
-  const cpuItems = useMemo<IBuildComponent[]>(() => [
-    {
-      _id: _.uniqueId(),
-      title: 'Intel® Core™ i9-14900KF processor',
-      rating: 5,
-      image: ProcessorImg,
-      model: ProcessorImg,
-      category_slug: 'processor',
-      specs: [
-        {
-          spec_title: 'Cores',
-          spec_value: '24',
-        },
-        {
-          spec_title: 'GHz',
-          spec_value: '6.0',
-        },
-        {
-          spec_title: 'Watts',
-          spec_value: '125',
-        },
-      ]
-    },
-  ], [])
-  const gpuItems = useMemo<IBuildComponent[]>(() => [
-    {
-      _id: _.uniqueId(),
-      title: 'MSI GeForce RTX 4090 Gaming X Trio',
-      rating: 5,
-      image: GPUImg,
-      model: GPUImg,
-      category_slug: 'graphics-card',
-      specs: [
-          {
-            spec_title: 'GB GDDR6',
-            spec_value: '12',
-          },
-          {
-            spec_title: 'MHz',
-            spec_value: '2100',
-          },
-          {
-            spec_title: 'cm Wide',
-            spec_value: '11.5',
-          },
-        ]
-    },
-  ], [])
-  const motherboardItems = useMemo<IBuildComponent[]>(() => [
-    {
-      _id: _.uniqueId(),
-      title: 'ASUS ROG Maximus Z790 Hero Gaming',
-      rating: 5,
-      image: MotherboardImg,
-      model: MotherboardImg,
-      category_slug: 'motherboard',
-      specs: [
-          {
-            spec_title: 'LGA Socket',
-            spec_value: '1700',
-          },
-          {
-            spec_title: 'PCIe',
-            spec_value: '5.0',
-          },
-          {
-            spec_title: 'Memory',
-            spec_value: 'DDR5',
-          },
-        ]
-    },
-  ], [])
-  const memoryItems = useMemo<IBuildComponent[]>(() => [
-    {
-      _id: _.uniqueId(),
-      title: 'Corsair Vengeance 64GB',
-      rating: 5,
-      image: MemoryImg,
-      model: MemoryImg,
-      category_slug: 'memory',
-      specs: [
-          {
-            spec_title: 'memory',
-            spec_value: 'DDR5',
-          },
-          {
-            spec_title: 'GB DIMMS',
-            spec_value: '2x 16',
-          },
-          {
-            spec_title: 'MHz',
-            spec_value: '6200',
-          },
-        ]
-    },
-  ], [])
-  const memoryStorageItems = useMemo<IBuildComponent[]>(() => [
-    {
-      _id: _.uniqueId(),
-      title: 'Samsung 970 EVO Plus 1TB Internal SSD',
-      rating: 5,
-      image: StorageImg,
-      model: StorageImg,
-      category_slug: 'storage',
-      specs: [
-          {
-            spec_title: 'storage',
-            spec_value: 'NVMe',
-          },
-          {
-            spec_title: 'PCIe Gen',
-            spec_value: '4.0',
-          },
-        ]
-    },
-  ], [])
-  const caseItems = useMemo<IBuildComponent[]>(() => [
-    {
-      _id: _.uniqueId(),
-      title: 'Corsair iCUE 5000X RGB Mid-Tower ATX',
-      rating: 5,
-      image: CaseImg,
-      model: CaseImg,
-      category_slug: 'case',
-      specs: [
-          {
-            spec_title: 'A units',
-            spec_value: 'AAAA',
-          },
-          {
-            spec_title: 'B units',
-            spec_value: 'BBBB',
-          },
-          {
-            spec_title: 'C units',
-            spec_value: 'CCCC',
-          },
-        ]
-    },
-  ], [])
-  const cpuCoolerItems = useMemo<IBuildComponent[]>(() => [
-    {
-      _id: _.uniqueId(),
-      title: 'Corsair iCUE H150i Elite Capellix XT',
-      rating: 5,
-      image: CoolingImg,
-      model: CoolingImg,
-      category_slug: 'cooling',
-      specs: [
-          {
-            spec_title: 'A units',
-            spec_value: 'AAAA',
-          },
-          {
-            spec_title: 'B units',
-            spec_value: 'BBBB',
-          },
-          {
-            spec_title: 'C units',
-            spec_value: 'CCCC',
-          },
-        ]
-    },
-  ], [])
-  const batteryItems = useMemo<IBuildComponent[]>(() => [
-    {
-      _id: _.uniqueId(),
-      title: 'Corsair RM 1000-Watt ATX Modular Power Supply',
-      rating: 5,
-      image: PowerSupplyImg,
-      model: PowerSupplyImg,
-      category_slug: 'power-supply',
-      specs: [
-          {
-            spec_title: 'Watt',
-            spec_value: '1000',
-          },
-          {
-            spec_title: 'mm fan',
-            spec_value: '135',
-          },
-          {
-            spec_title: 'modular',
-            spec_value: 'ATX',
-          },
-        ]
-    },
-  ], [])
-  const windowsItems = useMemo<IBuildComponent[]>(() => [
-    {
-      _id: _.uniqueId(),
-      title: 'Microsoft Windows 11 Pro (PC) - English',
-      rating: 5,
-      image: WindowsImg,
-      model: WindowsImg,
-      category_slug: 'os',
-      specs: [
-          {
-            spec_title: 'A units',
-            spec_value: 'AAAA',
-          },
-          {
-            spec_title: 'B units',
-            spec_value: 'BBBB',
-          },
-          {
-            spec_title: 'C units',
-            spec_value: 'CCCC',
-          },
-        ]
-    },
-  ], [])
-
   const [buildStages, setBuildStages] = useState<IBuildStages[]>([
     {
       icon: <CPUIcon />,
@@ -252,7 +40,7 @@ function useBuildByComponentContext() {
       short_name: 'Processor',
       slug: 'processor',
       component: '',
-      items: cpuItems,
+      items: [],
       selectedItem: null,
     },
     {
@@ -262,7 +50,7 @@ function useBuildByComponentContext() {
       slug: 'graphics-card',
       component: '',
       canCompare: true,
-      items: gpuItems,
+      items: [],
       selectedItem: null,
     },
     {
@@ -271,7 +59,7 @@ function useBuildByComponentContext() {
       short_name: 'Motherboard',
       slug: 'motherboard',
       component: '',
-      items: motherboardItems,
+      items: [],
       selectedItem: null,
     },
     {
@@ -280,7 +68,7 @@ function useBuildByComponentContext() {
       short_name: 'Memory',
       slug: 'memory',
       component: '',
-      items: memoryItems,
+      items: [],
       selectedItem: null,
     },
     {
@@ -289,7 +77,7 @@ function useBuildByComponentContext() {
       short_name: 'Storage',
       slug: 'storage',
       component: '',
-      items: memoryStorageItems,
+      items: [],
       selectedItem: null,
     },
     {
@@ -298,7 +86,7 @@ function useBuildByComponentContext() {
       short_name: 'Case',
       slug: 'case',
       component: '',
-      items: caseItems,
+      items: [],
       selectedItem: null,
     },
     {
@@ -307,7 +95,7 @@ function useBuildByComponentContext() {
       short_name: 'CPU Cooling',
       slug: 'cooling',
       component: '',
-      items: cpuCoolerItems,
+      items: [],
       selectedItem: null,
     },
     {
@@ -316,7 +104,7 @@ function useBuildByComponentContext() {
       short_name: 'Power Supply',
       slug: 'power-supply',
       component: '',
-      items: batteryItems,
+      items: [],
       selectedItem: null,
     },
     {
@@ -325,13 +113,24 @@ function useBuildByComponentContext() {
       short_name: 'OS',
       slug: 'os',
       component: '',
-      items: windowsItems,
+      items: [],
       selectedItem: null,
     },
   ])
 
+  const [predefinedBuilds, setPredefinedBuilds] = useState<IPreconfigedBuild>(initialPredefinedBuilds);
+
   const [currentBuild, setCurrentBuild] = useState<IBuildComponent[]>([])
   const [currentBuildStage, setCurrentBuildStage] = useState<number>(-1);
+  const [buildSegment, setBuildSegment] = useState<ProductPredefinedPresets | null>(null);
+
+  const {
+    data: preferences_feed,
+  } = useSWR(cacheKey, getPreferencesData)
+
+  const {
+    data: portinos_product_feed,
+  } = useSWR(portinosCacheKey, getPortinosInventory)
 
   function addToBuild({ category_slug, component_id }: IAddToBuildProps) {
     const _buildStages = [...buildStages];
@@ -371,29 +170,252 @@ function useBuildByComponentContext() {
     setBuildStages(_buildStages);
   }
 
-  function resetPCBuild() {
-    setCurrentBuild([]);
+  function analyzePreferencesForBuild(preferences: BuildPCPreferenceType) {
+    const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
+    const _portinos_product_feed = portinos_product_feed as IPortinosProductFeed;
+
+    const selected_res = preferences.gaming_resolution?.title;
+    const selected_fps_range = preferences.gaming_fps!.range;
+
+    let all_data: ICleanPreferenceData[] = [];
+
+    if (selected_res) {
+      all_data = preferences.game_type_title.map((game_title) => {
+  
+        const game_products_in_range: ICleanPreferenceData['data'][] = [];
+  
+        _preferences_feed.forEach((product) => {
+          const current_game_value = product.gameTitles[game_title];
+          const _fps_value = parseInt(current_game_value[selected_res], 10);
+          
+          if (_fps_value >= parseInt(selected_fps_range?.min, 10)) {
+            if (
+              (typeof selected_fps_range?.max === 'number' && _fps_value <= selected_fps_range?.max)
+              || (typeof selected_fps_range?.max === 'string' && _fps_value <= parseInt(selected_fps_range?.max, 10))
+            ) {
+              game_products_in_range.push({
+                cpu: product.cpu,
+                cpu_gpu_key: product.cpu_gpu_key,
+                gpu: product.gpu,
+                res: selected_res,
+                fps: `${_fps_value}`,
+              });
+            }
+          }
+        }) // at this point you can get which game has product for its specs
+
+        let _data: ICleanPreferenceData['data'] = null;
+
+        game_products_in_range.forEach((_d) => {
+          if (!_data) {
+            _data = _d;
+          } else if (_data) {
+            if (parseInt(_d?.fps as string, 10) < parseInt(_data.fps!, 10)) { 
+              _data = _d;
+            }
+          }
+        })
+  
+        return {
+          title: game_title,
+          data: _data,
+          cpu_product: null,
+          gpu_product: null,
+          highest_segment: null,
+          // game_products_in_range,
+        }
+      })
+    }
+
+    // get products for each game title
+    all_data = all_data.map((a_d) => {
+      const cpu_product = _portinos_product_feed.products.find(
+        (pf) => pf.id === parseInt(a_d.data?.cpu as string, 10)
+      );
+      const gpu_product = _portinos_product_feed.products.find(
+        (pf) => pf.id === parseInt(a_d.data?.gpu as string, 10)
+      );
+
+      let highest_segment: ProductPredefinedPresets | null = null;
+      let cpu_product_segment: ProductPredefinedPresets | null = null;
+      let gpu_product_segment: ProductPredefinedPresets | null = null;
+
+      if (cpu_product) {
+        // get the segments for cpu product
+        const cpu_segments = cpu_product.segment.split('|') as ProductPredefinedPresets[];
+
+        if (cpu_segments.length === 1) { // a single cpu segment in string
+          cpu_product_segment = cpu_segments[0];
+        } else {
+          // more than one segment in string "segment1|segment2"
+          cpu_segments.forEach((cs) => {
+            if (!cpu_product_segment) { // initial item
+              cpu_product_segment = cs;
+            } else if (preferenceBuildSegmentWeight[cs] > preferenceBuildSegmentWeight[cpu_product_segment]) {
+              // weight of previous segment is less so update with higher segment
+              cpu_product_segment = cs;
+            }
+          })
+        }
+      }
+
+      if (gpu_product) {
+        // get the segments for gpu product
+        const gpu_segments = gpu_product.segment.split('|') as ProductPredefinedPresets[];
+
+        if (gpu_segments.length === 1) { // a single gpu segment in string
+          gpu_product_segment = gpu_segments[0];
+        } else {
+          // more than one segment in string "segment1|segment2"
+          gpu_segments.forEach((gs) => {
+            if (!gpu_product_segment) {
+              gpu_product_segment = gs;
+            } else if (preferenceBuildSegmentWeight[gs] > preferenceBuildSegmentWeight[gpu_product_segment]) {
+              // weight of previous segment is less so update with higher segment
+              gpu_product_segment = gs;
+            }
+          })
+        }
+      }
+
+      if (cpu_product_segment && gpu_product_segment) {
+        if (preferenceBuildSegmentWeight[cpu_product_segment] > preferenceBuildSegmentWeight[gpu_product_segment]) {
+          highest_segment = cpu_product_segment;
+        } else {
+          highest_segment = gpu_product_segment;
+        }
+      }
+
+      a_d = {
+        ...a_d,
+        cpu_product: cpu_product || null,
+        gpu_product: gpu_product || null,
+        highest_segment,
+      }
+
+      return a_d
+    })
+
+    let _highest_segment: ProductPredefinedPresets | null = null;
+    // check the segments
+    all_data.forEach((a_d) => {
+      if (a_d.highest_segment) {
+        if (!_highest_segment) {
+          _highest_segment = a_d.highest_segment;
+        } else if (preferenceBuildSegmentWeight[a_d.highest_segment] > preferenceBuildSegmentWeight[_highest_segment]) {
+          _highest_segment = a_d.highest_segment;
+        }
+      }
+    })
+
+    setBuildSegment(_highest_segment)
+    getPredefineBuilds(_highest_segment!)
+    mapOutEligibleProducts(_highest_segment!)
+
+    console.log({ _preferences_feed, _highest_segment, preferences, all_data });
   }
 
-  // useEffect(() => { 
-  //   if (isOnBuildRoutes) {
-  //     console.log('isOnBuildRoutes');
-      
-  //     // const _currentIndex = buildStages.findIndex(
-  //     //   (d) => d.slug === isOnBuildRoutes[0].params.category_slug,
-  //     // )
-  //     // setCurrentBuildStage(_currentIndex)
-  //     // setCurrentBuildStage(currentBuild.length)
-  //   }
-  // }, [isOnBuildRoutes])
+  function getPredefineBuilds(build_segment: ProductPredefinedPresets) {
+    const _portinos_product_feed = portinos_product_feed as IPortinosProductFeed;
+    const pre_set = _portinos_product_feed.pre_set[build_segment]
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const predefined_pre_sets: IPreconfigedBuild = {
+      title: preconfigedBuildTitles[build_segment],
+      buildModel: '',
+      items: [],
+    }
+
+    Array.from(Object.keys(pre_set)).forEach((ps: string) => {
+      const _id = pre_set[ps as keyof (typeof pre_set)]
+      const _product = _portinos_product_feed.products.find((ppf) => ppf.id === _id)
+      if (_product) {
+        const category_slug = buildSlugMap[ps as keyof (typeof pre_set)];
+        const specs = determineProductSpecs(_product, category_slug);
+        predefined_pre_sets.items.push({
+          _id: `${_product.id}`,
+          image: _product.picture,
+          rating: 5,
+          title: _product.model_name,
+          category_slug,
+          specs,
+          price: _product.price
+        });
+      }
+    })
+
+    console.log({predefined_pre_sets});
+    setPredefinedBuilds(predefined_pre_sets)
+  }
+
+  function mapOutEligibleProducts(build_segment: ProductPredefinedPresets) {
+    const _portinos_product_feed = portinos_product_feed as IPortinosProductFeed;
+
+    const eligible_products: IAPortinosProductInFeed[] = [];
+    const formatted_products: { [k in IBuildStagesSlugs]: IBuildComponent[] } = {
+      "graphics-card": [],
+      "power-supply": [],
+      case: [],
+      cooling: [],
+      fan: [],
+      memory: [],
+      motherboard: [],
+      os: [],
+      processor: [],
+      storage: [],
+    };
+
+    _portinos_product_feed.products.forEach((ppf) => {
+      if (preferenceBuildSegmentWeight[ppf.segment] >= preferenceBuildSegmentWeight[build_segment]) {
+        eligible_products.push(ppf)
+        // console.log(buildSlugMap[ppf.category!]);
+        const category_slug = buildSlugMap[ppf.category!];
+        const specs = determineProductSpecs(ppf, category_slug);
+
+        formatted_products[`${buildSlugMap[ppf.category!]}`]?.push({
+          _id: `${ppf.id}`,
+          image: ppf.picture,
+          rating: 5,
+          title: ppf.model_name,
+          category_slug,
+          specs,
+        })
+      }
+    })
+
+    setBuildStages((prev) => prev.map((pv) => ({
+      ...pv,
+      items: formatted_products[pv.slug]
+    })))
+    console.log({
+      eligible_products, _portinos_product_feed, formatted_products,
+      buildStages: buildStages.map((pv) => ({
+        ...pv,
+        items: formatted_products[pv.slug]
+      }))
+    });
+  }
+
+  function resetPCBuild() {
+    setCurrentBuild([]);
+    setBuildSegment(null)
+    setBuildStages((prev) => prev.map((pv) => ({
+      ...pv,
+      items: []
+    })))
+    setPredefinedBuilds(initialPredefinedBuilds)
+  }
 
   return {
     buildStages,
+    buildSegment,
+    predefinedBuilds,
     currentBuild,
     currentBuildStage,
 
     addComponentToBuild: addToBuild,
     resetPCBuild,
+    analyzePreferencesForBuild,
   }
 }
 

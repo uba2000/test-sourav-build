@@ -10,6 +10,7 @@ import RightArrow from '../../../assets/right-arrow.svg'
 import { useNavigate } from 'react-router-dom';
 import RouteNames from '../../../lib/utils/routenames';
 import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext';
+import { Fragment } from 'react';
 
 function BuildScratch() {
   const { preferences } = useBuildPCContext()
@@ -92,7 +93,7 @@ function BuildScratch() {
                     FPS
                   </h6>
                   <p className='text-sm'>
-                    {preferences.gaming_fps}
+                    {preferences.gaming_fps?.fps}
                   </p>
                 </div>
 
@@ -100,8 +101,8 @@ function BuildScratch() {
                   <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-white-75">
                     Resolution
                   </h6>
-                  <p className='text-sm'>
-                    {preferences.gaming_resolution}
+                  <p className='text-sm lowercase'>
+                    {preferences.gaming_resolution?.res}
                   </p>
                 </div>
               </div>
@@ -112,10 +113,10 @@ function BuildScratch() {
                   </h6>
                   <p className='text-sm'>
                     {preferences.game_type_title.map((d, index) => (
-                      <>
+                      <Fragment key={d}>
                         {d}
                         {index < (preferences.game_type_title.length - 1) && ', '}
-                      </>
+                      </Fragment>
                     ))}
                     {/* League of Legends, Fortnight, Valorant */}
                   </p>

@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import type { IPreBuiltBuild } from "../../types/context-types"
+import type { IPreconfigedBuild } from "../../types/context-types"
 import _ from "lodash"
 
 import ProcessorImg from '../../../assets/processor-i9.svg'
@@ -12,12 +12,6 @@ import PowerSupplyImg from '../../../assets/component-products/powersupply.png'
 import CoolingImg from '../../../assets/component-products/cooling.png'
 import CaseImg from '../../../assets/component-products/case.png'
 import EnthusiastModel from '../../../assets/assets-3d/enthusiast-model.svg'
-
-interface IPreconfigedBuild {
-  title: string;
-  buildModel: string;
-  items: IPreBuiltBuild[];
-}
 
 function usePreBuiltBuilds() {
   const enthusiast = useMemo<IPreconfigedBuild>(() => ({

@@ -31,8 +31,8 @@ function ChooseComponentItem({
   return (
     <PolygonContainer btl={false} btr={false} bbr={false} borderActive={selected}>
       <div className="px-[6px] flex">
-        <div className="min-w-[94px] flex justify-center items-center">
-          <div className='cursor-pointer w-full h-full max-w-[75px] max-h-[75px]' onClick={() => itemClick()}>
+        <div className="min-w-[94px] max-w-[94px] flex justify-center items-center">
+          <div className='cursor-pointer w-full h-full max-w-[75px] min-w-[75px] max-h-[75px] min-h-[75px]' onClick={() => itemClick()}>
             <ImageFigure icon={data.image} isContainerSize />
           </div>
         </div>

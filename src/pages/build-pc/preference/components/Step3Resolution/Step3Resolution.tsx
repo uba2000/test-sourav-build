@@ -8,14 +8,16 @@ import clsx from 'clsx'
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
 
 function Step3Resolution() {
-  const { setGamingPreference, preferenceResolutions } = useBuildPCContext()
+  const { setGamingPreference, preferenceResolutions, preferences } = useBuildPCContext()
   const resolutions = useMemo(() => preferenceResolutions, [preferenceResolutions])
 
-  const [selectedRESIndex, setSelectedRESIndex] = useState<number | null>(null);
+  const [selectedRESIndex, setSelectedRESIndex] = useState<string | null>(preferences.gaming_resolution?.title || null);
+  const [selectedRESImage, setSelectedRESImage] = useState<string | null>(preferences.gaming_resolution?.fullImage || null);
 
   function selectRESIndex(index: number) {
-    setSelectedRESIndex(index)
-    setGamingPreference('gaming_resolution', `${preferenceResolutions[index - 1].title} ${preferenceResolutions[index - 1].res}`)
+    setSelectedRESIndex(resolutions[index].title)
+    setSelectedRESImage(resolutions[index].fullImage)
+    setGamingPreference('gaming_resolution', resolutions[index])
   }
 
   return (
@@ -51,14 +53,14 @@ function Step3Resolution() {
                   </div>
                   <button
                     type='button'
-                    onClick={() => selectRESIndex(index + 1)}
+                    onClick={() => selectRESIndex(index)}
                     className={clsx(
                       'md:h-[60px] relative p-2 md:px-6 px-3',
-                      {"bg-gaming-cobalt": selectedRESIndex === (index + 1)},
-                      {"bg-[rgba(255,255,255,0.20)]": selectedRESIndex !== (index + 1)},
+                      {"bg-gaming-cobalt": selectedRESIndex === d.title},
+                      {"bg-[rgba(255,255,255,0.20)]": selectedRESIndex !== d.title},
                     )}
                   >
-                    {selectedRESIndex === (index + 1) && (
+                    {selectedRESIndex === d.title && (
                       <div
                         className={clsx(
                           'absolute md:-top-[12px] -top-[8px] left-1/2 -translate-x-1/2 w-0 h-0',
@@ -69,7 +71,7 @@ function Step3Resolution() {
                       />
                     )}
                     <span className=''>
-                      <span className='md:text-base text-center text-xs leading-[12px] font-IntelOneBodyTextMedium block'>{d.title}</span>
+                      <span className='md:text-base text-center text-xs leading-[12px] font-IntelOneBodyTextMedium block uppercase'>{d.title}=</span>
                       <span className='md:text-base text-center text-xs leading-[12px] font-IntelOneBodyTextMedium block'>{d.res}</span>
                     </span>
                   </button>
@@ -79,7 +81,7 @@ function Step3Resolution() {
 
             {selectedRESIndex && (
               <figure className='absolute z-10 left-0 top-0 w-full md:h-[calc(100%_-_83px)] h-[calc(100%_-_50px)]'>
-                <img src={resolutions[selectedRESIndex - 1].fullImage} className="w-full h-full" alt="figure" />
+                <img src={selectedRESImage || ''} className="w-full h-full" alt="figure" />
               </figure>
             )}
           </div>

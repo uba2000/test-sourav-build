@@ -22,7 +22,7 @@ function BuildPreference() {
   const [searchParams] = useSearchParams();
   
   const navigate = useNavigate();
-  const { preferences, resetApp } = useBuildPCContext()
+  const { preferences, resetApp, analyzePreferencesForBuild } = useBuildPCContext()
   const preferenceStages = useMemo(() => [
     {
       component: <Step1GameType />,
@@ -42,10 +42,14 @@ function BuildPreference() {
   const [currentStage, setCurrentStage] = useState(parseInt((searchParams.get('s') || '0'), 10));
 
   function nextStage() {
+    console.log({preferences});
     if (currentStage === preferenceStages.length - 1) {
-      navigate(RouteNames.buildPC, { replace: true })
+      analyzePreferencesForBuild(preferences)
+      // navigate(RouteNames.buildPC)
+      // initiate decision on products based on preferences here...
       return;
     }
+
     setCanProceed(false)
     setCurrentStage(prev => prev + 1)
     navigate(`${RouteNames.buildPreferenceIndex}?s=${currentStage + 1}`)
@@ -62,6 +66,12 @@ function BuildPreference() {
   }, [preferences.game_type_title, currentStage, preferences.gaming_fps, preferences.gaming_resolution])
 
   useEffect(() => {
+    const _current_index = parseInt((searchParams.get('s') || '0'), 10);
+
+    if (_current_index > 0 && (preferences.game_type_title.length === 0 && !preferences.gaming_fps)) {
+      navigate(`${RouteNames.buildPreferenceIndex}?s=0`)
+    }
+
     setCurrentStage(parseInt((searchParams.get('s') || '0'), 10));
   }, [searchParams])
 
