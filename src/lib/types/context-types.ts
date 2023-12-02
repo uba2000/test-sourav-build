@@ -1,4 +1,5 @@
 import React from "react";
+import { type IFormatPreferencesDataReturn } from "../utils/util-build-preference";
 
 export type PreferenceGameType =
   | {
@@ -64,6 +65,11 @@ export interface IPreconfigedBuild {
   items: IPreBuiltBuild[];
 }
 
+export interface IMinMaxFPS {
+  min: number;
+  max: number;
+}
+
 export interface IFPSTypesItem {
   _id: string;
   fps: string;
@@ -81,8 +87,10 @@ export type BuildPCPreferenceType = {
   gaming_resolution: IPreferenceResolutions | null;
 };
 
+export type PreferenceResolutionsTitleType = "4kuhd" | "qhd" | "fhd";
+
 export interface IPreferenceResolutions {
-  title: "4kuhd" | "qhd" | "fhd";
+  title: PreferenceResolutionsTitleType;
   res: string;
   image: string;
   fullImage: string;
@@ -99,6 +107,7 @@ export type AddToRetailerUsersCartPropsType = {
   state: "single" | "complete";
 };
 export interface IBuildPCContext {
+  minMaxFPS: IMinMaxFPS;
   preferences: BuildPCPreferenceType;
   preferenceFPSTypes: IFPSTypesItem[];
   preferenceGameTypes: PreferenceGameType[];
@@ -110,12 +119,17 @@ export interface IBuildPCContext {
   buildStages: IBuildStages[];
   currentBuild: IBuildComponent[];
 
+  adjustFPSRange: (preferenceFeed: IFormatPreferencesDataReturn[]) => {
+    [k in PreferenceResolutionsTitleType]: string[];
+  };
   setGamingPreference: (
     field: keyof BuildPCPreferenceType,
     value: string | string[] | IFPSTypesItem | IPreferenceResolutions,
   ) => void;
   analyzePreferencesForBuild: (preferences: BuildPCPreferenceType) => void;
-
+  filterGameTitles: (
+    allowed_titles: string[],
+  ) => IFormatPreferencesDataReturn[];
   addComponentToBuild: (props: IAddToBuildProps) => void;
 
   resetApp: () => void;

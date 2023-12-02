@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo, useState } from 'react'
+import React, { Fragment, useLayoutEffect, useMemo, useState } from 'react'
 import PreferenceLayout from '../PreferenceLayout/PreferenceLayout'
 import _ from 'lodash';
 import FPSItem from './FPSItem';
@@ -71,16 +71,30 @@ interface IFPSButton {
 }
 
 const FPSButton = React.memo(({ selectFPS, selectedFPS, d, index }: IFPSButton) => {
+  const { minMaxFPS } = useBuildPCContext()
+  const [isDisabled, setIsDisabled] = useState(false);
+  const max = typeof d.range.max === 'number' ? d.range.max : parseInt(d.range.max);
+
+  useLayoutEffect(() => {
+    if (minMaxFPS.min && minMaxFPS.max) {
+      const _disabled = (parseInt(d.range.min) > minMaxFPS.max && max > minMaxFPS.max) 
+        || (parseInt(d.range.min) < minMaxFPS.min && max < minMaxFPS.min)
+      setIsDisabled(_disabled);
+    }
+  }, [d.fps, d.range, max, minMaxFPS]);
+
   return (
     <button
       type='button'
-      onClick={() => selectFPS(d._id, index)}
+      disabled={isDisabled}
+      onClick={() => !isDisabled && selectFPS(d._id, index)}
       className={clsx(
         "flex cursor-pointer justify-center items-center md:min-w-[160px] md:max-w-[160px] max-w-fit",
         "md:min-h-[48px] min-h-[36px] px-6 bg-[rgba(255,255,255,0.2)] mx-auto relative",
         {
-          'bg-gaming-cobalt': selectedFPS === d._id,
-          'bg-[rgba(255,255,255,0.2)]': selectedFPS !== d._id,
+          'bg-gaming-cobalt': selectedFPS === d._id && !isDisabled,
+          'bg-[rgba(255,255,255,0.2)]': selectedFPS !== d._id && !isDisabled,
+          'opacity-20 bg-[rgba(0,0,0,0.2)]': isDisabled
         }
       )}
     >

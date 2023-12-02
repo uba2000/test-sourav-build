@@ -17,12 +17,31 @@ import Step3Resolution from "./components/Step3Resolution/Step3Resolution"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import RouteNames from "../../../lib/utils/routenames"
 import useBuildPCContext from "../../../lib/hooks/contextHooks/useBuildPCContext"
+import { IFormatPreferencesDataReturn } from "../../../lib/utils/util-build-preference"
+import { PreferenceResolutionsTitleType } from "../../../lib/types/context-types"
 
 function BuildPreference() {
   const [searchParams] = useSearchParams();
   
   const navigate = useNavigate();
-  const { preferences, resetApp, analyzePreferencesForBuild } = useBuildPCContext()
+  const {
+    preferences,
+    resetApp,
+    filterGameTitles, adjustFPSRange,
+    analyzePreferencesForBuild
+  } = useBuildPCContext()
+
+  const [canProceed, setCanProceed] = useState(false);
+  const [currentStage, setCurrentStage] = useState(parseInt((searchParams.get('s') || '0'), 10));
+  const [preferenceFeed, setPreferenceFeed] = useState<IFormatPreferencesDataReturn[]>([])
+  const [presentResolutions, setPresentResolutions] = useState<{
+    [k in PreferenceResolutionsTitleType]: string[];
+  }>({
+    "4kuhd": [],
+    fhd: [],
+    qhd: []
+  })
+
   const preferenceStages = useMemo(() => [
     {
       component: <Step1GameType />,
@@ -33,23 +52,33 @@ function BuildPreference() {
       description: 'Simulated difference in FPS for display on a wide range of devices. Individual performance and results may vary. '
     },
     {
-      component: <Step3Resolution />,
+      component: <Step3Resolution availableRes={presentResolutions} />,
       description: ''
     }
-  ], [])
-
-  const [canProceed, setCanProceed] = useState(false);
-  const [currentStage, setCurrentStage] = useState(parseInt((searchParams.get('s') || '0'), 10));
+  ], [presentResolutions])
 
   function nextStage() {
-    console.log({preferences});
-    if (currentStage === preferenceStages.length - 1) {
+    let _preferenceFeed: IFormatPreferencesDataReturn[] = []
+    if (currentStage === 0) {
+      // filter list for each product to contain just game titles
+      _preferenceFeed = filterGameTitles(preferences.game_type_title);
+      setPreferenceFeed(_preferenceFeed)
+    } else if (currentStage === 1) {
+      // reduce minmax fps
+      // remove any resolutions not within this range
+      const _presentResolutions = adjustFPSRange([...preferenceFeed])
+      setPresentResolutions(_presentResolutions)
+    } else if (currentStage === 2) {
       analyzePreferencesForBuild(preferences)
-      // navigate(RouteNames.buildPC)
+    }
+
+    if (currentStage === preferenceStages.length - 1) {
+      navigate(RouteNames.buildPC)
       // initiate decision on products based on preferences here...
       return;
     }
-
+    
+    // console.log({ preferences, preferenceFeedState: preferenceFeed });
     setCanProceed(false)
     setCurrentStage(prev => prev + 1)
     navigate(`${RouteNames.buildPreferenceIndex}?s=${currentStage + 1}`)

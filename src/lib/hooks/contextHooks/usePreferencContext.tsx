@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react'
 import BuildGamePreferences from '../../../pages/build-pc/preference/BuildGamePreferences'
 import _ from 'lodash';
 
+import { getPreferencesData, preferenceUrlEndpoint as cacheKey } from "../../api/preferenceAPI"
+
 import Desktop60FPS from '../../../assets/fps/FPS—ghostrunner2-timelapse—desktop—60.mp4'
 import Desktop60FPSThumb from '../../../assets/fps/60fps-thumbnail.svg'
 import Desktop120FPS from '../../../assets/fps/FPS—ghostrunner2-timelapse—desktop—120.mp4'
@@ -16,7 +18,9 @@ import DesktopQHDResFullImage from '../../../assets/res/resolution-qhd-desktop.p
 import DesktopFHDResImage from '../../../assets/res/resolution-hd-desktop.svg'
 import DesktopFHDResFullImage from '../../../assets/res/resolution-hd-desktop.png'
 
-import { BuildPCPreferenceType, IFPSTypesItem, IPreferenceResolutions } from '../../types/context-types';
+import { BuildPCPreferenceType, IFPSTypesItem, IMinMaxFPS, IPreferenceResolutions, PreferenceResolutionsTitleType } from '../../types/context-types';
+import { IFormatPreferencesDataReturn, formatPreferencesData } from '../../utils/util-build-preference';
+import useSWR from 'swr';
 
 const initialPreferences: BuildPCPreferenceType = {
   game_type_title: [],
@@ -24,11 +28,17 @@ const initialPreferences: BuildPCPreferenceType = {
   gaming_resolution: null,
 }
 
+const initialMinMax: IMinMaxFPS = {
+    min: 0,
+    max: 0,
+  }
+
 function usePreferencContext() {
   const preferenceGameTypes = useMemo(() => BuildGamePreferences, []);
 
   const [preferences, setPreferences] = useState<BuildPCPreferenceType>(initialPreferences);
-
+  
+  const [minMaxFPS, setMinMaxFPS] = useState<IMinMaxFPS>(initialMinMax)
   const preferenceFPSTypes = useMemo<IFPSTypesItem[]>(() => [
     {
       _id: _.uniqueId(),
@@ -92,15 +102,118 @@ function usePreferencContext() {
 
   function resetPreferences() {
     setPreferences(initialPreferences);
+    setMinMaxFPS(initialMinMax);
+  }
+
+  const {
+    data: preferences_feed,
+  } = useSWR(cacheKey, getPreferencesData)
+
+  // filter out titles not choosen and returns estimate max-min fps
+  function filterGameTitles(allowed_titles: string[]) {
+    const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
+
+    const newData = [..._preferences_feed].map((item) => {
+      const filteredGameTitles = Object.keys(item.gameTitles)
+        .filter((title) => allowed_titles.includes(title))
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .reduce((obj: any, key) => {
+          obj[key] = item.gameTitles[key];
+          return obj;
+        }, {});
+
+      return {
+        ...item,
+        gameTitles: filteredGameTitles,
+      };
+    });
+
+    const result: {
+      min: Record<string, number>;
+      max: Record<string, number>;
+    } = { min: {}, max: {} };
+
+    allowed_titles.forEach((title) => {
+      result.min[title] = Number.MAX_SAFE_INTEGER;
+      result.max[title] = Number.MIN_SAFE_INTEGER;
+
+      newData.forEach((item) => {
+        const game = item.gameTitles[title];
+        if (game) {
+          result.min[title] = Math.min(
+            result.min[title],
+            parseInt(game.fhd),
+            parseInt(game.qhd),
+            parseInt(game["4kuhd"])
+          );
+
+          result.max[title] = Math.max(
+            result.max[title],
+            parseInt(game.fhd),
+            parseInt(game.qhd),
+            parseInt(game["4kuhd"])
+          );
+        }
+      });
+    });
+
+    const overallMin = Math.min(...Object.values(result.min));
+    const overallMax = Math.max(...Object.values(result.max));
+
+    setMinMaxFPS({
+      min: overallMin,
+      max: overallMax
+    });
+
+    return newData;
+  }
+
+  // adjust fps based on user input then filter res in those ranges
+  function adjustFPSRange(preferenceFeed: IFormatPreferencesDataReturn[]) {
+    const _preferenceFeed = [...preferenceFeed]
+    const { max, min } = preferences.gaming_fps!.range;
+    const allowedResolutionRange = {
+      min: parseInt(min),
+      max: typeof max === 'number' ? max : parseInt(max)
+    }
+    setMinMaxFPS(allowedResolutionRange);
+
+    const resolutionValues: PreferenceResolutionsTitleType[] = ["fhd", "qhd", "4kuhd"];
+    const presentResolutions: {
+      [k in PreferenceResolutionsTitleType]: string[]
+    } = {
+      "4kuhd": [],
+      fhd: [],
+      qhd: []
+    };
+
+    resolutionValues.forEach(resolution => {
+      presentResolutions[resolution] = _preferenceFeed
+        .map(config =>
+          Object.values(config.gameTitles)
+            .map(title => title[resolution])
+            .filter(value => {
+              const _value = parseInt(value);
+              return !(isNaN(_value) || _value < allowedResolutionRange.min || _value > allowedResolutionRange.max)
+            })
+        )
+        .flat();
+    });
+
+    // if the length is 0 then no values for it.
+    return presentResolutions;
   }
 
   return {
+    minMaxFPS,
     preferences,
     preferenceFPSTypes,
     preferenceGameTypes,
     preferenceResolutions,
 
+    adjustFPSRange,
     setGamingPreference,
+    filterGameTitles,
     resetPreferences,
   }
 }

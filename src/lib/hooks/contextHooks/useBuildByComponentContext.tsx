@@ -183,7 +183,7 @@ function useBuildByComponentContext() {
       all_data = preferences.game_type_title.map((game_title) => {
   
         const game_products_in_range: ICleanPreferenceData['data'][] = [];
-  
+          
         _preferences_feed.forEach((product) => {
           const current_game_value = product.gameTitles[game_title];
           const _fps_value = parseInt(current_game_value[selected_res], 10);
@@ -216,6 +216,8 @@ function useBuildByComponentContext() {
           }
         })
   
+        console.log({game_products_in_range});
+
         return {
           title: game_title,
           data: _data,
@@ -308,11 +310,10 @@ function useBuildByComponentContext() {
       }
     })
 
+    console.log({ _preferences_feed, _highest_segment, preferences, all_data, _portinos_product_feed });
     setBuildSegment(_highest_segment)
     getPredefineBuilds(_highest_segment!)
     mapOutEligibleProducts(_highest_segment!)
-
-    console.log({ _preferences_feed, _highest_segment, preferences, all_data });
   }
 
   function getPredefineBuilds(build_segment: ProductPredefinedPresets) {

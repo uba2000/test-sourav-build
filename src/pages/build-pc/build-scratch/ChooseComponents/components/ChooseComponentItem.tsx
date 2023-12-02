@@ -38,7 +38,7 @@ function ChooseComponentItem({
         </div>
         <div className="flex-grow">
           <div className="flex gap-1 justify-between mb-[6px]">
-            <h4 className="font-IntelOneBodyTextBold text-sm whitespace-wrap flex-grow leading-[14px] h-[42px] line-clamp-3 cursor-pointer" onClick={() => itemClick()}>
+            <h4 className="font-IntelOneBodyTextBold text-sm whitespace-wrap flex-grow leading-[14px] h-[42px] line-clamp-3 cursor-pointer max-w-[164px]" onClick={() => itemClick()}>
               {data?.title}
             </h4>
 

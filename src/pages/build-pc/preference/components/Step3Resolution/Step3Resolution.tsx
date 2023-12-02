@@ -6,8 +6,15 @@ import { Fragment, useMemo, useState } from 'react'
 import _ from 'lodash'
 import clsx from 'clsx'
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
+import { PreferenceResolutionsTitleType } from '../../../../../lib/types/context-types'
 
-function Step3Resolution() {
+interface IStep3ResolutionProps {
+  availableRes: {
+    [k in PreferenceResolutionsTitleType]: string[];
+  }
+}
+
+function Step3Resolution({availableRes}: IStep3ResolutionProps) {
   const { setGamingPreference, preferenceResolutions, preferences } = useBuildPCContext()
   const resolutions = useMemo(() => preferenceResolutions, [preferenceResolutions])
 
@@ -37,7 +44,12 @@ function Step3Resolution() {
             {resolutions.map((d, index) => (
               <Fragment key={_.uniqueId()}>
                 <div className='relative flex flex-col md:gap-y-6 gap-y-3 md:min-h-[480px] min-h-[272px]'>
-                  <div className="flex-1">
+                  <div
+                    className={clsx(
+                      "flex-1",
+                      {"opacity-20 bg-[rgba(0,0,0,0.2)]": availableRes[d.title].length === 0},
+                    )}
+                  >
                     <img
                       src={d.image}
                       alt=""
@@ -53,11 +65,13 @@ function Step3Resolution() {
                   </div>
                   <button
                     type='button'
+                    disabled={availableRes[d.title].length === 0}
                     onClick={() => selectRESIndex(index)}
                     className={clsx(
                       'md:h-[60px] relative p-2 md:px-6 px-3',
-                      {"bg-gaming-cobalt": selectedRESIndex === d.title},
-                      {"bg-[rgba(255,255,255,0.20)]": selectedRESIndex !== d.title},
+                      {"bg-gaming-cobalt": selectedRESIndex === d.title && availableRes[d.title].length !== 0},
+                      { "bg-[rgba(255,255,255,0.20)]": selectedRESIndex !== d.title && availableRes[d.title].length !== 0 },
+                      {"opacity-20 bg-[rgba(255,255,255,0.20)]": availableRes[d.title].length === 0},
                     )}
                   >
                     {selectedRESIndex === d.title && (
