@@ -1,14 +1,14 @@
 import { Fragment, useMemo } from 'react'
 import _ from 'lodash';
 import BuildLayout from '../build-scratch/components/BuildLayout'
-import usePreBuiltBuilds from '../../../lib/hooks/contextHooks/usePreBuiltBuilds'
+// import usePreBuiltBuilds from '../../../lib/hooks/contextHooks/usePreBuiltBuilds'
 import BuildItem from '../build-scratch/MyBuild/components/BuildItem';
 import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext';
 
 function PreconfigedSystems() {
-  const { enthusiast } = usePreBuiltBuilds();
+  // const { enthusiast } = usePreBuiltBuilds();
   const { predefinedBuilds } = useBuildPCContext();
-  console.log({predefinedBuilds, enthusiast});
+  // console.log({predefinedBuilds, enthusiast});
   
   const componentItems = useMemo(() => predefinedBuilds?.items, [predefinedBuilds])
 
@@ -18,7 +18,7 @@ function PreconfigedSystems() {
       // buildModel={enthusiast.buildModel}
     >
       <BuildLayout.HeaderTitle
-        title={enthusiast.title}
+        title={predefinedBuilds.title}
         subTitle={'[Short rationale for the selection of these components. ]'}
       />
 

@@ -73,7 +73,7 @@ const BuildGamePreferences = [
   },
   {
     _id: _.uniqueId(),
-    title: "Counter Strike 2",
+    title: "Counter Strike 2 ",
     image: CounterStriker,
   },
   {

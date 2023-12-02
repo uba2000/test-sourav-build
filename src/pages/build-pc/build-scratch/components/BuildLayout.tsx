@@ -46,6 +46,8 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
     currentModelOnStage, toggleShowSpecs,
     viewingCurrentComponentModel, showCurrentModelSpecs
   } = useBuildPCContext()
+  // console.log({currentBuild});
+  
 
   // states of the 3D model
   // 1. empty view for initial state
@@ -167,12 +169,15 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
               {/* Right price section */}
               {(currentBuild.length === buildStages.length || stagesStatus === 'complete') && (
               <div className="flex justify-end gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
-                <PolygonContainer className='min-w-[246px]'>
-                  <div className="flex flex-wrap px-5 gap-x-3 items-center h-full">
-                    <span className='text-white-75 text-xs whitespace-nowrap font-IntelOneBodyTextMedium'>Estimated price:</span>
+                <PolygonContainer className='min-w-[209px]'>
+                  <div className="flex flex-wrap flex-col px-5 gap-x-3 items-center justify-center h-full">
+                    <span className='text-white-75 text-[10px] leading-[11px] whitespace-nowrap font-IntelOneBodyTextMedium uppercase'>Total Price</span>
                     <span className=''>
-                      <span className='font-IntelOneBodyTextMedium'>$1,589.45 - </span>
-                      <span className='text-[22px] font-IntelOneBodyTextMedium'>$3,478.99</span>
+                      <span className='font-IntelOneBodyTextMedium'>
+                        $
+                        {currentBuild.reduce((sum, product) => sum + (product?.price || 0), 0)}
+                      </span>
+                      {/* <span className='text-[22px] font-IntelOneBodyTextMedium'>$3,478.99</span> */}
                     </span>
                   </div>
                 </PolygonContainer>

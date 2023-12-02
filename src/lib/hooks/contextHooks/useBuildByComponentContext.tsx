@@ -171,8 +171,10 @@ function useBuildByComponentContext() {
   }
 
   function analyzePreferencesForBuild(preferences: BuildPCPreferenceType) {
+    
     const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
     const _portinos_product_feed = portinos_product_feed as IPortinosProductFeed;
+    // console.log({preferences, _preferences_feed});
 
     const selected_res = preferences.gaming_resolution?.title;
     const selected_fps_range = preferences.gaming_fps!.range;
@@ -186,6 +188,7 @@ function useBuildByComponentContext() {
           
         _preferences_feed.forEach((product) => {
           const current_game_value = product.gameTitles[game_title];
+          
           const _fps_value = parseInt(current_game_value[selected_res], 10);
           
           if (_fps_value >= parseInt(selected_fps_range?.min, 10)) {
@@ -216,7 +219,7 @@ function useBuildByComponentContext() {
           }
         })
   
-        console.log({game_products_in_range});
+        // console.log({game_products_in_range});
 
         return {
           title: game_title,
@@ -310,7 +313,7 @@ function useBuildByComponentContext() {
       }
     })
 
-    console.log({ _preferences_feed, _highest_segment, preferences, all_data, _portinos_product_feed });
+    // console.log({ _preferences_feed, _highest_segment, preferences, all_data, _portinos_product_feed });
     setBuildSegment(_highest_segment)
     getPredefineBuilds(_highest_segment!)
     mapOutEligibleProducts(_highest_segment!)
@@ -345,7 +348,7 @@ function useBuildByComponentContext() {
       }
     })
 
-    console.log({predefined_pre_sets});
+    // console.log({predefined_pre_sets});
     setPredefinedBuilds(predefined_pre_sets)
   }
 
@@ -367,7 +370,18 @@ function useBuildByComponentContext() {
     };
 
     _portinos_product_feed.products.forEach((ppf) => {
-      if (preferenceBuildSegmentWeight[ppf.segment] >= preferenceBuildSegmentWeight[build_segment]) {
+      let _current_segment: ProductPredefinedPresets = ppf.segment as ProductPredefinedPresets;
+
+      if (_current_segment.includes('|')) {
+        const segment_arrays = _current_segment.split('|') as ProductPredefinedPresets[];
+        if (segment_arrays.length === 1 || preferenceBuildSegmentWeight[segment_arrays[0]] > preferenceBuildSegmentWeight[segment_arrays[1]]) {
+          _current_segment = segment_arrays[0];
+        } else if (preferenceBuildSegmentWeight[segment_arrays[0]] < preferenceBuildSegmentWeight[segment_arrays[1]]) {
+          _current_segment = segment_arrays[1];
+        }
+      }
+      
+      if (preferenceBuildSegmentWeight[_current_segment] >= preferenceBuildSegmentWeight[build_segment]) {
         eligible_products.push(ppf)
         // console.log(buildSlugMap[ppf.category!]);
         const category_slug = buildSlugMap[ppf.category!];
@@ -376,6 +390,7 @@ function useBuildByComponentContext() {
         formatted_products[`${buildSlugMap[ppf.category!]}`]?.push({
           _id: `${ppf.id}`,
           image: ppf.picture,
+          price: ppf.price,
           rating: 5,
           title: ppf.model_name,
           category_slug,
@@ -388,13 +403,13 @@ function useBuildByComponentContext() {
       ...pv,
       items: formatted_products[pv.slug]
     })))
-    console.log({
-      eligible_products, _portinos_product_feed, formatted_products,
-      buildStages: buildStages.map((pv) => ({
-        ...pv,
-        items: formatted_products[pv.slug]
-      }))
-    });
+    // console.log({
+    //   eligible_products, _portinos_product_feed, formatted_products,
+    //   buildStages: buildStages.map((pv) => ({
+    //     ...pv,
+    //     items: formatted_products[pv.slug]
+    //   }))
+    // });
   }
 
   function resetPCBuild() {

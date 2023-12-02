@@ -61,7 +61,7 @@ function ChooseComponentItem({
               ))}
             </div>
             <div className="flex flex-col gap-y-1 items-end">
-              <span className='font-IntelOneBodyTextMedium'>$$$$</span>
+              <span className='font-IntelOneBodyTextMedium'>${data.price}</span>
               <Button variant='gaming-cobalt' onClick={() => handleAddToBuild()}>
                 <div className="flex gap-x-[6px] items-center py-1 px-2 text-xs">
                   Add to build
