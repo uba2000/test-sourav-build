@@ -45,8 +45,10 @@ function Step3Resolution({availableRes}: IStep3ResolutionProps) {
               <Fragment key={_.uniqueId()}>
                 <div className='relative flex flex-col md:gap-y-6 gap-y-3 md:min-h-[480px] min-h-[272px]'>
                   <div
+                    onClick={() => availableRes[d.title].length !== 0 && selectRESIndex(index)}
                     className={clsx(
                       "flex-1",
+                      {"cursor-pointer": availableRes[d.title].length !== 0},
                       {"opacity-20 bg-[rgba(0,0,0,0.2)]": availableRes[d.title].length === 0},
                     )}
                   >

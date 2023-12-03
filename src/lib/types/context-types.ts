@@ -138,8 +138,8 @@ export interface IBuildPCContext {
   currentModelOnStage: string;
   showCurrentModelSpecs: boolean;
   viewingCurrentComponentModel: boolean;
-  toggleShowSpecs: () => void;
-  toggleViewingComponentModel: () => void;
+  toggleShowSpecs: (_toggle?: boolean) => void;
+  toggleViewingComponentModel: (_toggle?: boolean) => void;
   setCurrentModelOnStage: (model: string) => void;
 }
 

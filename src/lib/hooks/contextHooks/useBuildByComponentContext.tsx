@@ -141,6 +141,8 @@ function useBuildByComponentContext() {
   })
 
   function addToBuild({ category_slug, component_id }: IAddToBuildProps) {
+    console.log({ category_slug, component_id });
+    
     const _buildStages = [...buildStages];
     const _current_build_category = _buildStages.find((d) => d.slug === category_slug);
 
@@ -150,7 +152,6 @@ function useBuildByComponentContext() {
       const _current_component_index = _current_build_category.items.findIndex((d) => d._id === component_id)
       
       // add component to build
-      const _index_in_build = currentBuild.length;
       if (_current_component && _current_build_category) {
         _current_component.category_slug = _current_build_category.slug;
         // console.log([
@@ -166,10 +167,13 @@ function useBuildByComponentContext() {
         )
         setCurrentBuildStage((prev) => prev + 1);
       }
-      if (_current_component_index && _current_component && _current_build_category) {
-        _buildStages[_current_component_index].selectedItem = {
+      console.log({_current_component_index, _current_component, _current_build_category});
+      
+      if (_current_component_index >= 0 && _current_component && _current_build_category) {
+        const _currrent_index_build = buildStages.findIndex((d) => d.slug === _current_build_category?.slug)
+        _buildStages[_currrent_index_build].selectedItem = {
           _id: _current_component?._id,
-          index: _index_in_build,
+          index: _currrent_index_build,
           slug: _current_build_category?.slug,
         }
       }

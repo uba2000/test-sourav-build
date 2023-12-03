@@ -10,13 +10,24 @@ import { Fragment, useMemo } from 'react'
 import clsx from 'clsx'
 import DoughnutChart from '../../../../../components/DoughnutChart/DoughnutChart'
 import type { IDoughnutChartData } from '../../../../../components/DoughnutChart/types'
+import useBuildPCStages from '../../../../../lib/hooks/useBuildPCStages'
+import { IBuildStages } from '../../../../../lib/types/context-types'
 
 // interface ISingleCompareComponents {
 //   handleToggleSingleDetails: (_id: string) => void
 // }
 
-function SingleCompareComponents() {
+interface ISingleCompareComponents {
+  handleAddComponentToBuild: (_id: string) => void;
+  selectedItemID: string | null;
+  category_slug: string; 
+}
+
+function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, category_slug}: ISingleCompareComponents) {
   const { toggleShowSpecs } = useBuildPCContext()
+  const { getStageData } = useBuildPCStages();
+  const stageDetails = useMemo<IBuildStages>(() => getStageData(category_slug as string), [category_slug, getStageData])
+  const componentItem = useMemo(() => stageDetails.items.find((d) => d._id === selectedItemID), [selectedItemID, stageDetails.items])
 
   const chartData = useMemo<IDoughnutChartData[]>(() => [
     {
@@ -69,6 +80,10 @@ function SingleCompareComponents() {
     },
   ], [])
 
+  function addToBuild() {
+    handleAddComponentToBuild(selectedItemID as string)
+  }
+
   return (
     <div className='flex flex-col gap-y-3'>
       <div className="flex justify-end">
@@ -81,7 +96,7 @@ function SingleCompareComponents() {
         {/* <PolygonContainer> */}
         <div className="py-3 flex flex-col items-center text-center gap-y-3">
           <h1 className="text-M-h1 max-w-[257px] font-IntelOneDisplayBold">
-            Intel® Core™ i9-14900K processor
+            {componentItem?.title}
           </h1>
 
           <div className="flex justify-center gap-x-6">
@@ -94,7 +109,7 @@ function SingleCompareComponents() {
 
           <div className="flex gap-x-3 items-center">
             <span className="font-IntelOneBodyTextMedium text-xs">$659.99</span>
-            <Button variant='gaming-cobalt'>
+            <Button variant='gaming-cobalt' onClick={() => addToBuild()}>
               <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
                 Add to build
                 <ImageFigure icon={RightArrow} width={12} />
@@ -106,10 +121,12 @@ function SingleCompareComponents() {
         {/* </PolygonContainer> */}
       </div>
 
+      {/* hidden */}
       <div className="max-w-[199px] min-h-[100px] mx-auto hidden items-center">
         <span className='text-xs font-IntelOneBodyTextMedium max-w-[83px]'>Up to 6.0 GHz Max turbo</span>
         {/* Circle chat here */}
       </div>
+      {/* hidden */}
 
       <div className="pt-3 px-6">
         <div className="border-b border-b-white-75 pb-[22px]">
@@ -167,6 +184,7 @@ function SingleCompareComponents() {
         </div>
       </div>
 
+      {/* hidden */}
       <div className="hidden gap-y-4 max-w-[168px] mx-auto flex-wrap justify-center">
         <div className="grid grid-cols-[80px_80px] gap-2 w-full">
           <div className="bg-[rgba(255,255,255,0.2)] py-3 flex flex-col items-center">
@@ -189,6 +207,7 @@ function SingleCompareComponents() {
           <span className='text-xs font-IntelOneBodyTextMedium leading-[12px]'>TDP</span>
         </div>
       </div>
+      {/* hidden */}
 
       <div className="border border-[rgba(255,255,255,0.5)] p-4 w-full">
         <div className='mb-2'>

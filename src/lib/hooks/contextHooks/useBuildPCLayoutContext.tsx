@@ -9,12 +9,13 @@ function useBuildPCLayoutContext() {
     setCurrentModelOnStage(model)
   }
 
-  function toggleShowSpecs() {
-    setShowCurrentModelSpecs((prev) => !prev);
+  function toggleShowSpecs(_toggle?: boolean) {
+
+    setShowCurrentModelSpecs((prev) => _toggle === undefined ? !prev : _toggle);
   }
 
-  function toggleViewingComponentModel() {
-    setViewingCurrentComponentModel((prev) => !prev);
+  function toggleViewingComponentModel(_toggle?: boolean) {
+    setViewingCurrentComponentModel((prev) => _toggle === undefined ? !prev : _toggle);
   }
 
   return {

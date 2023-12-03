@@ -2,7 +2,7 @@ import _ from 'lodash';
 import PolygonContainer from '../../../../components/PolygonContainer/PolygonContainer';
 import BuildLayout from '../components/BuildLayout'
 import ChooseComponentItem from './components/ChooseComponentItem';
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import Button from '../../../../components/Button/Button';
 
 import { useMatches, useNavigate } from 'react-router-dom';
@@ -19,23 +19,22 @@ import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCCont
 function ChooseComponents() {
   const matches = useMatches();
   const navigate = useNavigate();
-  const { getStageData, currentBuildStage } = useBuildPCStages();
+  const { getStageData } = useBuildPCStages();
   const {
     addComponentToBuild,
-    showCurrentModelSpecs,
+    showCurrentModelSpecs, toggleShowSpecs,
     setCurrentModelOnStage, toggleViewingComponentModel,
   } = useBuildPCContext()
 
-  const componentItems = useMemo(() => currentBuildStage.items, [currentBuildStage.items])
   const _category_slug = useMemo(() => matches[0].params?.category_slug, [matches])
-
-  const stageDetails = useMemo<IBuildStages>(() => getStageData(_category_slug as string), [])
+  const stageDetails = useMemo<IBuildStages>(() => getStageData(_category_slug as string), [_category_slug, getStageData])
+  const componentItems = useMemo(() => stageDetails.items, [stageDetails.items])
 
   const [selectedItemID, setSelectedItemID] = useState<string | null>(null)
 
   function onSelectComponentItem(_id: string) {
     const _item = componentItems.find((d) => d._id === _id);
-    setCurrentModelOnStage(selectedItemID === _id ? '' : _item?.model as string);
+    setCurrentModelOnStage(selectedItemID === _id ? '' : _item?.image as string);
     if (selectedItemID === _id || !selectedItemID) {
       toggleViewingComponentModel();
     }
@@ -53,14 +52,31 @@ function ChooseComponents() {
   }
 
   function handleAddComponentToBuild(_id: string) {
+    toggleShowSpecs(false);
+    toggleViewingComponentModel(false);
+    setCurrentModelOnStage('');
     addComponentToBuild({ category_slug: _category_slug as IBuildStages["slug"], component_id: _id })
     navigate(`${RouteNames.buildPCMyBuild}`)
   }
+
+  useEffect(() => { 
+    return () => {
+      toggleShowSpecs(false);
+      toggleViewingComponentModel(false);
+      setCurrentModelOnStage('');
+    }
+  }, [])
+
+  useEffect(() => { 
+    console.log({matches, _category_slug});
+    
+  }, [matches])
 
   return (
     <BuildLayout layout_r_title={`${!showCurrentModelSpecs ? `Select a ${stageDetails.title.toLowerCase()}` : ''}`}>
       {!showCurrentModelSpecs && (
         <>
+          {/* Comparison section */}
           {false && (
             <>
               <PolygonContainer>
@@ -112,6 +128,7 @@ function ChooseComponents() {
               </div>
             </>
           )}
+          {/* Comparison section */}
 
           <div className='flex flex-col gap-y-3'>
             {componentItems && componentItems.map((d) => (
@@ -129,7 +146,11 @@ function ChooseComponents() {
       )}
 
       {showCurrentModelSpecs && (
-        <SingleCompareComponents />
+        <SingleCompareComponents
+          category_slug={_category_slug as string}
+          selectedItemID={selectedItemID}
+          handleAddComponentToBuild={handleAddComponentToBuild}
+        />
       )}
     </BuildLayout>
   )

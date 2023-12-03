@@ -1,4 +1,4 @@
-import React, { Fragment, useLayoutEffect, useState } from 'react'
+import React, { Fragment, useEffect, useLayoutEffect, useState } from 'react'
 import PolygonContainer from '../../../../components/PolygonContainer/PolygonContainer';
 import ImageFigure from '../../../../components/ImageFigure';
 import clsx from 'clsx';
@@ -17,16 +17,20 @@ import Image3D from '../../../../assets/assets-3d/build-3d-image.svg'
 import NavLeftArrow from '../../../../assets/left-scroll-arrow.svg'
 import NavRightArrow from '../../../../assets/right-scroll-arrow.svg'
 import useBuildPCStages from '../../../../lib/hooks/useBuildPCStages';
-import { matchRoutes, useLocation } from 'react-router-dom';
+import { matchRoutes, useLocation, useNavigate } from 'react-router-dom';
 import CardWithNotch from '../../../../components/CardWithNotch/CardWithNotch';
 import { IBuildStages } from '../../../../lib/types/context-types';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
+import RouteNames from '../../../../lib/utils/routenames';
+import { formatNumberWithCommas } from '../../../../lib/utils/util-numbers';
 
 interface IBuildLayout {
   children: React.ReactNode;
   isCompareMode?: boolean;
   stagesStatus?: 'complete' | 'auto';
   layout_r_title?: string;
+  totalPrice?: string;
+  showPriceSection?: boolean;
 }
 
 const buildRoutes = [
@@ -36,18 +40,17 @@ const buildRoutes = [
   { path: "/build-pc/preconfigured" },
 ]
 
-function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout_r_title}: IBuildLayout) {
+function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', layout_r_title, totalPrice, showPriceSection = false }: IBuildLayout) {
+  const navigate = useNavigate()
   const { buildStages } = useBuildPCStages()
   const {
     currentBuild,
     resetApp,
     addToRetailerUsersCart,
-    currentBuildStage: currentStage,
     currentModelOnStage, toggleShowSpecs,
     viewingCurrentComponentModel, showCurrentModelSpecs
-  } = useBuildPCContext()
+  } = useBuildPCContext();
   // console.log({currentBuild});
-  
 
   // states of the 3D model
   // 1. empty view for initial state
@@ -58,9 +61,23 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(buildRoutes, location)
 
+  const [currentModel, setCurrentModel] = useState(Image3D)
+
   function handleAddAllToCart() {
     addToRetailerUsersCart({ state: 'complete' })
   }
+
+  function goToMyBuild() {
+    navigate(RouteNames.buildPCMyBuild)
+  }
+
+  useEffect(() => { 
+    if (currentModelOnStage) {
+      setCurrentModel(currentModelOnStage)
+    } else {
+      setCurrentModel(Image3D)
+    }
+  }, [currentModelOnStage])
 
   return (
     <PageWrapper>
@@ -88,14 +105,14 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
                   {buildStages.map((__, index) => (
                     <Fragment key={_.uniqueId()}>
                       <div className={clsx('min-w-[8px] h-1', {
-                        'bg-gaming-blue': (currentStage >= index || stagesStatus === 'complete'),
-                        'bg-[rgba(255,255,255,0.2)]': (currentStage < index && stagesStatus === 'auto'),
+                        'bg-gaming-blue': ((currentBuild.length - 1) >= index || stagesStatus === 'complete'),
+                        'bg-[rgba(255,255,255,0.2)]': ((currentBuild.length - 1) < index && stagesStatus === 'auto'),
                       })} />
                     </Fragment>
                   ))}
                 </div>
                 <p className="text-sm font-medium">
-                  ({stagesStatus === 'auto' ? currentStage + 1 : buildStages.length}/{buildStages.length})
+                  ({stagesStatus === 'auto' ? (currentBuild.length - 1) + 1 : buildStages.length}/{buildStages.length})
                 </p>
               </div>
             </div>
@@ -110,13 +127,13 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
           )}
         >
           {/* {!isCompareMode && ( */}
-          <div className="md:py-6 pt-6 flex-col gap-y-4 flex">
+          <div className="md:py-6 pt-6 flex-col gap-y-4 flex md:pb-[57px]">
             <div className='flex-grow w-full min-w-[180px] min-h-[180px] flex justify-center items-center'>
               <div className='hidden md:block'>
-                <ImageFigure icon={currentModelOnStage || Image3D} width={481} />
+                <ImageFigure icon={currentModel} width={481} />
               </div>
               <div className='block md:hidden'>
-                <ImageFigure icon={currentModelOnStage || Image3D} width={190} />
+                <ImageFigure icon={currentModel} width={190} />
               </div>
             </div>
             <div className="flex justify-end md:pr-0 pr-4 min-h-[31px]">
@@ -167,36 +184,39 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
               </div>
               {/* Right main section */}
               {/* Right price section */}
-              {(currentBuild.length === buildStages.length || stagesStatus === 'complete') && (
-              <div className="flex justify-end gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
-                <PolygonContainer className='min-w-[209px]'>
-                  <div className="flex flex-wrap flex-col px-5 gap-x-3 items-center justify-center h-full">
-                    <span className='text-white-75 text-[10px] leading-[11px] whitespace-nowrap font-IntelOneBodyTextMedium uppercase'>Total Price</span>
-                    <span className=''>
-                      <span className='font-IntelOneBodyTextMedium'>
-                        $
-                        {currentBuild.reduce((sum, product) => sum + (product?.price || 0), 0)}
+              <div className='md:min-h-[49px] max-w-full md:px-0 px-4'>
+                {(currentBuild.length === buildStages.length || stagesStatus === 'complete' || showPriceSection) && (
+                <div className="flex justify-end gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
+                  <PolygonContainer className='min-w-[209px]'>
+                    <div className="flex flex-wrap flex-col px-5 gap-x-3 items-center justify-center h-full">
+                      <span className='text-white-75 text-[10px] leading-[11px] whitespace-nowrap font-IntelOneBodyTextMedium uppercase'>Total Price</span>
+                      <span className=''>
+                        <span className='font-IntelOneBodyTextMedium'>
+                          $
+                          {formatNumberWithCommas(parseInt(totalPrice || "0") || currentBuild.reduce((sum, product) => sum + (product?.price || 0), 0))}
+                        </span>
+                        {/* <span className='text-[22px] font-IntelOneBodyTextMedium'>$3,478.99</span> */}
                       </span>
-                      {/* <span className='text-[22px] font-IntelOneBodyTextMedium'>$3,478.99</span> */}
-                    </span>
-                  </div>
-                </PolygonContainer>
-                <div className='flex items-center'>
-                  <Button variant='secondary' className='flex-grow' onClick={() => handleAddAllToCart()}>
-                    <div className="flex gap-[6px] items-center py-2 px-3">
-                      <ImageFigure icon={CartIcon} width={20} />
-                      <span className="text-black font-IntelOneBodyTextMedium whitespace-nowrap text-sm">Add all to cart</span>
                     </div>
-                  </Button>
+                  </PolygonContainer>
+                  <div className='flex items-center'>
+                    <Button variant='secondary' className='flex-grow' onClick={() => handleAddAllToCart()}>
+                      <div className="flex gap-[6px] items-center py-2 px-3">
+                        <ImageFigure icon={CartIcon} width={20} />
+                        <span className="text-black font-IntelOneBodyTextMedium whitespace-nowrap text-sm">Add all to cart</span>
+                      </div>
+                    </Button>
+                  </div>
                 </div>
-              </div>
               )}
+              </div>
               {/* Right price section */}
             </div>
             {/* Mobile right bar */}
             <div className="md:hidden flex w-[calc(100%_+_2px)] h-fit -mx-[1px]">
               <PolygonContainer btl={false} bbl={false} className='' rightBackground={isOnBuildRoutes ? 'primary' : null}>
                 <div
+                  onClick={() => goToMyBuild()}
                   className={clsx(
                     "px-3 flex flex-col items-center justify-center cursor-pointer h-full",
                     {"bg-gaming-cobalt": isOnBuildRoutes}
@@ -229,6 +249,7 @@ function BuildLayout({children, isCompareMode=false, stagesStatus='auto', layout
             <PolygonContainer className='min-w-[68px] md:block hidden' bbr={false} btl={false} topBackground={isOnBuildRoutes ? 'primary' : null}>
               <div>
                 <div
+                  onClick={() => goToMyBuild()}
                   className={clsx(
                     "border-b border-b-white-75 py-2 px-3 flex flex-col items-center cursor-pointer gap-y-[3px] mb-2",
                     {"bg-gaming-cobalt": isOnBuildRoutes}
@@ -291,7 +312,7 @@ interface IBuildSidebarItem {
 }
 
 function BuildSidebarItem({ data, screenSize, stagesStatus='auto' }: IBuildSidebarItem) {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(componentBuildRoutes, location)
   
@@ -324,7 +345,7 @@ function BuildSidebarItem({ data, screenSize, stagesStatus='auto' }: IBuildSideb
   }, [data.slug, isOnBuildRoutes])
 
   function goToComponent() {
-    // navigate(`${RouteNames.buildChooseComponent}/${data.slug}`)
+    navigate(`${RouteNames.buildChooseComponent}/${data.slug}`)
   }
 
   return (

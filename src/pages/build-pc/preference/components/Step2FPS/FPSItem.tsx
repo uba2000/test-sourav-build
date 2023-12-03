@@ -1,16 +1,20 @@
 import clsx from 'clsx';
 import { useCallback, useEffect, useRef } from 'react';
 import type { IFPSTypesItem } from '../../../../../lib/types/context-types';
+import useFPSItemDisability from '../../../../../lib/hooks/useFPSItemDisability';
 
 interface IFPSItem {
   updateCurrentTime: (_currentTime: number) => void;
   selectedFPS: string | null;
   d: IFPSTypesItem;
   currentVideoTime: number;
+  selectFPS: (_id: string, index: number) => void;
+  index: number;
 }
 
-function FPSItem({ selectedFPS, d, currentVideoTime, updateCurrentTime }: IFPSItem) {
+function FPSItem({ selectedFPS, d, currentVideoTime, updateCurrentTime, selectFPS, index }: IFPSItem) {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const { isDisabled } = useFPSItemDisability(d);
 
   const _updateCurrentTime = useCallback(() => {
     if (videoRef.current) {
@@ -47,11 +51,13 @@ function FPSItem({ selectedFPS, d, currentVideoTime, updateCurrentTime }: IFPSIt
   return (
     <div className="flex flex-col gap-y-[30px] items-center overflow-hidden">
       <div
+        onClick={() => !isDisabled && selectFPS(d._id, index)}
         className={clsx(
-          "w-full md:min-h-[196px] max-w-full relative ease-in-out",
+          "w-full md:min-h-[196px] cursor-pointer max-w-full relative ease-in-out",
           {
             "scale-110": selectedFPS && selectedFPS === d._id,
             "scale-90": selectedFPS && selectedFPS !== d._id,
+            "opacity-20": isDisabled,
           }
         )}
       >
@@ -59,7 +65,7 @@ function FPSItem({ selectedFPS, d, currentVideoTime, updateCurrentTime }: IFPSIt
           className={clsx(
             "absolute top-0 left-0 w-full h-full",
             {
-              "block bg-[rgba(0,0,0,0.2)]": selectedFPS && selectedFPS !== d._id,
+              "block bg-[rgba(0,0,0,0.2)]": (selectedFPS && selectedFPS !== d._id) || isDisabled
             }
           )}
         />

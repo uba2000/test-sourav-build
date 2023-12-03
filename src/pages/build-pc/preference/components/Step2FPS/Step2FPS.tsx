@@ -1,4 +1,4 @@
-import React, { Fragment, useLayoutEffect, useMemo, useState } from 'react'
+import React, { Fragment, useMemo, useState } from 'react'
 import PreferenceLayout from '../PreferenceLayout/PreferenceLayout'
 import _ from 'lodash';
 import FPSItem from './FPSItem';
@@ -6,6 +6,7 @@ import FPSItem from './FPSItem';
 import clsx from 'clsx';
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext';
 import { IFPSTypesItem } from '../../../../../lib/types/context-types';
+import useFPSItemDisability from '../../../../../lib/hooks/useFPSItemDisability';
 
 function Step2FPS() {
   const { setGamingPreference, preferenceFPSTypes, preferences } = useBuildPCContext()
@@ -48,11 +49,13 @@ function Step2FPS() {
       </div>
 
       <div className='max-w-[930px] grid md:grid-cols-3 gap-y-[6px] grid-cols-1 gap-x-[18px] min-h-[370px]'>
-        {fpsTypes.map((d) => (
+        {fpsTypes.map((d, index) => (
           <Fragment key={d._id}>
             <FPSItem
               d={d}
+              index={index}
               selectedFPS={selectedFPS}
+              selectFPS={selectFPS}
               currentVideoTime={currentVideoTime}
               updateCurrentTime={updateCurrentTime}
             />
@@ -71,17 +74,7 @@ interface IFPSButton {
 }
 
 const FPSButton = React.memo(({ selectFPS, selectedFPS, d, index }: IFPSButton) => {
-  const { minMaxFPS } = useBuildPCContext()
-  const [isDisabled, setIsDisabled] = useState(false);
-  const max = typeof d.range.max === 'number' ? d.range.max : parseInt(d.range.max);
-
-  useLayoutEffect(() => {
-    if (minMaxFPS.min && minMaxFPS.max) {
-      const _disabled = (parseInt(d.range.min) > minMaxFPS.max && max > minMaxFPS.max) 
-        || (parseInt(d.range.min) < minMaxFPS.min && max < minMaxFPS.min)
-      setIsDisabled(_disabled);
-    }
-  }, [d.fps, d.range, max, minMaxFPS]);
+  const { isDisabled } = useFPSItemDisability(d);
 
   return (
     <button
@@ -93,7 +86,7 @@ const FPSButton = React.memo(({ selectFPS, selectedFPS, d, index }: IFPSButton) 
         "md:min-h-[48px] min-h-[36px] px-6 bg-[rgba(255,255,255,0.2)] mx-auto relative",
         {
           'bg-gaming-cobalt': selectedFPS === d._id && !isDisabled,
-          'bg-[rgba(255,255,255,0.2)]': selectedFPS !== d._id && !isDisabled,
+          'bg-[rgba(255,255,255,0.2)] hover:bg-intel-20-cobalt': selectedFPS !== d._id && !isDisabled,
           'opacity-20 bg-[rgba(0,0,0,0.2)]': isDisabled
         }
       )}
