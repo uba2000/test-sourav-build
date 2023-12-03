@@ -11,13 +11,15 @@ import _ from 'lodash'
 
 interface IChooseComponentItem {
   selected?: boolean;
+  inBuild?: boolean;
   onClick?: (_id: string) => void;
   addToBuild?: (_id: string) => void;
   data: IBuildComponent;
 }
 
 function ChooseComponentItem({
-  selected = false, onClick = () => { }, addToBuild = () => { }, data
+  selected = false, onClick = () => { },
+  addToBuild = () => { }, data, inBuild
 }: IChooseComponentItem) {
   
   function itemClick() {
@@ -62,7 +64,7 @@ function ChooseComponentItem({
             </div>
             <div className="flex flex-col gap-y-1 items-end">
               <span className='font-IntelOneBodyTextMedium'>${data.price}</span>
-              <Button variant='gaming-cobalt' onClick={() => handleAddToBuild()}>
+              <Button disabled={inBuild} variant='gaming-cobalt' onClick={() => handleAddToBuild()}>
                 <div className="flex gap-x-[6px] items-center py-1 px-2 text-xs">
                   Add to build
                   <ImageFigure icon={RightArrow} width={12} />

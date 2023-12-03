@@ -2,7 +2,7 @@ import _ from 'lodash';
 import PolygonContainer from '../../../../components/PolygonContainer/PolygonContainer';
 import BuildLayout from '../components/BuildLayout'
 import ChooseComponentItem from './components/ChooseComponentItem';
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import Button from '../../../../components/Button/Button';
 
 import { useMatches, useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ import SingleCompareComponents from '../CompareComponents/components/SingleCompa
 import ImageFigure from '../../../../components/ImageFigure';
 
 import RightArrow from '../../../../assets/right-arrow-white.svg'
-import { IBuildStages } from '../../../../lib/types/context-types';
+import { IBuildComponent, IBuildStages } from '../../../../lib/types/context-types';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
 
 function ChooseComponents() {
@@ -21,7 +21,7 @@ function ChooseComponents() {
   const navigate = useNavigate();
   const { getStageData } = useBuildPCStages();
   const {
-    addComponentToBuild,
+    addComponentToBuild, currentBuild,
     showCurrentModelSpecs, toggleShowSpecs,
     setCurrentModelOnStage, toggleViewingComponentModel,
   } = useBuildPCContext()
@@ -29,17 +29,33 @@ function ChooseComponents() {
   const _category_slug = useMemo(() => matches[0].params?.category_slug, [matches])
   const stageDetails = useMemo<IBuildStages>(() => getStageData(_category_slug as string), [_category_slug, getStageData])
   const componentItems = useMemo(() => stageDetails.items, [stageDetails.items])
+  const [_isInBuild, setIsInBuild] = useState<IBuildComponent | null>(null)
 
   const [selectedItemID, setSelectedItemID] = useState<string | null>(null)
 
-  function onSelectComponentItem(_id: string) {
+  const onSelectComponentItem = useCallback((_id: string) => {
     const _item = componentItems.find((d) => d._id === _id);
-    setCurrentModelOnStage(selectedItemID === _id ? '' : _item?.image as string);
-    if (selectedItemID === _id || !selectedItemID) {
+    // setCurrentModelOnStage(selectedItemID === _id ? '' : _item?.image as string);
+    setCurrentModelOnStage(_item?.image as string);
+    if ((selectedItemID === _id || !selectedItemID) && selectedItemID !== _id) {
       toggleViewingComponentModel();
     }
-    setSelectedItemID(selectedItemID === _id ? null : _id)
-  }
+    // setSelectedItemID(selectedItemID === _id ? null : _id)
+    setSelectedItemID(_id)
+  }, [componentItems, selectedItemID, setCurrentModelOnStage, toggleViewingComponentModel])
+
+  useLayoutEffect(() => {
+    toggleShowSpecs(false);
+    toggleViewingComponentModel(false);
+    setCurrentModelOnStage('');
+    if (currentBuild) {
+      const _current_in_build = currentBuild.find((d) => d.category_slug === _category_slug) || null
+      setIsInBuild(_current_in_build);
+      if (_current_in_build) {
+        onSelectComponentItem(_current_in_build._id)
+      }
+    }
+  }, [_category_slug, currentBuild])
 
   const [compareSelection, setCompareSelection] = useState<'product' | 'compare'>('product')
 
@@ -59,18 +75,13 @@ function ChooseComponents() {
     navigate(`${RouteNames.buildPCMyBuild}`)
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     return () => {
       toggleShowSpecs(false);
       toggleViewingComponentModel(false);
       setCurrentModelOnStage('');
     }
   }, [])
-
-  useEffect(() => { 
-    console.log({matches, _category_slug});
-    
-  }, [matches])
 
   return (
     <BuildLayout layout_r_title={`${!showCurrentModelSpecs ? `Select a ${stageDetails.title.toLowerCase()}` : ''}`}>
@@ -134,6 +145,7 @@ function ChooseComponents() {
             {componentItems && componentItems.map((d) => (
               <Fragment key={_.uniqueId()}>
                 <ChooseComponentItem
+                  inBuild={_isInBuild?._id === d._id}
                   selected={d._id === selectedItemID}
                   data={d}
                   addToBuild={(id: string) => handleAddComponentToBuild(id)}

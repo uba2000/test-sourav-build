@@ -13,11 +13,12 @@ import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext
 import { Fragment } from 'react';
 
 function BuildScratch() {
-  const { preferences } = useBuildPCContext()
+  const { preferences, togglePreBuildToCurrentBuildForPreview } = useBuildPCContext()
   const navigate = useNavigate()
 
   function startBuildFromScratch() {
     navigate(RouteNames.buildPCMyBuild)
+    togglePreBuildToCurrentBuildForPreview('remove')
   }
 
   function choosePreconfiged() {

@@ -8,7 +8,7 @@ import ImageFigure from '../../../../components/ImageFigure';
 import RightArrow from '../../../../assets/right-arrow.svg'
 import BuildItem from './components/BuildItem';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
-import { useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 // import { useMemo } from 'react';
 
 function MyBuild() {
@@ -17,10 +17,7 @@ function MyBuild() {
   const { buildStages, currentBuild } = useBuildPCContext()
   const { currentBuildStageIndex, nextToBuildIndex } = useBuildPCStages();
 
-  const _currentBuildStage = useMemo(() => buildStages[nextToBuildIndex], [buildStages, nextToBuildIndex])
-
-  console.log({buildStages, _currentBuildStage});
-  
+  const _currentBuildStage = useMemo(() => buildStages[nextToBuildIndex], [buildStages, nextToBuildIndex])  
 
   function goToChooseComponent() {
     navigate(`${RouteNames.buildChooseComponent}/${_currentBuildStage.slug}`)
@@ -63,9 +60,11 @@ function MyBuild() {
 
         {/* list of builds... */}
         {currentBuild.map((d) => (
-          <BuildItem
-            data={d}
-          />
+          <Fragment key={d._id}>
+            <BuildItem
+              data={d}
+            />
+          </Fragment>
         ))}
       </div>
 

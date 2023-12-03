@@ -113,7 +113,7 @@ export interface IBuildPCContext {
   preferenceGameTypes: PreferenceGameType[];
   preferenceResolutions: IPreferenceResolutions[];
 
-  currentBuildStage: number;
+  // currentBuildStage: number;
   buildSegment: ProductPredefinedPresets | null;
   predefinedBuilds: IPreconfigedBuild;
   buildStages: IBuildStages[];
@@ -130,6 +130,7 @@ export interface IBuildPCContext {
   filterGameTitles: (
     allowed_titles: string[],
   ) => IFormatPreferencesDataReturn[];
+  togglePreBuildToCurrentBuildForPreview: (action: "add" | "remove") => void;
   addComponentToBuild: (props: IAddToBuildProps) => void;
 
   resetApp: () => void;

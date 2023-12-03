@@ -121,7 +121,7 @@ function useBuildByComponentContext() {
   const [predefinedBuilds, setPredefinedBuilds] = useState<IPreconfigedBuild>(initialPredefinedBuilds);
 
   const [currentBuild, setCurrentBuild] = useState<IBuildComponent[]>([])
-  const [currentBuildStage, setCurrentBuildStage] = useState<number>(-1);
+  // const [currentBuildStage, setCurrentBuildStage] = useState<number>(-1);
   const [buildSegment, setBuildSegment] = useState<ProductPredefinedPresets | null>(null);
 
   const {
@@ -141,8 +141,12 @@ function useBuildByComponentContext() {
   })
 
   function addToBuild({ category_slug, component_id }: IAddToBuildProps) {
-    console.log({ category_slug, component_id });
-    
+    const is_in_build = currentBuild.find((d) => d.category_slug === category_slug)
+    console.log({is_in_build});
+    let _currentBuild = [...currentBuild];
+    if (is_in_build) {
+      _currentBuild = _currentBuild.filter((d) => d.category_slug !== category_slug)
+    }
     const _buildStages = [...buildStages];
     const _current_build_category = _buildStages.find((d) => d.slug === category_slug);
 
@@ -154,20 +158,12 @@ function useBuildByComponentContext() {
       // add component to build
       if (_current_component && _current_build_category) {
         _current_component.category_slug = _current_build_category.slug;
-        // console.log([
-        //   _current_component,
-        //     ...currentBuild,
-        //   ]);
 
-        setCurrentBuild(
-          (prev) => [
-            _current_component,
-            ...prev,
-          ]
-        )
-        setCurrentBuildStage((prev) => prev + 1);
+        setCurrentBuild([
+          _current_component,
+          ..._currentBuild,
+        ]);
       }
-      console.log({_current_component_index, _current_component, _current_build_category});
       
       if (_current_component_index >= 0 && _current_component && _current_build_category) {
         const _currrent_index_build = buildStages.findIndex((d) => d.slug === _current_build_category?.slug)
@@ -360,7 +356,7 @@ function useBuildByComponentContext() {
       }
     })
 
-    // console.log({predefined_pre_sets});
+    console.log({predefined_pre_sets});
     setPredefinedBuilds(predefined_pre_sets)
   }
 
@@ -415,19 +411,30 @@ function useBuildByComponentContext() {
       ...pv,
       items: formatted_products[pv.slug]
     })))
-    // console.log({
-    //   eligible_products, _portinos_product_feed, formatted_products,
-    //   buildStages: buildStages.map((pv) => ({
-    //     ...pv,
-    //     items: formatted_products[pv.slug]
-    //   }))
-    // });
+  }
+
+  function togglePreBuildToCurrentBuildForPreview(action: 'add' | 'remove') {
+    switch (action) {
+      case 'add':
+        setCurrentBuild(predefinedBuilds.items);
+        break;
+      
+      case 'remove':
+        setCurrentBuild([]);
+        setBuildStages((prev) => prev.map((pv) => ({
+          ...pv,
+          selectedItem: null
+        })))
+        break;
+    
+      default:
+        break;
+    }
   }
 
   function resetPCBuild() {
     setCurrentBuild([]);
     setBuildSegment(null)
-    setCurrentBuildStage(-1)
     setBuildStages((prev) => prev.map((pv) => ({
       ...pv,
       items: []
@@ -440,8 +447,9 @@ function useBuildByComponentContext() {
     buildSegment,
     predefinedBuilds,
     currentBuild,
-    currentBuildStage,
+    // currentBuildStage,
 
+    togglePreBuildToCurrentBuildForPreview,
     addComponentToBuild: addToBuild,
     resetPCBuild,
     analyzePreferencesForBuild,

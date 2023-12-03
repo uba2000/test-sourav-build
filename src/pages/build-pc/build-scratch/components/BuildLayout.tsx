@@ -112,7 +112,9 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                   ))}
                 </div>
                 <p className="text-sm font-medium">
-                  ({stagesStatus === 'auto' ? (currentBuild.length - 1) + 1 : buildStages.length}/{buildStages.length})
+                  ({stagesStatus === 'auto'
+                    ? (((currentBuild.length - 1) + 1) > buildStages.length) ? buildStages.length : (currentBuild.length - 1) + 1
+                    : buildStages.length}/{buildStages.length})
                 </p>
               </div>
             </div>
