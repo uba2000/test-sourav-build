@@ -5,6 +5,8 @@ function useBuildPCLayoutContext() {
   const [showCurrentModelSpecs, setShowCurrentModelSpecs] = useState<boolean>(false);
   const [viewingCurrentComponentModel, setViewingCurrentComponentModel] = useState<boolean>(false);
 
+  const [thankYouModalOpen, setThankYouModalOpen] = useState<boolean>(false);
+
   function handleSetCurrentModelOnStage(model: string) {
     setCurrentModelOnStage(model)
   }
@@ -19,11 +21,13 @@ function useBuildPCLayoutContext() {
   }
 
   return {
+    thankYouModalOpen,
     currentModelOnStage,
     showCurrentModelSpecs,
     viewingCurrentComponentModel,
 
     toggleShowSpecs,
+    setThankYouModalOpen,
     toggleViewingComponentModel,
     setCurrentModelOnStage: handleSetCurrentModelOnStage
   }

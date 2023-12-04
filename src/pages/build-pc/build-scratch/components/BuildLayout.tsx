@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useLayoutEffect, useState } from 'react'
+import React, { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import PolygonContainer from '../../../../components/PolygonContainer/PolygonContainer';
 import ImageFigure from '../../../../components/ImageFigure';
 import clsx from 'clsx';
@@ -23,6 +23,7 @@ import { IBuildStages } from '../../../../lib/types/context-types';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
 import RouteNames from '../../../../lib/utils/routenames';
 import { formatNumberWithCommas } from '../../../../lib/utils/util-numbers';
+import Modal from '../../../../components/Modal/Modal';
 
 interface IBuildLayout {
   children: React.ReactNode;
@@ -48,7 +49,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
     currentModelOnStage, toggleShowSpecs,
     viewingCurrentComponentModel, showCurrentModelSpecs
   } = useBuildPCContext();
-  
+  const mobileNavContainer = useRef<HTMLDivElement>(null);
   const navigate = useNavigate()
   const { buildStages } = useBuildPCStages()
   // console.log({currentBuild});
@@ -82,6 +83,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
 
   return (
     <PageWrapper>
+      <Modal />
       <div className='md:pt-10 pt-5 md:pb-0 pb-5 overflow-x-hidden'>
         {/* Top Nav */}
         <div className="flex mb-2 md:justify-start justify-center">
@@ -237,7 +239,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                   <div className="absolute right-0 z-10 -top-2 flex justify-center items-center border-l border-l-[#C5C5CB] h-[calc(100%_+_16px)] px-[6px]">
                     <ImageFigure icon={NavRightArrow} width={6} height={12} />
                   </div>
-                  <div className='mr-[20px] px-[9px] ml-[20px] flex gap-x-[6px] overflow-auto scrollbar-hide'>
+                  <div ref={mobileNavContainer} className='mr-[20px] px-[9px] ml-[20px] flex gap-x-[6px] overflow-auto scrollbar-hide'>
                     {buildStages.map((d) => (
                       <Fragment key={_.uniqueId()}>
                         <BuildSidebarItem stagesStatus={stagesStatus} data={d} screenSize='mobile' />

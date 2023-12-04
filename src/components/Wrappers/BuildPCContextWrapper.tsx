@@ -22,10 +22,11 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
     navigate(RouteNames.home);
   }, []);
 
-  const addToRetailerUsersCart = useCallback(({ state }: AddToRetailerUsersCartPropsType) => {
+  const addToRetailerUsersCart = useCallback(({ state, _toggleState }: AddToRetailerUsersCartPropsType) => {
     if (state === 'complete') {
-      navigate(RouteNames.resetSessionPage);
+      // navigate(RouteNames.resetSessionPage);
     }
+    buildLayoutState.setThankYouModalOpen((prev) => _toggleState ? _toggleState : !prev)
   }, [])
 
   const buildPCState = useMemo(() => {

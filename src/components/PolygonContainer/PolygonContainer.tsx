@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import clsx from 'clsx';
 
 interface IPolygonContainer {
@@ -6,6 +6,7 @@ interface IPolygonContainer {
   rightBorder?: boolean;
   leftBorder?: boolean;
   className?: string;
+  defaultBorderBackground?: string;
   topBackground?: 'primary' | null;
   rightBackground?: 'primary' | null;
 
@@ -20,10 +21,16 @@ interface IPolygonContainer {
 function PolygonContainer({
   children, rightBorder = true, leftBorder = true, className = '',
   btl = true, btr = true, bbr = true, bbl = true, borderActive = false,
-  topBackground, rightBackground
+  topBackground, rightBackground, defaultBorderBackground='#4B4567'
 }: IPolygonContainer) {
+
+  const _style = useMemo(() => ({
+    '--background-color': defaultBorderBackground || '#4B4567',
+    '--border-color': defaultBorderBackground === '#4B4567' ? '#00FFFE' : '',
+  } as React.CSSProperties | undefined), [defaultBorderBackground])
+
   return (
-    <div className={clsx('flex flex-col relative', className)}>
+    <div className={clsx('flex flex-col relative', className)} style={_style}>
       <div
         className={clsx(
           'h-2 relative',
@@ -45,7 +52,7 @@ function PolygonContainer({
             "border-r": !btr,
           },
           {
-            "before:border-b-[#4B4567] after:border-b-[#4B4567] bg-[#4B4567] text-[#00FFFE] border-[#00FFFE]": borderActive,
+            "before:border-b-[var(--background-color)] after:border-b-[var(--background-color)] bg-[var(--background-color)] text-[var(--border-color)] border-[var(--border-color)]": borderActive,
             "before:border-b-transparent after:border-b-transparent bg-transparent text-[#C5C5CB]": !borderActive && !rightBackground && !topBackground,
             "before:border-b-[#0040FF] after:border-b-[#0040FF] bg-[#0040FF]": !borderActive && topBackground === 'primary',
             "after:border-b-[#0040FF] bg-[#0040FF]": !borderActive && rightBackground === 'primary'
@@ -56,7 +63,7 @@ function PolygonContainer({
           className={clsx(
             'border-t absolute top-0 left-0 w-full',
             {
-              "border-[#00FFFE]": borderActive,
+              "border-[var(--border-color)]": borderActive,
               "border-[#C5C5CB]": !borderActive,
             },
           )}
@@ -89,12 +96,12 @@ function PolygonContainer({
       </div>
       {/* Children */}
       <div
-        className={clsx('flex-1', `border-[${borderActive ? '#00FFFE' : '#C5C5CB'}]`,
+        className={clsx('flex-1', `border-[${borderActive ? 'var(--border-color)' : '#C5C5CB'}]`,
           {
-            "border-[#00FFFE]": borderActive,
+            "border-[var(--border-color)]": borderActive,
             "border-[#C5C5CB]": !borderActive
           },
-          { "bg-[#4B4567]": borderActive },
+          { "bg-[var(--background-color)]": borderActive },
           {
           'border-l': leftBorder,
           'border-r': rightBorder
@@ -124,7 +131,7 @@ function PolygonContainer({
             "border-r": !bbr,
           },
           {
-            "before:border-t-[#4B4567] after:border-t-[#4B4567] bg-[#4B4567] text-[#00FFFE] border-[#00FFFE]": borderActive,
+            "before:border-t-[var(--background-color)] after:border-t-[var(--background-color)] bg-[var(--background-color)] text-[var(--border-color)] border-[var(--border-color)]": borderActive,
             "before:border-t-transparent after:border-t-transparent bg-transparent text-[#C5C5CB]": !borderActive && !topBackground && !rightBackground,
             "after:border-t-[#0040FF] bg-[#0040FF]": !borderActive && rightBackground === 'primary'
           }
@@ -160,7 +167,7 @@ function PolygonContainer({
           className={clsx(
             'border-b absolute bottom-0 left-0 w-full',
             {
-              "border-[#00FFFE]": borderActive,
+              "border-[var(--border-color)]": borderActive,
               "border-[#C5C5CB]": !borderActive,
             },
           )}

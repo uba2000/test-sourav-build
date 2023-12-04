@@ -105,6 +105,7 @@ export type IPreBuiltBuild = IBuildComponent;
 
 export type AddToRetailerUsersCartPropsType = {
   state: "single" | "complete";
+  _toggleState?: boolean | undefined;
 };
 export interface IBuildPCContext {
   minMaxFPS: IMinMaxFPS;
@@ -136,6 +137,7 @@ export interface IBuildPCContext {
   resetApp: () => void;
   addToRetailerUsersCart: (props: AddToRetailerUsersCartPropsType) => void;
 
+  thankYouModalOpen: boolean;
   currentModelOnStage: string;
   showCurrentModelSpecs: boolean;
   viewingCurrentComponentModel: boolean;

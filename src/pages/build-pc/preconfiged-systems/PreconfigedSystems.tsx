@@ -6,7 +6,7 @@ import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext
 
 function PreconfigedSystems() {
   // const { enthusiast } = usePreBuiltBuilds();
-  const { currentBuild, togglePreBuildToCurrentBuildForPreview } = useBuildPCContext();
+  const { currentBuild, togglePreBuildToCurrentBuildForPreview, addToRetailerUsersCart } = useBuildPCContext();
   // console.log({predefinedBuilds, enthusiast});
 
   useLayoutEffect(() => {
@@ -24,8 +24,13 @@ function PreconfigedSystems() {
     }
   }, [componentItems])
 
+  function handleAddAllToCart() {
+    addToRetailerUsersCart({ state: 'single' })
+  }
+
   return (
     <BuildLayout
+      showPriceSection
       // stagesStatus='complete'
       layout_r_title='My Build'
       totalPrice={buildPrice}
@@ -36,6 +41,7 @@ function PreconfigedSystems() {
           <Fragment key={d._id}>
             <BuildItem
               data={d}
+              addToCart={handleAddAllToCart}
             />
           </Fragment>
         ))}

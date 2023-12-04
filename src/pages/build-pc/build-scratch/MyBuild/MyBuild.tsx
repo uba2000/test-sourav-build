@@ -14,13 +14,17 @@ import { Fragment, useMemo } from 'react';
 function MyBuild() {
   const navigate = useNavigate()
 
-  const { buildStages, currentBuild } = useBuildPCContext()
+  const { buildStages, currentBuild, addToRetailerUsersCart } = useBuildPCContext()
   const { currentBuildStageIndex, nextToBuildIndex } = useBuildPCStages();
 
   const _currentBuildStage = useMemo(() => buildStages[nextToBuildIndex], [buildStages, nextToBuildIndex])  
 
   function goToChooseComponent() {
     navigate(`${RouteNames.buildChooseComponent}/${_currentBuildStage.slug}`)
+  }
+
+  function handleAddAllToCart() {
+    addToRetailerUsersCart({ state: 'single' })
   }
 
   return (
@@ -63,6 +67,7 @@ function MyBuild() {
           <Fragment key={d._id}>
             <BuildItem
               data={d}
+              addToCart={handleAddAllToCart}
             />
           </Fragment>
         ))}
