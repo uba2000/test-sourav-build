@@ -41,8 +41,6 @@ const buildRoutes = [
 ]
 
 function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', layout_r_title, totalPrice, showPriceSection = false }: IBuildLayout) {
-  const navigate = useNavigate()
-  const { buildStages } = useBuildPCStages()
   const {
     currentBuild,
     resetApp,
@@ -50,6 +48,9 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
     currentModelOnStage, toggleShowSpecs,
     viewingCurrentComponentModel, showCurrentModelSpecs
   } = useBuildPCContext();
+  
+  const navigate = useNavigate()
+  const { buildStages } = useBuildPCStages()
   // console.log({currentBuild});
 
   // states of the 3D model

@@ -28,7 +28,7 @@ function ChooseComponents() {
 
   const _category_slug = useMemo(() => matches[0].params?.category_slug, [matches])
   const stageDetails = useMemo<IBuildStages>(() => getStageData(_category_slug as string), [_category_slug, getStageData])
-  const componentItems = useMemo(() => stageDetails.items, [stageDetails.items])
+  const componentItems = useMemo(() => stageDetails?.items || [], [stageDetails])
   const [_isInBuild, setIsInBuild] = useState<IBuildComponent | null>(null)
 
   const [selectedItemID, setSelectedItemID] = useState<string | null>(null)
@@ -45,9 +45,9 @@ function ChooseComponents() {
   }, [componentItems, selectedItemID, setCurrentModelOnStage, toggleViewingComponentModel])
 
   useLayoutEffect(() => {
-    toggleShowSpecs(false);
-    toggleViewingComponentModel(false);
-    setCurrentModelOnStage('');
+    // toggleShowSpecs(false);
+    // toggleViewingComponentModel(false);
+    // setCurrentModelOnStage('');
     if (currentBuild) {
       const _current_in_build = currentBuild.find((d) => d.category_slug === _category_slug) || null
       setIsInBuild(_current_in_build);
@@ -84,7 +84,7 @@ function ChooseComponents() {
   }, [])
 
   return (
-    <BuildLayout layout_r_title={`${!showCurrentModelSpecs ? `Select a ${stageDetails.title.toLowerCase()}` : ''}`}>
+    <BuildLayout layout_r_title={`${!showCurrentModelSpecs ? `Select a ${stageDetails?.title?.toLowerCase()}` : ''}`}>
       {!showCurrentModelSpecs && (
         <>
           {/* Comparison section */}

@@ -95,7 +95,7 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
       <div className='my-2 w-full border-b border-b-white-75'>
         {/* <PolygonContainer> */}
         <div className="py-3 flex flex-col items-center text-center gap-y-3">
-          <h1 className="text-M-h1 max-w-[257px] font-IntelOneDisplayBold">
+          <h1 className="text-M-h1 max-w-[257px] font-IntelOneDisplayBold line-clamp-3">
             {componentItem?.title}
           </h1>
 
