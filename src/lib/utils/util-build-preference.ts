@@ -89,13 +89,11 @@ export function determineProductSpecs(
       const _memory = _product.memory_supported.split(", ");
       specs = [
         {
-          spec_title: "LGA",
-          spec_value: `${
-            _product?.processor_supported?.replace("LGA ", "") || ""
-          }`,
+          spec_title: "",
+          spec_value: `${_product?.processor_supported || ""}`,
         },
         {
-          spec_title: "Memory",
+          spec_title: "",
           spec_value: `${_memory[2] || ""}`, // 'GHz
         },
         // {
@@ -107,7 +105,7 @@ export function determineProductSpecs(
     case "memory":
       specs = [
         {
-          spec_title: "Memory",
+          spec_title: "",
           spec_value: `${
             _product?.pricespider_passthrough["Internal memory type"] || ""
           }`,
@@ -125,13 +123,8 @@ export function determineProductSpecs(
     case "storage":
       specs = [
         {
-          spec_title: "PCIe Gen",
-          spec_value: `${
-            _product?.pricespider_passthrough?.Interface?.replace(
-              "PCI Express ",
-              "",
-            ) || ""
-          }`,
+          spec_title: "",
+          spec_value: `${_product?.pricespider_passthrough?.Interface || ""}`,
         },
         // {
         //   spec_title: "",

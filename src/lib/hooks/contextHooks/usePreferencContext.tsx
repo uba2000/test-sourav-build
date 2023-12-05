@@ -5,10 +5,13 @@ import _ from 'lodash';
 import { getPreferencesData, preferenceUrlEndpoint as cacheKey } from "../../api/preferenceAPI"
 
 import Desktop60FPS from '../../../assets/fps/FPS—ghostrunner2-timelapse—desktop—60.mp4'
+import Mobile60FPS from '../../../assets/fps/FPS—ghostrunner2-timelapse—mobile—60.mp4'
 import Desktop60FPSThumb from '../../../assets/fps/60fps-thumbnail.svg'
 import Desktop120FPS from '../../../assets/fps/FPS—ghostrunner2-timelapse—desktop—120.mp4'
+import Mobile120FPS from '../../../assets/fps/FPS—ghostrunner2-timelapse—mobile—120.mp4'
 import Desktop120FPSThumb from '../../../assets/fps/120fps-thumbnail.svg'
 import Desktop180FPS from '../../../assets/fps/FPS—ghostrunner2-timelapse—desktop—180.mp4'
+import Mobile180FPS from '../../../assets/fps/FPS—ghostrunner2-timelapse—mobile—180.mp4'
 import Desktop180FPSThumb from '../../../assets/fps/180fps-thumbnail.svg'
 
 import Desktop4KResImage from '../../../assets/res/resolution-4k-desktop.svg'
@@ -48,6 +51,7 @@ function usePreferencContext() {
         max: Infinity,
       },
       video: Desktop180FPS,
+      videoM: Mobile60FPS,
       thumbnail: Desktop180FPSThumb,
     },
     {
@@ -58,6 +62,7 @@ function usePreferencContext() {
         max: '179',
       },
       video: Desktop120FPS,
+      videoM: Mobile120FPS,
       thumbnail: Desktop120FPSThumb,
     },
     {
@@ -68,6 +73,7 @@ function usePreferencContext() {
         max: '119',
       },
       video: Desktop60FPS,
+      videoM: Mobile180FPS,
       thumbnail: Desktop60FPSThumb,
     },
   ], [])

@@ -78,6 +78,7 @@ export interface IFPSTypesItem {
     max: string | number;
   };
   video: string;
+  videoM: string; // Mobile video
   thumbnail: string;
 }
 
