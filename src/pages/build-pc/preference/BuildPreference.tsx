@@ -9,7 +9,7 @@ import PageWrapper from "../../../components/Wrappers/PageWrapper"
 import Step1GameType from "./components/Step1GameType/Step1GameType"
 import Step2FPS from "./components/Step2FPS/Step2FPS"
 
-// import BackIcon from "../../../assets/nav-back-icon.svg"
+import BackIcon from "../../../assets/nav-back-icon.svg"
 import ReloadIcon from "../../../assets/nav-reload-icon.svg"
 import ExternalIcon from "../../../assets/nav-external-link-icon.svg"
 import RightArrow from "../../../assets/right-arrow.svg"
@@ -84,6 +84,14 @@ function BuildPreference() {
     navigate(`${RouteNames.buildPreferenceIndex}?s=${currentStage + 1}`)
   }
 
+  function previousStage() {
+    if (currentStage > 0) {
+      setCurrentStage(prev => prev - 1)
+    } else {
+      window.history.back();
+    }
+  }
+
   useEffect(() => { 
     if ((currentStage === 0 && (preferences.game_type_title.length > 0))
       || ((currentStage === 1) && preferences.gaming_fps)
@@ -110,9 +118,9 @@ function BuildPreference() {
         <div className="flex mb-10 md:justify-start justify-center">
           <PolygonContainer rightBorder={false} className="-mr-[1px]">
             <div className="px-[10px] flex gap-1">
-              {/* <button type="button" onClick={() => previousStage()}>
+              <button type="button" onClick={() => previousStage()}>
                 <ImageFigure icon={BackIcon} width={36} />
-              </button> */}
+              </button>
               <button type="button" onClick={() => resetApp()}>
                 <ImageFigure icon={ReloadIcon} width={36} />
               </button>
