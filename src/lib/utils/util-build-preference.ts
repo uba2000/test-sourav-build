@@ -244,3 +244,11 @@ export const preconfigedBuildTitles: PreconfigedTitlesType = {
   mainstream: "Mainstream gaming PC",
   entry: "Entry gaming PC",
 };
+
+export function getNextRoundFigure(_value: number): number {
+  return Math.ceil(_value / 10) * 10;
+}
+
+export function getPreviousRoundFigure(_value: number): number {
+  return Math.floor(_value / 10) * 10;
+}

@@ -44,10 +44,10 @@ const buildRoutes = [
 function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', layout_r_title, totalPrice, showPriceSection = false }: IBuildLayout) {
   const {
     currentBuild,
-    resetApp,
+    resetApp, canViewSpecs,
     addToRetailerUsersCart,
     currentModelOnStage, toggleShowSpecs,
-    viewingCurrentComponentModel, showCurrentModelSpecs
+    showCurrentModelSpecs
   } = useBuildPCContext();
   const mobileNavContainer = useRef<HTMLDivElement>(null);
   const navigate = useNavigate()
@@ -74,7 +74,9 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
   }
 
   useEffect(() => { 
+    // if (currentModelOnStage && !viewingCurrentComponentModel) {
     if (currentModelOnStage) {
+      // console.log("currentModelOnStage", currentModelOnStage);
       setCurrentModel(currentModelOnStage)
     } else {
       setCurrentModel(Image3D)
@@ -142,8 +144,9 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
               </div>
             </div>
             <div className="flex justify-end md:pr-0 pr-4 min-h-[31px]">
-              {(viewingCurrentComponentModel && !showCurrentModelSpecs) && (
-                <Button className=" py-2 px-4" onClick={() => toggleShowSpecs()}>
+              {/* {(viewingCurrentComponentModel &&  && canViewSpecs) && ( */}
+              {(canViewSpecs && !showCurrentModelSpecs) && (
+                <Button className=" py-2 px-4" onClick={() => toggleShowSpecs(true)}>
                   <div className="flex gap-2 items-center">
                     <span className="text-intel-e-gray-s2 text-[15px] font-IntelOneBodyTextMedium leading-[15px]">View specs</span>
                     <ImageFigure icon={RightArrow} width={12} />

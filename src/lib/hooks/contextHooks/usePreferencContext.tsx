@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import BuildGamePreferences from '../../../pages/build-pc/preference/BuildGamePreferences'
-import _ from 'lodash';
 
 import { getPreferencesData, preferenceUrlEndpoint as cacheKey } from "../../api/preferenceAPI"
 
@@ -21,8 +20,15 @@ import DesktopQHDResFullImage from '../../../assets/res/resolution-qhd-desktop.p
 import DesktopFHDResImage from '../../../assets/res/resolution-hd-desktop.svg'
 import DesktopFHDResFullImage from '../../../assets/res/resolution-hd-desktop.png'
 
-import { BuildPCPreferenceType, IFPSTypesItem, IMinMaxFPS, IPreferenceResolutions, PreferenceResolutionsTitleType } from '../../types/context-types';
-import { IFormatPreferencesDataReturn, formatPreferencesData } from '../../utils/util-build-preference';
+import {
+  BuildPCPreferenceType, IFPSTypesItem,
+  // IFPSTypesItemIDType,
+  IMinMaxFPS, IPreferenceResolutions, PreferenceResolutionsTitleType
+} from '../../types/context-types';
+import {
+  IFormatPreferencesDataReturn, formatPreferencesData,
+  // getNextRoundFigure, getPreviousRoundFigure
+} from '../../utils/util-build-preference';
 import useSWR from 'swr';
 
 const initialPreferences: BuildPCPreferenceType = {
@@ -42,12 +48,13 @@ function usePreferencContext() {
   const [preferences, setPreferences] = useState<BuildPCPreferenceType>(initialPreferences);
   
   const [minMaxFPS, setMinMaxFPS] = useState<IMinMaxFPS>(initialMinMax)
-  const preferenceFPSTypes = useMemo<IFPSTypesItem[]>(() => [
+
+  const [preferenceFPSTypes] = useState<IFPSTypesItem[]>([
     {
-      _id: _.uniqueId(),
-      fps: '180+ FPS',
+      _id: 'max_high_range',
+      fps: '175 and Up',
       range: {
-        min: '180',
+        min: '175',
         max: Infinity,
       },
       video: Desktop180FPS,
@@ -55,28 +62,28 @@ function usePreferencContext() {
       thumbnail: Desktop180FPSThumb,
     },
     {
-      _id: _.uniqueId(),
-      fps: '120-179 FPS',
+      _id: 'mid_range',
+      fps: 'Up to 175 FPS',
       range: {
-        min: '120',
-        max: '179',
+        min: '61',
+        max: '174',
       },
       video: Desktop120FPS,
       videoM: Mobile120FPS,
       thumbnail: Desktop120FPSThumb,
     },
     {
-      _id: _.uniqueId(),
-      fps: '60-119 FPS',
+      _id: 'min_low_range',
+      fps: 'Up to 60 FPS',
       range: {
-        min: '60',
-        max: '119',
+        min: '0',
+        max: '60',
       },
       video: Desktop60FPS,
       videoM: Mobile180FPS,
       thumbnail: Desktop60FPSThumb,
     },
-  ], [])
+  ])
 
   const preferenceResolutions = useMemo<IPreferenceResolutions[]>(() => [
     {
@@ -118,6 +125,20 @@ function usePreferencContext() {
     revalidateOnFocus: false,
     refreshInterval: 30000,
   })
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // function handleFPSRangeUpdates(fps_id: IFPSTypesItemIDType, { min, max }: { min: string, max: string }) {
+  //   const _preferenceFPSTypes = [...preferenceFPSTypes];
+  //   console.log('before', _preferenceFPSTypes);
+  //   const _index_fps = _preferenceFPSTypes.findIndex((d) => d._id === fps_id);
+  //   if ((_index_fps >= 0) && (min && max)) {
+  //     _preferenceFPSTypes[_index_fps].range.min = min;
+  //     _preferenceFPSTypes[_index_fps].range.max = max;
+  //     _preferenceFPSTypes[_index_fps].fps = `${min}-${max} FPS`;
+  //   }
+  //   console.log('after', _preferenceFPSTypes);
+  //   setPreferenceFPSTypes(_preferenceFPSTypes);
+  // }
 
   // filter out titles not choosen and returns estimate max-min fps
   function filterGameTitles(allowed_titles: string[]) {
@@ -166,10 +187,64 @@ function usePreferencContext() {
         }
       });
     });
+    
+    // Dynamic Minimum (Low) range
+    // Max out of the min values
+    // const _dmm_lower_bound = Math.max(...Object.values(result.min));
+    // Next Round above _lower_bound
+    // const _dmm_upper_bound = getNextRoundFigure(_dmm_lower_bound);
 
+    // Dynamic Mid-Range
+    // Average FPS of all max values
+    // const max_values = Object.values(result.max);
+    // const total_max_values = max_values.reduce((sum, value) => sum + value, 0);
+    // const average_max_values = Math.round(total_max_values / max_values.length);
+    // Lower Bound: Previous round figure below average_max_values
+    // const _dmd_lower_bound = getPreviousRoundFigure(average_max_values);
+    // Upper bound: Next round figure above average_max_values
+    // const _dmd_upper_bound = getNextRoundFigure(average_max_values);
+
+    // Dynamic Maximum (High) Range
+    // Min out of max values
+    // const _dmx_upper_bound = Math.min(...Object.values(result.max));
+    // Previous Round below _dmx_upper_bound
+    // const _dmx_lower_bound = getPreviousRoundFigure(_dmx_upper_bound);
+
+    // const overallMin = _dmd_lower_bound;
+    // const overallMax = _dmd_upper_bound;
     const overallMin = Math.min(...Object.values(result.min));
     const overallMax = Math.max(...Object.values(result.max));
 
+    // handleFPSRangeUpdates('max_high_range',
+    //   {
+    //     min: `${_dmx_lower_bound}`,
+    //     max: `${_dmx_upper_bound}`,
+    //   }
+    // );
+    // handleFPSRangeUpdates('mid_range',
+    //   {
+    //     min: `${_dmd_lower_bound}`,
+    //     max: `${_dmd_upper_bound}`,
+    //   }
+    // );
+    // handleFPSRangeUpdates('min_low_range',
+    //   {
+    //     min: `${_dmm_lower_bound}`,
+    //     max: `${_dmm_upper_bound}`,
+    //   }
+    // );
+
+    // console.log({
+    //   overallMin,
+    //   overallMax,
+    //   result,
+    //   newData,
+    //   average_max_values,
+    //   min_low_range: { _dmm_upper_bound, _dmm_lower_bound }, // lowest FPS
+    //   mid_range: { _dmd_lower_bound, _dmd_upper_bound }, // mid FPS
+    //   max_high_range: { _dmx_lower_bound, _dmx_upper_bound }, // highest FPS
+    // });
+    
     setMinMaxFPS({
       min: overallMin,
       max: overallMax

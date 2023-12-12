@@ -11,12 +11,12 @@ import WindowsImg from '../../../assets/component-products/windows.png'
 import PowerSupplyImg from '../../../assets/component-products/powersupply.png'
 import CoolingImg from '../../../assets/component-products/cooling.png'
 import CaseImg from '../../../assets/component-products/case.png'
-import EnthusiastModel from '../../../assets/assets-3d/enthusiast-model.svg'
 
 function usePreBuiltBuilds() {
   const enthusiast = useMemo<IPreconfigedBuild>(() => ({
     title: 'Enthusiast gaming PC',
-    buildModel: EnthusiastModel,
+    // buildModel: EnthusiastModel,
+    build_segment: 'enthusiast',
     items: [
       {
         _id: _.uniqueId(),

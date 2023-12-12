@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import type {
+  BuildFlowType,
   BuildPCPreferenceType, IAPortinosProductInFeed, IAddToBuildProps, IBuildComponent,
   IBuildStages, IBuildStagesSlugs, ICleanPreferenceData, IPortinosProductFeed, IPreconfigedBuild, ProductPredefinedPresets
 } from "../../types/context-types"
@@ -26,9 +27,10 @@ import { getPortinosInventory, portinosInventoryEndpoint as portinosCacheKey } f
 // ]
 
 
-const initialPredefinedBuilds = {
+const initialPredefinedBuilds: IPreconfigedBuild = {
   items: [],
-  buildModel: '',
+  build_segment: '',
+  // buildModel: '',
   title: ''
 }
 
@@ -116,7 +118,10 @@ function useBuildByComponentContext() {
       items: [],
       selectedItem: null,
     },
-  ])
+  ]);
+
+  // this is to know what flow the user chose to go with
+  const [buildFlowType, setBuildTypeFlow] = useState<BuildFlowType>('build_components')
 
   const [predefinedBuilds, setPredefinedBuilds] = useState<IPreconfigedBuild>(initialPredefinedBuilds);
 
@@ -142,7 +147,6 @@ function useBuildByComponentContext() {
 
   function addToBuild({ category_slug, component_id }: IAddToBuildProps) {
     const is_in_build = currentBuild.find((d) => d.category_slug === category_slug)
-    console.log({is_in_build});
     let _currentBuild = [...currentBuild];
     if (is_in_build) {
       _currentBuild = _currentBuild.filter((d) => d.category_slug !== category_slug)
@@ -334,7 +338,8 @@ function useBuildByComponentContext() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const predefined_pre_sets: IPreconfigedBuild = {
       title: preconfigedBuildTitles[build_segment],
-      buildModel: '',
+      // buildModel: '',
+      build_segment,
       items: [],
     }
 
@@ -356,7 +361,7 @@ function useBuildByComponentContext() {
       }
     })
 
-    console.log({predefined_pre_sets});
+    // console.log({predefined_pre_sets});
     setPredefinedBuilds(predefined_pre_sets)
   }
 
@@ -417,6 +422,7 @@ function useBuildByComponentContext() {
     switch (action) {
       case 'add':
         setCurrentBuild(predefinedBuilds.items);
+        setBuildTypeFlow('preconfiged_build')
         break;
       
       case 'remove':
@@ -425,6 +431,7 @@ function useBuildByComponentContext() {
           ...pv,
           selectedItem: null
         })))
+        setBuildTypeFlow('build_components')
         break;
     
       default:
@@ -447,6 +454,7 @@ function useBuildByComponentContext() {
     buildSegment,
     predefinedBuilds,
     currentBuild,
+    buildFlowType,
     // currentBuildStage,
 
     togglePreBuildToCurrentBuildForPreview,

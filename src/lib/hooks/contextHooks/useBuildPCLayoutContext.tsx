@@ -4,6 +4,7 @@ function useBuildPCLayoutContext() {
   const [currentModelOnStage, setCurrentModelOnStage] = useState<string | null>(null);
   const [showCurrentModelSpecs, setShowCurrentModelSpecs] = useState<boolean>(false);
   const [viewingCurrentComponentModel, setViewingCurrentComponentModel] = useState<boolean>(false);
+  const [canViewSpecs, setCanViewSpecs] = useState<boolean>(false);
 
   const [thankYouModalOpen, setThankYouModalOpen] = useState<boolean>(false);
 
@@ -11,8 +12,11 @@ function useBuildPCLayoutContext() {
     setCurrentModelOnStage(model)
   }
 
-  function toggleShowSpecs(_toggle?: boolean) {
+  function toggleCanViewSpecs(_toggle?: boolean) {
+    setCanViewSpecs((prev) => _toggle === undefined ? !prev : _toggle)
+  }
 
+  function toggleShowSpecs(_toggle?: boolean) {
     setShowCurrentModelSpecs((prev) => _toggle === undefined ? !prev : _toggle);
   }
 
@@ -24,9 +28,11 @@ function useBuildPCLayoutContext() {
     thankYouModalOpen,
     currentModelOnStage,
     showCurrentModelSpecs,
+    canViewSpecs,
     viewingCurrentComponentModel,
 
     toggleShowSpecs,
+    toggleCanViewSpecs,
     setThankYouModalOpen,
     toggleViewingComponentModel,
     setCurrentModelOnStage: handleSetCurrentModelOnStage

@@ -13,20 +13,23 @@ import SingleCompareComponents from '../CompareComponents/components/SingleCompa
 import ImageFigure from '../../../../components/ImageFigure';
 
 import RightArrow from '../../../../assets/right-arrow-white.svg'
-import { IBuildComponent, IBuildStages } from '../../../../lib/types/context-types';
+import { BuildFlowType, IBuildComponent, IBuildStages, IBuildStagesSlugs, ProductPredefinedPresets } from '../../../../lib/types/context-types';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
+import useBuildPlaceholders from '../../../../lib/hooks/useBuildPlaceholders';
 
 function ChooseComponents() {
   const matches = useMatches();
   const navigate = useNavigate();
   const { getStageData } = useBuildPCStages();
   const {
-    addComponentToBuild, currentBuild,
-    showCurrentModelSpecs, toggleShowSpecs,
+    addComponentToBuild, currentBuild, buildFlowType, toggleCanViewSpecs,
+    showCurrentModelSpecs, toggleShowSpecs, predefinedBuilds,
     setCurrentModelOnStage, toggleViewingComponentModel,
   } = useBuildPCContext()
 
-  const _category_slug = useMemo(() => matches[0].params?.category_slug, [matches])
+  const { placeholderImages } = useBuildPlaceholders()
+
+  const _category_slug = useMemo<IBuildStagesSlugs>(() => matches[0].params?.category_slug as IBuildStagesSlugs, [matches])
   const stageDetails = useMemo<IBuildStages>(() => getStageData(_category_slug as string), [_category_slug, getStageData])
   const componentItems = useMemo(() => stageDetails?.items || [], [stageDetails])
   const [_isInBuild, setIsInBuild] = useState<IBuildComponent | null>(null)
@@ -35,6 +38,9 @@ function ChooseComponents() {
 
   const onSelectComponentItem = useCallback((_id: string) => {
     const _item = componentItems.find((d) => d._id === _id);
+    // console.log({ _item });
+    toggleCanViewSpecs(true);
+    
     // setCurrentModelOnStage(selectedItemID === _id ? '' : _item?.image as string);
     setCurrentModelOnStage(_item?.image as string);
     if ((selectedItemID === _id || !selectedItemID) && selectedItemID !== _id) {
@@ -44,18 +50,51 @@ function ChooseComponents() {
     setSelectedItemID(_id)
   }, [componentItems, selectedItemID, setCurrentModelOnStage, toggleViewingComponentModel])
 
+  const handleSetCurrentPlaceholderImage = useCallback(() => {
+    // console.log('herre');
+    
+    const _flow_type: BuildFlowType = buildFlowType;
+    // then set the image for the current component selection
+    let _stage_image = '';
+    if (_flow_type === 'build_components') {
+      _stage_image = placeholderImages[_flow_type][_category_slug]
+    } else if (_flow_type === 'preconfiged_build') {
+      _stage_image = placeholderImages[_flow_type][predefinedBuilds?.build_segment as ProductPredefinedPresets]
+    }
+    setCurrentModelOnStage(_stage_image);
+    // console.log({_stage_image});
+    
+  }, [_category_slug, buildFlowType, placeholderImages, predefinedBuilds?.build_segment, setCurrentModelOnStage])
+
   useLayoutEffect(() => {
-    // toggleShowSpecs(false);
-    // toggleViewingComponentModel(false);
-    // setCurrentModelOnStage('');
     if (currentBuild) {
       const _current_in_build = currentBuild.find((d) => d.category_slug === _category_slug) || null
       setIsInBuild(_current_in_build);
+      
       if (_current_in_build) {
+        setSelectedItemID(_current_in_build._id)
         onSelectComponentItem(_current_in_build._id)
+      } else { // show image for current component instead then
+        // check for placeholder image
+      setSelectedItemID(null)
+        handleSetCurrentPlaceholderImage();
+        // check if single details is open so its closed
+        if (showCurrentModelSpecs) {
+          toggleShowSpecs(false)
+        }
       }
+    } else {
+      // setSelectedItemID(null)
+      // check for placeholder image
+      handleSetCurrentPlaceholderImage();
     }
   }, [_category_slug, currentBuild])
+
+  useEffect(() => {
+    console.log({selectedItemID});
+    
+    toggleCanViewSpecs(Boolean(selectedItemID));
+  }, [selectedItemID])
 
   const [compareSelection, setCompareSelection] = useState<'product' | 'compare'>('product')
 
@@ -69,6 +108,7 @@ function ChooseComponents() {
 
   function handleAddComponentToBuild(_id: string) {
     toggleShowSpecs(false);
+    toggleCanViewSpecs(false);
     toggleViewingComponentModel(false);
     setCurrentModelOnStage('');
     addComponentToBuild({ category_slug: _category_slug as IBuildStages["slug"], component_id: _id })
@@ -77,6 +117,7 @@ function ChooseComponents() {
 
   useEffect(() => {
     return () => {
+      toggleCanViewSpecs(false);
       toggleShowSpecs(false);
       toggleViewingComponentModel(false);
       setCurrentModelOnStage('');
@@ -159,7 +200,7 @@ function ChooseComponents() {
 
       {showCurrentModelSpecs && (
         <SingleCompareComponents
-          category_slug={_category_slug as string}
+          category_slug={_category_slug}
           selectedItemID={selectedItemID}
           handleAddComponentToBuild={handleAddComponentToBuild}
         />

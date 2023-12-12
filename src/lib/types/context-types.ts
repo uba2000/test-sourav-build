@@ -59,9 +59,12 @@ export interface IBuildStages {
   component: React.ReactNode;
 }
 
+export type ProductPredefinedPresets = "entry" | "mainstream" | "enthusiast";
+
 export interface IPreconfigedBuild {
   title: string;
-  buildModel: string;
+  // buildModel: string; // !Deprecated, model gotten in useBuildPlaceholders
+  build_segment: ProductPredefinedPresets | "";
   items: IPreBuiltBuild[];
 }
 
@@ -70,8 +73,13 @@ export interface IMinMaxFPS {
   max: number;
 }
 
+export type IFPSTypesItemIDType =
+  | "max_high_range"
+  | "mid_range"
+  | "min_low_range";
+
 export interface IFPSTypesItem {
-  _id: string;
+  _id: IFPSTypesItemIDType;
   fps: string;
   range: {
     min: string;
@@ -108,6 +116,9 @@ export type AddToRetailerUsersCartPropsType = {
   state: "single" | "complete";
   _toggleState?: boolean | undefined;
 };
+
+export type BuildFlowType = "preconfiged_build" | "build_components";
+
 export interface IBuildPCContext {
   minMaxFPS: IMinMaxFPS;
   preferences: BuildPCPreferenceType;
@@ -120,6 +131,7 @@ export interface IBuildPCContext {
   predefinedBuilds: IPreconfigedBuild;
   buildStages: IBuildStages[];
   currentBuild: IBuildComponent[];
+  buildFlowType: BuildFlowType;
 
   adjustFPSRange: (preferenceFeed: IFormatPreferencesDataReturn[]) => {
     [k in PreferenceResolutionsTitleType]: string[];
@@ -142,12 +154,12 @@ export interface IBuildPCContext {
   currentModelOnStage: string;
   showCurrentModelSpecs: boolean;
   viewingCurrentComponentModel: boolean;
+  canViewSpecs: boolean;
+  toggleCanViewSpecs: (_toggle?: boolean) => void;
   toggleShowSpecs: (_toggle?: boolean) => void;
   toggleViewingComponentModel: (_toggle?: boolean) => void;
   setCurrentModelOnStage: (model: string) => void;
 }
-
-export type ProductPredefinedPresets = "entry" | "mainstream" | "enthusiast";
 
 export type IPortinosProductPresetKeys =
   | "cpu"
@@ -237,3 +249,12 @@ export interface ICleanPreferenceData {
     res: string; // resolution
   } | null;
 }
+
+export type BuildComponentPlaceholderType = {
+  build_components: {
+    [k in IBuildStagesSlugs]: string;
+  };
+  preconfiged_build: {
+    [k in ProductPredefinedPresets]: string;
+  };
+};
