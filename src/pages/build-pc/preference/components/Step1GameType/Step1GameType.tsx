@@ -3,6 +3,7 @@ import PreferenceLayout from '../PreferenceLayout/PreferenceLayout'
 import clsx from 'clsx'
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
 import { noPreferenceName } from '../../BuildGamePreferences'
+import { getGameTitlesImage } from '../../../../../lib/utils/util-asset-urls'
 
 function Step1GameType() {
   const { preferenceGameTypes, setGamingPreference, preferences } = useBuildPCContext()
@@ -61,7 +62,7 @@ function Step1GameType() {
               <button type='button' onClick={() => selectGame(d.title)} className="group cursor-pointer min-h-[116px]">
                 {d?.image && (
                 <div className={clsx("md:h-[114px] h-[76px]")}>
-                  <img src={d?.image as string} className="w-full h-full object-cover object-top" alt="" />
+                  <img src={getGameTitlesImage(d._id)} className="w-full h-full object-cover object-top" alt="" />
                 </div>
                 )}
                 <div
