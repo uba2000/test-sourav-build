@@ -394,7 +394,9 @@ function useBuildByComponentContext() {
         }
       }
       
-      if (preferenceBuildSegmentWeight[_current_segment] >= preferenceBuildSegmentWeight[build_segment]) {
+      // upsell only one level
+      if ((preferenceBuildSegmentWeight[_current_segment] === preferenceBuildSegmentWeight[build_segment])
+        || (preferenceBuildSegmentWeight[_current_segment] === (preferenceBuildSegmentWeight[build_segment] + 1))) {
         eligible_products.push(ppf)
         // console.log(buildSlugMap[ppf.category!]);
         const category_slug = buildSlugMap[ppf.category!];
@@ -410,6 +412,10 @@ function useBuildByComponentContext() {
           specs,
         })
       }
+
+      // upsell to highest level
+      // if (preferenceBuildSegmentWeight[_current_segment] >= preferenceBuildSegmentWeight[build_segment]) {
+      // }
     })
 
     setBuildStages((prev) => prev.map((pv) => ({
