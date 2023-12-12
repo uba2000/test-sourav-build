@@ -97,6 +97,7 @@ export default {
         "intel-e-gray-t3": "#F6F6F6",
         "intel-white": "#FFFFFF",
 
+        "white-20": "rgba(255,255,255,0.20)",
         "white-75": "rgba(255,255,255,0.75)",
         "white-50": "rgba(255, 255, 255, 0.50)",
         // 'bg-linear-gradient-1': '#0A001F, #0A001F00',

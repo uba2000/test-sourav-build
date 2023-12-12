@@ -5,6 +5,7 @@ import StarRatingComponent from '../../../../../components/StarRatingComponent/S
 import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge'
 import Button from '../../../../../components/Button/Button'
 import RightArrow from '../../../../../assets/right-arrow-white.svg'
+import RightArrowBlack from '../../../../../assets/right-arrow.svg'
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
 import { Fragment, useMemo } from 'react'
 import clsx from 'clsx'
@@ -25,9 +26,8 @@ interface ISingleCompareComponents {
 }
 
 function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, category_slug}: ISingleCompareComponents) {
-  const { toggleShowSpecs } = useBuildPCContext()
+  const { toggleShowSpecs, preferences, allGamesMinMaxFPS, cleanGameInfoArray, predefinedBuilds } = useBuildPCContext()
   const { getStageData } = useBuildPCStages();
-  // console.log({category_slug});
   
   const stageDetails = useMemo<IBuildStages>(() => getStageData(category_slug as string), [category_slug, getStageData])
   const componentItem = useMemo(() => stageDetails.items.find((d) => d._id === selectedItemID), [selectedItemID, stageDetails.items])
@@ -87,6 +87,27 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
     handleAddComponentToBuild(selectedItemID as string)
   }
 
+  const currentGameTitle = useMemo(() => { 
+    return cleanGameInfoArray.find((d) => d.data !== null)?.title || cleanGameInfoArray[0].title
+  }, [cleanGameInfoArray])
+
+  const percentageFPS = useMemo(() => {
+    const _game_fps = cleanGameInfoArray.find((d) => d.title === currentGameTitle)
+    const _game_max_fps = allGamesMinMaxFPS.max[currentGameTitle]
+    return {
+      fpsPercentage: !_game_fps
+      ? 0
+        : (parseInt(_game_fps.data?.fps || '0', 10) / _game_max_fps) * 100,
+      fps: _game_fps?.data?.fps || 0
+    }
+  }, [cleanGameInfoArray, allGamesMinMaxFPS, currentGameTitle])
+
+  const currentCPUGPUTitle = useMemo(() => { 
+    return category_slug === 'processor'
+      ? predefinedBuilds.items.find((d) => d.category_slug === 'graphics-card')?.title
+      : predefinedBuilds.items.find((d) => d.category_slug === 'processor')?.title
+  }, [predefinedBuilds, category_slug])
+
   return (
     <div className='flex flex-col gap-y-3 min-h-full'>
       <div className="flex justify-end">
@@ -98,8 +119,13 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
       {(category_slug === 'processor' || category_slug === 'graphics-card')
         ? (
           <>
-            <div className="flex">
-              {/*  */}
+            <div className="flex justify-center">
+              <div className='hidden md:block'>
+                <ImageFigure icon={componentItem?.image || ''} width={205} />
+              </div>
+              <div className='block md:hidden'>
+                <ImageFigure icon={componentItem?.image || ''} width={190} />
+              </div>
             </div>
 
             <PolygonContainer btr={false} btl={false} bbr={false}>
@@ -117,7 +143,7 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
                 </div>
 
                 <div className="flex gap-x-3 items-center">
-                  <span className="font-IntelOneBodyTextMedium text-xs">$659.99</span>
+                  <span className="font-IntelOneBodyTextMedium text-xs">${componentItem?.price}</span>
                   <Button variant='gaming-cobalt' onClick={() => addToBuild()}>
                     <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
                       Add to build
@@ -127,6 +153,58 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
                 </div>
               </div>
             </PolygonContainer>
+
+            <div>
+              .
+            </div>
+
+            <div className="border border-[rgba(255,255,255,0.5)] p-4 w-full flex flex-col gap-y-[11px]">
+              <div className=''>
+                <h2 className="text-[18px] leading-[18px] font-IntelOneBodyTextBold">FPS Results</h2>
+              </div>
+
+              <div className='flex gap-1'>
+                <div className="min-w-[150px] text-sm">Gaming at </div>
+                <div>
+                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
+                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{preferences?.gaming_resolution?.res || ''}</span>
+                    <ImageFigure icon={RightArrowBlack} width={12} />
+                  </div>
+                </div>
+              </div>
+
+              <div className='flex gap-1'>
+                <div className="min-w-[150px] text-sm">Paired with </div>
+                <div>
+                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
+                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{currentCPUGPUTitle || ''}</span>
+                    <ImageFigure icon={RightArrowBlack} width={12} />
+                  </div>
+                </div>
+              </div>
+
+              <div className='flex gap-1'>
+                <div className="min-w-[150px] text-sm">While playing </div>
+                <div>
+                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
+                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{currentGameTitle || ''}</span>
+                    <ImageFigure icon={RightArrowBlack} width={12} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="bg-white-20 h-[6px] w-full">
+                  <div
+                    style={{width: `${percentageFPS.fpsPercentage}%`}}
+                    className={clsx(
+                      'bg-gaming-blue h-full',
+                    )}
+                  />
+                </div>
+                <div className="text-sm font-IntelOneBodyTextMedium">{percentageFPS.fps || 0}</div>
+              </div>
+            </div>
           </>
         )
         : (
@@ -147,7 +225,7 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
                 </div>
 
                 <div className="flex gap-x-3 items-center">
-                  <span className="font-IntelOneBodyTextMedium text-xs">$659.99</span>
+                  <span className="font-IntelOneBodyTextMedium text-xs">${componentItem?.price}</span>
                   <Button variant='gaming-cobalt' onClick={() => addToBuild()}>
                     <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
                       Add to build

@@ -128,6 +128,8 @@ function useBuildByComponentContext() {
   const [currentBuild, setCurrentBuild] = useState<IBuildComponent[]>([])
   // const [currentBuildStage, setCurrentBuildStage] = useState<number>(-1);
   const [buildSegment, setBuildSegment] = useState<ProductPredefinedPresets | null>(null);
+  // contains array of all Game titles with cpu/gpu, threshhold fps, threshhold res
+  const [cleanGameInfoArray, setCleanGameInfoArray] = useState<ICleanPreferenceData[]>([])
 
   const {
     data: preferences_feed,
@@ -326,6 +328,7 @@ function useBuildByComponentContext() {
     })
 
     // console.log({ _preferences_feed, _highest_segment, preferences, all_data, _portinos_product_feed });
+    setCleanGameInfoArray(all_data)
     setBuildSegment(_highest_segment)
     getPredefineBuilds(_highest_segment!)
     mapOutEligibleProducts(_highest_segment!)
@@ -395,8 +398,8 @@ function useBuildByComponentContext() {
       }
       
       // upsell only one level
-      if ((preferenceBuildSegmentWeight[_current_segment] === preferenceBuildSegmentWeight[build_segment])
-        || (preferenceBuildSegmentWeight[_current_segment] === (preferenceBuildSegmentWeight[build_segment] + 1))) {
+      if ((preferenceBuildSegmentWeight[_current_segment] === preferenceBuildSegmentWeight[build_segment]) // current level
+        || (preferenceBuildSegmentWeight[_current_segment] === (preferenceBuildSegmentWeight[build_segment] + 1))) { // one level above
         eligible_products.push(ppf)
         // console.log(buildSlugMap[ppf.category!]);
         const category_slug = buildSlugMap[ppf.category!];
@@ -461,6 +464,7 @@ function useBuildByComponentContext() {
     predefinedBuilds,
     currentBuild,
     buildFlowType,
+    cleanGameInfoArray,
     // currentBuildStage,
 
     togglePreBuildToCurrentBuildForPreview,

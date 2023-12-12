@@ -21,7 +21,7 @@ import DesktopFHDResImage from '../../../assets/res/resolution-hd-desktop.svg'
 import DesktopFHDResFullImage from '../../../assets/res/resolution-hd-desktop.png'
 
 import {
-  BuildPCPreferenceType, IFPSTypesItem,
+  BuildPCPreferenceType, IAllGamesMinMaxFPS, IFPSTypesItem,
   // IFPSTypesItemIDType,
   IMinMaxFPS, IPreferenceResolutions, PreferenceResolutionsTitleType
 } from '../../types/context-types';
@@ -48,6 +48,7 @@ function usePreferencContext() {
   const [preferences, setPreferences] = useState<BuildPCPreferenceType>(initialPreferences);
   
   const [minMaxFPS, setMinMaxFPS] = useState<IMinMaxFPS>(initialMinMax)
+  const [allGamesMinMaxFPS, setAllGamesMinMaxFPS] = useState<IAllGamesMinMaxFPS>()
 
   const [preferenceFPSTypes] = useState<IFPSTypesItem[]>([
     {
@@ -159,10 +160,7 @@ function usePreferencContext() {
       };
     });
 
-    const result: {
-      min: Record<string, number>;
-      max: Record<string, number>;
-    } = { min: {}, max: {} };
+    const result: IAllGamesMinMaxFPS = { min: {}, max: {} };
 
     allowed_titles.forEach((title) => {
       result.min[title] = Number.MAX_SAFE_INTEGER;
@@ -239,11 +237,13 @@ function usePreferencContext() {
     //   overallMax,
     //   result,
     //   newData,
-    //   average_max_values,
-    //   min_low_range: { _dmm_upper_bound, _dmm_lower_bound }, // lowest FPS
-    //   mid_range: { _dmd_lower_bound, _dmd_upper_bound }, // mid FPS
-    //   max_high_range: { _dmx_lower_bound, _dmx_upper_bound }, // highest FPS
+    //   // average_max_values,
+    //   // min_low_range: { _dmm_upper_bound, _dmm_lower_bound }, // lowest FPS
+    //   // mid_range: { _dmd_lower_bound, _dmd_upper_bound }, // mid FPS
+    //   // max_high_range: { _dmx_lower_bound, _dmx_upper_bound }, // highest FPS
     // });
+
+    setAllGamesMinMaxFPS(result);
     
     setMinMaxFPS({
       min: overallMin,
@@ -292,6 +292,7 @@ function usePreferencContext() {
   return {
     minMaxFPS,
     preferences,
+    allGamesMinMaxFPS,
     preferenceFPSTypes,
     preferenceGameTypes,
     preferenceResolutions,

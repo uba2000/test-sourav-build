@@ -72,6 +72,10 @@ export interface IMinMaxFPS {
   min: number;
   max: number;
 }
+export interface IAllGamesMinMaxFPS {
+  min: Record<string, number>;
+  max: Record<string, number>;
+}
 
 export type IFPSTypesItemIDType =
   | "max_high_range"
@@ -122,6 +126,7 @@ export type BuildFlowType = "preconfiged_build" | "build_components";
 export interface IBuildPCContext {
   minMaxFPS: IMinMaxFPS;
   preferences: BuildPCPreferenceType;
+  allGamesMinMaxFPS: IAllGamesMinMaxFPS;
   preferenceFPSTypes: IFPSTypesItem[];
   preferenceGameTypes: PreferenceGameType[];
   preferenceResolutions: IPreferenceResolutions[];
@@ -132,6 +137,7 @@ export interface IBuildPCContext {
   buildStages: IBuildStages[];
   currentBuild: IBuildComponent[];
   buildFlowType: BuildFlowType;
+  cleanGameInfoArray: ICleanPreferenceData[];
 
   adjustFPSRange: (preferenceFeed: IFormatPreferencesDataReturn[]) => {
     [k in PreferenceResolutionsTitleType]: string[];

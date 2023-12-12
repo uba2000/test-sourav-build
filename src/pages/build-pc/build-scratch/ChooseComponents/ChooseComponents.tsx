@@ -91,8 +91,6 @@ function ChooseComponents() {
   }, [_category_slug, currentBuild])
 
   useEffect(() => {
-    console.log({selectedItemID});
-    
     toggleCanViewSpecs(Boolean(selectedItemID));
   }, [selectedItemID])
 
