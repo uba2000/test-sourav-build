@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useCallback, useEffect, useRef } from 'react';
 import type { IFPSTypesItem } from '../../../../../lib/types/context-types';
 import useFPSItemDisability from '../../../../../lib/hooks/useFPSItemDisability';
+import { getFPSVideos } from '../../../../../lib/utils/util-asset-urls';
 
 interface IFPSItem {
   updateCurrentTime: (_currentTime: number) => void;
@@ -70,8 +71,8 @@ function FPSItem({ selectedFPS, d, currentVideoTime, updateCurrentTime, selectFP
           )}
         />
         <video ref={videoRef} poster={d.thumbnail} className='w-full h-full' controls={false} loop>
-          <source src={d.video} type="video/mp4" media="(min-width: 768px)" />
-          <source src={d.videoM} type="video/mp4" media="(max-width: 767px)" />
+          <source src={getFPSVideos(d.video)} type="video/mp4" media="(min-width: 768px)" />
+          <source src={getFPSVideos(d.videoM)} type="video/mp4" media="(max-width: 767px)" />
           Your browser does not support the video tag.
         </video>
       </div>

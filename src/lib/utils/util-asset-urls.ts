@@ -7,3 +7,7 @@ export function getGameTitlesImage(_game_title: string) {
 export function getSpecDetailsImage(_spec_details_title: string) {
   return `${ASSET_BASEURL}/spec-detail-pages-3x/${_spec_details_title}@3x.png`;
 }
+
+export function getFPSVideos(_fps_name: string) {
+  return `${ASSET_BASEURL}/video-asserts-compressed/${_fps_name}.mp4`;
+}

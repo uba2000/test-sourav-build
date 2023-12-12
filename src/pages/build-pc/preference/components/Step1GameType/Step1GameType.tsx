@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import PreferenceLayout from '../PreferenceLayout/PreferenceLayout'
 import clsx from 'clsx'
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
-import { noPreferenceName } from '../../BuildGamePreferences'
+import { noPreferenceId, noPreferenceName } from '../../BuildGamePreferences'
 import { getGameTitlesImage } from '../../../../../lib/utils/util-asset-urls'
 
 function Step1GameType() {
@@ -60,7 +60,7 @@ function Step1GameType() {
           return (
             <Fragment key={d._id}>
               <button type='button' onClick={() => selectGame(d.title)} className="group cursor-pointer min-h-[116px]">
-                {d?.image && (
+                {d?._id !== noPreferenceId && (
                 <div className={clsx("md:h-[114px] h-[76px]")}>
                   <img src={getGameTitlesImage(d._id)} className="w-full h-full object-cover object-top" alt="" />
                 </div>
@@ -68,7 +68,7 @@ function Step1GameType() {
                 <div
                   className={clsx(
                     "flex items-center justify-center px-[10px] min-h-[46px] text-center",
-                    { 'h-full': !d.image },
+                    { 'h-full': d?._id === noPreferenceId },
                     { 'bg-gaming-cobalt': _is_selected },
                     { 'bg-[#322E41] group-hover:bg-intel-20-cobalt': !_is_selected },
                   )}

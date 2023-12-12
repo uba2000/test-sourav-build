@@ -1,4 +1,5 @@
 export const noPreferenceName = "No preference";
+export const noPreferenceId = "no-preference";
 
 const BuildGamePreferences = [
   {
@@ -78,7 +79,7 @@ const BuildGamePreferences = [
   //   image: WorldWarcraft,
   // },
   {
-    _id: "no-preference",
+    _id: noPreferenceId,
     title: noPreferenceName,
     image: null,
   },
