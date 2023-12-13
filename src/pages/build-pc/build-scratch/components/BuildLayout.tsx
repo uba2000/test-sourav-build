@@ -130,7 +130,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
         <div
           className={clsx(
             "min-h-[640px]",
-            {"grid md:grid-cols-[auto_484px] grid-cols-1 gap-x-4 gap-y-3": !isCompareMode},
+            {"grid md:grid-cols-[auto_540px] grid-cols-1 gap-x-4 gap-y-3": !isCompareMode},
           )}
         >
           {/* {!isCompareMode && ( */}
@@ -157,7 +157,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
           </div>
           {/* )} */}
           <div className="flex md:flex-nowrap flex-wrap-reverse gap-x-4">
-            <div className='flex flex-col md:max-w-[400px] flex-grow md:gap-y-2 gap-y-4'>
+            <div className='flex flex-col md:max-w-[460px] flex-grow md:gap-y-2 gap-y-4'>
               
               {/* Right main section */}
               <PolygonContainer bbr={false} btl={false} className='flex-grow max-w-[978px] w-full ml-auto md:block hidden'>

@@ -1,4 +1,3 @@
-import PolygonContainer from '../../../components/PolygonContainer/PolygonContainer';
 import ImageFigure from '../../../components/ImageFigure';
 
 import CardWithNotch from '../../../components/CardWithNotch/CardWithNotch';
@@ -10,11 +9,11 @@ import RightArrow from '../../../assets/right-arrow.svg'
 import { useNavigate } from 'react-router-dom';
 import RouteNames from '../../../lib/utils/routenames';
 import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext';
-import { Fragment } from 'react';
+import PreferenceBox from './components/PreferenceBox';
 
 function BuildScratch() {
-  const { preferences, togglePreBuildToCurrentBuildForPreview } = useBuildPCContext()
-  const navigate = useNavigate()
+  const { togglePreBuildToCurrentBuildForPreview } = useBuildPCContext()
+  const navigate = useNavigate()  
 
   function startBuildFromScratch() {
     navigate(RouteNames.buildPCMyBuild)
@@ -41,7 +40,7 @@ function BuildScratch() {
                 Need help getting started? We’ll show you a complete set of components that you can edit as you like. 
               </p>
               <div className='pb-2'>
-                <Button onClick={() => choosePreconfiged()} className='py-[6px] px-2'>
+                <Button onClick={() => choosePreconfiged()} className='p-2'>
                   <div className="flex items-center gap-x-2">
                     <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>View your system</span>
                     <ImageFigure icon={RightArrow} width={12} />
@@ -63,7 +62,7 @@ function BuildScratch() {
                 Select a product category to review and choose components for your build. 
               </p>
               <div className='pb-2'>
-                <Button onClick={() => startBuildFromScratch()} className='py-[6px] px-2'>
+                <Button onClick={() => startBuildFromScratch()} className='p-2'>
                   <div className="flex items-center gap-x-2">
                     <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>Choose your components</span>
                     <ImageFigure icon={RightArrow} width={12} />
@@ -81,51 +80,7 @@ function BuildScratch() {
           </p>
         </div>
 
-        <PolygonContainer>
-          <div className="pl-5 pr-7 py-2">
-            <div className="border-b-[rgba(255,255,255,0.2)] mb-[6px] border-b uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-white-75">
-              Preferences
-            </div>
-
-            <div className="grid grid-cols-2">
-              <div className='flex flex-col gap-y-2'>
-                <div>
-                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-white-75">
-                    FPS
-                  </h6>
-                  <p className='text-sm'>
-                    {preferences.gaming_fps?.fps}
-                  </p>
-                </div>
-
-                <div>
-                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-white-75">
-                    Resolution
-                  </h6>
-                  <p className='text-sm lowercase'>
-                    {preferences.gaming_resolution?.res}
-                  </p>
-                </div>
-              </div>
-              <div className='flex flex-col gap-y-2'>
-                <div>
-                  <h6 className="uppercase text-xs font-IntelOneBodyTextMedium pb-1 text-white-75">
-                    Games
-                  </h6>
-                  <p className='text-sm'>
-                    {preferences.game_type_title.map((d, index) => (
-                      <Fragment key={d}>
-                        {d}
-                        {index < (preferences.game_type_title.length - 1) && ', '}
-                      </Fragment>
-                    ))}
-                    {/* League of Legends, Fortnight, Valorant */}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </PolygonContainer>
+        <PreferenceBox />
       </div>
     </BuildLayout>
   )

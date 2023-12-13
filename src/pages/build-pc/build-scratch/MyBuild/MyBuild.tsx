@@ -38,7 +38,7 @@ function MyBuild() {
                   Choose a processor, GPU and motherboard to get started.  Then fill out the remaining components for a complete system. 
                 </p>
                 <div className='pb-2'>
-                  <Button className='py-1 px-2' onClick={() => goToChooseComponent()}>
+                  <Button className='p-2' onClick={() => goToChooseComponent()}>
                     <div className="flex items-center gap-x-2">
                       <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>Select a processor</span>
                       <ImageFigure icon={RightArrow} width={12} />
