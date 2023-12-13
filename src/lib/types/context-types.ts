@@ -125,6 +125,7 @@ export type BuildFlowType = "preconfiged_build" | "build_components";
 
 export interface IBuildPCContext {
   minMaxFPS: IMinMaxFPS;
+  initialMinMaxFPS: IMinMaxFPS;
   preferences: BuildPCPreferenceType;
   allGamesMinMaxFPS: IAllGamesMinMaxFPS;
   preferenceFPSTypes: IFPSTypesItem[];

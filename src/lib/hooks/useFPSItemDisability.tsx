@@ -3,7 +3,7 @@ import useBuildPCContext from './contextHooks/useBuildPCContext';
 import { IFPSTypesItem } from '../types/context-types';
 
 function useFPSItemDisability(d: IFPSTypesItem) {
-  const { minMaxFPS } = useBuildPCContext()
+  const { initialMinMaxFPS: minMaxFPS } = useBuildPCContext()
   const [isDisabled, setIsDisabled] = useState(false);
   const max = typeof d.range.max === 'number' ? d.range.max : parseInt(d.range.max);
 

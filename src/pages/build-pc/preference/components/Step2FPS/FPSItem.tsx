@@ -11,9 +11,11 @@ interface IFPSItem {
   currentVideoTime: number;
   selectFPS: (_id: string, index: number) => void;
   index: number;
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement> | undefined;
+  onMouseOver?: React.MouseEventHandler<HTMLDivElement> | undefined
 }
 
-function FPSItem({ selectedFPS, d, currentVideoTime, updateCurrentTime, selectFPS, index }: IFPSItem) {
+function FPSItem({ selectedFPS, d, currentVideoTime, updateCurrentTime, selectFPS, index, onMouseOver, onMouseLeave }: IFPSItem) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const { isDisabled } = useFPSItemDisability(d);
 
@@ -53,8 +55,10 @@ function FPSItem({ selectedFPS, d, currentVideoTime, updateCurrentTime, selectFP
     <div className="flex flex-col gap-y-[30px] items-center overflow-hidden">
       <div
         onClick={() => !isDisabled && selectFPS(d._id, index)}
+        onMouseOver={onMouseOver}
+        onMouseLeave={onMouseLeave}
         className={clsx(
-          "w-full md:min-h-[196px] cursor-pointer max-w-full relative ease-in-out",
+          "w-full md:min-h-[196px] cursor-pointer max-w-full relative with-ease",
           {
             "scale-110": selectedFPS && selectedFPS === d._id,
             "scale-90": selectedFPS && selectedFPS !== d._id,

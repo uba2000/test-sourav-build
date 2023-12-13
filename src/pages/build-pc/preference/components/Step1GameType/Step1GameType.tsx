@@ -53,13 +53,13 @@ function Step1GameType() {
         subText='Select all that apply:'
       />
 
-      <div className="grid md:grid-cols-[repeat(auto-fill,114px)] grid-cols-[repeat(auto-fill,100px)] place-content-center gap-4 grid-row-[repeat(auto-fill,minmax(134px,1fr))]">
+      <div className="grid md:grid-cols-[repeat(auto-fill,114px)] grid-cols-[repeat(auto-fill,100px)] place-content-center gap-4">
         {preferenceGameTypes.map((d) => {
           const _is_selected = selectedGame.find((data) => data === d.title);
 
           return (
             <Fragment key={d._id}>
-              <button type='button' onClick={() => selectGame(d.title)} className="group cursor-pointer min-h-[116px]">
+              <button type='button' onClick={() => selectGame(d.title)} className="group cursor-pointer md:h-[160px] h-[122px]">
                 {d?._id !== noPreferenceId && (
                 <div className={clsx("md:h-[114px] h-[76px]")}>
                   <img src={getGameTitlesImage(d._id)} className="w-full h-full object-cover object-top" alt="" />
@@ -67,7 +67,7 @@ function Step1GameType() {
                 )}
                 <div
                   className={clsx(
-                    "flex items-center justify-center px-[10px] min-h-[46px] text-center",
+                    "flex items-center justify-center px-[10px] min-h-[46px] text-center with-ease",
                     { 'h-full': d?._id === noPreferenceId },
                     { 'bg-gaming-cobalt': _is_selected },
                     { 'bg-[#322E41] group-hover:bg-intel-20-cobalt': !_is_selected },

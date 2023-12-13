@@ -43,7 +43,7 @@ function Step3Resolution({availableRes}: IStep3ResolutionProps) {
           <div className="w-full h-full grid grid-cols-3 gap-x-[6px]">
             {resolutions.map((d, index) => (
               <Fragment key={_.uniqueId()}>
-                <div className='relative flex flex-col md:gap-y-6 gap-y-3 md:min-h-[480px] min-h-[272px]'>
+                <div className='relative flex flex-col md:gap-y-6 gap-y-3 md:min-h-[480px] min-h-[272px] group'>
                   <div
                     onClick={() => availableRes[d.title].length !== 0 && selectRESIndex(index)}
                     className={clsx(
@@ -70,9 +70,9 @@ function Step3Resolution({availableRes}: IStep3ResolutionProps) {
                     disabled={availableRes[d.title].length === 0}
                     onClick={() => selectRESIndex(index)}
                     className={clsx(
-                      'md:h-[60px] relative p-2 md:px-6 px-3',
+                      'md:h-[60px] relative p-2 md:px-6 px-3 with-ease',
                       {"bg-gaming-cobalt": selectedRESIndex === d.title && availableRes[d.title].length !== 0},
-                      { "bg-[rgba(255,255,255,0.20)]": selectedRESIndex !== d.title && availableRes[d.title].length !== 0 },
+                      { "bg-[rgba(255,255,255,0.20)] group-hover:bg-intel-20-cobalt": selectedRESIndex !== d.title && availableRes[d.title].length !== 0 },
                       {"opacity-20 bg-[rgba(255,255,255,0.20)]": availableRes[d.title].length === 0},
                     )}
                   >

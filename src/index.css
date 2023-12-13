@@ -100,6 +100,10 @@
   @apply font-IntelOneBodyTextRegular text-body;
 }
 
+.with-ease {
+  @apply transition-all duration-200;
+}
+
 #root,
 .App {
   @apply min-h-screen;

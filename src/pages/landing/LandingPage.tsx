@@ -26,8 +26,8 @@ function LandingPage() {
   ], []);
 
   return (
-    <div className="relative bg-no-repeat bg-top md:min-h-screen min-h-screen bg-contain">
-      <PageWrapper>
+    <div className="relative bg-no-repeat bg-top md:min-h-screen min-h-screen bg-contain flex flex-col justify-center">
+      <PageWrapper className='flex justify-center'>
         {/* Hero Section */}
         <img src={LandingHeroImage} className='md:absolute object-center md:block hidden left-1/2 -translate-x-1/2 top-0 w-full max-w-[1200px]' />
         <div className="bg-transparent pb-6 md:mt-[85px] mt-[22px] flex relative z-10 flex-col gap-y-6 md:mb-[160px] md:min-h-[unset] min-h-[240px]">
@@ -62,7 +62,7 @@ function LandingPage() {
 
           <div className="grid md:grid-cols-2 grid-cols-1 max-w-[450px] w-full gap-x-[36px] gap-y-4 mx-auto">
             <Link to={RouteNames.buildPreferenceIndex} className='flex justify-center'>
-              <button type='button' className='relative flex py-3 px-4 bg-gaming-blue hover:bg-gaming-blue-hover'>
+              <button type='button' className='relative flex py-3 px-4 bg-gaming-blue min-w-[192px] hover:bg-gaming-blue-hover with-ease'>
                 <div className='flex items-center gap-x-2'>
                   <div>
                     <ImageFigure icon={BuildScrewIcon} width={20} />
@@ -73,7 +73,7 @@ function LandingPage() {
             </Link>
 
             <Link target='_blank' to={'https://www.intel.com/'} className='flex justify-center'>
-              <button type='button' className='relative flex py-3 px-4 bg-intel-e-blue-t1 hover:bg-intel-e-blue-t1-hover'>
+              <button type='button' className='relative flex py-3 px-4 bg-intel-e-blue-t1 min-w-[192px] hover:bg-intel-e-blue-t1-hover with-ease'>
                 <div className='flex items-center gap-x-2'>
                   <div>
                     <ImageFigure icon={FindMagnifierIcon} width={20} />

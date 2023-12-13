@@ -42,6 +42,7 @@ function usePreferencContext() {
   const [preferences, setPreferences] = useState<BuildPCPreferenceType>(initialPreferences);
   
   const [minMaxFPS, setMinMaxFPS] = useState<IMinMaxFPS>(initialMinMax)
+  const [initialMinMaxFPS, setInitialMinMaxFPS] = useState<IMinMaxFPS>(initialMinMax)
   const [allGamesMinMaxFPS, setAllGamesMinMaxFPS] = useState<IAllGamesMinMaxFPS>()
 
   const [preferenceFPSTypes] = useState<IFPSTypesItem[]>([
@@ -111,6 +112,7 @@ function usePreferencContext() {
   function resetPreferences() {
     setPreferences(initialPreferences);
     setMinMaxFPS(initialMinMax);
+    setInitialMinMaxFPS(initialMinMax);
   }
 
   const {
@@ -243,6 +245,10 @@ function usePreferencContext() {
       min: overallMin,
       max: overallMax
     });
+    setInitialMinMaxFPS({
+      min: overallMin,
+      max: overallMax
+    });
 
     return newData;
   }
@@ -285,6 +291,7 @@ function usePreferencContext() {
 
   return {
     minMaxFPS,
+    initialMinMaxFPS,
     preferences,
     allGamesMinMaxFPS,
     preferenceFPSTypes,
