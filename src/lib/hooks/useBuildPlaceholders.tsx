@@ -10,6 +10,7 @@ import Memory from '../../assets/builds/Select-component-03-memory.webp'
 import Motherboard from '../../assets/builds/Select-component-02-motherboard.webp'
 import Processor from '../../assets/builds/Select-component-00-processor.webp'
 import Storage from '../../assets/builds/Select-component-04-storage.webp'
+import PC from '../../assets/builds/PC-ghost-blur.webp'
 import Entry from '../../assets/builds/PreConfigured-entry-level.webp'
 import Enthusiast from '../../assets/builds/PreConfigured-enthusiast.webp'
 import Mainstream from '../../assets/builds/PreConfigured-mainstream.webp'
@@ -24,7 +25,7 @@ function useBuildPlaceholders() {
       fan: Cooling,
       memory: Memory,
       motherboard: Motherboard,
-      os: "",
+      os: PC,
       processor: Processor,
       storage: Storage,
     },

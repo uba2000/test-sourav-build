@@ -227,7 +227,7 @@ export const buildSlugMap: BuildSlugMapType = {
   gpu: "graphics-card",
   psu: "power-supply",
   os: "os",
-  fan: "cooling",
+  fan: "fan",
   case: "case",
   cooler: "cooling",
   ram: "memory",

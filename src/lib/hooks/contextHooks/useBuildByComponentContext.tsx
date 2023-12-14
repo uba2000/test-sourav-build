@@ -101,6 +101,15 @@ function useBuildByComponentContext() {
       selectedItem: null,
     },
     {
+      icon: <CPUCoolerIcon />,
+      title: 'Case Fan',
+      short_name: 'Case Fan',
+      slug: 'fan',
+      component: '',
+      items: [],
+      selectedItem: null,
+    },
+    {
       icon: <BatteryIcon />,
       title: 'Power Supply',
       short_name: 'Power Supply',

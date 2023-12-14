@@ -171,8 +171,8 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                 <div
                   className={clsx(
                     "px-6 md:pt-[12px] pt-3 pb-10 overflow-y-auto scrollbar-hide",
-                    {"min-h-[610px] max-h-[610px]": !layout_r_title},
-                    {"min-h-[561px] max-h-[561px]": layout_r_title},
+                    {"min-h-[670px] max-h-[670px]": !layout_r_title},
+                    {"min-h-[620px] max-h-[620px]": layout_r_title},
                   )}
                 >
                   {children}
