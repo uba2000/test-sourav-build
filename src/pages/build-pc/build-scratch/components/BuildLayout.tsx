@@ -310,7 +310,12 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
             </div>
             {/* Mobile right bar */}
             {/* Desktop right bar */}
-            <PolygonContainer className='min-w-[68px] md:block hidden' bbr={false} btl={false} topBackground={isOnBuildRoutes ? 'primary' : null}>
+            <PolygonContainer
+              className='min-w-[68px] md:block hidden'
+              bbr={false}
+              btl={false}
+              topBackground={isOnBuildRoutes ? 'primary' : null}
+            >
               <div>
                 <div
                   onClick={() => goToMyBuild()}

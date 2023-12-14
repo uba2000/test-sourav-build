@@ -119,6 +119,7 @@ function PolygonContainer({
             "before:border-t-[8px] before:border-l-[8px] before:-left-2": bbl,
             "before:border-l-transparent before:w-0 before:h-0": bbl,
             "before:content-[''] before:absolute": bbl,
+            "before:border-t-transparent": topBackground && bbl,
 
             "w-full": !bbl && !bbr,
             "w-[calc(100%_-_8px)] mr-auto": !bbl && bbr,

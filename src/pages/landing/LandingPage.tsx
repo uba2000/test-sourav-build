@@ -7,8 +7,9 @@ import { Fragment, useMemo } from 'react'
 import InfoPointer from '../../assets/info-pointer.svg'
 import BuildScrewIcon from '../../assets/build-screw.svg'
 import FindMagnifierIcon from '../../assets/find-magnifier.svg'
-import LandingHeroImage from '../../assets/landing-page-hero-image.svg'
-import LandingHeroMobileImage from '../../assets/landing-page-hero-image-moble.svg'
+import LandingHeroImage from '../../assets/landing-page-hero-image.svg?react'
+// import LandingHeroMobileImage from '../../assets/landing-page-hero-image-moble.svg?react'
+import LandingHeroMobileImage2 from '../../assets/landing-page-hero-image-moble.svg'
 import { Link } from 'react-router-dom'
 import RouteNames from '../../lib/utils/routenames'
 
@@ -29,13 +30,19 @@ function LandingPage() {
     <div className="relative bg-no-repeat bg-top md:min-h-screen min-h-screen bg-contain flex flex-col justify-center">
       <PageWrapper className='flex justify-center'>
         {/* Hero Section */}
-        <img src={LandingHeroImage} className='md:absolute object-center md:block hidden left-1/2 -translate-x-1/2 top-0 w-full max-w-[1200px]' />
+        <div className='md:absolute object-center md:block hidden left-1/2 -translate-x-1/2 top-0 w-full max-w-[1200px]'>
+          <LandingHeroImage />
+        </div>
         <div className="bg-transparent pb-6 md:mt-[85px] mt-[22px] flex relative z-10 flex-col gap-y-6 md:mb-[160px] md:min-h-[unset] min-h-[240px]">
           <div className="text-center relative z-10">
             <h1 className="md:text-h1 text-M-h1 font-IntelOneDisplayBold md:mb-4 mb-1">Up your game</h1>
             <h2 className='md:text-h2 text-M-h2 font-IntelOneDisplayMedium'>Build or find your next gaming PC</h2>
           </div>
-          <img src={LandingHeroMobileImage} className='absolute left-0 top-0 w-full object-center object-contain md:hidden block' />
+          {/* md:hidden block */}
+          {/* <div className='absolute left-0 top-0 w-full'>
+            <LandingHeroMobileImage />
+          </div> */}
+          <img src={LandingHeroMobileImage2} className='absolute left-0 top-0 w-full object-center object-contain md:hidden block' />
           <div className=""></div>
         </div>
 
