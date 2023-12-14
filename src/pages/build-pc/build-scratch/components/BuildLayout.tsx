@@ -65,6 +65,9 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
 
   const [currentModel, setCurrentModel] = useState(Image3D)
 
+  const desktopChildDivRef = useRef<HTMLDivElement>(null);
+  const [prevScrollPos, setPrevScrollPos] = useState<number | null>(null);
+
   function handleAddAllToCart() {
     addToRetailerUsersCart({ state: 'complete' })
   }
@@ -72,19 +75,6 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
   function goToMyBuild() {
     navigate(RouteNames.buildPCMyBuild)
   }
-
-  useEffect(() => { 
-    // if (currentModelOnStage && !viewingCurrentComponentModel) {
-    if (currentModelOnStage) {
-      // console.log("currentModelOnStage", currentModelOnStage);
-      setCurrentModel(currentModelOnStage)
-    } else {
-      setCurrentModel(Image3D)
-    }
-  }, [currentModelOnStage])
-
-  const desktopChildDivRef = useRef<HTMLDivElement>(null);
-  const [prevScrollPos, setPrevScrollPos] = useState<number | null>(null);
 
   const scrollDesktopChildDivToTop = () => {
     const targetDiv = desktopChildDivRef.current;
@@ -108,11 +98,35 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
     toggleShowSpecs(true);
   }
 
+  const scrollByPixels = ({ pixels = 42, dir = 'r'}: { pixels?: number; dir: 'r' | 'l' }) => {
+    // Access the current property of the ref to get the DOM element
+    const targetDiv = mobileNavContainer.current;
+
+    // Scroll the div horizontally by the specified number of pixels
+    if (targetDiv) {
+      if (dir === 'r') {
+        targetDiv.scrollLeft += pixels;
+      } else if (dir === 'l') {
+        targetDiv.scrollLeft -= pixels;
+      }
+    }
+  };
+
   useEffect(() => { 
     if (!showCurrentModelSpecs && prevScrollPos) {
       scrollToPreviousPosition()
     }
   }, [showCurrentModelSpecs])
+
+  useEffect(() => { 
+    // if (currentModelOnStage && !viewingCurrentComponentModel) {
+    if (currentModelOnStage) {
+      // console.log("currentModelOnStage", currentModelOnStage);
+      setCurrentModel(currentModelOnStage)
+    } else {
+      setCurrentModel(Image3D)
+    }
+  }, [currentModelOnStage])
 
   return (
     <PageWrapper>
@@ -161,7 +175,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
         <div
           className={clsx(
             "min-h-[640px]",
-            {"grid md:grid-cols-[auto_540px] grid-cols-1 gap-x-4 gap-y-3": !isCompareMode},
+            {"grid md:grid-cols-[auto_544px] grid-cols-1 gap-x-4 gap-y-3": !isCompareMode},
           )}
         >
           {/* {!isCompareMode && ( */}
@@ -188,7 +202,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
           </div>
           {/* )} */}
           <div className="flex md:flex-nowrap flex-wrap-reverse gap-x-4">
-            <div className='flex flex-col md:max-w-[460px] flex-grow md:gap-y-2 gap-y-4'>
+            <div className='flex flex-col md:max-w-[460px] md:min-w-[460px] flex-grow md:gap-y-2 gap-y-4'>
               
               {/* Right main section */}
               <PolygonContainer bbr={false} btl={false} className='flex-grow max-w-[978px] w-full ml-auto md:block hidden'>
@@ -278,13 +292,13 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
               </PolygonContainer>
               <PolygonContainer btr={false} bbr={false} leftBorder={false} className='flex-grow w-[calc(100%_-_69px)] -ml-[1px]'>
                 <div className="relative">
-                  <div className="absolute left-0 z-10 -top-2 flex justify-center items-center border-r border-r-[#C5C5CB] h-[calc(100%_+_16px)] px-[6px]">
+                  <button type='button' onClick={() => scrollByPixels({ dir: 'l' })} className="absolute left-0 z-10 -top-2 flex justify-center items-center border-r border-r-[#C5C5CB] h-[calc(100%_+_16px)] px-[6px]">
                     <ImageFigure icon={NavLeftArrow} width={6} height={12} />
-                  </div>
-                  <div className="absolute right-0 z-10 -top-2 flex justify-center items-center border-l border-l-[#C5C5CB] h-[calc(100%_+_16px)] px-[6px]">
+                  </button>
+                  <button type='button' onClick={() => scrollByPixels({ dir: 'r' })} className="absolute right-0 z-10 -top-2 flex justify-center items-center border-l border-l-[#C5C5CB] h-[calc(100%_+_16px)] px-[6px]">
                     <ImageFigure icon={NavRightArrow} width={6} height={12} />
-                  </div>
-                  <div ref={mobileNavContainer} className='mr-[20px] px-[9px] ml-[20px] flex gap-x-[6px] overflow-auto scrollbar-hide'>
+                  </button>
+                  <div ref={mobileNavContainer} className='mr-[20px] px-[9px] ml-[20px] scroll-smooth flex gap-x-[6px] overflow-auto scrollbar-hide'>
                     {buildStages.map((d) => (
                       <Fragment key={_.uniqueId()}>
                         <BuildSidebarItem stagesStatus={stagesStatus} data={d} screenSize='mobile' />
