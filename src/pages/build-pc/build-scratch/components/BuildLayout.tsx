@@ -83,6 +83,37 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
     }
   }, [currentModelOnStage])
 
+  const desktopChildDivRef = useRef<HTMLDivElement>(null);
+  const [prevScrollPos, setPrevScrollPos] = useState<number | null>(null);
+
+  const scrollDesktopChildDivToTop = () => {
+    const targetDiv = desktopChildDivRef.current;
+
+    if (targetDiv) {
+      setPrevScrollPos(targetDiv.scrollTop);
+      targetDiv.scrollTop = 0;
+    }
+  };
+
+  const scrollToPreviousPosition = () => {
+    const targetDiv = desktopChildDivRef.current;
+
+    if (targetDiv) {
+      targetDiv.scrollTop = prevScrollPos as number;
+    }
+  };
+
+  function handleViewSpec() {
+    scrollDesktopChildDivToTop();
+    toggleShowSpecs(true);
+  }
+
+  useEffect(() => { 
+    if (!showCurrentModelSpecs && prevScrollPos) {
+      scrollToPreviousPosition()
+    }
+  }, [showCurrentModelSpecs])
+
   return (
     <PageWrapper>
       <Modal />
@@ -146,7 +177,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
             <div className="flex justify-end md:pr-0 pr-4 min-h-[31px]">
               {/* {(viewingCurrentComponentModel &&  && canViewSpecs) && ( */}
               {(canViewSpecs && !showCurrentModelSpecs) && (
-                <Button className=" py-2 px-4" onClick={() => toggleShowSpecs(true)}>
+                <Button className=" py-2 px-4" onClick={() => handleViewSpec()}>
                   <div className="flex gap-2 items-center">
                     <span className="text-intel-e-gray-s2 text-[15px] font-IntelOneBodyTextMedium leading-[15px]">View specs</span>
                     <ImageFigure icon={RightArrow} width={12} />
@@ -169,8 +200,9 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                   </div>
                 )}
                 <div
+                  ref={desktopChildDivRef}
                   className={clsx(
-                    "px-6 md:pt-[12px] pt-3 pb-10 overflow-y-auto scrollbar-hide",
+                    "px-6 md:pt-[12px] pt-3 pb-10 overflow-y-auto scrollbar-hide scroll-smooth",
                     {"min-h-[670px] max-h-[670px]": !layout_r_title},
                     {"min-h-[620px] max-h-[620px]": layout_r_title},
                   )}

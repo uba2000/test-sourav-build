@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useState } from "react"
+import { Fragment, useEffect, useMemo, useRef, useState } from "react"
 import _ from "lodash"
 import clsx from "clsx"
 
@@ -85,11 +85,7 @@ function BuildPreference() {
   }
 
   function previousStage() {
-    if (currentStage > 0) {
-      setCurrentStage(prev => prev - 1)
-    } else {
-      window.history.back();
-    }
+    window.history.back();
   }
 
   useEffect(() => { 
@@ -112,9 +108,23 @@ function BuildPreference() {
     setCurrentStage(parseInt((searchParams.get('s') || '0'), 10));
   }, [searchParams])
 
+  const desktopChildDivRef = useRef<HTMLDivElement>(null);
+
+  const scrollDesktopChildDivToTop = () => {
+    const targetDiv = desktopChildDivRef.current;
+
+    if (targetDiv) {
+      targetDiv.scrollTop = 0;
+    }
+  };
+
+  useEffect(() => { 
+    scrollDesktopChildDivToTop()
+  }, [searchParams])
+
   return (
     <PageWrapper>
-      <div className="md:pt-10 pt-6">
+      <div className="md:pt-10 pt-6 max-h-screen overflow-y-auto scroll-smooth" ref={desktopChildDivRef}>
         <div className="flex mb-10 md:justify-start justify-center max-[413px]:flex-wrap gap-y-3">
           <div className="max-[413px]:hidden">
             <PolygonContainer rightBorder={false} className="-mr-[1px]">
