@@ -72,7 +72,7 @@ function LandingPage() {
               </button>
             </Link>
 
-            <Link target='_blank' to={'https://www.intel.com/'} className='flex justify-center'>
+            <Link target='_blank' to={' https://retailer.portinos.com/srt-gaming'} className='flex justify-center'>
               <button type='button' className='relative flex py-3 px-4 bg-intel-e-blue-t1 min-w-[192px] hover:bg-intel-e-blue-t1-hover with-ease'>
                 <div className='flex items-center gap-x-2'>
                   <div>
