@@ -146,7 +146,7 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
                   <span className="font-IntelOneBodyTextMedium text-xs">${componentItem?.price}</span>
                   <Button variant='gaming-cobalt' onClick={() => addToBuild()}>
                     <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
-                      Add to build
+                      Add to Build
                       <ImageFigure icon={RightArrow} width={12} />
                     </div>
                   </Button>

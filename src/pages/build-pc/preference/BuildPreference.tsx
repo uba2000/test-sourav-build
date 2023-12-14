@@ -115,20 +115,37 @@ function BuildPreference() {
   return (
     <PageWrapper>
       <div className="md:pt-10 pt-6">
-        <div className="flex mb-10 md:justify-start justify-center">
-          <PolygonContainer rightBorder={false} className="-mr-[1px]">
-            <div className="px-[10px] flex gap-1">
-              <button type="button" onClick={() => previousStage()}>
-                <ImageFigure icon={BackIcon} width={36} />
-              </button>
-              <button type="button" onClick={() => resetApp()}>
-                <ImageFigure icon={ReloadIcon} width={36} />
-              </button>
-              <button type="button">
-                <ImageFigure icon={ExternalIcon} width={36} />
-              </button>
-            </div>
-          </PolygonContainer>
+        <div className="flex mb-10 md:justify-start justify-center max-[413px]:flex-wrap gap-y-3">
+          <div className="max-[413px]:hidden">
+            <PolygonContainer rightBorder={false} className="-mr-[1px]">
+              <div className="px-[10px] flex gap-1">
+                <button type="button" onClick={() => previousStage()}>
+                  <ImageFigure icon={BackIcon} width={36} />
+                </button>
+                <button type="button" onClick={() => resetApp()}>
+                  <ImageFigure icon={ReloadIcon} width={36} />
+                </button>
+                <button type="button">
+                  <ImageFigure icon={ExternalIcon} width={36} />
+                </button>
+              </div>
+            </PolygonContainer>
+          </div>
+          <div className="max-[413px]:block hidden">
+            <PolygonContainer className="-mr-[1px]">
+              <div className="px-[10px] flex gap-1">
+                <button type="button" onClick={() => previousStage()}>
+                  <ImageFigure icon={BackIcon} width={36} />
+                </button>
+                <button type="button" onClick={() => resetApp()}>
+                  <ImageFigure icon={ReloadIcon} width={36} />
+                </button>
+                <button type="button">
+                  <ImageFigure icon={ExternalIcon} width={36} />
+                </button>
+              </div>
+            </PolygonContainer>
+          </div>
           <PolygonContainer className="min-w-[277px]">
             <div className="flex items-center h-full gap-1 justify-center px-2">
               <p className="text-white-75 uppercase text-xs w-[112px] text-center block">

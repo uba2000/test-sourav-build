@@ -178,7 +178,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                   {children}
                 </div>
               </PolygonContainer>
-              <div className='md:hidden block'>
+              <div className='md:hidden block mb-20'>
                 {layout_r_title && (
                 <div className="md:px-[26px] px-4 md:py-3 pt-2 mt-1 pb-[10px] border-b border-[rgba(255,255,255,0.20)] md:border-white-75">
                   <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
@@ -192,32 +192,42 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
               </div>
               {/* Right main section */}
               {/* Right price section */}
-              <div className='md:min-h-[49px] max-w-full md:px-0 px-4'>
-                {(currentBuild.length === buildStages.length || stagesStatus === 'complete' || showPriceSection) && (
-                <div className="flex justify-end gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
-                  <PolygonContainer className='min-w-[209px]'>
-                    <div className="flex flex-wrap flex-col px-5 gap-x-3 items-center justify-center h-full">
-                      <span className='text-white-75 text-[10px] leading-[11px] whitespace-nowrap font-IntelOneBodyTextMedium uppercase'>Total Price</span>
-                      <span className=''>
-                        <span className='font-IntelOneBodyTextMedium'>
-                          $
-                          {formatNumberWithCommas(parseInt(totalPrice || "0") || currentBuild.reduce((sum, product) => sum + (product?.price || 0), 0))}
+              {(currentBuild.length === buildStages.length || stagesStatus === 'complete' || showPriceSection) && (
+                <div
+                  className={clsx(
+                    'md:min-h-[49px] max-w-full w-full md:px-0 px-4',
+                    'md:relative fixed z-40',
+                    'md:bottom-[unset] bottom-0',
+                    'md:left-[unset] left-0',
+                    'md:block flex items-center',
+                    'md:h-[unset] h-[78px]',
+                    'md:bg-none bg-[linear-gradient(180deg,#0C0021_33.54%,#000_60.37%)]',
+                  )}
+                >
+                  <div className="flex md:justify-end justify-center gap-2 max-w-[400px] w-full md:ml-auto mx-auto md:mx-[unset]">
+                    <PolygonContainer className='min-w-[209px]' defaultBorderBackground='#0C0021'>
+                      <div className="flex flex-wrap flex-col px-5 gap-x-3 items-center justify-center h-full">
+                        <span className='text-white-75 text-[10px] leading-[11px] whitespace-nowrap font-IntelOneBodyTextMedium uppercase'>Total Price</span>
+                        <span className=''>
+                          <span className='font-IntelOneBodyTextMedium'>
+                            $
+                            {formatNumberWithCommas(parseInt(totalPrice || "0") || currentBuild.reduce((sum, product) => sum + (product?.price || 0), 0))}
+                          </span>
+                          {/* <span className='text-[22px] font-IntelOneBodyTextMedium'>$3,478.99</span> */}
                         </span>
-                        {/* <span className='text-[22px] font-IntelOneBodyTextMedium'>$3,478.99</span> */}
-                      </span>
-                    </div>
-                  </PolygonContainer>
-                  <div className='flex items-center'>
-                    <Button variant='secondary' className='flex-grow' onClick={() => handleAddAllToCart()}>
-                      <div className="flex gap-[6px] items-center py-2 px-3">
-                        <ImageFigure icon={CartIcon} width={20} />
-                        <span className="text-black font-IntelOneBodyTextMedium whitespace-nowrap text-sm">Add all to cart</span>
                       </div>
-                    </Button>
+                    </PolygonContainer>
+                    <div className='flex items-center'>
+                      <Button variant='secondary' className='flex-grow' onClick={() => handleAddAllToCart()}>
+                        <div className="flex gap-[6px] items-center py-2 px-3">
+                          <ImageFigure icon={CartIcon} width={20} />
+                          <span className="text-black font-IntelOneBodyTextMedium whitespace-nowrap text-sm">Add all to cart</span>
+                        </div>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               )}
-              </div>
               {/* Right price section */}
             </div>
             {/* Mobile right bar */}
