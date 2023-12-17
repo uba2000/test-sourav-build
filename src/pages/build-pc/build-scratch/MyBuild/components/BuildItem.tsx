@@ -1,8 +1,8 @@
 import PolygonContainer from '../../../../../components/PolygonContainer/PolygonContainer'
 import ImageFigure from '../../../../../components/ImageFigure'
 import { IBuildComponent } from '../../../../../lib/types/context-types';
-import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge';
-import StarRatingComponent from '../../../../../components/StarRatingComponent/StarRatingComponent';
+// import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge';
+// import StarRatingComponent from '../../../../../components/StarRatingComponent/StarRatingComponent';
 
 import CartIcon from '../../../../../assets/add-cart.svg'
 import { Fragment } from 'react';
@@ -47,10 +47,10 @@ function BuildItem({
             </div>
 
             <div className="flex flex-col items-end gap-y-1">
-              <CompatibilityBadge />
+              {/* <CompatibilityBadge />
               <StarRatingComponent />
               <div className="font-IntelOneBodyTextMedium text-[11px] leading-[11px]">####</div>
-              <div className="font-IntelOneBodyTextMedium text-[11px] leading-[11px]">Reviews</div>
+              <div className="font-IntelOneBodyTextMedium text-[11px] leading-[11px]">Reviews</div> */}
             </div>
           </div>
 

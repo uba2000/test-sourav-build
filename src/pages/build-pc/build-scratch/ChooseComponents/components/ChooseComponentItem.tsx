@@ -3,8 +3,8 @@ import ImageFigure from '../../../../../components/ImageFigure'
 
 import RightArrow from '../../../../../assets/right-arrow-white.svg'
 import Button from '../../../../../components/Button/Button'
-import StarRatingComponent from '../../../../../components/StarRatingComponent/StarRatingComponent'
-import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge'
+// import StarRatingComponent from '../../../../../components/StarRatingComponent/StarRatingComponent'
+// import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge'
 import { IBuildComponent } from '../../../../../lib/types/context-types'
 import { Fragment } from 'react'
 import _ from 'lodash'
@@ -45,9 +45,9 @@ function ChooseComponentItem({
             </h4>
 
             <div className="flex flex-col items-end gap-y-1">
-              <CompatibilityBadge />
+              {/* <CompatibilityBadge />
               <StarRatingComponent />
-              <div className="font-IntelOneBodyTextMedium text-[11px] leading-[11px]"># Reviews</div>
+              <div className="font-IntelOneBodyTextMedium text-[11px] leading-[11px]"># Reviews</div> */}
             </div>
           </div>
 

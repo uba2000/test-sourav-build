@@ -336,7 +336,7 @@ function useBuildByComponentContext() {
       }
     })
 
-    // console.log({ _preferences_feed, _highest_segment, preferences, all_data, _portinos_product_feed });
+    console.log({ _preferences_feed, _highest_segment, preferences, all_data, _portinos_product_feed });
     setCleanGameInfoArray(all_data)
     setBuildSegment(_highest_segment)
     getPredefineBuilds(_highest_segment!)
@@ -372,8 +372,9 @@ function useBuildByComponentContext() {
         });
       }
     })
+    // 20240104 / 20240114
 
-    // console.log({predefined_pre_sets});
+    console.log({predefined_pre_sets});
     setPredefinedBuilds(predefined_pre_sets)
   }
 
