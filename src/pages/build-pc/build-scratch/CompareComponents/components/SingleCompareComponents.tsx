@@ -215,6 +215,34 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
         )
         : (
           <>
+            <div className='my-2 w-full border-b border-b-white-75'>
+              {/* <PolygonContainer> */}
+              <div className="py-3 flex flex-col items-center text-center gap-y-3">
+                <h1 className="text-M-h1 max-w-[257px] font-IntelOneDisplayBold line-clamp-3">
+                  {componentItem?.title}
+                </h1>
+
+                <div className="flex justify-center gap-x-6">
+                  <CompatibilityBadge />
+                  <div className="flex gap-1 items-center">
+                    <StarRatingComponent size={8} />
+                    <span className="text-xs leading-[10px]">#### Reviews</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-x-3 items-center">
+                  <span className="font-IntelOneBodyTextMedium text-xs">${componentItem?.price}</span>
+                  <Button variant='gaming-cobalt' onClick={() => addToBuild()}>
+                    <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
+                      Add to build
+                      <ImageFigure icon={RightArrow} width={12} />
+                    </div>
+                  </Button>
+                </div>
+
+              </div>
+              {/* </PolygonContainer> */}
+            </div>
             <div>
               {componentItem && (
                 <img src={getSpecDetailsImage(componentItem._id, componentItem?.original_slug as string, 'desktop')} className="w-full h-full object-cover object-top" alt="" />
