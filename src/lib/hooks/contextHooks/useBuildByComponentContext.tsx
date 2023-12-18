@@ -13,6 +13,7 @@ import MemoryIcon from '../../../assets/component-icons/memory.svg?react'
 import MemoryStorageIcon from '../../../assets/component-icons/memory-storage.svg?react'
 import ServerIcon from '../../../assets/component-icons/server.svg?react'
 import CPUCoolerIcon from '../../../assets/component-icons/cpu-cooler.svg?react'
+import FanIcon from '../../../assets/component-icons/case-fan.svg?react'
 import BatteryIcon from '../../../assets/component-icons/battery.svg?react'
 import WindowsIcon from '../../../assets/component-icons/windows-11.svg?react'
 
@@ -101,7 +102,7 @@ function useBuildByComponentContext() {
       selectedItem: null,
     },
     {
-      icon: <CPUCoolerIcon />,
+      icon: <FanIcon />,
       title: 'Case Fan',
       short_name: 'Case Fan',
       slug: 'fan',
@@ -416,6 +417,7 @@ function useBuildByComponentContext() {
         const specs = determineProductSpecs(ppf, category_slug);
 
         formatted_products[`${buildSlugMap[ppf.category!]}`]?.push({
+          original_slug: ppf.category!,
           _id: `${ppf.id}`,
           image: ppf.picture,
           price: ppf.price,

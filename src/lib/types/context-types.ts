@@ -29,6 +29,7 @@ export interface IBuildComponent {
   image: string;
   model?: string;
   category_slug?: IBuildStages["slug"];
+  original_slug?: IPortinosProductPresetKeys;
   specs?: IBuildComponentSpec[];
 }
 
