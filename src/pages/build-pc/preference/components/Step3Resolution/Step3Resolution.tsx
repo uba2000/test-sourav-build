@@ -28,7 +28,7 @@ function Step3Resolution({availableRes}: IStep3ResolutionProps) {
   }
 
   return (
-    <>
+    <div className='animate-fadeIn'>
       <PreferenceLayout.HeadingTitle
         text='And what resolution would you like for gaming?'
         subText='Select one:'
@@ -103,7 +103,7 @@ function Step3Resolution({availableRes}: IStep3ResolutionProps) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

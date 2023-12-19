@@ -29,7 +29,7 @@ function Step2FPS() {
   }
 
   return (
-    <>
+    <div className='animate-fadeIn'>
       <PreferenceLayout.HeadingTitle
         text='What level of gaming performance do you want?'
         subText='Select one:'
@@ -65,7 +65,7 @@ function Step2FPS() {
           </Fragment>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

@@ -131,7 +131,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
   return (
     <PageWrapper>
       <Modal />
-      <div className='md:pt-10 pt-5 md:pb-0 pb-5 overflow-x-hidden'>
+      <div className='md:pt-10 pt-5 md:pb-10 pb-5 overflow-x-hidden'>
         {/* Top Nav */}
         <div className="flex mb-2 md:justify-start justify-center">
           <PolygonContainer rightBorder={false} className="-mr-[1px]">

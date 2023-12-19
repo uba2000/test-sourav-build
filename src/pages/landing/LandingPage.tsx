@@ -27,7 +27,7 @@ function LandingPage() {
   ], []);
 
   return (
-    <div className="relative bg-no-repeat bg-top md:min-h-screen min-h-screen bg-contain flex flex-col justify-center">
+    <div className="animate-fadeIn relative bg-no-repeat bg-top md:min-h-screen min-h-screen bg-contain flex flex-col justify-center">
       <PageWrapper className='flex justify-center'>
         {/* Hero Section */}
         <div className='md:absolute object-center md:block hidden left-1/2 -translate-x-1/2 top-0 w-full max-w-[1200px] overflow-hidden'>

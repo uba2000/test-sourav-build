@@ -113,7 +113,7 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
   
 
   return (
-    <div className='flex flex-col gap-y-3 min-h-full'>
+    <div className='flex flex-col gap-y-3 min-h-full animate-fadeIn'>
       <div className="flex justify-end">
         <button type='button' className="cursor-pointer" onClick={() => toggleShowSpecs()}>
           <ImageFigure icon={CircleCloseIcon} width={16} />

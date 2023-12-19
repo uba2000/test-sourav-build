@@ -33,7 +33,7 @@ function PolygonContainer({
     <div className={clsx('flex flex-col relative', className)} style={_style}>
       <div
         className={clsx(
-          'h-2 relative',
+          'h-2 relative with-ease',
           {
             "w-[calc(100%_-_16px)] mx-auto": btl && btr,
 
@@ -61,7 +61,7 @@ function PolygonContainer({
       >
         <div
           className={clsx(
-            'border-t absolute top-0 left-0 w-full',
+            'border-t absolute top-0 left-0 w-full with-ease',
             {
               "border-[var(--border-color)]": borderActive,
               "border-[#C5C5CB]": !borderActive,
@@ -96,7 +96,7 @@ function PolygonContainer({
       </div>
       {/* Children */}
       <div
-        className={clsx('flex-1', `border-[${borderActive ? 'var(--border-color)' : '#C5C5CB'}]`,
+        className={clsx('flex-1 with-ease', `border-[${borderActive ? 'var(--border-color)' : '#C5C5CB'}]`,
           {
             "border-[var(--border-color)]": borderActive,
             "border-[#C5C5CB]": !borderActive
@@ -112,7 +112,7 @@ function PolygonContainer({
       {/* Children */}
       <div
         className={clsx(
-          "h-2 relative",
+          "h-2 relative with-ease",
           {
             "w-[calc(100%_-_16px)] mx-auto": bbl && bbr,
 
@@ -166,7 +166,7 @@ function PolygonContainer({
 
         <div
           className={clsx(
-            'border-b absolute bottom-0 left-0 w-full',
+            'border-b absolute bottom-0 left-0 w-full with-ease',
             {
               "border-[var(--border-color)]": borderActive,
               "border-[#C5C5CB]": !borderActive,

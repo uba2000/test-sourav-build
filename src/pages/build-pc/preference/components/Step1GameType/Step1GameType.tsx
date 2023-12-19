@@ -47,7 +47,7 @@ function Step1GameType() {
   }
 
   return (
-    <>
+    <div className='animate-fadeIn'>
       <PreferenceLayout.HeadingTitle
         text='What games do you want to play?'
         subText='Select all that apply:'
@@ -80,7 +80,7 @@ function Step1GameType() {
           )
         })}
       </div>
-    </>
+    </div>
   )
 }
 

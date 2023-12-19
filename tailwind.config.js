@@ -102,6 +102,15 @@ export default {
         "white-50": "rgba(255, 255, 255, 0.50)",
         // 'bg-linear-gradient-1': '#0A001F, #0A001F00',
       },
+      animation: {
+        fadeIn: "fadeIn 500ms cubic-bezier(0.2, 0, 0.38, 0.9) forwards",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0", transform: "translate(0px, 50px)" },
+          "100%": { opacity: "1", transform: "translate(0px, 0px)" },
+        },
+      },
     },
   },
   // eslint-disable-next-line no-undef
