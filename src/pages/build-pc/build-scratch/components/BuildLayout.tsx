@@ -180,7 +180,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
         >
           {/* {!isCompareMode && ( */}
           <div className="md:py-6 pt-6 flex-col gap-y-4 flex md:pb-[57px]">
-            <div className='flex-grow w-full min-w-[180px] min-h-[180px] flex justify-center items-center'>
+            <div className='animate-fadeIn flex-grow w-full min-w-[180px] min-h-[180px] flex justify-center items-center'>
               <div className='hidden md:block'>
                 <ImageFigure icon={currentModel} width={481} />
               </div>
