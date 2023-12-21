@@ -20,7 +20,8 @@ interface IPolygonContainer {
 
 function PolygonContainer({
   children, rightBorder = true, leftBorder = true, className = '',
-  btl = true, btr = true, bbr = true, bbl = true, borderActive = false,
+  btl = true, btr = true, bbr = true, bbl = true, 
+  borderActive = false,
   topBackground, rightBackground, defaultBorderBackground='#4B4567'
 }: IPolygonContainer) {
 

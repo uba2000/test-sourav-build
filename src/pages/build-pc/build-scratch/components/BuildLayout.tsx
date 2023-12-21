@@ -9,7 +9,6 @@ import Button from '../../../../components/Button/Button';
 
 // import BackIcon from "../../../../assets/nav-back-icon.svg"
 import ReloadIcon from "../../../../assets/nav-reload-icon.svg"
-import ExternalIcon from "../../../../assets/nav-external-link-icon.svg"
 import CartIcon from '../../../../assets/cart.svg'
 import RightArrow from "../../../../assets/right-arrow.svg"
 import BuildSpanner from '../../../../assets/component-icons/build.svg'
@@ -24,6 +23,7 @@ import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCCont
 import RouteNames from '../../../../lib/utils/routenames';
 import { formatNumberWithCommas } from '../../../../lib/utils/util-numbers';
 import Modal from '../../../../components/Modal/Modal';
+import NavLinkCopy from '../../../../components/NavLinkCopy/NavLinkCopy';
 
 interface IBuildLayout {
   children: React.ReactNode;
@@ -134,17 +134,15 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
       <div className='md:pt-10 pt-5 md:pb-10 pb-5 overflow-x-hidden'>
         {/* Top Nav */}
         <div className="flex mb-2 md:justify-start justify-center">
-          <PolygonContainer rightBorder={false} className="-mr-[1px]">
-            <div className="px-[10px] flex gap-1">
+          <PolygonContainer rightBorder={false} className="-mr-[1px] relative">
+            <div className="px-[10px] flex gap-1 items-center">
               {/* <button type="button" onClick={() => previousStage()}>
                 <ImageFigure icon={BackIcon} width={36} />
               </button> */}
               <button type="button" onClick={() => resetApp()}>
                 <ImageFigure icon={ReloadIcon} width={36} />
               </button>
-              <button type="button">
-                <ImageFigure icon={ExternalIcon} width={36} />
-              </button>
+              <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
             </div>
           </PolygonContainer>
           <PolygonContainer className="min-w-[246px]">
@@ -345,12 +343,14 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
   )
 }
 
-BuildLayout.HeaderTitle = function BuildLayoutHeaderTitle({ title, subTitle }: { title: string; subTitle?: string}) {
+BuildLayout.HeaderTitle = function BuildLayoutHeaderTitle({ title, subTitle }: { title?: string; subTitle?: string}) {
   return (
     <div className='mb-4 flex flex-col gap-y-3'>
+      {title && (
       <h1 className="text-M-h1 font-IntelOneDisplayBold">
         {title}
       </h1>
+      )}
       {subTitle && (
       <p className='text-sm font-IntelOneBodyTextRegular'>
         {subTitle}

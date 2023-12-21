@@ -96,6 +96,7 @@ export default {
         "intel-e-gray-t1": "#AEAEAE",
         "intel-e-gray-t3": "#F6F6F6",
         "intel-white": "#FFFFFF",
+        "link-blue": "#1E2EB8",
 
         "white-20": "rgba(255,255,255,0.20)",
         "white-75": "rgba(255,255,255,0.75)",
@@ -104,11 +105,16 @@ export default {
       },
       animation: {
         fadeIn: "fadeIn 500ms cubic-bezier(0.2, 0, 0.38, 0.9) forwards",
+        popIn: "popIn 100ms cubic-bezier(0.2, 0, 0.38, 0.9) forwards",
       },
       keyframes: {
         fadeIn: {
           "0%": { opacity: "0", transform: "translate(0px, 50px)" },
           "100%": { opacity: "1", transform: "translate(0px, 0px)" },
+        },
+        popIn: {
+          "0%": { opacity: "0", scale: "0.95" },
+          "100%": { opacity: "1", scale: "1" },
         },
       },
     },

@@ -15,6 +15,7 @@ import useBuildPCStages from '../../../../../lib/hooks/useBuildPCStages'
 import { IBuildStages, IBuildStagesSlugs } from '../../../../../lib/types/context-types'
 import PolygonContainer from '../../../../../components/PolygonContainer/PolygonContainer'
 import { getSpecDetailsImage } from '../../../../../lib/utils/util-asset-urls'
+import Select from '../../../../../components/Select/Select'
 
 // interface ISingleCompareComponents {
 //   handleToggleSingleDetails: (_id: string) => void
@@ -27,8 +28,9 @@ interface ISingleCompareComponents {
 }
 
 function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, category_slug}: ISingleCompareComponents) {
-  const { toggleShowSpecs, preferences, allGamesMinMaxFPS, cleanGameInfoArray, predefinedBuilds } = useBuildPCContext()
+  const { toggleShowSpecs, preferences, preferenceResolutions, allGamesMinMaxFPS, cleanGameInfoArray, predefinedBuilds } = useBuildPCContext()
   const { getStageData } = useBuildPCStages();
+  console.log({preferences});
   
   const stageDetails = useMemo<IBuildStages>(() => getStageData(category_slug as string), [category_slug, getStageData])
   const componentItem = useMemo(() => stageDetails.items.find((d) => d._id === selectedItemID), [selectedItemID, stageDetails.items])
@@ -169,36 +171,6 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
                 <h2 className="text-[18px] leading-[18px] font-IntelOneBodyTextBold">FPS Results</h2>
               </div>
 
-              <div className='flex gap-1'>
-                <div className="min-w-[150px] text-sm">Gaming at </div>
-                <div>
-                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
-                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{preferences?.gaming_resolution?.res || ''}</span>
-                    <ImageFigure icon={RightArrowBlack} width={12} />
-                  </div>
-                </div>
-              </div>
-
-              <div className='flex gap-1'>
-                <div className="min-w-[150px] text-sm">Paired with </div>
-                <div>
-                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
-                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{currentCPUGPUTitle || ''}</span>
-                    <ImageFigure icon={RightArrowBlack} width={12} />
-                  </div>
-                </div>
-              </div>
-
-              <div className='flex gap-1'>
-                <div className="min-w-[150px] text-sm">While playing </div>
-                <div>
-                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
-                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{currentGameTitle || ''}</span>
-                    <ImageFigure icon={RightArrowBlack} width={12} />
-                  </div>
-                </div>
-              </div>
-
               <div className="flex items-center gap-4">
                 <div className="bg-white-20 h-[6px] w-full">
                   <div
@@ -208,7 +180,60 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
                     )}
                   />
                 </div>
-                <div className="text-sm font-IntelOneBodyTextMedium">{percentageFPS.fps || 0}</div>
+                <div className="min-w-[86px] text-right text-lg font-IntelOneBodyTextBold">
+                  {percentageFPS.fps || 0} FPS
+                </div>
+              </div>
+
+              <div className='flex gap-1'>
+                <div className="min-w-[150px] text-sm">Gaming at </div>
+                <div className='hidden'>
+                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
+                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{preferences?.gaming_resolution?.res || ''}</span>
+                    <ImageFigure icon={RightArrowBlack} width={12} />
+                  </div>
+                </div>
+                <div className='flex-1'>
+                  <Select
+                    options={preferenceResolutions.map((d) => ({
+                      label: `${d.title.toUpperCase()} - ${d.res.toLowerCase()}`,
+                      value: d.res,
+                    }))}
+                    initialValue=''
+                  />
+                </div>
+              </div>
+
+              <div className='flex gap-1'>
+                <div className="min-w-[150px] text-sm">Paired with </div>
+                <div className='hidden'>
+                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
+                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{currentCPUGPUTitle || ''}</span>
+                    <ImageFigure icon={RightArrowBlack} width={12} />
+                  </div>
+                </div>
+                <div className='flex-1'>
+                  <Select options={[]} initialValue='' />
+                </div>
+              </div>
+
+              <div className='flex gap-1'>
+                <div className="min-w-[150px] text-sm">While playing </div>
+                <div className='hidden'>
+                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
+                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{currentGameTitle || ''}</span>
+                    <ImageFigure icon={RightArrowBlack} width={12} />
+                  </div>
+                </div>
+                <div className='flex-1'>
+                  <Select
+                    options={preferences.game_type_title.map(d => ({
+                      label: d,
+                      value: d
+                    }))}
+                    initialValue=''
+                  />
+                </div>
               </div>
             </div>
           </>

@@ -1,13 +1,11 @@
 import { Fragment, useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import BuildLayout from '../build-scratch/components/BuildLayout'
-// import usePreBuiltBuilds from '../../../lib/hooks/contextHooks/usePreBuiltBuilds'
 import BuildItem from '../build-scratch/MyBuild/components/BuildItem';
 import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext';
+import _ from 'lodash';
 
 function PreconfigedSystems() {
-  // const { enthusiast } = usePreBuiltBuilds();
-  const { currentBuild, togglePreBuildToCurrentBuildForPreview, addToRetailerUsersCart } = useBuildPCContext();
-  // console.log({predefinedBuilds, enthusiast});
+  const { currentBuild, predefinedBuilds, togglePreBuildToCurrentBuildForPreview, addToRetailerUsersCart } = useBuildPCContext();
 
   useLayoutEffect(() => {
     togglePreBuildToCurrentBuildForPreview('add')
@@ -32,10 +30,13 @@ function PreconfigedSystems() {
     <BuildLayout
       showPriceSection
       // stagesStatus='complete'
-      layout_r_title='My Build'
+      layout_r_title={`${_.capitalize(predefinedBuilds?.build_segment)} build`}
       totalPrice={buildPrice}
       // buildModel={enthusiast.buildModel}
     >
+      <BuildLayout.HeaderTitle
+        subTitle={`Ready player! Based on your gaming preferences, you will need a high performance ${predefinedBuilds?.title}. Inspect your build details below:`}
+      />
       <div className='flex flex-col gap-y-3'>
         {componentItems && componentItems.map((d) => (
           <Fragment key={d._id}>
