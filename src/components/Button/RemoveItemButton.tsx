@@ -35,11 +35,19 @@ function RemoveItemButton({ onClick = () => { }, variant='large' }: IRemoveItemB
         onClick={() => initiateClickEvent()}
         className={clsx(
           'flex gap-x-[6px] items-center relative z-30',
-          {'py-[6px] px-2 ': variant === 'large'},
-          {'py-1 px-2 ': variant === 'small'}
+          {'py-[6px] px-2': variant === 'large'},
+          {'py-1 px-2': variant === 'small'}
         )}
       >
-        <span className='text-sm font-IntelOneBodyTextMedium'>Remove item</span>
+        <span
+          className={clsx(
+            'font-IntelOneBodyTextMedium whitespace-nowrap',
+            {'text-sm': variant === 'large'},
+            {'text-xs': variant === 'small'}
+          )}
+        >
+          Remove item
+        </span>
         <ImageFigure icon={RemoveIcon} width={14} />
       </Button>
 

@@ -54,18 +54,19 @@ function BuildItem({
             </div>
           </div>
 
-          <div className="flex justify-between">
+          <div className="flex justify-between items-end">
             <div className="flex flex-col justify-end gap-y-[2px]">
               {data?.specs?.map((d) => (
                 <Fragment key={_.uniqueId()}>
-                  <span className='text-xs font-IntelOneBodyTextRegular'>
+                  <span className='text-xs font-IntelOneBodyTextRegular line-clamp-2'>
                     <span className="text-inherit text-xs font-IntelOneBodyTextMedium">{d.spec_value}</span>
+                    {' '}
                     {d.spec_title}
                   </span>
                 </Fragment>
               ))}
             </div>
-            <div className="flex flex-col justify-between gap-y-1 items-end">
+            <div className="flex flex-col justify-between gap-y-1 items-end min-w-[105px]">
               <span className='font-IntelOneBodyTextMedium'>${data.price}</span>
               <button type='button' className="flex gap-x-[6px] items-center relative z-30" onClick={() => handleAddToCart()}>
                 <div className='font-IntelOneBodyTextRegular text-sm'>

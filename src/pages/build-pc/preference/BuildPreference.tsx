@@ -11,7 +11,6 @@ import Step2FPS from "./components/Step2FPS/Step2FPS"
 
 import BackIcon from "../../../assets/nav-back-icon.svg"
 import ReloadIcon from "../../../assets/nav-reload-icon.svg"
-import ExternalIcon from "../../../assets/nav-external-link-icon.svg"
 import RightArrow from "../../../assets/right-arrow.svg"
 import Step3Resolution from "./components/Step3Resolution/Step3Resolution"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"

@@ -75,11 +75,11 @@ function ChooseComponentItem({
             </div>
           </div>
 
-          <div className="flex justify-between">
+          <div className="flex justify-between items-end">
             <div className="flex flex-col justify-end gap-y-[2px]">
               {data?.specs?.map((d) => (
                 <Fragment key={_.uniqueId()}>
-                  <span className='text-xs font-IntelOneBodyTextRegular'>
+                  <span className='text-xs font-IntelOneBodyTextRegular line-clamp-2'>
                     <span className="text-inherit text-xs font-IntelOneBodyTextMedium">{d.spec_value}</span>
                     {' '}
                     {d.spec_title}
@@ -87,7 +87,7 @@ function ChooseComponentItem({
                 </Fragment>
               ))}
             </div>
-            <div className="flex flex-col gap-y-1 items-end">
+            <div className="flex flex-col gap-y-1 items-end min-w-[105px]">
               <span className='font-IntelOneBodyTextMedium'>${data.price}</span>
               {inBuild && (
                 <RemoveItemButton variant='small' onClick={() => handleRemoveFromBuild()} />

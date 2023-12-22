@@ -229,10 +229,41 @@ export interface IAPortinosProductInFeed {
   memory_supported: string;
 
   pricespider_passthrough: {
-    "Internal memory type": string;
-
-    // storage
-    Interface: string;
+    // processor
+    processor_boost_frequency?: string;
+    processor_cores?: string;
+    processor_socket?: string;
+    // graphics card
+    discrete_graphics_card_memory?: string;
+    graphics_card_memory_type?: string;
+    hdmi_version?: string;
+    number_of_slots?: string;
+    // motherboard
+    motherboard_form_factor?: string;
+    supported_memory_types?: string;
+    // Memory
+    internal_memory?: string;
+    internal_memory_type?: string;
+    memory_layout_modules_x_size?: string;
+    memory_clock_speed?: string;
+    ssd_form_factor?: string;
+    // Storage
+    interface?: string;
+    // Case
+    form_factor?: string;
+    supported_motherboard_form_factors?: string;
+    number_of_expansion_slots?: string;
+    // Cooling
+    supported_processor_sockets?: string;
+    type?: string;
+    maximum_airflow?: string;
+    // Power supply
+    total_power?: string;
+    power_supply_unit_psu_form_factor?: string;
+    "80_plus_certification"?: string;
+    // Fan
+    fan_diameter?: string;
+    bearing_type?: string;
   };
 }
 

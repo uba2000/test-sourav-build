@@ -52,7 +52,6 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
   const mobileNavContainer = useRef<HTMLDivElement>(null);
   const navigate = useNavigate()
   const { buildStages } = useBuildPCStages()
-  // console.log({currentBuild});
 
   // states of the 3D model
   // 1. empty view for initial state
@@ -121,7 +120,6 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
   useEffect(() => { 
     // if (currentModelOnStage && !viewingCurrentComponentModel) {
     if (currentModelOnStage) {
-      // console.log("currentModelOnStage", currentModelOnStage);
       setCurrentModel(currentModelOnStage)
     } else {
       setCurrentModel(Image3D)
