@@ -14,13 +14,15 @@ import ReloadIcon from "../../../assets/nav-reload-icon.svg"
 import ExternalIcon from "../../../assets/nav-external-link-icon.svg"
 import RightArrow from "../../../assets/right-arrow.svg"
 import Step3Resolution from "./components/Step3Resolution/Step3Resolution"
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import RouteNames from "../../../lib/utils/routenames"
 import useBuildPCContext from "../../../lib/hooks/contextHooks/useBuildPCContext"
 import { IFormatPreferencesDataReturn } from "../../../lib/utils/util-build-preference"
 import { PreferenceResolutionsTitleType } from "../../../lib/types/context-types"
+import NavLinkCopy from "../../../components/NavLinkCopy/NavLinkCopy"
 
 function BuildPreference() {
+  const location = useLocation()
   const [searchParams] = useSearchParams();
   
   const navigate = useNavigate();
@@ -135,9 +137,10 @@ function BuildPreference() {
                 <button type="button" onClick={() => resetApp()}>
                   <ImageFigure icon={ReloadIcon} width={36} />
                 </button>
-                <button type="button">
+                <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
+                {/* <button type="button">
                   <ImageFigure icon={ExternalIcon} width={36} />
-                </button>
+                </button> */}
               </div>
             </PolygonContainer>
           </div>
@@ -150,9 +153,10 @@ function BuildPreference() {
                 <button type="button" onClick={() => resetApp()}>
                   <ImageFigure icon={ReloadIcon} width={36} />
                 </button>
-                <button type="button">
+                <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
+                {/* <button type="button">
                   <ImageFigure icon={ExternalIcon} width={36} />
-                </button>
+                </button> */}
               </div>
             </PolygonContainer>
           </div>
