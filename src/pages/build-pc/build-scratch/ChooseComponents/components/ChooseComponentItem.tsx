@@ -8,9 +8,11 @@ import Button from '../../../../../components/Button/Button'
 import { IBuildComponent } from '../../../../../lib/types/context-types'
 import { Fragment } from 'react'
 import _ from 'lodash'
+import RemoveItemButton from '../../../../../components/Button/RemoveItemButton'
 
 interface IChooseComponentItem {
   selected?: boolean;
+  active?: boolean;
   inBuild?: boolean;
   onClick?: (_id: string) => void;
   addToBuild?: (_id: string) => void;
@@ -31,7 +33,13 @@ function ChooseComponentItem({
   }
 
   return (
-    <PolygonContainer btl={false} btr={false} bbr={false} borderActive={selected}>
+    <PolygonContainer
+      btl={false}
+      btr={false}
+      bbr={false}
+      borderActive={selected || inBuild}
+      backgroundActive={selected}
+    >
       <div className="px-[6px] flex">
         <div className="min-w-[94px] max-w-[94px] flex justify-center items-center">
           <div className='cursor-pointer w-full h-full max-w-[75px] min-w-[75px] max-h-[75px] min-h-[75px]'>
@@ -65,12 +73,18 @@ function ChooseComponentItem({
             </div>
             <div className="flex flex-col gap-y-1 items-end">
               <span className='font-IntelOneBodyTextMedium'>${data.price}</span>
+              {inBuild && (
+                <RemoveItemButton variant='small' />
+              )}
+
+              {!inBuild && (
               <Button disabled={inBuild} className='relative z-30' variant='gaming-cobalt' onClick={() => handleAddToBuild()}>
                 <div className="flex gap-x-[6px] items-center py-1 px-2 text-xs">
                   Add to Build
                   <ImageFigure icon={RightArrow} width={12} />
                 </div>
               </Button>
+              )}
             </div>
           </div>
           <div className="absolute left-0 top-0 h-full w-full cursor-pointer" onClick={() => itemClick()} />

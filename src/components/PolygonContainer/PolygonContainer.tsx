@@ -11,6 +11,7 @@ interface IPolygonContainer {
   rightBackground?: 'primary' | null;
 
   borderActive?: boolean;
+  backgroundActive?: boolean;
 
   btl?: boolean; // top left
   btr?: boolean; // top right
@@ -21,7 +22,7 @@ interface IPolygonContainer {
 function PolygonContainer({
   children, rightBorder = true, leftBorder = true, className = '',
   btl = true, btr = true, bbr = true, bbl = true, 
-  borderActive = false,
+  borderActive = false, backgroundActive = false,
   topBackground, rightBackground, defaultBorderBackground='#4B4567'
 }: IPolygonContainer) {
 
@@ -53,7 +54,9 @@ function PolygonContainer({
             "border-r": !btr,
           },
           {
-            "before:border-b-[var(--background-color)] after:border-b-[var(--background-color)] bg-[var(--background-color)] text-[var(--border-color)] border-[var(--border-color)]": borderActive,
+            "text-[var(--border-color)] border-[var(--border-color)]": borderActive,
+            "before:border-b-[var(--background-color)] after:border-b-[var(--background-color)] bg-[var(--background-color)]": backgroundActive,
+            "before:border-b-transparent after:border-b-transparent": borderActive && !backgroundActive,
             "before:border-b-transparent after:border-b-transparent bg-transparent text-[#C5C5CB]": !borderActive && !rightBackground && !topBackground,
             "before:border-b-[#0040FF] after:border-b-[#0040FF] bg-[#0040FF]": !borderActive && topBackground === 'primary',
             "after:border-b-[#0040FF] bg-[#0040FF]": !borderActive && rightBackground === 'primary'
@@ -102,7 +105,9 @@ function PolygonContainer({
             "border-[var(--border-color)]": borderActive,
             "border-[#C5C5CB]": !borderActive
           },
-          { "bg-[var(--background-color)]": borderActive },
+          {
+            "bg-[var(--background-color)]": backgroundActive,
+          },
           {
           'border-l': leftBorder,
           'border-r': rightBorder
@@ -133,7 +138,9 @@ function PolygonContainer({
             "border-r": !bbr,
           },
           {
-            "before:border-t-[var(--background-color)] after:border-t-[var(--background-color)] bg-[var(--background-color)] text-[var(--border-color)] border-[var(--border-color)]": borderActive,
+            "text-[var(--border-color)] border-[var(--border-color)]": borderActive,
+            "before:border-t-[var(--background-color)] after:border-t-[var(--background-color)] bg-[var(--background-color)]": backgroundActive,
+            "before:border-t-transparent after:border-t-transparent": borderActive && !backgroundActive,
             "before:border-t-transparent after:border-t-transparent bg-transparent text-[#C5C5CB]": !borderActive && !topBackground && !rightBackground,
             "after:border-t-[#0040FF] bg-[#0040FF]": !borderActive && rightBackground === 'primary'
           }

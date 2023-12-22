@@ -16,24 +16,54 @@ import { IBuildStages, IBuildStagesSlugs } from '../../../../../lib/types/contex
 import PolygonContainer from '../../../../../components/PolygonContainer/PolygonContainer'
 import { getSpecDetailsImage } from '../../../../../lib/utils/util-asset-urls'
 import Select from '../../../../../components/Select/Select'
+import RemoveItemButton from '../../../../../components/Button/RemoveItemButton'
 
 // interface ISingleCompareComponents {
 //   handleToggleSingleDetails: (_id: string) => void
 // }
 
 interface ISingleCompareComponents {
-  handleAddComponentToBuild: (_id: string) => void;
+  handleAddComponentToBuild?: (_id: string) => void;
   selectedItemID: string | null;
-  category_slug: IBuildStagesSlugs; 
+  category_slug: IBuildStagesSlugs;
+  isInBuild?: boolean;
 }
 
-function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, category_slug}: ISingleCompareComponents) {
-  const { toggleShowSpecs, preferences, preferenceResolutions, allGamesMinMaxFPS, cleanGameInfoArray, predefinedBuilds } = useBuildPCContext()
+function SingleCompareComponents({
+  selectedItemID, isInBuild,
+  handleAddComponentToBuild = () => { },
+  category_slug
+}: ISingleCompareComponents) {
+  const {
+    toggleShowSpecs, preferences, preferenceResolutions, currentBuild, toggleCanViewSpecs,
+    allGamesMinMaxFPS, cleanGameInfoArray, predefinedBuilds, removeComponentToBuild,
+    toggleViewingComponentModel, setCurrentModelOnStage
+  } = useBuildPCContext()
+
+  const _category_slug = useMemo(() => { 
+    if (category_slug) {
+      return category_slug;
+    }
+
+    return currentBuild.find((d) => d._id === selectedItemID)?.category_slug;
+  }, [category_slug, currentBuild, selectedItemID])
   const { getStageData } = useBuildPCStages();
-  console.log({preferences});
-  
-  const stageDetails = useMemo<IBuildStages>(() => getStageData(category_slug as string), [category_slug, getStageData])
-  const componentItem = useMemo(() => stageDetails.items.find((d) => d._id === selectedItemID), [selectedItemID, stageDetails.items])
+
+  const stageDetails = useMemo<IBuildStages | null>(() => {
+    if (_category_slug) {
+      return getStageData(_category_slug as string)
+    }
+
+    return null;
+  }, [_category_slug, getStageData]);
+
+  const componentItem = useMemo(() => {
+    if (_category_slug && stageDetails) {
+      return stageDetails.items.find((d) => d._id === selectedItemID)
+    }
+
+    return currentBuild.find((d) => d._id === selectedItemID);
+  }, [_category_slug, currentBuild, selectedItemID, stageDetails])
 
   const chartData = useMemo<IDoughnutChartData[]>(() => [
     {
@@ -106,13 +136,28 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
   }, [cleanGameInfoArray, allGamesMinMaxFPS, currentGameTitle])
 
   const currentCPUGPUTitle = useMemo(() => { 
-    return category_slug === 'processor'
+    return _category_slug === 'processor'
       ? predefinedBuilds.items.find((d) => d.category_slug === 'graphics-card')?.title
       : predefinedBuilds.items.find((d) => d.category_slug === 'processor')?.title
-  }, [predefinedBuilds, category_slug])
+  }, [predefinedBuilds, _category_slug])
 
   console.log({componentItem});
   
+  function handleDeleteFromBuild() {
+    if (componentItem) {
+      toggleShowSpecs();
+      removeComponentToBuild({
+        category_slug: _category_slug!, component_id: componentItem._id!
+      })
+
+      // if in build page, clear image
+      toggleShowSpecs(false);
+      toggleCanViewSpecs(false);
+      toggleViewingComponentModel(false);
+      setCurrentModelOnStage('');
+      // else itll be handled
+    }
+  }
 
   return (
     <div className='flex flex-col gap-y-3 min-h-full animate-fadeIn'>
@@ -122,7 +167,7 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
         </button>
       </div>
 
-      {(category_slug === 'processor' || category_slug === 'graphics-card')
+      {(_category_slug === 'processor' || _category_slug === 'graphics-card')
         ? (
           <>
             <div className="flex justify-center">
@@ -150,12 +195,17 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
 
                 <div className="flex gap-x-3 items-center">
                   <span className="font-IntelOneBodyTextMedium text-xs">${componentItem?.price}</span>
-                  <Button variant='gaming-cobalt' onClick={() => addToBuild()}>
-                    <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
-                      Add to Build
-                      <ImageFigure icon={RightArrow} width={12} />
-                    </div>
-                  </Button>
+                  {isInBuild && (
+                    <RemoveItemButton onClick={() => handleDeleteFromBuild()} />
+                  )}
+                  {!isInBuild && (
+                    <Button variant='gaming-cobalt' onClick={() => addToBuild()} disabled={isInBuild}>
+                      <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
+                        Add to Build
+                        <ImageFigure icon={RightArrow} width={12} />
+                      </div>
+                    </Button>
+                  )}
                 </div>
               </div>
             </PolygonContainer>
@@ -257,12 +307,17 @@ function SingleCompareComponents({selectedItemID, handleAddComponentToBuild, cat
 
                 <div className="flex gap-x-3 items-center">
                   <span className="font-IntelOneBodyTextMedium text-xs">${componentItem?.price}</span>
-                  <Button variant='gaming-cobalt' onClick={() => addToBuild()}>
-                    <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
-                      Add to build
-                      <ImageFigure icon={RightArrow} width={12} />
-                    </div>
-                  </Button>
+                  {isInBuild && (
+                    <RemoveItemButton onClick={() => handleDeleteFromBuild()} />
+                  )}
+                  {!isInBuild && (
+                    <Button variant='gaming-cobalt' onClick={() => addToBuild()} disabled={isInBuild}>
+                      <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
+                        Add to Build
+                        <ImageFigure icon={RightArrow} width={12} />
+                      </div>
+                    </Button>
+                  )}
                 </div>
 
               </div>

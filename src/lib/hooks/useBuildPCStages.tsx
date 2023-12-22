@@ -1,11 +1,11 @@
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import type { IBuildStages } from '../types/context-types'
 import useBuildPCContext from './contextHooks/useBuildPCContext';
-import { useMatches } from 'react-router-dom';
+// import { useMatches } from 'react-router-dom';
 
 function useBuildPCStages() {
-  const matches = useMatches();
-  const _category_slug = useMemo(() => matches[0].params?.category_slug, [matches])
+  // const matches = useMatches();
+  // const _category_slug = useMemo(() => matches[0].params?.category_slug, [matches])
   const { buildStages, currentBuild } = useBuildPCContext()
 
   // to know the next build stages
@@ -18,11 +18,9 @@ function useBuildPCStages() {
   }
 
   useEffect(() => {
-    if (_category_slug) {
-      const _next_index_to_build = buildStages.findIndex((d) => d.selectedItem === null)
-      setCurrentBuildStageIndex(_next_index_to_build)
-    }
-  }, [_category_slug, buildStages, currentBuild, currentBuild.length])
+    const _next_index_to_build = buildStages.findIndex((d) => d.selectedItem === null)
+    setCurrentBuildStageIndex(_next_index_to_build)
+  }, [buildStages, currentBuild, currentBuild.length])
 
   useLayoutEffect(() => { 
     const _next_index_to_build = buildStages.findIndex((d) => d.selectedItem === null)

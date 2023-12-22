@@ -16,11 +16,13 @@ interface IChooseComponentItem {
 }
 
 function BuildItem({
-  selected = true, onClick = () => { }, addToCart = () => { },
+  selected = false, onClick = () => { }, addToCart = () => { },
   data
 }: IChooseComponentItem) {
   function itemClick() {
-    onClick('');
+    onClick(data._id);
+    console.log('clicked');
+    
   }
 
   function handleAddToCart() {
@@ -28,7 +30,7 @@ function BuildItem({
   }
 
   return (
-    <PolygonContainer btl={false} btr={false} bbr={false} borderActive={selected}>
+    <PolygonContainer btl={false} btr={false} bbr={false} borderActive backgroundActive={selected}>
       <div className="px-[6px] flex">
         <div className="max-w-[94px] min-w-[94px] w-full flex justify-center items-center">
           <div className='cursor-pointer w-full h-full max-w-[75px] min-w-[75px] max-h-[75px] min-h-[75px]' onClick={() => itemClick()}>
@@ -67,7 +69,7 @@ function BuildItem({
             </div>
             <div className="flex flex-col justify-between gap-y-1 items-end">
               <span className='font-IntelOneBodyTextMedium'>${data.price}</span>
-              <button type='button' className="flex gap-x-[6px] items-center" onClick={() => handleAddToCart()}>
+              <button type='button' className="flex gap-x-[6px] items-center relative z-30" onClick={() => handleAddToCart()}>
                 <div className='font-IntelOneBodyTextRegular text-sm'>
                   Add to cart
                 </div>
@@ -79,6 +81,7 @@ function BuildItem({
           </div>
         </div>
       </div>
+      <div className="absolute left-0 top-0 h-full w-full cursor-pointer" onClick={() => itemClick()} />
     </PolygonContainer>
   )
 }

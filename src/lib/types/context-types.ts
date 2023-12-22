@@ -154,6 +154,7 @@ export interface IBuildPCContext {
   ) => IFormatPreferencesDataReturn[];
   togglePreBuildToCurrentBuildForPreview: (action: "add" | "remove") => void;
   addComponentToBuild: (props: IAddToBuildProps) => void;
+  removeComponentToBuild: (props: IAddToBuildProps) => void;
 
   resetApp: () => void;
   addToRetailerUsersCart: (props: AddToRetailerUsersCartPropsType) => void;

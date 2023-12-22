@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React from 'react'
 
 interface IButton {
-  variant?: 'primary' | 'secondary' | 'cobalt' | 'gaming-cobalt';
+  variant?: 'primary' | 'secondary' | 'cobalt' | 'gaming-cobalt' | 'outline-game-blue';
   disabled?: boolean;
   children: React.ReactNode;
   onClick?: () => void;
@@ -20,6 +20,7 @@ function Button({ children, disabled = false, variant = 'primary', onClick = () 
         'bg-gaming-yellow disabled:bg-[#575757]': variant === 'secondary',
         'bg-intel-cobalt-t1 disabled:bg-[#575757]': variant === 'cobalt',
         'bg-gaming-cobalt disabled:bg-[#575757] disabled:opacity-20': variant === 'gaming-cobalt',
+        'border border-gaming-blue text-gaming-blue disabled:opacity-25': variant === 'outline-game-blue',
       },className)}
     >
       {children}

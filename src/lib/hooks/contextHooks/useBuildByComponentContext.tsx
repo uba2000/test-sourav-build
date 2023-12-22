@@ -157,6 +157,35 @@ function useBuildByComponentContext() {
     refreshInterval: 30000,
   })
 
+  function removeFromBuild({ category_slug, component_id }: IAddToBuildProps) {
+    const _currentBuild = currentBuild.filter((d) => (d.category_slug !== category_slug && component_id !== d._id))
+
+    const _buildStages = [...buildStages];
+    const _current_build_category = _buildStages.find((d) => d.slug === category_slug);
+    console.log({_current_build_category, _currentBuild});
+    
+
+    if (_current_build_category) {
+      const _current_component = _current_build_category.items.find((d) => d._id === component_id)
+      const _current_component_index = _current_build_category.items.findIndex((d) => d._id === component_id)
+
+      if (_current_component) {
+        _current_component.category_slug = _current_build_category.slug;
+
+        setCurrentBuild([
+          ..._currentBuild,
+        ]);
+      }
+
+      if (_current_component_index >= 0 && _current_component && _current_build_category) {
+        const _currrent_index_build = buildStages.findIndex((d) => d.slug === _current_build_category?.slug)
+        _buildStages[_currrent_index_build].selectedItem = null;
+      }
+    }
+
+    setBuildStages(_buildStages);
+  }
+
   function addToBuild({ category_slug, component_id }: IAddToBuildProps) {
     const is_in_build = currentBuild.find((d) => d.category_slug === category_slug)
     let _currentBuild = [...currentBuild];
@@ -481,6 +510,7 @@ function useBuildByComponentContext() {
 
     togglePreBuildToCurrentBuildForPreview,
     addComponentToBuild: addToBuild,
+    removeComponentToBuild: removeFromBuild,
     resetPCBuild,
     analyzePreferencesForBuild,
   }

@@ -47,7 +47,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
     resetApp, canViewSpecs,
     addToRetailerUsersCart,
     currentModelOnStage, toggleShowSpecs,
-    showCurrentModelSpecs
+    showCurrentModelSpecs, thankYouModalOpen
   } = useBuildPCContext();
   const mobileNavContainer = useRef<HTMLDivElement>(null);
   const navigate = useNavigate()
@@ -130,7 +130,14 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
 
   return (
     <PageWrapper>
-      <Modal />
+      {/* Add to Cart Modal */}
+      <Modal
+        onClose={() => addToRetailerUsersCart({ state: 'complete' })}
+        visible={thankYouModalOpen}
+        title='Thank You'
+        description='Your components have been added to your cart.'
+      />
+      {/* Add to Cart Modal */}
       <div className='md:pt-10 pt-5 md:pb-10 pb-5 overflow-x-hidden'>
         {/* Top Nav */}
         <div className="flex mb-2 md:justify-start justify-center">
