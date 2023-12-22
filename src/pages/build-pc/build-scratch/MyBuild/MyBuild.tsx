@@ -37,7 +37,6 @@ function MyBuild() {
 
   function handleBuildItemClick(_id: string) {
     const _item = currentBuild.find((d) => d._id === _id);
-    console.log({_item, currentBuild});
     toggleCanViewSpecs(true);
     setCurrentModelOnStage(_item?.image as string);
     if ((selectedItemID === _id || !selectedItemID) && selectedItemID !== _id) {
@@ -74,7 +73,7 @@ function MyBuild() {
           )}
 
           {((currentBuildStageIndex > 0 && currentBuildStageIndex < buildStages.length)
-          || currentBuild.length !== 0) && (
+          || (currentBuild.length !== 0 && currentBuildStageIndex > 0)) && (
             <div className="flex justify-end items-center gap-x-2">
               <span className="text-xs font-IntelOneBodyTextMedium"> Next, select a</span>
               <Button onClick={() => goToChooseComponent()} className="min-w-fit py-2 px-3">
@@ -105,6 +104,7 @@ function MyBuild() {
           category_slug={_category_slug}
           selectedItemID={selectedItemID}
           isInBuild
+          inBuildPage
           // handleAddComponentToBuild={handleAddComponentToBuild}
         />
       )}

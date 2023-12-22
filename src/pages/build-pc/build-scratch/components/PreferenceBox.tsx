@@ -30,8 +30,6 @@ function PreferenceBox() {
     return _selectedGameTitles.map((d: any) => ({...d, fps: d.fps ? d.fps : _minimum_fps}));
   }, [preferences, preferenceGameTypes, cleanGameInfoArray])
 
-  console.log({ preferences, preferenceGameTypes, cleanGameInfoArray, selectedGameTitles });
-
   return (
     <PolygonContainer>
       <div className="p-2">

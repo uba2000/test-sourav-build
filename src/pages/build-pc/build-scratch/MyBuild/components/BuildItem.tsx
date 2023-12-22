@@ -21,8 +21,6 @@ function BuildItem({
 }: IChooseComponentItem) {
   function itemClick() {
     onClick(data._id);
-    console.log('clicked');
-    
   }
 
   function handleAddToCart() {

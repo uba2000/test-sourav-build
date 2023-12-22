@@ -1,8 +1,9 @@
 import Portal from '../Widgets/Portal'
 import PolygonContainer from '../PolygonContainer/PolygonContainer'
 
-import CircleCloseIcon from '../../assets/circle-close-icon.svg?react'
+import CircleCloseIcon from '../../assets/circle-close-icon.svg'
 import clsx from 'clsx';
+import ImageFigure from '../ImageFigure';
 
 interface IModal {
   visible?: boolean;
@@ -27,7 +28,7 @@ function Modal({ visible, title, description, children, onClose = () => { } }: I
             <div className="text-center w-full md:max-w-[400px] max-w-[258px] px-3 py-1">
               <div className="flex justify-end">
                 <button type='button' className="cursor-pointer" onClick={() => closeModal()}>
-                  <CircleCloseIcon className='w-4 h-4 text-white' />
+                  <ImageFigure icon={CircleCloseIcon} width={16} />
                 </button>
               </div>
               

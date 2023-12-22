@@ -4,7 +4,8 @@ import { useState } from 'react'
 import Button from './Button'
 
 import RightArrow from '../../assets/right-arrow.svg?react'
-import RemoveIcon from '../../assets/circle-close-icon.svg?react'
+import RemoveIcon from '../../assets/circle-close-icon-game-blue.svg'
+import ImageFigure from '../ImageFigure'
 
 interface IRemoveItemButton {
   onClick?: () => void;
@@ -39,7 +40,7 @@ function RemoveItemButton({ onClick = () => { }, variant='large' }: IRemoveItemB
         )}
       >
         <span className='text-sm font-IntelOneBodyTextMedium'>Remove item</span>
-        <RemoveIcon className='w-[14px] h-[14px]' />
+        <ImageFigure icon={RemoveIcon} width={14} />
       </Button>
 
       <Modal
@@ -57,7 +58,7 @@ function RemoveItemButton({ onClick = () => { }, variant='large' }: IRemoveItemB
             )}
           >
             <span className='text-sm font-IntelOneBodyTextMedium'>Cancel</span>
-            <RemoveIcon className='w-[14px] h-[14px]' />
+            <ImageFigure icon={RemoveIcon} width={14} />
           </Button>
 
           <Button onClick={() => handleOnClick()} className="min-w-[103px] py-[6px] px-2">

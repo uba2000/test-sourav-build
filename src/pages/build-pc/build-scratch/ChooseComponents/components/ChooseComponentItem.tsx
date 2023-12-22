@@ -9,6 +9,7 @@ import { IBuildComponent } from '../../../../../lib/types/context-types'
 import { Fragment } from 'react'
 import _ from 'lodash'
 import RemoveItemButton from '../../../../../components/Button/RemoveItemButton'
+import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
 
 interface IChooseComponentItem {
   selected?: boolean;
@@ -16,20 +17,35 @@ interface IChooseComponentItem {
   inBuild?: boolean;
   onClick?: (_id: string) => void;
   addToBuild?: (_id: string) => void;
+  removeFromBuild?: (_id: string) => void;
   data: IBuildComponent;
 }
 
 function ChooseComponentItem({
   selected = false, onClick = () => { },
-  addToBuild = () => { }, data, inBuild
+  addToBuild = () => { }, data, inBuild,
+  removeFromBuild = () => { }
 }: IChooseComponentItem) {
-  
+  const {
+    toggleShowSpecs, toggleCanViewSpecs,
+    toggleViewingComponentModel, setCurrentModelOnStage
+  } = useBuildPCContext()
+
   function itemClick() {
     onClick(data._id);
   }
 
   function handleAddToBuild() {
     addToBuild(data._id);
+  }
+
+  function handleRemoveFromBuild() {
+    removeFromBuild(data._id)
+
+    toggleShowSpecs(false);
+    toggleCanViewSpecs(false);
+    toggleViewingComponentModel(false);
+    setCurrentModelOnStage('');
   }
 
   return (
@@ -74,7 +90,7 @@ function ChooseComponentItem({
             <div className="flex flex-col gap-y-1 items-end">
               <span className='font-IntelOneBodyTextMedium'>${data.price}</span>
               {inBuild && (
-                <RemoveItemButton variant='small' />
+                <RemoveItemButton variant='small' onClick={() => handleRemoveFromBuild()} />
               )}
 
               {!inBuild && (

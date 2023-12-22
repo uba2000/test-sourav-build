@@ -49,8 +49,6 @@ function ValidateBuildHasData({ children }: IValidateBuildHasData) {
   useEffect(() => {
     if (isOnBuildRoutes) {
       if (preferences.game_type_title.length === 0 && !preferences.gaming_fps && !preferences.gaming_resolution) {
-        console.log('in here');
-        
         resetApp();
       }
     }

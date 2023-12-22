@@ -27,12 +27,13 @@ interface ISingleCompareComponents {
   selectedItemID: string | null;
   category_slug: IBuildStagesSlugs;
   isInBuild?: boolean;
+  inBuildPage?: boolean;
 }
 
 function SingleCompareComponents({
   selectedItemID, isInBuild,
   handleAddComponentToBuild = () => { },
-  category_slug
+  category_slug, inBuildPage = false
 }: ISingleCompareComponents) {
   const {
     toggleShowSpecs, preferences, preferenceResolutions, currentBuild, toggleCanViewSpecs,
@@ -47,15 +48,16 @@ function SingleCompareComponents({
 
     return currentBuild.find((d) => d._id === selectedItemID)?.category_slug;
   }, [category_slug, currentBuild, selectedItemID])
+  
   const { getStageData } = useBuildPCStages();
 
   const stageDetails = useMemo<IBuildStages | null>(() => {
-    if (_category_slug) {
+    if (_category_slug && !inBuildPage) {
       return getStageData(_category_slug as string)
     }
 
     return null;
-  }, [_category_slug, getStageData]);
+  }, [_category_slug, getStageData, inBuildPage]);
 
   const componentItem = useMemo(() => {
     if (_category_slug && stageDetails) {
@@ -141,8 +143,6 @@ function SingleCompareComponents({
       : predefinedBuilds.items.find((d) => d.category_slug === 'processor')?.title
   }, [predefinedBuilds, _category_slug])
 
-  console.log({componentItem});
-  
   function handleDeleteFromBuild() {
     if (componentItem) {
       toggleShowSpecs();

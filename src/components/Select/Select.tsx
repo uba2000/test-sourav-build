@@ -2,7 +2,8 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import ImageFigure from '../ImageFigure';
 import RightArrowBlack from '../../assets/right-arrow-white.svg'
 import clsx from 'clsx';
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import _ from 'lodash';
 
 interface ISelectPropsOption {
   label: string;
@@ -83,18 +84,20 @@ function Select({ options = [], initialValue }: ISelectProps) {
               )}
             >
               {options.map((d) => (
-                <div
-                  onClick={() => handleSelectOption(d)}
-                  className={
-                    clsx(
-                      "py-[6px] px-2 with-ease hover:bg-[#455C5D] cursor-pointer"
-                    )
-                  }
-                >
-                  <span className='text-xs'>
-                    {d.label}
-                  </span>
-                </div>
+                <Fragment key={_.uniqueId()}>
+                  <div
+                    onClick={() => handleSelectOption(d)}
+                    className={
+                      clsx(
+                        "py-[6px] px-2 with-ease hover:bg-[#455C5D] cursor-pointer"
+                      )
+                    }
+                  >
+                    <span className='text-xs'>
+                      {d.label}
+                    </span>
+                  </div>
+                </Fragment>
               ))}
             </div>
         </div>

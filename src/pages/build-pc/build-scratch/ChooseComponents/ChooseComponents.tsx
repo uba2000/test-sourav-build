@@ -24,7 +24,7 @@ function ChooseComponents() {
   const {
     addComponentToBuild, currentBuild, buildFlowType, toggleCanViewSpecs,
     showCurrentModelSpecs, toggleShowSpecs, predefinedBuilds,
-    setCurrentModelOnStage, toggleViewingComponentModel,
+    setCurrentModelOnStage, toggleViewingComponentModel, removeComponentToBuild,
   } = useBuildPCContext()
 
   const { placeholderImages } = useBuildPlaceholders()
@@ -113,6 +113,22 @@ function ChooseComponents() {
     navigate(`${RouteNames.buildPCMyBuild}`)
   }
 
+  function handleRemoveComponentFromBuild(_id: string) {
+    // toggleShowSpecs();
+    removeComponentToBuild({
+      category_slug: _category_slug, component_id: _id
+    })
+
+    // // if in build page, clear image
+    // if (selectedItemID === _id) {
+    //   setCurrentModelOnStage('');
+    // }
+    // toggleShowSpecs(false);
+    // toggleCanViewSpecs(false);
+    // toggleViewingComponentModel(false);
+    // // else itll be handled
+  }
+
   useEffect(() => {
     return () => {
       toggleCanViewSpecs(false);
@@ -187,8 +203,9 @@ function ChooseComponents() {
                   inBuild={_isInBuild?._id === d._id}
                   selected={d._id === selectedItemID}
                   data={d}
-                  addToBuild={(id: string) => handleAddComponentToBuild(id)}
                   onClick={(id: string) => onSelectComponentItem(id)}
+                  addToBuild={(id: string) => handleAddComponentToBuild(id)}
+                  removeFromBuild={(id: string) => handleRemoveComponentFromBuild(id)}
                 />
               </Fragment>
             ))}
@@ -198,6 +215,7 @@ function ChooseComponents() {
 
       {showCurrentModelSpecs && (
         <SingleCompareComponents
+          isInBuild={_isInBuild?._id === selectedItemID}
           category_slug={_category_slug}
           selectedItemID={selectedItemID}
           handleAddComponentToBuild={handleAddComponentToBuild}

@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 
 import type {
   BuildFlowType,
   BuildPCPreferenceType, IAPortinosProductInFeed, IAddToBuildProps, IBuildComponent,
-  IBuildStages, IBuildStagesSlugs, ICleanPreferenceData, IPortinosProductFeed, IPreconfigedBuild, ProductPredefinedPresets
+  IBuildStages, IBuildStagesSlugs, ICleanPreferenceData, IPortinosProductFeed, IPortinosProductPresetKeys, IPreconfigedBuild, ProductPredefinedPresets
 } from "../../types/context-types"
 
 import CPUIcon from '../../../assets/component-icons/cpu.svg?react'
@@ -162,8 +162,6 @@ function useBuildByComponentContext() {
 
     const _buildStages = [...buildStages];
     const _current_build_category = _buildStages.find((d) => d.slug === category_slug);
-    console.log({_current_build_category, _currentBuild});
-    
 
     if (_current_build_category) {
       const _current_component = _current_build_category.items.find((d) => d._id === component_id)
@@ -227,7 +225,6 @@ function useBuildByComponentContext() {
     
     const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
     const _portinos_product_feed = portinos_product_feed as IPortinosProductFeed;
-    // console.log({preferences, _preferences_feed});
 
     const selected_res = preferences.gaming_resolution?.title;
     const selected_fps_range = preferences.gaming_fps!.range;
@@ -272,8 +269,6 @@ function useBuildByComponentContext() {
           }
         })
   
-        // console.log({game_products_in_range});
-
         return {
           title: game_title,
           data: _data,
@@ -366,7 +361,6 @@ function useBuildByComponentContext() {
       }
     })
 
-    console.log({ _preferences_feed, _highest_segment, preferences, all_data, _portinos_product_feed });
     setCleanGameInfoArray(all_data)
     setBuildSegment(_highest_segment)
     getPredefineBuilds(_highest_segment!)
@@ -392,6 +386,7 @@ function useBuildByComponentContext() {
         const category_slug = buildSlugMap[ps as keyof (typeof pre_set)];
         const specs = determineProductSpecs(_product, category_slug);
         predefined_pre_sets.items.push({
+          original_slug: ps as IPortinosProductPresetKeys,
           _id: `${_product.id}`,
           image: _product.picture,
           rating: 5,
@@ -404,7 +399,6 @@ function useBuildByComponentContext() {
     })
     // 20240104 / 20240114
 
-    console.log({predefined_pre_sets});
     setPredefinedBuilds(predefined_pre_sets)
   }
 
@@ -441,7 +435,6 @@ function useBuildByComponentContext() {
       if ((preferenceBuildSegmentWeight[_current_segment] === preferenceBuildSegmentWeight[build_segment]) // current level
         || (preferenceBuildSegmentWeight[_current_segment] === (preferenceBuildSegmentWeight[build_segment] + 1))) { // one level above
         eligible_products.push(ppf)
-        // console.log(buildSlugMap[ppf.category!]);
         const category_slug = buildSlugMap[ppf.category!];
         const specs = determineProductSpecs(ppf, category_slug);
 
@@ -467,11 +460,19 @@ function useBuildByComponentContext() {
       items: formatted_products[pv.slug]
     })))
   }
-
-  function togglePreBuildToCurrentBuildForPreview(action: 'add' | 'remove') {
+  
+  const togglePreBuildToCurrentBuildForPreview = useCallback((action: 'add' | 'remove') => {
     switch (action) {
       case 'add':
         setCurrentBuild(predefinedBuilds.items);
+        setBuildStages((prev) => prev.map((pv) => {
+          const _item = predefinedBuilds.items.find((d) => d.category_slug === pv.slug) || null;
+
+          return { 
+            ...pv,
+            selectedItem: _item
+          } as IBuildStages
+        }))
         setBuildTypeFlow('preconfiged_build')
         break;
       
@@ -487,7 +488,7 @@ function useBuildByComponentContext() {
       default:
         break;
     }
-  }
+  }, [predefinedBuilds.items]) 
 
   function resetPCBuild() {
     setCurrentBuild([]);
