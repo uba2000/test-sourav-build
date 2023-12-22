@@ -69,6 +69,8 @@ function BuildPreference() {
       // remove any resolutions not within this range
       const _presentResolutions = adjustFPSRange([...preferenceFeed])
       setPresentResolutions(_presentResolutions)
+      console.log({_presentResolutions});
+      
     } else if (currentStage === 2) {
       analyzePreferencesForBuild(preferences)
     }
@@ -136,7 +138,7 @@ function BuildPreference() {
                 <button type="button" onClick={() => resetApp()}>
                   <ImageFigure icon={ReloadIcon} width={36} />
                 </button>
-                <NavLinkCopy link={`${"https://dev.d26ohjimvrz87s.amplifyapp.com"}${location.pathname}`} />
+                <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
                 {/* <button type="button">
                   <ImageFigure icon={ExternalIcon} width={36} />
                 </button> */}
@@ -152,7 +154,7 @@ function BuildPreference() {
                 <button type="button" onClick={() => resetApp()}>
                   <ImageFigure icon={ReloadIcon} width={36} />
                 </button>
-                <NavLinkCopy link={`${"https://dev.d26ohjimvrz87s.amplifyapp.com"}${location.pathname}`} />
+                <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
                 {/* <button type="button">
                   <ImageFigure icon={ExternalIcon} width={36} />
                 </button> */}

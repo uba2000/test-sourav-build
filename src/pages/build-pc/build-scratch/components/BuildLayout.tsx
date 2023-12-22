@@ -147,7 +147,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
               <button type="button" onClick={() => resetApp()}>
                 <ImageFigure icon={ReloadIcon} width={36} />
               </button>
-              <NavLinkCopy link={`${"https://dev.d26ohjimvrz87s.amplifyapp.com"}${location.pathname}`} />
+              <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
             </div>
           </PolygonContainer>
           <PolygonContainer className="min-w-[246px]">

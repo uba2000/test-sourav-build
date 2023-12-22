@@ -2,7 +2,7 @@ import axios from "axios";
 
 const preferenceAPI = axios.create({
   baseURL: import.meta.env.PROD
-    ? "https://dev.d26ohjimvrz87s.amplifyapp.com"
+    ? import.meta.env.VITE_BASE_URL
     : "http://localhost:5173",
 });
 
