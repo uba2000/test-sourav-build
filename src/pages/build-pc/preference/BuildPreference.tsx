@@ -136,7 +136,7 @@ function BuildPreference() {
                 <button type="button" onClick={() => resetApp()}>
                   <ImageFigure icon={ReloadIcon} width={36} />
                 </button>
-                <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
+                <NavLinkCopy link={`${"https://dev.d26ohjimvrz87s.amplifyapp.com"}${location.pathname}`} />
                 {/* <button type="button">
                   <ImageFigure icon={ExternalIcon} width={36} />
                 </button> */}
@@ -152,7 +152,7 @@ function BuildPreference() {
                 <button type="button" onClick={() => resetApp()}>
                   <ImageFigure icon={ReloadIcon} width={36} />
                 </button>
-                <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
+                <NavLinkCopy link={`${"https://dev.d26ohjimvrz87s.amplifyapp.com"}${location.pathname}`} />
                 {/* <button type="button">
                   <ImageFigure icon={ExternalIcon} width={36} />
                 </button> */}
