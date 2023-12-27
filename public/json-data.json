@@ -4,9 +4,9 @@
         "gpu": "20240112",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "170",
-                "qhd": "128",
-                "4kuhd": "67"
+                "fhd": "221",
+                "qhd": "190",
+                "4kuhd": "117"
             },
             "Rainbow Six Siege": {
                 "fhd": "220",
@@ -14,9 +14,9 @@
                 "4kuhd": "87"
             },
             "Overwatch 2": {
-                "fhd": "234",
-                "qhd": "177",
-                "4kuhd": "92"
+                "fhd": "405",
+                "qhd": "365",
+                "4kuhd": "269"
             },
             "Cyberpunk 2077": {
                 "fhd": "100",
@@ -29,19 +29,19 @@
                 "4kuhd": "154"
             },
             "Halo Infinite": {
-                "fhd": "63",
-                "qhd": "48",
-                "4kuhd": "25"
+                "fhd": "105",
+                "qhd": "91",
+                "4kuhd": "57"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "78"
+                "fhd": "209",
+                "qhd": "190",
+                "4kuhd": "138"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "40",
-                "4kuhd": "21"
+                "fhd": "184",
+                "qhd": "166",
+                "4kuhd": "121"
             },
             "Minecraft": {
                 "fhd": "875",
@@ -72,6 +72,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13563",
+                "segment": "entry"
             }
         }
     },
@@ -80,9 +84,9 @@
         "gpu": "20240112",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "170",
-                "qhd": "128",
-                "4kuhd": "67"
+                "fhd": "221",
+                "qhd": "190",
+                "4kuhd": "117"
             },
             "Rainbow Six Siege": {
                 "fhd": "220",
@@ -90,9 +94,9 @@
                 "4kuhd": "87"
             },
             "Overwatch 2": {
-                "fhd": "234",
-                "qhd": "177",
-                "4kuhd": "92"
+                "fhd": "404",
+                "qhd": "364",
+                "4kuhd": "269"
             },
             "Cyberpunk 2077": {
                 "fhd": "100",
@@ -105,19 +109,19 @@
                 "4kuhd": "154"
             },
             "Halo Infinite": {
-                "fhd": "63",
-                "qhd": "48",
-                "4kuhd": "25"
+                "fhd": "104",
+                "qhd": "91",
+                "4kuhd": "57"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "78"
+                "fhd": "209",
+                "qhd": "189",
+                "4kuhd": "137"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "40",
-                "4kuhd": "21"
+                "fhd": "184",
+                "qhd": "165",
+                "4kuhd": "120"
             },
             "Minecraft": {
                 "fhd": "875",
@@ -148,6 +152,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13631",
+                "segment": "entry"
             }
         }
     },
@@ -156,9 +164,9 @@
         "gpu": "20240112",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "170",
-                "qhd": "128",
-                "4kuhd": "67"
+                "fhd": "223",
+                "qhd": "193",
+                "4kuhd": "120"
             },
             "Rainbow Six Siege": {
                 "fhd": "220",
@@ -166,9 +174,9 @@
                 "4kuhd": "87"
             },
             "Overwatch 2": {
-                "fhd": "234",
-                "qhd": "177",
-                "4kuhd": "92"
+                "fhd": "412",
+                "qhd": "372",
+                "4kuhd": "277"
             },
             "Cyberpunk 2077": {
                 "fhd": "100",
@@ -181,19 +189,19 @@
                 "4kuhd": "154"
             },
             "Halo Infinite": {
-                "fhd": "63",
-                "qhd": "48",
-                "4kuhd": "25"
+                "fhd": "107",
+                "qhd": "93",
+                "4kuhd": "59"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "78"
+                "fhd": "212",
+                "qhd": "193",
+                "4kuhd": "141"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "40",
-                "4kuhd": "21"
+                "fhd": "189",
+                "qhd": "171",
+                "4kuhd": "126"
             },
             "Minecraft": {
                 "fhd": "875",
@@ -224,6 +232,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13760",
+                "segment": "mainstream"
             }
         }
     },
@@ -232,9 +244,9 @@
         "gpu": "20240112",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "170",
-                "qhd": "128",
-                "4kuhd": "67"
+                "fhd": "223",
+                "qhd": "193",
+                "4kuhd": "120"
             },
             "Rainbow Six Siege": {
                 "fhd": "220",
@@ -242,9 +254,9 @@
                 "4kuhd": "87"
             },
             "Overwatch 2": {
-                "fhd": "234",
-                "qhd": "177",
-                "4kuhd": "92"
+                "fhd": "412",
+                "qhd": "372",
+                "4kuhd": "277"
             },
             "Cyberpunk 2077": {
                 "fhd": "100",
@@ -257,19 +269,19 @@
                 "4kuhd": "154"
             },
             "Halo Infinite": {
-                "fhd": "63",
-                "qhd": "48",
-                "4kuhd": "25"
+                "fhd": "107",
+                "qhd": "93",
+                "4kuhd": "59"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "78"
+                "fhd": "212",
+                "qhd": "193",
+                "4kuhd": "141"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "40",
-                "4kuhd": "21"
+                "fhd": "189",
+                "qhd": "171",
+                "4kuhd": "126"
             },
             "Minecraft": {
                 "fhd": "875",
@@ -300,6 +312,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13802",
+                "segment": "mainstream"
             }
         }
     },
@@ -308,9 +324,9 @@
         "gpu": "20240112",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "170",
-                "qhd": "128",
-                "4kuhd": "67"
+                "fhd": "226",
+                "qhd": "195",
+                "4kuhd": "122"
             },
             "Rainbow Six Siege": {
                 "fhd": "220",
@@ -318,9 +334,9 @@
                 "4kuhd": "87"
             },
             "Overwatch 2": {
-                "fhd": "234",
-                "qhd": "177",
-                "4kuhd": "92"
+                "fhd": "419",
+                "qhd": "379",
+                "4kuhd": "283"
             },
             "Cyberpunk 2077": {
                 "fhd": "100",
@@ -333,19 +349,19 @@
                 "4kuhd": "154"
             },
             "Halo Infinite": {
-                "fhd": "63",
-                "qhd": "48",
-                "4kuhd": "25"
+                "fhd": "108",
+                "qhd": "95",
+                "4kuhd": "61"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "78"
+                "fhd": "215",
+                "qhd": "195",
+                "4kuhd": "144"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "40",
-                "4kuhd": "21"
+                "fhd": "194",
+                "qhd": "176",
+                "4kuhd": "130"
             },
             "Minecraft": {
                 "fhd": "875",
@@ -376,6 +392,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13633",
+                "segment": "entry"
             }
         }
     },
@@ -384,9 +404,9 @@
         "gpu": "20240112",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "170",
-                "qhd": "128",
-                "4kuhd": "67"
+                "fhd": "226",
+                "qhd": "195",
+                "4kuhd": "122"
             },
             "Rainbow Six Siege": {
                 "fhd": "220",
@@ -394,9 +414,9 @@
                 "4kuhd": "87"
             },
             "Overwatch 2": {
-                "fhd": "234",
-                "qhd": "177",
-                "4kuhd": "92"
+                "fhd": "419",
+                "qhd": "379",
+                "4kuhd": "284"
             },
             "Cyberpunk 2077": {
                 "fhd": "100",
@@ -409,19 +429,19 @@
                 "4kuhd": "154"
             },
             "Halo Infinite": {
-                "fhd": "63",
-                "qhd": "48",
-                "4kuhd": "25"
+                "fhd": "109",
+                "qhd": "95",
+                "4kuhd": "61"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "78"
+                "fhd": "215",
+                "qhd": "196",
+                "4kuhd": "144"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "40",
-                "4kuhd": "21"
+                "fhd": "195",
+                "qhd": "176",
+                "4kuhd": "131"
             },
             "Minecraft": {
                 "fhd": "875",
@@ -452,6 +472,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13864",
+                "segment": "mainstream"
             }
         }
     },
@@ -460,9 +484,9 @@
         "gpu": "20240113",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "160",
-                "qhd": "121",
-                "4kuhd": "63"
+                "fhd": "213",
+                "qhd": "182",
+                "4kuhd": "109"
             },
             "Rainbow Six Siege": {
                 "fhd": "207",
@@ -470,9 +494,9 @@
                 "4kuhd": "81"
             },
             "Overwatch 2": {
-                "fhd": "222",
-                "qhd": "168",
-                "4kuhd": "87"
+                "fhd": "389",
+                "qhd": "349",
+                "4kuhd": "254"
             },
             "Cyberpunk 2077": {
                 "fhd": "92",
@@ -485,19 +509,19 @@
                 "4kuhd": "146"
             },
             "Halo Infinite": {
-                "fhd": "60",
-                "qhd": "45",
-                "4kuhd": "24"
+                "fhd": "100",
+                "qhd": "87",
+                "4kuhd": "53"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "76"
+                "fhd": "203",
+                "qhd": "183",
+                "4kuhd": "131"
             },
             "Hitman World of Assassination": {
-                "fhd": "50",
-                "qhd": "38",
-                "4kuhd": "20"
+                "fhd": "179",
+                "qhd": "160",
+                "4kuhd": "115"
             },
             "Minecraft": {
                 "fhd": "845",
@@ -528,6 +552,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "12794",
+                "segment": "entry"
             }
         }
     },
@@ -536,9 +564,9 @@
         "gpu": "20240113",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "160",
-                "qhd": "121",
-                "4kuhd": "63"
+                "fhd": "212",
+                "qhd": "182",
+                "4kuhd": "109"
             },
             "Rainbow Six Siege": {
                 "fhd": "207",
@@ -546,9 +574,9 @@
                 "4kuhd": "81"
             },
             "Overwatch 2": {
-                "fhd": "222",
-                "qhd": "168",
-                "4kuhd": "87"
+                "fhd": "388",
+                "qhd": "348",
+                "4kuhd": "253"
             },
             "Cyberpunk 2077": {
                 "fhd": "92",
@@ -561,19 +589,19 @@
                 "4kuhd": "146"
             },
             "Halo Infinite": {
-                "fhd": "60",
-                "qhd": "45",
-                "4kuhd": "24"
+                "fhd": "100",
+                "qhd": "87",
+                "4kuhd": "53"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "76"
+                "fhd": "202",
+                "qhd": "182",
+                "4kuhd": "131"
             },
             "Hitman World of Assassination": {
-                "fhd": "50",
-                "qhd": "38",
-                "4kuhd": "20"
+                "fhd": "178",
+                "qhd": "160",
+                "4kuhd": "114"
             },
             "Minecraft": {
                 "fhd": "845",
@@ -604,6 +632,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "12854",
+                "segment": "entry"
             }
         }
     },
@@ -612,9 +644,9 @@
         "gpu": "20240113",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "160",
-                "qhd": "121",
-                "4kuhd": "63"
+                "fhd": "215",
+                "qhd": "185",
+                "4kuhd": "112"
             },
             "Rainbow Six Siege": {
                 "fhd": "207",
@@ -622,9 +654,9 @@
                 "4kuhd": "81"
             },
             "Overwatch 2": {
-                "fhd": "222",
-                "qhd": "168",
-                "4kuhd": "87"
+                "fhd": "396",
+                "qhd": "356",
+                "4kuhd": "261"
             },
             "Cyberpunk 2077": {
                 "fhd": "92",
@@ -637,19 +669,19 @@
                 "4kuhd": "146"
             },
             "Halo Infinite": {
-                "fhd": "60",
-                "qhd": "45",
-                "4kuhd": "24"
+                "fhd": "102",
+                "qhd": "89",
+                "4kuhd": "55"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "76"
+                "fhd": "206",
+                "qhd": "186",
+                "4kuhd": "134"
             },
             "Hitman World of Assassination": {
-                "fhd": "50",
-                "qhd": "38",
-                "4kuhd": "20"
+                "fhd": "184",
+                "qhd": "165",
+                "4kuhd": "120"
             },
             "Minecraft": {
                 "fhd": "845",
@@ -680,6 +712,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "12969",
+                "segment": "entry"
             }
         }
     },
@@ -688,9 +724,9 @@
         "gpu": "20240113",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "160",
-                "qhd": "121",
-                "4kuhd": "63"
+                "fhd": "215",
+                "qhd": "185",
+                "4kuhd": "112"
             },
             "Rainbow Six Siege": {
                 "fhd": "207",
@@ -698,9 +734,9 @@
                 "4kuhd": "81"
             },
             "Overwatch 2": {
-                "fhd": "222",
-                "qhd": "168",
-                "4kuhd": "87"
+                "fhd": "396",
+                "qhd": "356",
+                "4kuhd": "261"
             },
             "Cyberpunk 2077": {
                 "fhd": "92",
@@ -713,19 +749,19 @@
                 "4kuhd": "146"
             },
             "Halo Infinite": {
-                "fhd": "60",
-                "qhd": "45",
-                "4kuhd": "24"
+                "fhd": "103",
+                "qhd": "89",
+                "4kuhd": "55"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "76"
+                "fhd": "206",
+                "qhd": "186",
+                "4kuhd": "134"
             },
             "Hitman World of Assassination": {
-                "fhd": "50",
-                "qhd": "38",
-                "4kuhd": "20"
+                "fhd": "184",
+                "qhd": "165",
+                "4kuhd": "120"
             },
             "Minecraft": {
                 "fhd": "845",
@@ -756,6 +792,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13007",
+                "segment": "entry"
             }
         }
     },
@@ -764,9 +804,9 @@
         "gpu": "20240113",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "160",
-                "qhd": "121",
-                "4kuhd": "63"
+                "fhd": "217",
+                "qhd": "187",
+                "4kuhd": "114"
             },
             "Rainbow Six Siege": {
                 "fhd": "207",
@@ -774,9 +814,9 @@
                 "4kuhd": "81"
             },
             "Overwatch 2": {
-                "fhd": "222",
-                "qhd": "168",
-                "4kuhd": "87"
+                "fhd": "403",
+                "qhd": "363",
+                "4kuhd": "268"
             },
             "Cyberpunk 2077": {
                 "fhd": "92",
@@ -789,19 +829,19 @@
                 "4kuhd": "146"
             },
             "Halo Infinite": {
-                "fhd": "60",
-                "qhd": "45",
-                "4kuhd": "24"
+                "fhd": "104",
+                "qhd": "91",
+                "4kuhd": "57"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "76"
+                "fhd": "208",
+                "qhd": "188",
+                "4kuhd": "137"
             },
             "Hitman World of Assassination": {
-                "fhd": "50",
-                "qhd": "38",
-                "4kuhd": "20"
+                "fhd": "188",
+                "qhd": "170",
+                "4kuhd": "125"
             },
             "Minecraft": {
                 "fhd": "845",
@@ -832,6 +872,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "12856",
+                "segment": "entry"
             }
         }
     },
@@ -840,9 +884,9 @@
         "gpu": "20240113",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "160",
-                "qhd": "121",
-                "4kuhd": "63"
+                "fhd": "218",
+                "qhd": "187",
+                "4kuhd": "114"
             },
             "Rainbow Six Siege": {
                 "fhd": "207",
@@ -850,9 +894,9 @@
                 "4kuhd": "81"
             },
             "Overwatch 2": {
-                "fhd": "222",
-                "qhd": "168",
-                "4kuhd": "87"
+                "fhd": "404",
+                "qhd": "364",
+                "4kuhd": "269"
             },
             "Cyberpunk 2077": {
                 "fhd": "92",
@@ -865,19 +909,19 @@
                 "4kuhd": "146"
             },
             "Halo Infinite": {
-                "fhd": "60",
-                "qhd": "45",
-                "4kuhd": "24"
+                "fhd": "105",
+                "qhd": "91",
+                "4kuhd": "57"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "76"
+                "fhd": "209",
+                "qhd": "189",
+                "4kuhd": "137"
             },
             "Hitman World of Assassination": {
-                "fhd": "50",
-                "qhd": "38",
-                "4kuhd": "20"
+                "fhd": "189",
+                "qhd": "170",
+                "4kuhd": "125"
             },
             "Minecraft": {
                 "fhd": "845",
@@ -908,6 +952,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13061",
+                "segment": "entry"
             }
         }
     },
@@ -916,9 +964,9 @@
         "gpu": "20240117",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "311",
-                "qhd": "235",
-                "4kuhd": "122"
+                "fhd": "220",
+                "qhd": "190",
+                "4kuhd": "116"
             },
             "Rainbow Six Siege": {
                 "fhd": "410",
@@ -926,9 +974,9 @@
                 "4kuhd": "161"
             },
             "Overwatch 2": {
-                "fhd": "410",
-                "qhd": "310",
-                "4kuhd": "161"
+                "fhd": "403",
+                "qhd": "363",
+                "4kuhd": "268"
             },
             "Cyberpunk 2077": {
                 "fhd": "198",
@@ -941,19 +989,19 @@
                 "4kuhd": "265"
             },
             "Halo Infinite": {
-                "fhd": "108",
-                "qhd": "81",
-                "4kuhd": "42"
+                "fhd": "104",
+                "qhd": "91",
+                "4kuhd": "57"
             },
             "Fortnite": {
-                "fhd": "161",
-                "qhd": "134",
-                "4kuhd": "85"
+                "fhd": "209",
+                "qhd": "189",
+                "4kuhd": "137"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "72",
-                "4kuhd": "37"
+                "fhd": "184",
+                "qhd": "165",
+                "4kuhd": "120"
             },
             "Minecraft": {
                 "fhd": "1322",
@@ -984,6 +1032,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13568",
+                "segment": "entry"
             }
         }
     },
@@ -992,9 +1044,9 @@
         "gpu": "20240117",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "311",
-                "qhd": "235",
-                "4kuhd": "122"
+                "fhd": "220",
+                "qhd": "189",
+                "4kuhd": "116"
             },
             "Rainbow Six Siege": {
                 "fhd": "410",
@@ -1002,9 +1054,9 @@
                 "4kuhd": "161"
             },
             "Overwatch 2": {
-                "fhd": "410",
-                "qhd": "310",
-                "4kuhd": "161"
+                "fhd": "402",
+                "qhd": "362",
+                "4kuhd": "267"
             },
             "Cyberpunk 2077": {
                 "fhd": "197",
@@ -1017,19 +1069,19 @@
                 "4kuhd": "265"
             },
             "Halo Infinite": {
-                "fhd": "108",
-                "qhd": "81",
-                "4kuhd": "42"
+                "fhd": "104",
+                "qhd": "91",
+                "4kuhd": "56"
             },
             "Fortnite": {
-                "fhd": "161",
-                "qhd": "134",
-                "4kuhd": "85"
+                "fhd": "208",
+                "qhd": "189",
+                "4kuhd": "137"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "72",
-                "4kuhd": "37"
+                "fhd": "183",
+                "qhd": "165",
+                "4kuhd": "119"
             },
             "Minecraft": {
                 "fhd": "1322",
@@ -1060,6 +1112,10 @@
                 "fhd": "593",
                 "qhd": "494",
                 "4kuhd": "314"
+            },
+            "No Preference": {
+                "ULscore": "13636",
+                "segment": "entry"
             }
         }
     },
@@ -1068,9 +1124,9 @@
         "gpu": "20240117",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "311",
-                "qhd": "235",
-                "4kuhd": "122"
+                "fhd": "223",
+                "qhd": "192",
+                "4kuhd": "119"
             },
             "Rainbow Six Siege": {
                 "fhd": "410",
@@ -1079,8 +1135,8 @@
             },
             "Overwatch 2": {
                 "fhd": "410",
-                "qhd": "310",
-                "4kuhd": "161"
+                "qhd": "370",
+                "4kuhd": "275"
             },
             "Cyberpunk 2077": {
                 "fhd": "215",
@@ -1093,19 +1149,19 @@
                 "4kuhd": "265"
             },
             "Halo Infinite": {
-                "fhd": "108",
-                "qhd": "81",
-                "4kuhd": "42"
+                "fhd": "106",
+                "qhd": "93",
+                "4kuhd": "59"
             },
             "Fortnite": {
-                "fhd": "164",
-                "qhd": "136",
-                "4kuhd": "86"
+                "fhd": "212",
+                "qhd": "192",
+                "4kuhd": "140"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "72",
-                "4kuhd": "37"
+                "fhd": "189",
+                "qhd": "170",
+                "4kuhd": "125"
             },
             "Minecraft": {
                 "fhd": "1322",
@@ -1136,6 +1192,10 @@
                 "fhd": "674",
                 "qhd": "561",
                 "4kuhd": "356"
+            },
+            "No Preference": {
+                "ULscore": "13765",
+                "segment": "mainstream"
             }
         }
     },
@@ -1144,9 +1204,9 @@
         "gpu": "20240117",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "311",
-                "qhd": "235",
-                "4kuhd": "122"
+                "fhd": "223",
+                "qhd": "192",
+                "4kuhd": "119"
             },
             "Rainbow Six Siege": {
                 "fhd": "410",
@@ -1155,8 +1215,8 @@
             },
             "Overwatch 2": {
                 "fhd": "410",
-                "qhd": "310",
-                "4kuhd": "161"
+                "qhd": "370",
+                "4kuhd": "275"
             },
             "Cyberpunk 2077": {
                 "fhd": "216",
@@ -1169,19 +1229,19 @@
                 "4kuhd": "265"
             },
             "Halo Infinite": {
-                "fhd": "108",
-                "qhd": "81",
-                "4kuhd": "42"
+                "fhd": "106",
+                "qhd": "93",
+                "4kuhd": "59"
             },
             "Fortnite": {
-                "fhd": "164",
-                "qhd": "136",
-                "4kuhd": "87"
+                "fhd": "212",
+                "qhd": "192",
+                "4kuhd": "140"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "72",
-                "4kuhd": "37"
+                "fhd": "189",
+                "qhd": "171",
+                "4kuhd": "125"
             },
             "Minecraft": {
                 "fhd": "1322",
@@ -1212,6 +1272,10 @@
                 "fhd": "679",
                 "qhd": "565",
                 "4kuhd": "358"
+            },
+            "No Preference": {
+                "ULscore": "13808",
+                "segment": "mainstream"
             }
         }
     },
@@ -1220,9 +1284,9 @@
         "gpu": "20240117",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "311",
-                "qhd": "235",
-                "4kuhd": "122"
+                "fhd": "225",
+                "qhd": "194",
+                "4kuhd": "121"
             },
             "Rainbow Six Siege": {
                 "fhd": "410",
@@ -1230,9 +1294,9 @@
                 "4kuhd": "161"
             },
             "Overwatch 2": {
-                "fhd": "410",
-                "qhd": "310",
-                "4kuhd": "161"
+                "fhd": "417",
+                "qhd": "377",
+                "4kuhd": "282"
             },
             "Cyberpunk 2077": {
                 "fhd": "220",
@@ -1246,18 +1310,18 @@
             },
             "Halo Infinite": {
                 "fhd": "108",
-                "qhd": "81",
-                "4kuhd": "42"
+                "qhd": "95",
+                "4kuhd": "60"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "87"
+                "fhd": "215",
+                "qhd": "195",
+                "4kuhd": "143"
             },
             "Hitman World of Assassination": {
-                "fhd": "53",
-                "qhd": "72",
-                "4kuhd": "37"
+                "fhd": "193",
+                "qhd": "175",
+                "4kuhd": "130"
             },
             "Minecraft": {
                 "fhd": "1322",
@@ -1288,6 +1352,10 @@
                 "fhd": "711",
                 "qhd": "592",
                 "4kuhd": "376"
+            },
+            "No Preference": {
+                "ULscore": "13639",
+                "segment": "entry"
             }
         }
     },
@@ -1296,9 +1364,9 @@
         "gpu": "20240117",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "311",
-                "qhd": "235",
-                "4kuhd": "122"
+                "fhd": "225",
+                "qhd": "195",
+                "4kuhd": "121"
             },
             "Rainbow Six Siege": {
                 "fhd": "410",
@@ -1306,9 +1374,9 @@
                 "4kuhd": "161"
             },
             "Overwatch 2": {
-                "fhd": "410",
-                "qhd": "310",
-                "4kuhd": "161"
+                "fhd": "418",
+                "qhd": "378",
+                "4kuhd": "283"
             },
             "Cyberpunk 2077": {
                 "fhd": "220",
@@ -1322,18 +1390,18 @@
             },
             "Halo Infinite": {
                 "fhd": "108",
-                "qhd": "81",
-                "4kuhd": "42"
+                "qhd": "95",
+                "4kuhd": "61"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "87"
+                "fhd": "215",
+                "qhd": "195",
+                "4kuhd": "143"
             },
             "Hitman World of Assassination": {
-                "fhd": "95",
-                "qhd": "72",
-                "4kuhd": "37"
+                "fhd": "194",
+                "qhd": "176",
+                "4kuhd": "130"
             },
             "Minecraft": {
                 "fhd": "1322",
@@ -1364,6 +1432,10 @@
                 "fhd": "712",
                 "qhd": "593",
                 "4kuhd": "376"
+            },
+            "No Preference": {
+                "ULscore": "13869",
+                "segment": "mainstream"
             }
         }
     },
@@ -1372,9 +1444,9 @@
         "gpu": "20240116",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "315",
-                "qhd": "262",
-                "4kuhd": "151"
+                "fhd": "284",
+                "qhd": "254",
+                "4kuhd": "180"
             },
             "Rainbow Six Siege": {
                 "fhd": "456",
@@ -1382,9 +1454,9 @@
                 "4kuhd": "200"
             },
             "Overwatch 2": {
-                "fhd": "465",
-                "qhd": "303",
-                "4kuhd": "197"
+                "fhd": "516",
+                "qhd": "476",
+                "4kuhd": "381"
             },
             "Cyberpunk 2077": {
                 "fhd": "198",
@@ -1397,19 +1469,19 @@
                 "4kuhd": "323"
             },
             "Halo Infinite": {
-                "fhd": "131",
-                "qhd": "99",
-                "4kuhd": "52"
+                "fhd": "143",
+                "qhd": "129",
+                "4kuhd": "95"
             },
             "Fortnite": {
-                "fhd": "161",
-                "qhd": "134",
-                "4kuhd": "85"
+                "fhd": "266",
+                "qhd": "246",
+                "4kuhd": "194"
             },
             "Hitman World of Assassination": {
-                "fhd": "117",
-                "qhd": "89",
-                "4kuhd": "46"
+                "fhd": "228",
+                "qhd": "209",
+                "4kuhd": "164"
             },
             "Minecraft": {
                 "fhd": "1555",
@@ -1440,6 +1512,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "20946",
+                "segment": "mainstream"
             }
         }
     },
@@ -1448,9 +1524,9 @@
         "gpu": "20240116",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "313",
-                "qhd": "260",
-                "4kuhd": "151"
+                "fhd": "284",
+                "qhd": "253",
+                "4kuhd": "180"
             },
             "Rainbow Six Siege": {
                 "fhd": "453",
@@ -1458,9 +1534,9 @@
                 "4kuhd": "200"
             },
             "Overwatch 2": {
-                "fhd": "461",
-                "qhd": "379",
-                "4kuhd": "197"
+                "fhd": "516",
+                "qhd": "476",
+                "4kuhd": "381"
             },
             "Cyberpunk 2077": {
                 "fhd": "197",
@@ -1473,19 +1549,19 @@
                 "4kuhd": "323"
             },
             "Halo Infinite": {
-                "fhd": "131",
-                "qhd": "99",
-                "4kuhd": "52"
+                "fhd": "143",
+                "qhd": "129",
+                "4kuhd": "95"
             },
             "Fortnite": {
-                "fhd": "161",
-                "qhd": "134",
-                "4kuhd": "85"
+                "fhd": "265",
+                "qhd": "246",
+                "4kuhd": "194"
             },
             "Hitman World of Assassination": {
-                "fhd": "117",
-                "qhd": "89",
-                "4kuhd": "46"
+                "fhd": "227",
+                "qhd": "209",
+                "4kuhd": "163"
             },
             "Minecraft": {
                 "fhd": "1555",
@@ -1516,6 +1592,10 @@
                 "fhd": "594",
                 "qhd": "494",
                 "4kuhd": "314"
+            },
+            "No Preference": {
+                "ULscore": "21109",
+                "segment": "mainstream"
             }
         }
     },
@@ -1524,9 +1604,9 @@
         "gpu": "20240116",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "356",
-                "qhd": "290",
-                "4kuhd": "151"
+                "fhd": "287",
+                "qhd": "256",
+                "4kuhd": "183"
             },
             "Rainbow Six Siege": {
                 "fhd": "509",
@@ -1534,9 +1614,9 @@
                 "4kuhd": "200"
             },
             "Overwatch 2": {
-                "fhd": "502",
-                "qhd": "379",
-                "4kuhd": "197"
+                "fhd": "524",
+                "qhd": "484",
+                "4kuhd": "389"
             },
             "Cyberpunk 2077": {
                 "fhd": "215",
@@ -1549,19 +1629,19 @@
                 "4kuhd": "323"
             },
             "Halo Infinite": {
-                "fhd": "131",
-                "qhd": "99",
-                "4kuhd": "52"
+                "fhd": "145",
+                "qhd": "131",
+                "4kuhd": "97"
             },
             "Fortnite": {
-                "fhd": "164",
-                "qhd": "136",
-                "4kuhd": "86"
+                "fhd": "269",
+                "qhd": "249",
+                "4kuhd": "197"
             },
             "Hitman World of Assassination": {
-                "fhd": "117",
-                "qhd": "89",
-                "4kuhd": "46"
+                "fhd": "233",
+                "qhd": "214",
+                "4kuhd": "169"
             },
             "Minecraft": {
                 "fhd": "1555",
@@ -1592,6 +1672,10 @@
                 "fhd": "674",
                 "qhd": "561",
                 "4kuhd": "356"
+            },
+            "No Preference": {
+                "ULscore": "21421",
+                "segment": "mainstream"
             }
         }
     },
@@ -1600,9 +1684,9 @@
         "gpu": "20240116",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "359",
-                "qhd": "290",
-                "4kuhd": "151"
+                "fhd": "287",
+                "qhd": "256",
+                "4kuhd": "183"
             },
             "Rainbow Six Siege": {
                 "fhd": "509",
@@ -1610,9 +1694,9 @@
                 "4kuhd": "200"
             },
             "Overwatch 2": {
-                "fhd": "502",
-                "qhd": "379",
-                "4kuhd": "197"
+                "fhd": "524",
+                "qhd": "484",
+                "4kuhd": "389"
             },
             "Cyberpunk 2077": {
                 "fhd": "216",
@@ -1625,19 +1709,19 @@
                 "4kuhd": "323"
             },
             "Halo Infinite": {
-                "fhd": "131",
-                "qhd": "99",
-                "4kuhd": "52"
+                "fhd": "145",
+                "qhd": "132",
+                "4kuhd": "97"
             },
             "Fortnite": {
-                "fhd": "164",
-                "qhd": "136",
-                "4kuhd": "87"
+                "fhd": "269",
+                "qhd": "249",
+                "4kuhd": "197"
             },
             "Hitman World of Assassination": {
-                "fhd": "117",
-                "qhd": "89",
-                "4kuhd": "46"
+                "fhd": "233",
+                "qhd": "214",
+                "4kuhd": "169"
             },
             "Minecraft": {
                 "fhd": "1555",
@@ -1668,6 +1752,10 @@
                 "fhd": "679",
                 "qhd": "565",
                 "4kuhd": "359"
+            },
+            "No Preference": {
+                "ULscore": "21523",
+                "segment": "mainstream"
             }
         }
     },
@@ -1676,9 +1764,9 @@
         "gpu": "20240116",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "376",
-                "qhd": "290",
-                "4kuhd": "151"
+                "fhd": "289",
+                "qhd": "258",
+                "4kuhd": "185"
             },
             "Rainbow Six Siege": {
                 "fhd": "509",
@@ -1686,9 +1774,9 @@
                 "4kuhd": "200"
             },
             "Overwatch 2": {
-                "fhd": "502",
-                "qhd": "379",
-                "4kuhd": "197"
+                "fhd": "530",
+                "qhd": "490",
+                "4kuhd": "395"
             },
             "Cyberpunk 2077": {
                 "fhd": "223",
@@ -1701,19 +1789,19 @@
                 "4kuhd": "323"
             },
             "Halo Infinite": {
-                "fhd": "131",
-                "qhd": "99",
-                "4kuhd": "52"
+                "fhd": "147",
+                "qhd": "133",
+                "4kuhd": "99"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "87"
+                "fhd": "272",
+                "qhd": "252",
+                "4kuhd": "200"
             },
             "Hitman World of Assassination": {
-                "fhd": "117",
-                "qhd": "89",
-                "4kuhd": "46"
+                "fhd": "237",
+                "qhd": "219",
+                "4kuhd": "174"
             },
             "Minecraft": {
                 "fhd": "1555",
@@ -1744,6 +1832,10 @@
                 "fhd": "711",
                 "qhd": "592",
                 "4kuhd": "376"
+            },
+            "No Preference": {
+                "ULscore": "21115",
+                "segment": "mainstream"
             }
         }
     },
@@ -1752,9 +1844,9 @@
         "gpu": "20240116",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "377",
-                "qhd": "290",
-                "4kuhd": "151"
+                "fhd": "289",
+                "qhd": "259",
+                "4kuhd": "185"
             },
             "Rainbow Six Siege": {
                 "fhd": "509",
@@ -1762,9 +1854,9 @@
                 "4kuhd": "200"
             },
             "Overwatch 2": {
-                "fhd": "502",
-                "qhd": "379",
-                "4kuhd": "197"
+                "fhd": "531",
+                "qhd": "491",
+                "4kuhd": "396"
             },
             "Cyberpunk 2077": {
                 "fhd": "223",
@@ -1777,19 +1869,19 @@
                 "4kuhd": "323"
             },
             "Halo Infinite": {
-                "fhd": "131",
-                "qhd": "99",
-                "4kuhd": "52"
+                "fhd": "147",
+                "qhd": "134",
+                "4kuhd": "99"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "87"
+                "fhd": "272",
+                "qhd": "252",
+                "4kuhd": "200"
             },
             "Hitman World of Assassination": {
-                "fhd": "117",
-                "qhd": "89",
-                "4kuhd": "46"
+                "fhd": "238",
+                "qhd": "220",
+                "4kuhd": "174"
             },
             "Minecraft": {
                 "fhd": "1555",
@@ -1820,6 +1912,10 @@
                 "fhd": "712",
                 "qhd": "593",
                 "4kuhd": "376"
+            },
+            "No Preference": {
+                "ULscore": "21674",
+                "segment": "mainstream"
             }
         }
     },
@@ -1828,9 +1924,9 @@
         "gpu": "20240115",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "315",
-                "qhd": "262",
-                "4kuhd": "160"
+                "fhd": "308",
+                "qhd": "277",
+                "4kuhd": "204"
             },
             "Rainbow Six Siege": {
                 "fhd": "457",
@@ -1838,9 +1934,9 @@
                 "4kuhd": "212"
             },
             "Overwatch 2": {
-                "fhd": "465",
-                "qhd": "387",
-                "4kuhd": "208"
+                "fhd": "550",
+                "qhd": "510",
+                "4kuhd": "415"
             },
             "Cyberpunk 2077": {
                 "fhd": "198",
@@ -1853,19 +1949,19 @@
                 "4kuhd": "234"
             },
             "Halo Infinite": {
-                "fhd": "138",
-                "qhd": "105",
-                "4kuhd": "54"
+                "fhd": "163",
+                "qhd": "150",
+                "4kuhd": "116"
             },
             "Fortnite": {
-                "fhd": "161",
-                "qhd": "134",
-                "4kuhd": "85"
+                "fhd": "290",
+                "qhd": "270",
+                "4kuhd": "219"
             },
             "Hitman World of Assassination": {
-                "fhd": "124",
-                "qhd": "94",
-                "4kuhd": "49"
+                "fhd": "243",
+                "qhd": "224",
+                "4kuhd": "179"
             },
             "Minecraft": {
                 "fhd": "1626",
@@ -1896,17 +1992,21 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "24565",
+                "segment": "enthusiast"
             }
         }
     },
     "14600KF4080": {
-        "cpu": "20240100",
+        "cpu": "20240101",
         "gpu": "20240115",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "313",
-                "qhd": "260",
-                "4kuhd": "160"
+                "fhd": "307",
+                "qhd": "277",
+                "4kuhd": "204"
             },
             "Rainbow Six Siege": {
                 "fhd": "453",
@@ -1914,9 +2014,9 @@
                 "4kuhd": "212"
             },
             "Overwatch 2": {
-                "fhd": "461",
-                "qhd": "384",
-                "4kuhd": "208"
+                "fhd": "549",
+                "qhd": "509",
+                "4kuhd": "414"
             },
             "Cyberpunk 2077": {
                 "fhd": "197",
@@ -1929,19 +2029,19 @@
                 "4kuhd": "341"
             },
             "Halo Infinite": {
-                "fhd": "138",
-                "qhd": "105",
-                "4kuhd": "54"
+                "fhd": "163",
+                "qhd": "150",
+                "4kuhd": "115"
             },
             "Fortnite": {
-                "fhd": "161",
-                "qhd": "134",
-                "4kuhd": "85"
+                "fhd": "290",
+                "qhd": "270",
+                "4kuhd": "218"
             },
             "Hitman World of Assassination": {
-                "fhd": "124",
-                "qhd": "94",
-                "4kuhd": "49"
+                "fhd": "242",
+                "qhd": "224",
+                "4kuhd": "178"
             },
             "Minecraft": {
                 "fhd": "1626",
@@ -1972,17 +2072,21 @@
                 "fhd": "594",
                 "qhd": "494",
                 "4kuhd": "314"
+            },
+            "No Preference": {
+                "ULscore": "24789",
+                "segment": "enthusiast"
             }
         }
     },
     "14700K4080": {
-        "cpu": "20240100",
+        "cpu": "20240102",
         "gpu": "20240115",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "356",
-                "qhd": "296",
-                "4kuhd": "160"
+                "fhd": "310",
+                "qhd": "280",
+                "4kuhd": "207"
             },
             "Rainbow Six Siege": {
                 "fhd": "516",
@@ -1990,9 +2094,9 @@
                 "4kuhd": "212"
             },
             "Overwatch 2": {
-                "fhd": "524",
-                "qhd": "401",
-                "4kuhd": "208"
+                "fhd": "557",
+                "qhd": "517",
+                "4kuhd": "422"
             },
             "Cyberpunk 2077": {
                 "fhd": "215",
@@ -2005,19 +2109,19 @@
                 "4kuhd": "341"
             },
             "Halo Infinite": {
-                "fhd": "138",
-                "qhd": "105",
-                "4kuhd": "54"
+                "fhd": "165",
+                "qhd": "152",
+                "4kuhd": "118"
             },
             "Fortnite": {
-                "fhd": "164",
-                "qhd": "136",
-                "4kuhd": "86"
+                "fhd": "293",
+                "qhd": "273",
+                "4kuhd": "222"
             },
             "Hitman World of Assassination": {
-                "fhd": "124",
-                "qhd": "94",
-                "4kuhd": "49"
+                "fhd": "248",
+                "qhd": "229",
+                "4kuhd": "184"
             },
             "Minecraft": {
                 "fhd": "1626",
@@ -2048,17 +2152,21 @@
                 "fhd": "674",
                 "qhd": "561",
                 "4kuhd": "356"
+            },
+            "No Preference": {
+                "ULscore": "25220",
+                "segment": "enthusiast"
             }
         }
     },
     "14700KF4080": {
-        "cpu": "20240100",
+        "cpu": "20240103",
         "gpu": "20240115",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "359",
-                "qhd": "299",
-                "4kuhd": "160"
+                "fhd": "310",
+                "qhd": "280",
+                "4kuhd": "207"
             },
             "Rainbow Six Siege": {
                 "fhd": "521",
@@ -2066,9 +2174,9 @@
                 "4kuhd": "212"
             },
             "Overwatch 2": {
-                "fhd": "528",
-                "qhd": "401",
-                "4kuhd": "208"
+                "fhd": "557",
+                "qhd": "517",
+                "4kuhd": "422"
             },
             "Cyberpunk 2077": {
                 "fhd": "216",
@@ -2081,19 +2189,19 @@
                 "4kuhd": "341"
             },
             "Halo Infinite": {
-                "fhd": "138",
-                "qhd": "105",
-                "4kuhd": "54"
+                "fhd": "165",
+                "qhd": "152",
+                "4kuhd": "118"
             },
             "Fortnite": {
-                "fhd": "164",
-                "qhd": "136",
-                "4kuhd": "87"
+                "fhd": "293",
+                "qhd": "273",
+                "4kuhd": "222"
             },
             "Hitman World of Assassination": {
-                "fhd": "124",
-                "qhd": "94",
-                "4kuhd": "49"
+                "fhd": "248",
+                "qhd": "229",
+                "4kuhd": "184"
             },
             "Minecraft": {
                 "fhd": "1626",
@@ -2124,17 +2232,21 @@
                 "fhd": "679",
                 "qhd": "565",
                 "4kuhd": "359"
+            },
+            "No Preference": {
+                "ULscore": "25362",
+                "segment": "enthusiast"
             }
         }
     },
     "14900K4080": {
-        "cpu": "20240100",
+        "cpu": "20240104",
         "gpu": "20240115",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "376",
-                "qhd": "307",
-                "4kuhd": "160"
+                "fhd": "312",
+                "qhd": "282",
+                "4kuhd": "209"
             },
             "Rainbow Six Siege": {
                 "fhd": "540",
@@ -2142,9 +2254,9 @@
                 "4kuhd": "212"
             },
             "Overwatch 2": {
-                "fhd": "530",
-                "qhd": "401",
-                "4kuhd": "208"
+                "fhd": "564",
+                "qhd": "524",
+                "4kuhd": "429"
             },
             "Cyberpunk 2077": {
                 "fhd": "223",
@@ -2157,19 +2269,19 @@
                 "4kuhd": "341"
             },
             "Halo Infinite": {
-                "fhd": "138",
-                "qhd": "105",
-                "4kuhd": "54"
+                "fhd": "167",
+                "qhd": "154",
+                "4kuhd": "119"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "87"
+                "fhd": "296",
+                "qhd": "276",
+                "4kuhd": "224"
             },
             "Hitman World of Assassination": {
-                "fhd": "124",
-                "qhd": "94",
-                "4kuhd": "49"
+                "fhd": "252",
+                "qhd": "234",
+                "4kuhd": "189"
             },
             "Minecraft": {
                 "fhd": "1626",
@@ -2200,17 +2312,21 @@
                 "fhd": "711",
                 "qhd": "592",
                 "4kuhd": "376"
+            },
+            "No Preference": {
+                "ULscore": "24798",
+                "segment": "enthusiast"
             }
         }
     },
     "14900KF4080": {
-        "cpu": "20240100",
+        "cpu": "20240105",
         "gpu": "20240115",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "377",
-                "qhd": "307",
-                "4kuhd": "160"
+                "fhd": "312",
+                "qhd": "282",
+                "4kuhd": "209"
             },
             "Rainbow Six Siege": {
                 "fhd": "540",
@@ -2218,9 +2334,9 @@
                 "4kuhd": "212"
             },
             "Overwatch 2": {
-                "fhd": "530",
-                "qhd": "401",
-                "4kuhd": "208"
+                "fhd": "565",
+                "qhd": "525",
+                "4kuhd": "430"
             },
             "Cyberpunk 2077": {
                 "fhd": "223",
@@ -2233,19 +2349,19 @@
                 "4kuhd": "341"
             },
             "Halo Infinite": {
-                "fhd": "138",
-                "qhd": "105",
-                "4kuhd": "54"
+                "fhd": "167",
+                "qhd": "154",
+                "4kuhd": "120"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "87"
+                "fhd": "296",
+                "qhd": "276",
+                "4kuhd": "225"
             },
             "Hitman World of Assassination": {
-                "fhd": "124",
-                "qhd": "94",
-                "4kuhd": "49"
+                "fhd": "253",
+                "qhd": "235",
+                "4kuhd": "189"
             },
             "Minecraft": {
                 "fhd": "1626",
@@ -2276,6 +2392,10 @@
                 "fhd": "712",
                 "qhd": "593",
                 "4kuhd": "376"
+            },
+            "No Preference": {
+                "ULscore": "25572",
+                "segment": "enthusiast"
             }
         }
     },
@@ -2284,9 +2404,9 @@
         "gpu": "20240114",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "315",
-                "qhd": "262",
-                "4kuhd": "166"
+                "fhd": "325",
+                "qhd": "294",
+                "4kuhd": "221"
             },
             "Rainbow Six Siege": {
                 "fhd": "457",
@@ -2294,9 +2414,9 @@
                 "4kuhd": "227"
             },
             "Overwatch 2": {
-                "fhd": "465",
-                "qhd": "387",
-                "4kuhd": "222"
+                "fhd": "556",
+                "qhd": "516",
+                "4kuhd": "421"
             },
             "Cyberpunk 2077": {
                 "fhd": "198",
@@ -2309,19 +2429,19 @@
                 "4kuhd": "363"
             },
             "Halo Infinite": {
-                "fhd": "147",
-                "qhd": "111",
-                "4kuhd": "58"
+                "fhd": "191",
+                "qhd": "178",
+                "4kuhd": "144"
             },
             "Fortnite": {
-                "fhd": "161",
-                "qhd": "134",
-                "4kuhd": "85"
+                "fhd": "314",
+                "qhd": "295",
+                "4kuhd": "243"
             },
             "Hitman World of Assassination": {
-                "fhd": "132",
-                "qhd": "100",
-                "4kuhd": "52"
+                "fhd": "251",
+                "qhd": "232",
+                "4kuhd": "187"
             },
             "Minecraft": {
                 "fhd": "1716",
@@ -2352,6 +2472,10 @@
                 "fhd": "598",
                 "qhd": "498",
                 "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "29436",
+                "segment": "enthusiast"
             }
         }
     },
@@ -2360,9 +2484,9 @@
         "gpu": "20240114",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "313",
-                "qhd": "260",
-                "4kuhd": "165"
+                "fhd": "324",
+                "qhd": "294",
+                "4kuhd": "221"
             },
             "Rainbow Six Siege": {
                 "fhd": "453",
@@ -2370,9 +2494,9 @@
                 "4kuhd": "227"
             },
             "Overwatch 2": {
-                "fhd": "461",
-                "qhd": "384",
-                "4kuhd": "222"
+                "fhd": "555",
+                "qhd": "515",
+                "4kuhd": "420"
             },
             "Cyberpunk 2077": {
                 "fhd": "197",
@@ -2385,19 +2509,19 @@
                 "4kuhd": "363"
             },
             "Halo Infinite": {
-                "fhd": "147",
-                "qhd": "111",
-                "4kuhd": "58"
+                "fhd": "191",
+                "qhd": "178",
+                "4kuhd": "143"
             },
             "Fortnite": {
-                "fhd": "161",
-                "qhd": "134",
-                "4kuhd": "85"
+                "fhd": "314",
+                "qhd": "294",
+                "4kuhd": "242"
             },
             "Hitman World of Assassination": {
-                "fhd": "132",
-                "qhd": "100",
-                "4kuhd": "52"
+                "fhd": "250",
+                "qhd": "232",
+                "4kuhd": "186"
             },
             "Minecraft": {
                 "fhd": "1716",
@@ -2428,6 +2552,10 @@
                 "fhd": "594",
                 "qhd": "494",
                 "4kuhd": "314"
+            },
+            "No Preference": {
+                "ULscore": "29759",
+                "segment": "enthusiast"
             }
         }
     },
@@ -2436,9 +2564,9 @@
         "gpu": "20240114",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "356",
-                "qhd": "296",
-                "4kuhd": "171"
+                "fhd": "327",
+                "qhd": "297",
+                "4kuhd": "224"
             },
             "Rainbow Six Siege": {
                 "fhd": "517",
@@ -2446,9 +2574,9 @@
                 "4kuhd": "227"
             },
             "Overwatch 2": {
-                "fhd": "524",
-                "qhd": "427",
-                "4kuhd": "222"
+                "fhd": "563",
+                "qhd": "523",
+                "4kuhd": "428"
             },
             "Cyberpunk 2077": {
                 "fhd": "215",
@@ -2461,19 +2589,19 @@
                 "4kuhd": "363"
             },
             "Halo Infinite": {
-                "fhd": "147",
-                "qhd": "111",
-                "4kuhd": "58"
+                "fhd": "193",
+                "qhd": "180",
+                "4kuhd": "146"
             },
             "Fortnite": {
-                "fhd": "164",
-                "qhd": "136",
-                "4kuhd": "86"
+                "fhd": "317",
+                "qhd": "298",
+                "4kuhd": "246"
             },
             "Hitman World of Assassination": {
-                "fhd": "132",
-                "qhd": "100",
-                "4kuhd": "52"
+                "fhd": "256",
+                "qhd": "237",
+                "4kuhd": "192"
             },
             "Minecraft": {
                 "fhd": "1716",
@@ -2504,6 +2632,10 @@
                 "fhd": "674",
                 "qhd": "561",
                 "4kuhd": "356"
+            },
+            "No Preference": {
+                "ULscore": "30382",
+                "segment": "enthusiast"
             }
         }
     },
@@ -2512,9 +2644,9 @@
         "gpu": "20240114",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "359",
-                "qhd": "299",
-                "4kuhd": "171"
+                "fhd": "327",
+                "qhd": "297",
+                "4kuhd": "224"
             },
             "Rainbow Six Siege": {
                 "fhd": "521",
@@ -2522,9 +2654,9 @@
                 "4kuhd": "227"
             },
             "Overwatch 2": {
-                "fhd": "528",
-                "qhd": "427",
-                "4kuhd": "222"
+                "fhd": "563",
+                "qhd": "523",
+                "4kuhd": "428"
             },
             "Cyberpunk 2077": {
                 "fhd": "216",
@@ -2537,19 +2669,19 @@
                 "4kuhd": "363"
             },
             "Halo Infinite": {
-                "fhd": "147",
-                "qhd": "111",
-                "4kuhd": "58"
+                "fhd": "193",
+                "qhd": "180",
+                "4kuhd": "146"
             },
             "Fortnite": {
-                "fhd": "164",
-                "qhd": "136",
-                "4kuhd": "87"
+                "fhd": "317",
+                "qhd": "298",
+                "4kuhd": "246"
             },
             "Hitman World of Assassination": {
-                "fhd": "132",
-                "qhd": "100",
-                "4kuhd": "52"
+                "fhd": "256",
+                "qhd": "237",
+                "4kuhd": "192"
             },
             "Minecraft": {
                 "fhd": "1716",
@@ -2580,6 +2712,10 @@
                 "fhd": "679",
                 "qhd": "565",
                 "4kuhd": "359"
+            },
+            "No Preference": {
+                "ULscore": "30589",
+                "segment": "enthusiast"
             }
         }
     },
@@ -2588,9 +2724,9 @@
         "gpu": "20240114",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "376",
-                "qhd": "312",
-                "4kuhd": "171"
+                "fhd": "329",
+                "qhd": "299",
+                "4kuhd": "226"
             },
             "Rainbow Six Siege": {
                 "fhd": "546",
@@ -2598,9 +2734,9 @@
                 "4kuhd": "227"
             },
             "Overwatch 2": {
-                "fhd": "553",
-                "qhd": "427",
-                "4kuhd": "222"
+                "fhd": "570",
+                "qhd": "530",
+                "4kuhd": "435"
             },
             "Cyberpunk 2077": {
                 "fhd": "223",
@@ -2613,19 +2749,19 @@
                 "4kuhd": "363"
             },
             "Halo Infinite": {
-                "fhd": "147",
-                "qhd": "111",
-                "4kuhd": "58"
+                "fhd": "195",
+                "qhd": "182",
+                "4kuhd": "147"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "87"
+                "fhd": "320",
+                "qhd": "300",
+                "4kuhd": "249"
             },
             "Hitman World of Assassination": {
-                "fhd": "132",
-                "qhd": "100",
-                "4kuhd": "52"
+                "fhd": "260",
+                "qhd": "242",
+                "4kuhd": "197"
             },
             "Minecraft": {
                 "fhd": "1716",
@@ -2656,6 +2792,10 @@
                 "fhd": "711",
                 "qhd": "592",
                 "4kuhd": "376"
+            },
+            "No Preference": {
+                "ULscore": "29771",
+                "segment": "enthusiast"
             }
         }
     },
@@ -2664,9 +2804,9 @@
         "gpu": "20240114",
         "gameTitles": {
             "Apex Legends": {
-                "fhd": "377",
-                "qhd": "313",
-                "4kuhd": "171"
+                "fhd": "330",
+                "qhd": "299",
+                "4kuhd": "226"
             },
             "Rainbow Six Siege": {
                 "fhd": "547",
@@ -2674,9 +2814,9 @@
                 "4kuhd": "227"
             },
             "Overwatch 2": {
-                "fhd": "553",
-                "qhd": "427",
-                "4kuhd": "222"
+                "fhd": "571",
+                "qhd": "531",
+                "4kuhd": "436"
             },
             "Cyberpunk 2077": {
                 "fhd": "223",
@@ -2689,19 +2829,19 @@
                 "4kuhd": "363"
             },
             "Halo Infinite": {
-                "fhd": "147",
-                "qhd": "111",
-                "4kuhd": "58"
+                "fhd": "195",
+                "qhd": "182",
+                "4kuhd": "148"
             },
             "Fortnite": {
-                "fhd": "165",
-                "qhd": "137",
-                "4kuhd": "87"
+                "fhd": "320",
+                "qhd": "301",
+                "4kuhd": "249"
             },
             "Hitman World of Assassination": {
-                "fhd": "132",
-                "qhd": "100",
-                "4kuhd": "52"
+                "fhd": "261",
+                "qhd": "243",
+                "4kuhd": "197"
             },
             "Minecraft": {
                 "fhd": "1716",
@@ -2732,6 +2872,10 @@
                 "fhd": "712",
                 "qhd": "593",
                 "4kuhd": "376"
+            },
+            "No Preference": {
+                "ULscore": "30893",
+                "segment": "enthusiast"
             }
         }
     }

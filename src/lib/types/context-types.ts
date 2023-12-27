@@ -1,6 +1,11 @@
 import React from "react";
 import { type IFormatPreferencesDataReturn } from "../utils/util-build-preference";
 
+export type ProductRating = {
+  rating_count: number;
+  star_rating: number;
+};
+
 export type PreferenceGameType =
   | {
       _id: string;

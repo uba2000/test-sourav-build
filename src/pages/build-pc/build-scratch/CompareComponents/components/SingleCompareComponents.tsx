@@ -12,11 +12,17 @@ import clsx from 'clsx'
 import DoughnutChart from '../../../../../components/DoughnutChart/DoughnutChart'
 import type { IDoughnutChartData } from '../../../../../components/DoughnutChart/types'
 import useBuildPCStages from '../../../../../lib/hooks/useBuildPCStages'
-import { IBuildStages, IBuildStagesSlugs } from '../../../../../lib/types/context-types'
+import { IBuildStages, IBuildStagesSlugs, ProductRating } from '../../../../../lib/types/context-types'
 import PolygonContainer from '../../../../../components/PolygonContainer/PolygonContainer'
 import { getSpecDetailsImage } from '../../../../../lib/utils/util-asset-urls'
 import Select from '../../../../../components/Select/Select'
 import RemoveItemButton from '../../../../../components/Button/RemoveItemButton'
+import useSWR from 'swr'
+import { getPortinosRatings, portinosRatingEndpoint as portinosRatingCacheKey } from '../../../../../lib/api/portinosAPI'
+// import {
+//   getPortinosInventory, portinosInventoryEndpoint as portinosCacheKey,
+//   getPortinosRatings, portinosRatingEndpoint as portinosRatingCacheKey
+// } from './lib/api/portinosAPI.ts'
 
 // interface ISingleCompareComponents {
 //   handleToggleSingleDetails: (_id: string) => void
@@ -41,6 +47,10 @@ function SingleCompareComponents({
     toggleViewingComponentModel, setCurrentModelOnStage
   } = useBuildPCContext()
 
+  const { data:ratingsData } = useSWR(portinosRatingCacheKey, getPortinosRatings)
+
+  const productRatings = useMemo<ProductRating>(() => ratingsData?.[selectedItemID as string] || {}, [ratingsData, selectedItemID])
+  
   const _category_slug = useMemo(() => { 
     if (category_slug) {
       return category_slug;
@@ -189,7 +199,7 @@ function SingleCompareComponents({
                   <CompatibilityBadge />
                   <div className="flex gap-1 items-center">
                     <StarRatingComponent size={8} />
-                    <span className="text-xs leading-[10px]">#### Reviews</span>
+                    <span className="text-xs leading-[10px]">{productRatings?.rating_count} Reviews</span>
                   </div>
                 </div>
 
@@ -301,7 +311,7 @@ function SingleCompareComponents({
                   <CompatibilityBadge />
                   <div className="flex gap-1 items-center">
                     <StarRatingComponent size={8} />
-                    <span className="text-xs leading-[10px]">#### Reviews</span>
+                    <span className="text-xs leading-[10px]">{productRatings?.rating_count} Reviews</span>
                   </div>
                 </div>
 
@@ -340,7 +350,7 @@ function SingleCompareComponents({
                     <CompatibilityBadge />
                     <div className="flex gap-1 items-center">
                       <StarRatingComponent size={8} />
-                      <span className="text-xs leading-[10px]">#### Reviews</span>
+                      <span className="text-xs leading-[10px]">{productRatings?.rating_count} Reviews</span>
                     </div>
                   </div>
 

@@ -11,8 +11,14 @@ const portinosAPI = axios.create({
 });
 
 export const portinosInventoryEndpoint = "/portinos-feed.json";
+export const portinosRatingEndpoint = "/product_ratings.json";
 
 export const getPortinosInventory = async () => {
   const response = await portinosAPI.get(portinosInventoryEndpoint);
+  return response.data;
+};
+
+export const getPortinosRatings = async () => {
+  const response = await portinosAPI.get(portinosRatingEndpoint);
   return response.data;
 };
