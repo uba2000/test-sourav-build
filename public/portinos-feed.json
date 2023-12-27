@@ -1279,7 +1279,7 @@
             "brand_logo": "https://skuapi.s3.us-east-2.amazonaws.com/staging/gateway/assets/images/brand_logo/corsair.png",
             "stock": true,
             "category": "cooler",
-            "segment": "enthusiast",
+            "segment": "mainstream|enthusiast",
             "pricespider_passthrough": {
                 "weight": "2611",
                 "product_color": "Black",
@@ -1383,7 +1383,7 @@
             "brand_logo": "https://skuapi.s3.us-east-2.amazonaws.com/staging/gateway/assets/images/brand_logo/corsair.png",
             "stock": true,
             "category": "fan",
-            "segment": "enthusiast",
+            "segment": "entry|mainstream|enthusiast",
             "pricespider_passthrough": {
                 "weight": "260 mm",
                 "product_color": "Black,White",
@@ -1430,7 +1430,7 @@
             "brand_logo": "https://skuapi.s3.us-east-2.amazonaws.com/staging/gateway/assets/images/brand_logo/corsair.png",
             "stock": true,
             "category": "fan",
-            "segment": "enthusiast",
+            "segment": "entry|mainstream|enthusiast",
             "pricespider_passthrough": {
                 "weight": "240",
                 "product_color": "Black",
@@ -2209,7 +2209,7 @@
             "os": 20240106,
             "fan": 20240123,
             "case": 20240133,
-            "cooler": 20240122,
+            "cooler": 20240121,
             "ram": 20240130,
             "storage": 20240109,
             "motherboard": 20240126
