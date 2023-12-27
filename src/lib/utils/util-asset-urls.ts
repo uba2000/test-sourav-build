@@ -1,7 +1,15 @@
 const ASSET_BASEURL = "https://d209lqx5jyogny.cloudfront.net";
 
-export function getGameTitlesImage(_game_title: string) {
-  return `${ASSET_BASEURL}/game-titles/${_game_title}.png`;
+export function getGameTitlesImage(
+  _game_title: string,
+  options: { res: "2x" | "1x"; screen: "desktop" | "mobile" } = {
+    res: "2x",
+    screen: "desktop",
+  },
+) {
+  return decodeURIComponent(
+    `${ASSET_BASEURL}/game-titles/game–${_game_title}-${options.screen}-${options.res}.png`,
+  );
 }
 
 export function getSpecDetailsImage(

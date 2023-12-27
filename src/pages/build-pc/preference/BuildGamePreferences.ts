@@ -3,59 +3,59 @@ export const noPreferenceId = "no-preference";
 
 const BuildGamePreferences = [
   {
-    _id: "Apex-legends",
+    _id: "apex-legends",
     title: "Apex Legends",
   },
   {
-    _id: "Rainbow-Six-Siege",
+    _id: "rainbow-six-seige",
     title: "Rainbow Six Siege",
   },
   {
-    _id: "Overwatch2",
+    _id: "overwatch-2",
     title: "Overwatch 2",
   },
   {
-    _id: "cyberpunk",
+    _id: "cyberpunk-2077",
     title: "Cyberpunk 2077",
   },
   {
-    _id: "rocket-league",
+    _id: "rocket league",
     title: "Rocket League Season 12",
   },
   {
-    _id: "Halo",
+    _id: "halo",
     title: "Halo Infinite",
   },
   {
-    _id: "Fortnite",
+    _id: "fortnite",
     title: "Fortnite",
   },
   {
-    _id: "Hitman",
+    _id: "hitman",
     title: "Hitman World of Assassination",
   },
   {
-    _id: "Minecraft",
+    _id: "minecraft",
     title: "Minecraft",
   },
   {
-    _id: "Assassins-creed",
+    _id: "assasins-creed-mirage",
     title: "Assassin's Creed Mirage",
   },
   {
-    _id: "Counter-Strike",
+    _id: "counter-strike-2",
     title: "Counter Strike 2 ",
   },
   {
-    _id: "Dauntless",
+    _id: "dauntless",
     title: "Dauntless",
   },
   {
-    _id: "ghost-runner",
+    _id: "ghostrunner-2",
     title: "Ghost Runner 2",
   },
   {
-    _id: "roblox-1",
+    _id: "roblox",
     title: "Roblox",
   },
   // {
