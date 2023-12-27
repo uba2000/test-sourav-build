@@ -198,7 +198,7 @@ function SingleCompareComponents({
                 <div className="flex justify-center gap-x-6">
                   <CompatibilityBadge />
                   <div className="flex gap-1 items-center">
-                    <StarRatingComponent size={8} />
+                    <StarRatingComponent size={8} star_rating={productRatings?.star_rating} />
                     <span className="text-xs leading-[10px]">{productRatings?.rating_count} Reviews</span>
                   </div>
                 </div>
@@ -310,7 +310,7 @@ function SingleCompareComponents({
                 <div className="flex justify-center gap-x-6">
                   <CompatibilityBadge />
                   <div className="flex gap-1 items-center">
-                    <StarRatingComponent size={8} />
+                    <StarRatingComponent size={8} star_rating={productRatings?.star_rating} />
                     <span className="text-xs leading-[10px]">{productRatings?.rating_count} Reviews</span>
                   </div>
                 </div>
@@ -349,7 +349,7 @@ function SingleCompareComponents({
                   <div className="flex justify-center gap-x-6">
                     <CompatibilityBadge />
                     <div className="flex gap-1 items-center">
-                      <StarRatingComponent size={8} />
+                      <StarRatingComponent size={8} star_rating={productRatings?.star_rating} />
                       <span className="text-xs leading-[10px]">{productRatings?.rating_count} Reviews</span>
                     </div>
                   </div>
