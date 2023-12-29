@@ -24,6 +24,13 @@ function useBuildPCLayoutContext() {
     setViewingCurrentComponentModel((prev) => _toggle === undefined ? !prev : _toggle);
   }
 
+  function resetBuildPCLayout() {
+    setCurrentModelOnStage(null)
+    setCanViewSpecs(false)
+    setViewingCurrentComponentModel(false)
+    setShowCurrentModelSpecs(false)
+  }
+
   return {
     thankYouModalOpen,
     currentModelOnStage,
@@ -32,6 +39,7 @@ function useBuildPCLayoutContext() {
     viewingCurrentComponentModel,
 
     toggleShowSpecs,
+    resetBuildPCLayout,
     toggleCanViewSpecs,
     setThankYouModalOpen,
     toggleViewingComponentModel,

@@ -19,6 +19,7 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
   const resetApp = useCallback(() => {
     preferenceState.resetPreferences();
     buildPCState.resetPCBuild();
+    buildLayoutState.resetBuildPCLayout();
     navigate(RouteNames.home);
   }, []);
 
