@@ -29,7 +29,6 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
   const { windowSize } = useWindowSize();
 
   function handleWindowScroll() {
-    console.log('Scrolling...');
     setOptionsIsOpen(false)
   }
 
