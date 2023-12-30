@@ -24,7 +24,6 @@ interface ISelectOption {
 
 function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinates }: ISelectOption) {
   const [listStyles, setListStyles] = useState({});
-  const parentDiv = useRef<HTMLDivElement>(document.querySelector('#buildLayoutChildDIV'))
   const containerRef = useRef<HTMLDivElement>(null)
 
   const { windowSize } = useWindowSize();
@@ -35,15 +34,16 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
   }
 
   useEffect(() => {
-    if (parentDiv.current) {
-      parentDiv.current.addEventListener('scroll', handleWindowScroll)
+    const _parentDiv = document.querySelector('#buildLayoutChildDIV')
+    if (_parentDiv) {
+      _parentDiv.addEventListener('scroll', handleWindowScroll)
     }
     window.addEventListener('scroll', handleWindowScroll)
 
     return () => {
       window.removeEventListener('scroll', handleWindowScroll);
-      if (parentDiv.current) { 
-        parentDiv.current.removeEventListener('scroll', handleWindowScroll);
+      if (_parentDiv) { 
+        _parentDiv.removeEventListener('scroll', handleWindowScroll);
       }
     }
   }, [])
