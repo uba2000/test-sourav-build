@@ -5,7 +5,6 @@ import StarRatingComponent from '../../../../../components/StarRatingComponent/S
 import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge'
 import Button from '../../../../../components/Button/Button'
 import RightArrow from '../../../../../assets/right-arrow-white.svg'
-import RightArrowBlack from '../../../../../assets/right-arrow.svg'
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
 import { Fragment, useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
@@ -24,14 +23,6 @@ import {
 } from '../../../../../lib/api/portinosAPI'
 import { getPreferencesData, preferenceUrlEndpoint as preferenceCacheKey } from '../../../../../lib/api/preferenceAPI'
 import { formatPreferencesData } from '../../../../../lib/utils/util-build-preference'
-// import {
-//   getPortinosInventory, portinosInventoryEndpoint as portinosCacheKey,
-//   getPortinosRatings, portinosRatingEndpoint as portinosRatingCacheKey
-// } from './lib/api/portinosAPI.ts'
-
-// interface ISingleCompareComponents {
-//   handleToggleSingleDetails: (_id: string) => void
-// }
 
 interface ISingleCompareComponents {
   handleAddComponentToBuild?: (_id: string) => void;
@@ -48,7 +39,7 @@ function SingleCompareComponents({
 }: ISingleCompareComponents) {
   const {
     toggleShowSpecs, preferences, preferenceResolutions, currentBuild, toggleCanViewSpecs,
-    allGamesMinMaxFPS, predefinedBuilds, removeComponentToBuild,
+    allGamesMinMaxFPS, removeComponentToBuild,
     toggleViewingComponentModel, setCurrentModelOnStage, preferenceGameTypes, buildStages
   } = useBuildPCContext()
 
@@ -172,12 +163,6 @@ function SingleCompareComponents({
       fps: _game_fps || 0
     }
   }, [preferences_feed, _category_slug, currentGameTitle, gamingAt, allGamesMinMaxFPS.max, selectedItemID, pairedWith])
-
-  const currentCPUGPUTitle = useMemo(() => { 
-    return _category_slug === 'processor'
-      ? predefinedBuilds.items.find((d) => d.category_slug === 'graphics-card')?.title
-      : predefinedBuilds.items.find((d) => d.category_slug === 'processor')?.title
-  }, [predefinedBuilds, _category_slug])
 
   const pairedWithOptions = useMemo(() => { 
     let _options: IBuildComponent[] = [];
@@ -305,12 +290,6 @@ function SingleCompareComponents({
 
               <div className='flex gap-1'>
                 <div className="min-w-[150px] text-sm">Gaming at </div>
-                <div className='hidden'>
-                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
-                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{preferences?.gaming_resolution?.res || ''}</span>
-                    <ImageFigure icon={RightArrowBlack} width={12} />
-                  </div>
-                </div>
                 <div className='flex-1'>
                   <Select
                     options={preferenceResolutions.map((d) => ({
@@ -325,12 +304,6 @@ function SingleCompareComponents({
 
               <div className='flex gap-1'>
                 <div className="min-w-[150px] text-sm">Paired with </div>
-                <div className='hidden'>
-                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
-                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{currentCPUGPUTitle || ''}</span>
-                    <ImageFigure icon={RightArrowBlack} width={12} />
-                  </div>
-                </div>
                 <div className='flex-1'>
                   <Select
                     options={pairedWithOptions}
@@ -342,12 +315,6 @@ function SingleCompareComponents({
 
               <div className='flex gap-1'>
                 <div className="min-w-[150px] text-sm">While playing </div>
-                <div className='hidden'>
-                  <div className="flex-grow flex gap-[6px] items-center py-[6px] px-3 bg-gaming-blue">
-                    <span className='text-xs line-clamp-1 font-IntelOneBodyTextMedium text-gaming-navy'>{currentGameTitle || ''}</span>
-                    <ImageFigure icon={RightArrowBlack} width={12} />
-                  </div>
-                </div>
                 <div className='flex-1'>
                   <Select
                     onChange={setCurrentGameTitle}

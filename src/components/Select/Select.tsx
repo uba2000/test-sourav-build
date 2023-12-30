@@ -57,7 +57,7 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
     } else if (options.length > 0) {
       handleSetSelectedLabel(options[0].label)
     }
-  }, [handleSelectOption, initialValue, options])
+  }, [initialValue])
 
   // console.log({buttonCoordinates, initialValue});
   
