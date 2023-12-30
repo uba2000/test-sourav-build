@@ -10,7 +10,7 @@ export type PreferenceGameType =
   | {
       _id: string;
       title: string;
-      image: string;
+      image?: undefined;
     }
   | {
       _id: string;
@@ -88,9 +88,13 @@ export type IFPSTypesItemIDType =
   | "mid_range"
   | "min_low_range";
 
+export type IFPSTypesItemFPSTitle =
+  | "Up to 60 FPS"
+  | "Up to 175 FPS"
+  | "175 and Up";
 export interface IFPSTypesItem {
   _id: IFPSTypesItemIDType;
-  fps: string;
+  fps: IFPSTypesItemFPSTitle;
   range: {
     min: string;
     max: string | number;
@@ -107,10 +111,11 @@ export type BuildPCPreferenceType = {
 };
 
 export type PreferenceResolutionsTitleType = "4kuhd" | "qhd" | "fhd";
+export type PreferenceResolutionsResType = "2160P" | "1440P" | "1080P";
 
 export interface IPreferenceResolutions {
   title: PreferenceResolutionsTitleType;
-  res: string;
+  res: PreferenceResolutionsResType;
   image: string;
   fullImage: string;
 }
@@ -152,6 +157,10 @@ export interface IBuildPCContext {
   setGamingPreference: (
     field: keyof BuildPCPreferenceType,
     value: string | string[] | IFPSTypesItem | IPreferenceResolutions,
+  ) => void;
+  analyzeNoPreferenceForBuild: (
+    preferences: BuildPCPreferenceType,
+    preferenceGameTypes: PreferenceGameType[],
   ) => void;
   analyzePreferencesForBuild: (preferences: BuildPCPreferenceType) => void;
   filterGameTitles: (

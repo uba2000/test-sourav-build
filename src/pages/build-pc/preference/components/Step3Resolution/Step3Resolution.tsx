@@ -2,7 +2,7 @@ import PreferenceLayout from '../PreferenceLayout/PreferenceLayout'
 
 import FullResImage from '../../../../../assets/res/full-res-image.svg'
 
-import { Fragment, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import _ from 'lodash'
 import clsx from 'clsx'
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
@@ -26,6 +26,17 @@ function Step3Resolution({availableRes}: IStep3ResolutionProps) {
     setSelectedRESImage(resolutions[index].fullImage)
     setGamingPreference('gaming_resolution', resolutions[index])
   }
+
+  useEffect(() => {
+    if (preferences.gaming_resolution?.title) {
+      const _selected_res_title = preferences.gaming_resolution?.title;
+
+      if (availableRes[_selected_res_title].length < 1) {
+        setSelectedRESIndex(null);
+        setSelectedRESImage(null)
+      }
+    }
+  }, [availableRes, preferences.gaming_resolution?.title])
 
   return (
     <div className='animate-fadeInUp'>

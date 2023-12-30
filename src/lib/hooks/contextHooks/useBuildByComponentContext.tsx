@@ -3,7 +3,7 @@ import { useCallback, useState } from "react"
 import type {
   BuildFlowType,
   BuildPCPreferenceType, IAPortinosProductInFeed, IAddToBuildProps, IBuildComponent,
-  IBuildStages, IBuildStagesSlugs, ICleanPreferenceData, IPortinosProductFeed, IPortinosProductPresetKeys, IPreconfigedBuild, ProductPredefinedPresets
+  IBuildStages, IBuildStagesSlugs, ICleanPreferenceData, IPortinosProductFeed, IPortinosProductPresetKeys, IPreconfigedBuild, PreferenceGameType, ProductPredefinedPresets
 } from "../../types/context-types"
 
 import CPUIcon from '../../../assets/component-icons/cpu.svg?react'
@@ -21,6 +21,7 @@ import useSWR from "swr"
 import { buildSlugMap, determineProductSpecs, formatPreferencesData, preconfigedBuildTitles, preferenceBuildSegmentWeight } from "../../utils/util-build-preference"
 import { getPreferencesData, preferenceUrlEndpoint as cacheKey } from "../../api/preferenceAPI"
 import { getPortinosInventory, portinosInventoryEndpoint as portinosCacheKey } from "../../api/portinosAPI"
+import { noPreferenceName } from "../../../pages/build-pc/preference/BuildGamePreferences"
 // import { matchRoutes, useLocation } from "react-router-dom"
 
 // const componentBuildRoutes = [
@@ -221,26 +222,23 @@ function useBuildByComponentContext() {
     setBuildStages(_buildStages);
   }
 
-  function analyzePreferencesForBuild(preferences: BuildPCPreferenceType) {
-    
+  function handleCleanGameTitlesData(preferenceGameTypes: string[], preferences: BuildPCPreferenceType): ICleanPreferenceData[] {
     const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
     const _portinos_product_feed = portinos_product_feed as IPortinosProductFeed;
+    let all_data: ICleanPreferenceData[] = [];
+    const _preferenceGameTypes = preferenceGameTypes
 
     const selected_res = preferences.gaming_resolution?.title;
     const selected_fps_range = preferences.gaming_fps!.range;
 
-    let all_data: ICleanPreferenceData[] = [];
-
     if (selected_res) {
-      all_data = preferences.game_type_title.map((game_title) => {
-  
+      all_data = _preferenceGameTypes.map((game_title) => {
         const game_products_in_range: ICleanPreferenceData['data'][] = [];
-          
+        
         _preferences_feed.forEach((product) => {
           const current_game_value = product.gameTitles[game_title];
-          
           const _fps_value = parseInt(current_game_value[selected_res], 10);
-          
+
           if (_fps_value >= parseInt(selected_fps_range?.min, 10)) {
             if (
               (typeof selected_fps_range?.max === 'number' && _fps_value <= selected_fps_range?.max)
@@ -255,28 +253,28 @@ function useBuildByComponentContext() {
               });
             }
           }
-        }) // at this point you can get which game has product for its specs
+        })
 
         let _data: ICleanPreferenceData['data'] = null;
 
         game_products_in_range.forEach((_d) => {
-          if (!_data) {
+        if (!_data) {
+          _data = _d;
+        } else if (_data) {
+          if (parseInt(_d?.fps as string, 10) < parseInt(_data.fps!, 10)) { 
             _data = _d;
-          } else if (_data) {
-            if (parseInt(_d?.fps as string, 10) < parseInt(_data.fps!, 10)) { 
-              _data = _d;
-            }
           }
-        })
-  
-        return {
-          title: game_title,
-          data: _data,
-          cpu_product: null,
-          gpu_product: null,
-          highest_segment: null,
-          // game_products_in_range,
         }
+      })
+
+      return {
+        title: game_title,
+        data: _data,
+        cpu_product: null,
+        gpu_product: null,
+        highest_segment: null,
+        // game_products_in_range,
+      }
       })
     }
 
@@ -349,6 +347,46 @@ function useBuildByComponentContext() {
       return a_d
     })
 
+    return all_data;
+  }
+
+  function analyzeNoPreferenceForBuild(preferences: BuildPCPreferenceType, preferenceGameTypes: PreferenceGameType[]) {   
+    const _preferenceGameTypes = preferenceGameTypes.filter((d) => d.title !== noPreferenceName)
+
+    let _highest_segment: ProductPredefinedPresets | null = null;
+
+    if (preferences.gaming_fps?.fps === 'Up to 60 FPS' && preferences.gaming_resolution?.res === '1080P') {
+      // only entry level
+      _highest_segment = 'entry';
+    } else if (
+      (preferences.gaming_fps?.fps === 'Up to 175 FPS' && preferences.gaming_resolution?.res === '1080P')
+      || (preferences.gaming_fps?.fps === 'Up to 60 FPS' && preferences.gaming_resolution?.res === '1440P')
+    ) {
+      // only maistream level
+      _highest_segment = 'mainstream';
+    } else if (
+      (preferences.gaming_fps?.fps === '175 and Up' && preferences.gaming_resolution?.res === '1080P')
+      || (preferences.gaming_fps?.fps === 'Up to 175 FPS' && preferences.gaming_resolution?.res === '1440P')
+      || (preferences.gaming_fps?.fps === 'Up to 60 FPS' && preferences.gaming_resolution?.res === '2160P')
+    ) {
+      // only enthusiast
+      _highest_segment = 'enthusiast';
+    }
+
+    console.log({ _highest_segment });
+    if (_highest_segment) {
+      const all_data = handleCleanGameTitlesData(_preferenceGameTypes.map(d => d.title), preferences)
+
+      setCleanGameInfoArray(all_data)
+      setBuildSegment(_highest_segment)
+      getPredefineBuilds(_highest_segment!)
+      mapOutEligibleProducts(_highest_segment!)
+    }
+  }
+
+  function analyzePreferencesForBuild(preferences: BuildPCPreferenceType) {
+    const all_data = handleCleanGameTitlesData(preferences.game_type_title, preferences)
+
     let _highest_segment: ProductPredefinedPresets | null = null;
     // check the segments
     all_data.forEach((a_d) => {
@@ -360,7 +398,8 @@ function useBuildByComponentContext() {
         }
       }
     })
-
+    console.log({all_data});
+    
     setCleanGameInfoArray(all_data)
     setBuildSegment(_highest_segment)
     getPredefineBuilds(_highest_segment!)
@@ -513,6 +552,7 @@ function useBuildByComponentContext() {
     addComponentToBuild: addToBuild,
     removeComponentToBuild: removeFromBuild,
     resetPCBuild,
+    analyzeNoPreferenceForBuild,
     analyzePreferencesForBuild,
   }
 }

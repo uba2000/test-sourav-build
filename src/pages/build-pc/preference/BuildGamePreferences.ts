@@ -1,7 +1,15 @@
+import type {
+  IFPSTypesItemFPSTitle,
+  PreferenceGameType,
+  PreferenceResolutionsTitleType,
+} from "../../../lib/types/context-types";
+
 export const noPreferenceName = "No preference";
 export const noPreferenceId = "no-preference";
 
-const BuildGamePreferences = [
+export type BuildGamePreferencesType = PreferenceGameType;
+
+const BuildGamePreferences: BuildGamePreferencesType[] = [
   {
     _id: "apex-legends",
     title: "Apex Legends",
@@ -84,5 +92,29 @@ const BuildGamePreferences = [
     image: null,
   },
 ];
+
+type BuildGameNoPreferenceConfigType = {
+  [x in IFPSTypesItemFPSTitle]: {
+    [y in PreferenceResolutionsTitleType]: number[];
+  };
+};
+
+export const BuildGameNoPreferenceFPSConfig: BuildGameNoPreferenceConfigType = {
+  "Up to 60 FPS": {
+    fhd: [1],
+    "4kuhd": [1],
+    qhd: [1],
+  },
+  "Up to 175 FPS": {
+    fhd: [1],
+    "4kuhd": [],
+    qhd: [1],
+  },
+  "175 and Up": {
+    fhd: [1],
+    "4kuhd": [],
+    qhd: [],
+  },
+};
 
 export default BuildGamePreferences;

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import BuildGamePreferences from '../../../pages/build-pc/preference/BuildGamePreferences'
+import BuildGamePreferences, { BuildGameNoPreferenceFPSConfig, BuildGamePreferencesType, noPreferenceName } from '../../../pages/build-pc/preference/BuildGamePreferences'
 
 import { getPreferencesData, preferenceUrlEndpoint as cacheKey } from "../../api/preferenceAPI"
 
@@ -37,7 +37,7 @@ const initialMinMax: IMinMaxFPS = {
   }
 
 function usePreferencContext() {
-  const preferenceGameTypes = useMemo(() => BuildGamePreferences, []);
+  const preferenceGameTypes = useMemo<BuildGamePreferencesType[]>(() => BuildGamePreferences, []);
 
   const [preferences, setPreferences] = useState<BuildPCPreferenceType>(initialPreferences);
   
@@ -139,7 +139,12 @@ function usePreferencContext() {
 
   // filter out titles not choosen and returns estimate max-min fps
   function filterGameTitles(allowed_titles: string[]) {
+    console.log({ allowed_titles });
     const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
+    
+    if (allowed_titles.includes(noPreferenceName)) {
+      return [..._preferences_feed];
+    }
 
     const newData = [..._preferences_feed].map((item) => {
       const filteredGameTitles = Object.keys(item.gameTitles)
@@ -271,6 +276,11 @@ function usePreferencContext() {
       fhd: [],
       qhd: []
     };
+
+    if (preferences.game_type_title.includes(noPreferenceName)) {
+      const _adjustedFPS = BuildGameNoPreferenceFPSConfig[(preferences.gaming_fps!).fps]
+      return _adjustedFPS;
+    }
 
     resolutionValues.forEach(resolution => {
       presentResolutions[resolution] = _preferenceFeed
