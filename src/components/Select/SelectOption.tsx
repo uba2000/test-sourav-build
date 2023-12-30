@@ -47,13 +47,10 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
       }
     }
   }, [])
-
-
-  console.log({coordinates, windowSize, c: containerRef.current?.offsetHeight});
   
 
   useLayoutEffect(() => {
-    if (coordinates && containerRef.current) {
+    if (coordinates && containerRef?.current) {
       const _containerRefHeight = containerRef.current?.offsetHeight;
       setListStyles({
         width: `${coordinates?.width}px`,
@@ -68,7 +65,7 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
         left: `${(coordinates.left) + (coordinates.width / 2)}px`,
       });
     }
-  }, [coordinates, windowSize, containerRef.current]);
+  }, [coordinates, windowSize]);
 
   return (
     <OutsideClickHandler
