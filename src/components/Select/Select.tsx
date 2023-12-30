@@ -55,8 +55,6 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
 
   useEffect(() => {
     const _parentDiv = document.querySelector('#buildLayoutChildDIV');
-    console.log({_parentDiv}, 'Select');
-    
     if (_parentDiv) {
       _parentDiv.addEventListener('scroll', handleSetCoordinates)
     }
