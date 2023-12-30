@@ -139,7 +139,6 @@ function usePreferencContext() {
 
   // filter out titles not choosen and returns estimate max-min fps
   function filterGameTitles(allowed_titles: string[]) {
-    console.log({ allowed_titles });
     const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
     
     if (allowed_titles.includes(noPreferenceName)) {

@@ -38,7 +38,6 @@ function ChooseComponents() {
 
   const onSelectComponentItem = useCallback((_id: string) => {
     const _item = componentItems.find((d) => d._id === _id);
-    // console.log({ _item });
     toggleCanViewSpecs(true);
     
     // setCurrentModelOnStage(selectedItemID === _id ? '' : _item?.image as string);
@@ -51,8 +50,6 @@ function ChooseComponents() {
   }, [componentItems, selectedItemID, setCurrentModelOnStage, toggleViewingComponentModel])
 
   const handleSetCurrentPlaceholderImage = useCallback(() => {
-    // console.log('herre');
-    
     const _flow_type: BuildFlowType = buildFlowType;
     // then set the image for the current component selection
     let _stage_image = '';
@@ -62,7 +59,6 @@ function ChooseComponents() {
       _stage_image = placeholderImages[_flow_type][predefinedBuilds?.build_segment as ProductPredefinedPresets]
     }
     setCurrentModelOnStage(_stage_image);
-    // console.log({_stage_image});
     
   }, [_category_slug, buildFlowType, placeholderImages, predefinedBuilds?.build_segment, setCurrentModelOnStage])
 

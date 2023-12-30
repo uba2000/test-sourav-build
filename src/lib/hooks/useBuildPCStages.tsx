@@ -24,7 +24,6 @@ function useBuildPCStages() {
 
   useLayoutEffect(() => { 
     const _next_index_to_build = buildStages.findIndex((d) => d.selectedItem === null)
-    // console.log({_next_index_to_build, buildStages});
     setNextToBuildIndex(_next_index_to_build);
   }, [buildStages])
 

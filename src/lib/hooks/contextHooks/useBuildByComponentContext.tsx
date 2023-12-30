@@ -373,7 +373,6 @@ function useBuildByComponentContext() {
       _highest_segment = 'enthusiast';
     }
 
-    console.log({ _highest_segment });
     if (_highest_segment) {
       const all_data = handleCleanGameTitlesData(_preferenceGameTypes.map(d => d.title), preferences)
 
@@ -398,7 +397,6 @@ function useBuildByComponentContext() {
         }
       }
     })
-    console.log({all_data});
     
     setCleanGameInfoArray(all_data)
     setBuildSegment(_highest_segment)

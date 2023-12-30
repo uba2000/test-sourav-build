@@ -87,7 +87,6 @@ function BuildPreference() {
       return;
     }
     
-    // console.log({ preferences, preferenceFeedState: preferenceFeed });
     setCanProceed(false)
     setCurrentStage(prev => prev + 1)
     navigate(`${RouteNames.buildPreferenceIndex}?s=${currentStage + 1}`)
