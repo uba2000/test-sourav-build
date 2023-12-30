@@ -5,6 +5,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 // import Portal from '../Widgets/Portal';
 import useWindowSize from '../../lib/hooks/useWindowSize';
 import SelectOption from './SelectOption';
+import Portal from '../Widgets/Portal';
 
 interface ISelectPropsOption {
   label: string;
@@ -23,6 +24,8 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
   const [_selectedLabel, setSelectedLabel] = useState(options[0]?.label || 'No Options')
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [buttonCoordinates, setButtonCoordinates] = useState<any>(null);
+
+  const parentDiv = useRef<HTMLDivElement>(document.querySelector('#buildLayoutChildDIV'))
 
   const { windowSize } = useWindowSize();
 
@@ -44,10 +47,28 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
     handleCloseOptions()
   }, [])
 
-  useEffect(() => {
+  function handleSetCoordinates() {
     setButtonCoordinates(buttonRef?.current?.getBoundingClientRect());
+  }
+
+  useEffect(() => {
+    handleSetCoordinates();
   }, [buttonRef, windowSize]);
 
+  useEffect(() => {
+    if (parentDiv.current) {
+      parentDiv.current.addEventListener('scroll', handleSetCoordinates)
+    }
+    window.addEventListener('scroll', handleSetCoordinates)
+
+    return () => {
+      window.removeEventListener('scroll', handleSetCoordinates);
+      if (parentDiv.current) { 
+        parentDiv.current.removeEventListener('scroll', handleSetCoordinates);
+      }
+    }
+  }, [])
+  
   useLayoutEffect(() => {
     if (initialValue) {
       const _selected_value = options.find((d) => d.value === initialValue);
@@ -58,8 +79,6 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
       handleSetSelectedLabel(options[0].label)
     }
   }, [initialValue])
-
-  // console.log({buttonCoordinates, initialValue});
   
   return (
     <div className='relative w-full'>
@@ -72,7 +91,7 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
           'py-[6px] px-2 flex justify-between gap-x-5 w-full items-center'
         )}
       >
-        <span className='line-clamp-2 text-xs opacity-75 text-left'>{_selectedLabel}</span>
+        <span className='text-xs opacity-75 text-left line-clamp-1'>{_selectedLabel}</span>
 
         <div className='rotate-90 opacity-75'>
           <ImageFigure icon={RightArrowBlack} width={12} />
@@ -80,14 +99,14 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
       </button>
 
       {(optionsIsOpen && options.length > 0) && (
-        // <Portal selector='#select-options'>
-        <SelectOption
-          coordinates={buttonCoordinates}
-          setOptionsIsOpen={setOptionsIsOpen}
-          options={options}
-          handleSelectOption={handleSelectOption}
-        />
-        // </Portal>
+        <Portal selector='#select-options'>
+          <SelectOption
+            coordinates={buttonCoordinates}
+            setOptionsIsOpen={setOptionsIsOpen}
+            options={options}
+            handleSelectOption={handleSelectOption}
+          />
+        </Portal>
       )}
     </div>
   )

@@ -218,6 +218,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                 )}
                 <div
                   ref={desktopChildDivRef}
+                  id='buildLayoutChildDIV'
                   className={clsx(
                     "px-6 md:pt-[12px] pt-3 pb-10 overflow-y-auto scrollbar-hide scroll-smooth",
                     {"min-h-[670px] max-h-[670px]": !layout_r_title},
