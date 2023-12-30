@@ -35,6 +35,8 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
 
   useEffect(() => {
     const _parentDiv = document.querySelector('#buildLayoutChildDIV')
+    console.log({_parentDiv});
+    
     if (_parentDiv) {
       _parentDiv.addEventListener('scroll', handleWindowScroll)
     }
@@ -50,6 +52,8 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
   
 
   useLayoutEffect(() => {
+    console.log(containerRef?.current, 'containerRef?.current');
+    
     if (coordinates && containerRef?.current) {
       const _containerRefHeight = containerRef.current?.offsetHeight;
       setListStyles({
@@ -79,29 +83,29 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
           "mt-2 bg-[#000000] border border-[rgba(255,255,255,0.75)]",
           "fixed left-1/2 -translate-x-1/2 z-[100001] max-w-[222px] w-full"
         )}
+      >
+        <div
+          className={clsx(
+            "max-h-[138px] overflow-y-auto scroll-design"
+          )}
         >
-          <div
-            className={clsx(
-              "max-h-[138px] overflow-y-auto scroll-design"
-            )}
-          >
-            {options.map((d) => (
-              <Fragment key={_.uniqueId()}>
-                <div
-                  onClick={() => handleSelectOption(d)}
-                  className={
-                    clsx(
-                      "py-[6px] px-2 with-ease hover:bg-[#455C5D] cursor-pointer"
-                    )
-                  }
-                >
-                  <span className='text-xs'>
-                    {d.label}
-                  </span>
-                </div>
-              </Fragment>
-            ))}
-          </div>
+          {options.map((d) => (
+            <Fragment key={_.uniqueId()}>
+              <div
+                onClick={() => handleSelectOption(d)}
+                className={
+                  clsx(
+                    "py-[6px] px-2 with-ease hover:bg-[#455C5D] cursor-pointer"
+                  )
+                }
+              >
+                <span className='text-xs'>
+                  {d.label}
+                </span>
+              </div>
+            </Fragment>
+          ))}
+        </div>
       </div>
     </OutsideClickHandler>
   )

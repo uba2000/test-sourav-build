@@ -25,8 +25,6 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [buttonCoordinates, setButtonCoordinates] = useState<any>(null);
 
-  const parentDiv = useRef<HTMLDivElement>(document.querySelector('#buildLayoutChildDIV'))
-
   const { windowSize } = useWindowSize();
 
   function handleSetSelectedLabel(_label: string) {
@@ -56,15 +54,18 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
   }, [buttonRef, windowSize]);
 
   useEffect(() => {
-    if (parentDiv.current) {
-      parentDiv.current.addEventListener('scroll', handleSetCoordinates)
+    const _parentDiv = document.querySelector('#buildLayoutChildDIV');
+    console.log({_parentDiv}, 'Select');
+    
+    if (_parentDiv) {
+      _parentDiv.addEventListener('scroll', handleSetCoordinates)
     }
     window.addEventListener('scroll', handleSetCoordinates)
 
     return () => {
       window.removeEventListener('scroll', handleSetCoordinates);
-      if (parentDiv.current) { 
-        parentDiv.current.removeEventListener('scroll', handleSetCoordinates);
+      if (_parentDiv) { 
+        _parentDiv.removeEventListener('scroll', handleSetCoordinates);
       }
     }
   }, [])
