@@ -162,6 +162,7 @@ export interface IBuildPCContext {
   removeComponentToBuild: (props: IAddToBuildProps) => void;
 
   resetApp: () => void;
+  addToCartState: AddToRetailerUsersCartPropsType["state"];
   addToRetailerUsersCart: (props: AddToRetailerUsersCartPropsType) => void;
 
   thankYouModalOpen: boolean;

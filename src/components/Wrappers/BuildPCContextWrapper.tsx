@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { BuildPCContext } from '../../lib/context/BuildPCContext'
 import usePreferencContext from '../../lib/hooks/contextHooks/usePreferencContext';
 import useBuildByComponentContext from '../../lib/hooks/contextHooks/useBuildByComponentContext';
@@ -23,7 +23,10 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
     navigate(RouteNames.home);
   }, []);
 
+  const [addToCartState, setAddToCartState] = useState<AddToRetailerUsersCartPropsType['state'] | null>(null)
+
   const addToRetailerUsersCart = useCallback(({ state, _toggleState }: AddToRetailerUsersCartPropsType) => {
+    setAddToCartState(state)
     if (state === 'complete') {
       // navigate(RouteNames.resetSessionPage);
     }
@@ -36,11 +39,13 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
       ...buildState,
       ...buildLayoutState,
       resetApp,
+      addToCartState,
       addToRetailerUsersCart,
     }
   }, [
     preferenceState, buildLayoutState,
     buildState, resetApp,
+    addToCartState,
     addToRetailerUsersCart
   ]);
 

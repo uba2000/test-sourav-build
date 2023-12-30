@@ -104,13 +104,18 @@ export default {
         // 'bg-linear-gradient-1': '#0A001F, #0A001F00',
       },
       animation: {
+        fadeInUp: "fadeInUp 500ms cubic-bezier(0.2, 0, 0.38, 0.9) forwards",
         fadeIn: "fadeIn 500ms cubic-bezier(0.2, 0, 0.38, 0.9) forwards",
         popIn: "popIn 100ms cubic-bezier(0.2, 0, 0.38, 0.9) forwards",
       },
       keyframes: {
-        fadeIn: {
+        fadeInUp: {
           "0%": { opacity: "0", transform: "translate(0px, 50px)" },
           "100%": { opacity: "1", transform: "translate(0px, 0px)" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
         popIn: {
           "0%": { opacity: "0", scale: "0.95" },

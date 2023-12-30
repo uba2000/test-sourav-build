@@ -69,8 +69,6 @@ function BuildPreference() {
       // remove any resolutions not within this range
       const _presentResolutions = adjustFPSRange([...preferenceFeed])
       setPresentResolutions(_presentResolutions)
-      console.log({_presentResolutions});
-      
     } else if (currentStage === 2) {
       analyzePreferencesForBuild(preferences)
     }
@@ -127,7 +125,7 @@ function BuildPreference() {
 
   return (
     <PageWrapper>
-      <div className="animate-fadeIn md:pt-10 pt-6 max-h-screen overflow-y-auto scroll-smooth" ref={desktopChildDivRef}>
+      <div className="animate-fadeInUp md:pt-10 pt-6 max-h-screen overflow-y-auto scroll-smooth" ref={desktopChildDivRef}>
         <div className="flex mb-10 md:justify-start justify-center max-[413px]:flex-wrap gap-y-3">
           <div className="max-[413px]:hidden">
             <PolygonContainer rightBorder={false} className="-mr-[1px]">

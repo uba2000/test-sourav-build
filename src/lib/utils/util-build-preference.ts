@@ -55,7 +55,6 @@ export function determineProductSpecs(
 ) {
   let specs: IBuildComponentSpec[] = [];
   const _pricespider_passthrough = _product?.pricespider_passthrough;
-  console.log({ _pricespider_passthrough });
 
   switch (slug) {
     case "processor":

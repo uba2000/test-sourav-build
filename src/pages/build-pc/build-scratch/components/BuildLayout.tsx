@@ -45,7 +45,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
   const {
     currentBuild,
     resetApp, canViewSpecs,
-    addToRetailerUsersCart,
+    addToRetailerUsersCart, addToCartState,
     currentModelOnStage, toggleShowSpecs,
     showCurrentModelSpecs, thankYouModalOpen
   } = useBuildPCContext();
@@ -133,7 +133,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
         onClose={() => addToRetailerUsersCart({ state: 'complete' })}
         visible={thankYouModalOpen}
         title='Thank You'
-        description='Your components have been added to your cart.'
+        description={`Your component${addToCartState === 'complete' ? 's' : ''} have been added to \nyour cart.`}
       />
       {/* Add to Cart Modal */}
       <div className='md:pt-10 pt-5 md:pb-10 pb-5 overflow-x-hidden'>
@@ -183,7 +183,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
         >
           {/* {!isCompareMode && ( */}
           <div className="md:py-6 pt-6 flex-col gap-y-4 flex md:pb-[57px]">
-            <div className='animate-fadeIn flex-grow w-full min-w-[180px] min-h-[180px] flex justify-center items-center'>
+            <div className='flex-grow w-full min-w-[180px] min-h-[180px] flex justify-center items-center'>
               <div className='hidden md:block'>
                 <ImageFigure icon={currentModel} width={481} />
               </div>

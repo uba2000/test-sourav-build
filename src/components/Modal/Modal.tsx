@@ -4,6 +4,7 @@ import PolygonContainer from '../PolygonContainer/PolygonContainer'
 import CircleCloseIcon from '../../assets/circle-close-icon.svg'
 import clsx from 'clsx';
 import ImageFigure from '../ImageFigure';
+import _ from 'lodash';
 
 interface IModal {
   visible?: boolean;
@@ -37,8 +38,9 @@ function Modal({ visible, title, description, children, onClose = () => { } }: I
                   {title || ''}
                 </h3>
   
-                <p className="font-IntelOneBodyTextRegular md:text-base text-sm">
-                  {description || ''}
+                <p className="font-IntelOneBodyTextRegular md:text-base text-sm flex flex-col">
+                  {/* {description || ''} */}
+                  {description?.split('\\n').map((d) => (<span key={_.uniqueId()}>{d}</span>))}
                 </p>
 
                 <div className={clsx({ "mt-2":  title || description})}>

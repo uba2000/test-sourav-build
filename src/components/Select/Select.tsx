@@ -1,9 +1,10 @@
-import OutsideClickHandler from 'react-outside-click-handler';
 import ImageFigure from '../ImageFigure';
 import RightArrowBlack from '../../assets/right-arrow-white.svg'
 import clsx from 'clsx';
-import { Fragment, useCallback, useEffect, useLayoutEffect, useState } from 'react';
-import _ from 'lodash';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+// import Portal from '../Widgets/Portal';
+import useWindowSize from '../../lib/hooks/useWindowSize';
+import SelectOption from './SelectOption';
 
 interface ISelectPropsOption {
   label: string;
@@ -13,11 +14,17 @@ interface ISelectPropsOption {
 interface ISelectProps {
   options: ISelectPropsOption[];
   initialValue: ISelectPropsOption['value'];
+  onChange?: (_value: string) => void;
 }
 
-function Select({ options = [], initialValue }: ISelectProps) {
+function Select({ options = [], initialValue, onChange = () => { } }: ISelectProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
   const [_selectedLabel, setSelectedLabel] = useState(options[0]?.label || 'No Options')
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [buttonCoordinates, setButtonCoordinates] = useState<any>(null);
+
+  const { windowSize } = useWindowSize();
 
   function handleSetSelectedLabel(_label: string) {
     setSelectedLabel(_label);
@@ -33,27 +40,31 @@ function Select({ options = [], initialValue }: ISelectProps) {
 
   const handleSelectOption = useCallback((_option: ISelectPropsOption) => {
     handleSetSelectedLabel(_option.label);
+    onChange(_option.value)
     handleCloseOptions()
   }, [])
 
-  useEffect(() => { 
-    if (options.length > 0) {
-      handleSetSelectedLabel(options[0].label)
-    }
-  }, [options])
+  useEffect(() => {
+    setButtonCoordinates(buttonRef?.current?.getBoundingClientRect());
+  }, [buttonRef, windowSize]);
 
-  useLayoutEffect(() => { 
+  useLayoutEffect(() => {
     if (initialValue) {
       const _selected_value = options.find((d) => d.value === initialValue);
       if (_selected_value) {
         handleSetSelectedLabel(_selected_value.label);
       }
+    } else if (options.length > 0) {
+      handleSetSelectedLabel(options[0].label)
     }
   }, [handleSelectOption, initialValue, options])
 
+  // console.log({buttonCoordinates, initialValue});
+  
   return (
     <div className='relative w-full'>
       <button
+        ref={buttonRef}
         type='button'
         onClick={() => handleOpenOptions()}
         className={clsx(
@@ -61,7 +72,7 @@ function Select({ options = [], initialValue }: ISelectProps) {
           'py-[6px] px-2 flex justify-between gap-x-5 w-full items-center'
         )}
       >
-        <span className='line-clamp-2 text-xs opacity-75'>{_selectedLabel}</span>
+        <span className='line-clamp-2 text-xs opacity-75 text-left'>{_selectedLabel}</span>
 
         <div className='rotate-90 opacity-75'>
           <ImageFigure icon={RightArrowBlack} width={12} />
@@ -69,39 +80,14 @@ function Select({ options = [], initialValue }: ISelectProps) {
       </button>
 
       {(optionsIsOpen && options.length > 0) && (
-      <OutsideClickHandler
-        onOutsideClick={() => setOptionsIsOpen(false)}
-      >
-        <div
-          className={clsx(
-            { "pr-[6px] py-1": options.length > 3 },
-            "absolute mt-2 top-full w-full z-30 bg-[#000000] border border-[rgba(255,255,255,0.75)]"
-          )}
-          >
-            <div
-              className={clsx(
-                "max-h-[138px] overflow-y-auto scroll-design pr-[6px]"
-              )}
-            >
-              {options.map((d) => (
-                <Fragment key={_.uniqueId()}>
-                  <div
-                    onClick={() => handleSelectOption(d)}
-                    className={
-                      clsx(
-                        "py-[6px] px-2 with-ease hover:bg-[#455C5D] cursor-pointer"
-                      )
-                    }
-                  >
-                    <span className='text-xs'>
-                      {d.label}
-                    </span>
-                  </div>
-                </Fragment>
-              ))}
-            </div>
-        </div>
-      </OutsideClickHandler>
+        // <Portal selector='#select-options'>
+        <SelectOption
+          coordinates={buttonCoordinates}
+          setOptionsIsOpen={setOptionsIsOpen}
+          options={options}
+          handleSelectOption={handleSelectOption}
+        />
+        // </Portal>
       )}
     </div>
   )

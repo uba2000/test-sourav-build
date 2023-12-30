@@ -7,18 +7,23 @@ import Button from '../../../../../components/Button/Button'
 import RightArrow from '../../../../../assets/right-arrow-white.svg'
 import RightArrowBlack from '../../../../../assets/right-arrow.svg'
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
-import { Fragment, useMemo } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
 import DoughnutChart from '../../../../../components/DoughnutChart/DoughnutChart'
 import type { IDoughnutChartData } from '../../../../../components/DoughnutChart/types'
 import useBuildPCStages from '../../../../../lib/hooks/useBuildPCStages'
-import { IBuildStages, IBuildStagesSlugs, ProductRating } from '../../../../../lib/types/context-types'
+import { IBuildComponent, IBuildStages, IBuildStagesSlugs, PreferenceResolutionsTitleType, ProductRating } from '../../../../../lib/types/context-types'
 import PolygonContainer from '../../../../../components/PolygonContainer/PolygonContainer'
 import { getSpecDetailsImage } from '../../../../../lib/utils/util-asset-urls'
 import Select from '../../../../../components/Select/Select'
 import RemoveItemButton from '../../../../../components/Button/RemoveItemButton'
 import useSWR from 'swr'
-import { getPortinosRatings, portinosRatingEndpoint as portinosRatingCacheKey } from '../../../../../lib/api/portinosAPI'
+import {
+  getPortinosRatings,
+  portinosRatingEndpoint as portinosRatingCacheKey,
+} from '../../../../../lib/api/portinosAPI'
+import { getPreferencesData, preferenceUrlEndpoint as preferenceCacheKey } from '../../../../../lib/api/preferenceAPI'
+import { formatPreferencesData } from '../../../../../lib/utils/util-build-preference'
 // import {
 //   getPortinosInventory, portinosInventoryEndpoint as portinosCacheKey,
 //   getPortinosRatings, portinosRatingEndpoint as portinosRatingCacheKey
@@ -43,11 +48,13 @@ function SingleCompareComponents({
 }: ISingleCompareComponents) {
   const {
     toggleShowSpecs, preferences, preferenceResolutions, currentBuild, toggleCanViewSpecs,
-    allGamesMinMaxFPS, cleanGameInfoArray, predefinedBuilds, removeComponentToBuild,
-    toggleViewingComponentModel, setCurrentModelOnStage
+    allGamesMinMaxFPS, predefinedBuilds, removeComponentToBuild,
+    toggleViewingComponentModel, setCurrentModelOnStage, preferenceGameTypes, buildStages
   } = useBuildPCContext()
 
-  const { data:ratingsData } = useSWR(portinosRatingCacheKey, getPortinosRatings)
+  const { data: ratingsData } = useSWR(portinosRatingCacheKey, getPortinosRatings)
+  
+  const { data: preferences_feed } = useSWR(preferenceCacheKey, getPreferencesData)
 
   const productRatings = useMemo<ProductRating>(() => ratingsData?.[selectedItemID as string] || {}, [ratingsData, selectedItemID])
   
@@ -128,30 +135,75 @@ function SingleCompareComponents({
     },
   ], [])
 
-  function addToBuild() {
-    handleAddComponentToBuild(selectedItemID as string)
-  }
+  const [gamingAt, setGamingAt] = useState<PreferenceResolutionsTitleType>(); // selelcted gaming at (RES)
+  const [pairedWith, setPairedWith] = useState<string | null>(''); // selelcted CPU/GPU paired
+  const [currentGameTitle, setCurrentGameTitle] = useState(''); // selected game title while playing
 
-  const currentGameTitle = useMemo(() => { 
-    return cleanGameInfoArray.find((d) => d.data !== null)?.title || cleanGameInfoArray[0].title
-  }, [cleanGameInfoArray])
+  useEffect(() => {
+    setCurrentGameTitle(preferences?.game_type_title?.[0]);
+  }, [preferences.game_type_title])
+
+  useEffect(() => { 
+    setGamingAt(preferences.gaming_resolution?.title as PreferenceResolutionsTitleType)
+  }, [preferences.gaming_resolution])
 
   const percentageFPS = useMemo(() => {
-    const _game_fps = cleanGameInfoArray.find((d) => d.title === currentGameTitle)
+    const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
+    
+    let cpu: string | null, gpu: string | null;
+
+    if (_category_slug === 'processor') {
+      cpu = selectedItemID;
+      gpu = pairedWith;
+    } else if (_category_slug === 'graphics-card') {
+      gpu = selectedItemID;
+      cpu = pairedWith;
+    }
+
+    const _cleanGameInfoArray = _preferences_feed.find((d) => (d.cpu === cpu) && (d.gpu === gpu));
+
+    const _game_fps = _cleanGameInfoArray?.gameTitles[currentGameTitle][gamingAt!]
+    
     const _game_max_fps = allGamesMinMaxFPS.max[currentGameTitle]
     return {
       fpsPercentage: !_game_fps
       ? 0
-        : (parseInt(_game_fps.data?.fps || '0', 10) / _game_max_fps) * 100,
-      fps: _game_fps?.data?.fps || 0
+        : (parseInt(_game_fps || '0', 10) / _game_max_fps) * 100,
+      fps: _game_fps || 0
     }
-  }, [cleanGameInfoArray, allGamesMinMaxFPS, currentGameTitle])
+  }, [preferences_feed, _category_slug, currentGameTitle, gamingAt, allGamesMinMaxFPS.max, selectedItemID, pairedWith])
 
   const currentCPUGPUTitle = useMemo(() => { 
     return _category_slug === 'processor'
       ? predefinedBuilds.items.find((d) => d.category_slug === 'graphics-card')?.title
       : predefinedBuilds.items.find((d) => d.category_slug === 'processor')?.title
   }, [predefinedBuilds, _category_slug])
+
+  const pairedWithOptions = useMemo(() => { 
+    let _options: IBuildComponent[] = [];
+
+    if (_category_slug === 'processor') {
+      const _stage = buildStages.find((d) => d.slug === 'graphics-card');
+      if (_stage) {
+        _options = _stage.items;
+      }
+    } else if (_category_slug === 'graphics-card') {
+      const _stage = buildStages.find((d) => d.slug === 'processor');
+      if (_stage) {
+        _options = _stage.items;
+      }
+    }
+
+    return _options.map((d) => ({
+      label: d.title,
+      value: d._id
+    }));
+  }, [_category_slug, buildStages])
+  
+  useEffect(() => {
+    setPairedWith(pairedWithOptions[0]?.value)
+  }, [pairedWithOptions])
+  
 
   function handleDeleteFromBuild() {
     if (componentItem) {
@@ -169,6 +221,10 @@ function SingleCompareComponents({
     }
   }
 
+  function addToBuild() {
+    handleAddComponentToBuild(selectedItemID as string)
+  }
+
   return (
     <div className='flex flex-col gap-y-3 min-h-full animate-fadeIn'>
       <div className="flex justify-end">
@@ -180,7 +236,8 @@ function SingleCompareComponents({
       {(_category_slug === 'processor' || _category_slug === 'graphics-card')
         ? (
           <>
-            <div className="flex justify-center">
+            {false && (
+            <div className="justify-center hidden">
               <div className='hidden md:block'>
                 <ImageFigure icon={componentItem?.image || ''} width={205} />
               </div>
@@ -188,6 +245,7 @@ function SingleCompareComponents({
                 <ImageFigure icon={componentItem?.image || ''} width={190} />
               </div>
             </div>
+            )}
 
             <PolygonContainer btr={false} btl={false} bbr={false}>
               <div className="py-3 px-[18px] flex flex-col items-center text-center gap-y-3">
@@ -236,7 +294,7 @@ function SingleCompareComponents({
                   <div
                     style={{width: `${percentageFPS.fpsPercentage}%`}}
                     className={clsx(
-                      'bg-gaming-blue h-full',
+                      'bg-gaming-blue h-full with-ease',
                     )}
                   />
                 </div>
@@ -257,9 +315,10 @@ function SingleCompareComponents({
                   <Select
                     options={preferenceResolutions.map((d) => ({
                       label: `${d.title.toUpperCase()} - ${d.res.toLowerCase()}`,
-                      value: d.res,
+                      value: d.title,
                     }))}
-                    initialValue=''
+                    onChange={(_d: string) => setGamingAt(_d as PreferenceResolutionsTitleType)}
+                    initialValue={preferences.gaming_resolution?.title as string}
                   />
                 </div>
               </div>
@@ -273,7 +332,11 @@ function SingleCompareComponents({
                   </div>
                 </div>
                 <div className='flex-1'>
-                  <Select options={[]} initialValue='' />
+                  <Select
+                    options={pairedWithOptions}
+                    onChange={setPairedWith}
+                    initialValue={pairedWithOptions[0].value}
+                  />
                 </div>
               </div>
 
@@ -287,11 +350,12 @@ function SingleCompareComponents({
                 </div>
                 <div className='flex-1'>
                   <Select
-                    options={preferences.game_type_title.map(d => ({
-                      label: d,
-                      value: d
+                    onChange={setCurrentGameTitle}
+                    options={preferenceGameTypes.map(d => ({
+                      label: d.title,
+                      value: d.title
                     }))}
-                    initialValue=''
+                    initialValue={preferences.game_type_title[0]}
                   />
                 </div>
               </div>

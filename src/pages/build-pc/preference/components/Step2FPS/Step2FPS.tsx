@@ -29,7 +29,7 @@ function Step2FPS() {
   }
 
   return (
-    <div className='animate-fadeIn'>
+    <div className='animate-fadeInUp'>
       <PreferenceLayout.HeadingTitle
         text='What level of gaming performance do you want?'
         subText='Select one:'
@@ -100,7 +100,7 @@ const FPSButton = React.memo(({ selectFPS, selectedFPS, d, index, hoverActive }:
       {selectedFPS === d._id && (
         <div
           className={clsx(
-            'absolute md:-bottom-[12px] -bottom-[7px] w-0 h-0',
+            'absolute md:-bottom-[9px] -bottom-[7px] w-0 h-0',
             'border-t-gaming-cobalt border-l-transparent border-r-transparent',
             'md:border-l-[12px] md:border-r-[12px] md:border-t-[12px]',
             'border-l-[8px] border-r-[8px] border-t-[8px]',
