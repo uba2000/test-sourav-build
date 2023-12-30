@@ -67,8 +67,8 @@ function CardWithNotch({
   return (
     <div className='flex flex-col' style={_style}>
       <div className={clsx(
-        { 'h-[16px]': notchHeight === 'normal' },
-        { 'h-[8px]': notchHeight === 'small' },
+        { 'h-[16px] min-h-[16px]': notchHeight === 'normal' },
+        { 'h-[8px] min-h-[8px]': notchHeight === 'small' },
         
         { 'before:border-b-[16px] before:border-l-[16px] before:-left-4': notchHeight === 'normal' && btl },
         { 'after:border-b-[16px] after:border-r-[16px] before:-right-4': notchHeight === 'normal' && btr },
@@ -90,8 +90,8 @@ function CardWithNotch({
       </div>
 
       <div className={clsx(
-        { 'h-[16px]': notchHeight === 'normal' },
-        { 'h-[8px]': notchHeight === 'small' },
+        { 'h-[16px] min-h-[16px]': notchHeight === 'normal' },
+        { 'h-[8px] min-h-[8px]': notchHeight === 'small' },
         
         { 'before:border-t-[16px] before:border-r-[16px] before:-right-4': notchHeight === 'normal' && bbr },
         { 'after:border-t-[16px] after:border-l-[16px] after:-left-4': notchHeight === 'normal' && bbl },

@@ -46,11 +46,11 @@ function Step3Resolution({availableRes}: IStep3ResolutionProps) {
       />
 
       <div className='flex max-w-[930px] md:flex-nowrap flex-wrap'>
-        <div className='relative max-w-full min-h-[187px] md:min-w-[550px] min-w-full md:-mr-8'>
+        <div className='relative max-w-full flex-1 min-h-[187px] md:min-w-[47%] min-w-full md:-mr-8'>
           <img src={FullResImage} alt="" className='object-contain w-full h-full' />
         </div>
 
-        <div className="relative z-10 w-full max-w-[257px] mx-auto md:mx-[unset] md:max-w-none flex-auto md:-mt-[83px] -mt-[37px]">
+        <div className="relative z-10 w-full max-w-[257px] mx-auto md:mx-[unset] flex-auto md:-mt-[83px] -mt-[37px] md:min-w-[413px] md:max-w-[413px]">
           <div className="w-full h-full grid grid-cols-3 gap-x-[6px]">
             {resolutions.map((d, index) => (
               <Fragment key={_.uniqueId()}>
@@ -107,7 +107,7 @@ function Step3Resolution({availableRes}: IStep3ResolutionProps) {
             ))}
 
             {selectedRESIndex && (
-              <figure className='absolute z-10 left-0 top-0 w-full md:h-[calc(100%_-_83px)] h-[calc(100%_-_50px)]'>
+              <figure className='absolute z-10 left-0 top-0 min-w-full w-auto md:h-[calc(100%_-_83px)] h-[calc(100%_-_50px)]'>
                 <img src={selectedRESImage || ''} className="w-full h-full" alt="figure" />
               </figure>
             )}

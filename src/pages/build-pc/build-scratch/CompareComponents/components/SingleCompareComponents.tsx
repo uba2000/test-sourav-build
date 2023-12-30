@@ -23,6 +23,7 @@ import {
 } from '../../../../../lib/api/portinosAPI'
 import { getPreferencesData, preferenceUrlEndpoint as preferenceCacheKey } from '../../../../../lib/api/preferenceAPI'
 import { formatPreferencesData } from '../../../../../lib/utils/util-build-preference'
+import { noPreferenceName } from '../../../preference/BuildGamePreferences'
 
 interface ISingleCompareComponents {
   handleAddComponentToBuild?: (_id: string) => void;
@@ -318,7 +319,7 @@ function SingleCompareComponents({
                 <div className='flex-1'>
                   <Select
                     onChange={setCurrentGameTitle}
-                    options={preferenceGameTypes.map(d => ({
+                    options={preferenceGameTypes.filter(d => d.title !== noPreferenceName).map(d => ({
                       label: d.title,
                       value: d.title
                     }))}

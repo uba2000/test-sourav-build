@@ -132,7 +132,7 @@ function BuildPreference() {
 
   return (
     <PageWrapper maxWidth={'100%'}>
-      <div ref={desktopChildDivRef} className="max-h-screen overflow-y-auto scroll-smooth">
+      <div ref={desktopChildDivRef} className="max-h-screen overflow-x-hidden overflow-y-auto scroll-smooth">
         <div className="animate-fadeInUp md:pt-10 pt-6 max-w-[1200px] mx-auto" >
           <div className="flex mb-10 md:justify-start justify-center max-[413px]:flex-wrap gap-y-3">
             <div className="max-[413px]:hidden">

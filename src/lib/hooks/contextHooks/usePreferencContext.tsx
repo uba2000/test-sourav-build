@@ -140,14 +140,17 @@ function usePreferencContext() {
   // filter out titles not choosen and returns estimate max-min fps
   function filterGameTitles(allowed_titles: string[]) {
     const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
-    
-    if (allowed_titles.includes(noPreferenceName)) {
-      return [..._preferences_feed];
+
+    let _allowed_titles = allowed_titles
+    const is_no_preference = allowed_titles.includes(noPreferenceName);
+
+    if (is_no_preference) {
+      _allowed_titles = preferenceGameTypes.filter(d => d.title !== noPreferenceName).map(d => d.title)
     }
 
     const newData = [..._preferences_feed].map((item) => {
       const filteredGameTitles = Object.keys(item.gameTitles)
-        .filter((title) => allowed_titles.includes(title))
+        .filter((title) => _allowed_titles.includes(title))
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .reduce((obj: any, key) => {
           obj[key] = item.gameTitles[key];
@@ -162,7 +165,7 @@ function usePreferencContext() {
 
     const result: IAllGamesMinMaxFPS = { min: {}, max: {} };
 
-    allowed_titles.forEach((title) => {
+    _allowed_titles.forEach((title) => {
       result.min[title] = Number.MAX_SAFE_INTEGER;
       result.max[title] = Number.MIN_SAFE_INTEGER;
 
@@ -253,6 +256,10 @@ function usePreferencContext() {
       min: overallMin,
       max: overallMax
     });
+
+    if (is_no_preference) {
+      return [..._preferences_feed];
+    }
 
     return newData;
   }

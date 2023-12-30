@@ -30,9 +30,13 @@ function LandingPage() {
     <div className="animate-fadeInUp relative bg-no-repeat bg-top md:min-h-screen min-h-screen bg-contain flex flex-col justify-center">
       <PageWrapper className='flex justify-center'>
         {/* Hero Section */}
-        <div className='md:absolute object-center md:block hidden left-1/2 -translate-x-1/2 top-0 w-full max-w-[1200px] overflow-hidden'>
+        <div className='md:absolute object-center md:block hidden left-1/2 -translate-x-1/2 top-0 w-full max-w-[1200px]'>
           <LandingHeroImage />
         </div>
+
+        {/* <div className=''>
+          <LandingHeroImage className='md:absolute object-center md:block hidden left-1/2 -translate-x-1/2 -top-[56px] w-full max-w-[1200px] overflow-hidden' />
+        </div> */}
         <div className="bg-transparent pb-6 md:mt-[85px] mt-[22px] flex relative z-10 flex-col gap-y-6 md:mb-[160px] md:min-h-[unset] min-h-[240px]">
           <div className="text-center relative z-10">
             <h1 className="md:text-h1 text-M-h1 font-IntelOneDisplayBold md:mb-4 mb-1">Up your game</h1>
@@ -47,7 +51,7 @@ function LandingPage() {
         </div>
 
         <div className="bg-transparent relative z-10 py-6 flex flex-col gap-y-11">
-          <div className="grid md:grid-cols-3 md:grid-rows-[188px] gap-y-3 grid-cols-1 gap-x-[46px] max-w-[1024px] mx-auto w-full md:px-0 px-10">
+          <div className="grid md:grid-cols-3  gap-y-3 grid-cols-1 gap-x-[46px] max-w-[1024px] mx-auto w-full md:px-0 px-10">
             {LandingPoints.map((d, index) => (
               <Fragment key={index}>
                 <CardWithNotch>
@@ -67,7 +71,7 @@ function LandingPage() {
             ))}
           </div>
 
-          <div className="grid md:grid-cols-2 grid-cols-1 max-w-[450px] w-full gap-x-[36px] gap-y-4 mx-auto">
+          <div className="grid md:grid-cols-2 grid-cols-1 max-w-fit w-full gap-x-[36px] gap-y-4 mx-auto">
             <Link to={RouteNames.buildPreferenceIndex} className='flex justify-center'>
               <button type='button' className='relative flex py-3 px-4 bg-gaming-blue min-w-[192px] hover:bg-gaming-blue-hover with-ease'>
                 <div className='flex items-center gap-x-2'>

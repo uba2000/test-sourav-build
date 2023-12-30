@@ -59,9 +59,9 @@ function Step1GameType() {
 
           return (
             <Fragment key={d._id}>
-              <button type='button' onClick={() => selectGame(d.title)} className="group cursor-pointer md:h-[160px] h-[122px]">
+              <button type='button' onClick={() => selectGame(d.title)} className="group cursor-pointer h-[160px]">
                 {d?._id !== noPreferenceId && (
-                <div className={clsx("md:h-[114px] h-[76px]")}>
+                <div className={clsx("h-[114px]")}>
                   <img src={getGameTitlesImage(d._id)} className="w-full h-full object-cover object-top" alt="" />
                 </div>
                 )}
