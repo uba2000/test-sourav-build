@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import _ from 'lodash'
-import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
 import useWindowSize from '../../lib/hooks/useWindowSize';
 
@@ -51,7 +51,7 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
   }, [])
   
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     console.log(containerRef?.current, 'containerRef?.current');
     
     if (coordinates && containerRef?.current) {
@@ -69,7 +69,7 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
         left: `${(coordinates.left) + (coordinates.width / 2)}px`,
       });
     }
-  }, [coordinates, windowSize]);
+  }, [coordinates, windowSize, containerRef?.current]);
 
   return (
     <OutsideClickHandler
