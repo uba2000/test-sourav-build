@@ -10,7 +10,7 @@ function App() {
 
   return (
     <React.Suspense fallback={<SuspenseScreen />}>
-      <Div100vh className='overflow-y-auto'>
+      <Div100vh className='overflow-y-auto scroll-smooth' id="app_container">
         <div className="App">
           <RouterProvider router={router} />
         </div>

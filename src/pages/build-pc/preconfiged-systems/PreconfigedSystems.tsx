@@ -46,9 +46,11 @@ function PreconfigedSystems() {
   }
 
   function scrollBodyToTop() {
-    console.log('scroll');
+    const targetDiv = document.querySelector('#app_container');
 
-    document.body.scrollTop = 0;
+    if (targetDiv) {
+      targetDiv.scrollTop = 0;
+    }
   }
 
   useEffect(() => {

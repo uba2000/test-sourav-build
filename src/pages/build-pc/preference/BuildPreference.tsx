@@ -119,7 +119,7 @@ function BuildPreference() {
   const desktopChildDivRef = useRef<HTMLDivElement>(null);
 
   const scrollDesktopChildDivToTop = () => {
-    const targetDiv = desktopChildDivRef.current;
+    const targetDiv = document.querySelector('#app_container');
 
     if (targetDiv) {
       targetDiv.scrollTop = 0;

@@ -8,7 +8,7 @@ import ImageFigure from '../../../../components/ImageFigure';
 import RightArrow from '../../../../assets/right-arrow.svg'
 import BuildItem from './components/BuildItem';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import SingleCompareComponents from '../CompareComponents/components/SingleCompareComponents';
 import { IBuildStagesSlugs } from '../../../../lib/types/context-types';
 
@@ -23,7 +23,7 @@ function MyBuild() {
   const { currentBuildStageIndex, nextToBuildIndex } = useBuildPCStages();
 
   const _category_slug = useMemo<IBuildStagesSlugs>(() => matches[0].params?.category_slug as IBuildStagesSlugs, [matches])
-  const _currentBuildStage = useMemo(() => buildStages[nextToBuildIndex], [buildStages, nextToBuildIndex])  
+  const _currentBuildStage = useMemo(() => buildStages[nextToBuildIndex], [buildStages, nextToBuildIndex])
 
   const [selectedItemID, setSelectedItemID] = useState<string | null>(null)
 
@@ -45,6 +45,18 @@ function MyBuild() {
     setSelectedItemID(_id)
   }
 
+  function scrollBodyToTop() {
+    const targetDiv = document.querySelector('#app_container');
+
+    if (targetDiv) {
+      targetDiv.scrollTop = 0;
+    }
+  }
+
+  useEffect(() => {
+    scrollBodyToTop();
+  }, [])
+
   return (
     <BuildLayout
       layout_r_title={`${!showCurrentModelSpecs ? 'My Build' : ''}`}
@@ -57,7 +69,7 @@ function MyBuild() {
               <div className="py-1 px-6 flex gap-2">
                 <div className='flex flex-col gap-y-2'>
                   <p className='text-sm'>
-                    Choose a processor, GPU and motherboard to get started.  Then fill out the remaining components for a complete system. 
+                    Choose a processor, GPU and motherboard to get started.  Then fill out the remaining components for a complete system.
                   </p>
                   <div className='pb-2'>
                     <Button className='p-2' onClick={() => goToChooseComponent()}>
@@ -104,7 +116,7 @@ function MyBuild() {
           selectedItemID={selectedItemID}
           isInBuild
           inBuildPage
-          // handleAddComponentToBuild={handleAddComponentToBuild}
+        // handleAddComponentToBuild={handleAddComponentToBuild}
         />
       )}
     </BuildLayout>
