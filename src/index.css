@@ -114,7 +114,7 @@
 }
 
 body {
-  @apply min-h-screen text-intel-white;
+  @apply max-h-screen text-intel-white;
 }
 
 .scroll-design::-webkit-scrollbar {

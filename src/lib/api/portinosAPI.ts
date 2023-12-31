@@ -7,7 +7,7 @@ import axios from "axios";
 const portinosAPI = axios.create({
   baseURL: import.meta.env.PROD
     ? import.meta.env.VITE_BASE_URL
-    : "http://localhost:5173",
+    : import.meta.env.BASE_URL,
 });
 
 export const portinosInventoryEndpoint = "/portinos-feed.json";

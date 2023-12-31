@@ -3,7 +3,7 @@ import axios from "axios";
 const preferenceAPI = axios.create({
   baseURL: import.meta.env.PROD
     ? import.meta.env.VITE_BASE_URL
-    : "http://localhost:5173",
+    : import.meta.env.BASE_URL,
 });
 
 export const preferenceUrlEndpoint = "/json-data.json";
