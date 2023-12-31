@@ -116,7 +116,11 @@ export type PreferenceResolutionsResType = "2160P" | "1440P" | "1080P";
 export interface IPreferenceResolutions {
   title: PreferenceResolutionsTitleType;
   res: PreferenceResolutionsResType;
-  image: string;
+  image: React.FunctionComponent<
+    React.SVGProps<SVGSVGElement> & {
+      title?: string | undefined;
+    }
+  >;
   fullImage: string;
 }
 

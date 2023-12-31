@@ -7,7 +7,7 @@ import clsx from 'clsx';
 
 function PreferenceBox() {
   const { preferences, preferenceGameTypes, cleanGameInfoArray } = useBuildPCContext()
-  
+
   const selectedGameTitles = useMemo(() => {
     const _preferences_set = new Set(preferences.game_type_title);
     let _selectedGameTitles: any = preferenceGameTypes.filter(element => _preferences_set.has(element.title));
@@ -27,7 +27,7 @@ function PreferenceBox() {
       }
     })
 
-    return _selectedGameTitles.map((d: any) => ({...d, fps: d.fps ? d.fps : _minimum_fps}));
+    return _selectedGameTitles.map((d: any) => ({ ...d, fps: d.fps ? d.fps : _minimum_fps }));
   }, [preferences, preferenceGameTypes, cleanGameInfoArray])
 
   return (
@@ -48,24 +48,24 @@ function PreferenceBox() {
 
         <div className="grid md:grid-cols-[repeat(auto-fill,114px)] grid-cols-[repeat(auto-fill,100px)] place-content-center gap-4">
           {selectedGameTitles.map((d: any) => {
-          return (
-            <Fragment key={d._id}>
-              <div className="group md:h-[160px] h-[122px]">
-                <div className={clsx("md:h-[114px] h-[76px]")}>
-                  <img src={getGameTitlesImage(d._id)} className="w-full h-full object-cover object-top" alt="" />
+            return (
+              <Fragment key={d._id}>
+                <div className="group h-[160px]">
+                  <div className={clsx("h-[114px]")}>
+                    <img src={getGameTitlesImage(d._id)} className="w-full h-full object-cover object-top" alt="" />
+                  </div>
+                  <div
+                    className={clsx(
+                      "flex items-center justify-center flex-col gap-y-2 px-[10px] min-h-[46px] pt-1 text-center with-ease"
+                    )}
+                  >
+                    <span className="font-medium text-[10px] leading-[10px] line-clamp-2">{d.title}</span>
+                    <span className='text-sm leading-3 font-IntelOneBodyTextMedium'>{d.fps} FPS</span>
+                  </div>
                 </div>
-                <div
-                  className={clsx(
-                    "flex items-center justify-center flex-col gap-y-2 px-[10px] min-h-[46px] pt-1 text-center with-ease"
-                  )}
-                >
-                  <span className="font-medium text-[10px] leading-[10px] line-clamp-2">{d.title}</span>
-                  <span className='text-sm leading-3 font-IntelOneBodyTextMedium'>{d.fps} FPS</span>
-                </div>
-              </div>
-            </Fragment>
-          )
-        })}
+              </Fragment>
+            )
+          })}
         </div>
       </div>
     </PolygonContainer>

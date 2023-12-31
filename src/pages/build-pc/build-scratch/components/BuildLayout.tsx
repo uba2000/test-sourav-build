@@ -58,7 +58,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
   // 2. position for current component
   // 3. view of selected component
   // 4. fixed in state of selected components
-  
+
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(buildRoutes, location)
 
@@ -97,7 +97,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
     toggleShowSpecs(true);
   }
 
-  const scrollByPixels = ({ pixels = 42, dir = 'r'}: { pixels?: number; dir: 'r' | 'l' }) => {
+  const scrollByPixels = ({ pixels = 42, dir = 'r' }: { pixels?: number; dir: 'r' | 'l' }) => {
     // Access the current property of the ref to get the DOM element
     const targetDiv = mobileNavContainer.current;
 
@@ -111,13 +111,13 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
     }
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     if (!showCurrentModelSpecs && prevScrollPos) {
       scrollToPreviousPosition()
     }
   }, [showCurrentModelSpecs])
 
-  useEffect(() => { 
+  useEffect(() => {
     // if (currentModelOnStage && !viewingCurrentComponentModel) {
     if (currentModelOnStage) {
       setCurrentModel(currentModelOnStage)
@@ -174,21 +174,21 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
           </PolygonContainer>
         </div>
         {/* End of Top Nav */}
-        
+
         <div
           className={clsx(
             "min-h-[640px]",
-            {"grid md:grid-cols-[auto_544px] grid-cols-1 gap-x-4 gap-y-3": !isCompareMode},
+            { "grid md:grid-cols-[auto_544px] grid-cols-1 gap-x-4 gap-y-3": !isCompareMode },
           )}
         >
           {/* {!isCompareMode && ( */}
           <div className="md:py-6 pt-6 flex-col gap-y-4 flex md:pb-[57px]">
             <div className='flex-grow w-full min-w-[180px] min-h-[180px] flex justify-center items-center'>
-              <div className='hidden md:block'>
-                <ImageFigure icon={currentModel} width={481} />
+              <div className='hidden md:block max-w-[481px] w-full max-h-[481px] h-auto'>
+                <ImageFigure icon={currentModel} isContainerSize width={481} />
               </div>
-              <div className='block md:hidden'>
-                <ImageFigure icon={currentModel} width={190} />
+              <div className='block md:hidden max-w-[190px] w-full max-h-[190px] h-auto'>
+                <ImageFigure icon={currentModel} isContainerSize width={190} />
               </div>
             </div>
             <div className="flex justify-end md:pr-0 pr-4 min-h-[31px]">
@@ -206,7 +206,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
           {/* )} */}
           <div className="flex md:flex-nowrap flex-wrap-reverse gap-x-4">
             <div className='flex flex-col md:max-w-[460px] md:min-w-[460px] flex-grow md:gap-y-2 gap-y-4'>
-              
+
               {/* Right main section */}
               <PolygonContainer bbr={false} btl={false} className='flex-grow max-w-[978px] w-full ml-auto md:block hidden'>
                 {layout_r_title && (
@@ -221,8 +221,8 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                   id='buildLayoutChildDIV'
                   className={clsx(
                     "px-6 md:pt-[12px] pt-3 pb-10 overflow-y-auto scrollbar-hide scroll-smooth",
-                    {"min-h-[670px] max-h-[670px]": !layout_r_title},
-                    {"min-h-[620px] max-h-[620px]": layout_r_title},
+                    { "min-h-[670px] max-h-[670px]": !layout_r_title },
+                    { "min-h-[620px] max-h-[620px]": layout_r_title },
                   )}
                 >
                   {children}
@@ -230,11 +230,11 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
               </PolygonContainer>
               <div className='md:hidden block mb-20'>
                 {layout_r_title && (
-                <div className="md:px-[26px] px-4 md:py-3 pt-2 mt-1 pb-[10px] border-b border-[rgba(255,255,255,0.20)] md:border-white-75">
-                  <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
-                    {layout_r_title}
-                  </h1>
-                </div>
+                  <div className="md:px-[26px] px-4 md:py-3 pt-2 mt-1 pb-[10px] border-b border-[rgba(255,255,255,0.20)] md:border-white-75">
+                    <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
+                      {layout_r_title}
+                    </h1>
+                  </div>
                 )}
                 <div className="pt-3 px-4 overflow-y-auto min-h-[610px]">
                   {children}
@@ -287,7 +287,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                   onClick={() => goToMyBuild()}
                   className={clsx(
                     "px-3 flex flex-col items-center justify-center cursor-pointer h-full",
-                    {"bg-gaming-cobalt": isOnBuildRoutes}
+                    { "bg-gaming-cobalt": isOnBuildRoutes }
                   )}
                 >
                   <ImageFigure icon={BuildSpanner} width={23} />
@@ -325,7 +325,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                   onClick={() => goToMyBuild()}
                   className={clsx(
                     "border-b border-b-white-75 py-2 px-3 flex flex-col items-center cursor-pointer gap-y-[3px] mb-2",
-                    {"bg-gaming-cobalt": isOnBuildRoutes}
+                    { "bg-gaming-cobalt": isOnBuildRoutes }
                   )}
                 >
                   <ImageFigure icon={BuildSpanner} width={34} />
@@ -343,30 +343,30 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
             </PolygonContainer>
             {/* Desktop right bar */}
           </div>
-        </div>  
+        </div>
       </div>
     </PageWrapper>
   )
 }
 
-BuildLayout.HeaderTitle = function BuildLayoutHeaderTitle({ title, subTitle }: { title?: string; subTitle?: string}) {
+BuildLayout.HeaderTitle = function BuildLayoutHeaderTitle({ title, subTitle }: { title?: string; subTitle?: string }) {
   return (
     <div className='mb-4 flex flex-col gap-y-3'>
       {title && (
-      <h1 className="text-M-h1 font-IntelOneDisplayBold">
-        {title}
-      </h1>
+        <h1 className="text-M-h1 font-IntelOneDisplayBold">
+          {title}
+        </h1>
       )}
       {subTitle && (
-      <p className='text-sm font-IntelOneBodyTextRegular'>
-        {subTitle}
-      </p>
+        <p className='text-sm font-IntelOneBodyTextRegular'>
+          {subTitle}
+        </p>
       )}
     </div>
   )
 }
 
-BuildLayout.HeaderGroup = function BuildLayoutHeaderGroup({ title }: {title: string;}) {
+BuildLayout.HeaderGroup = function BuildLayoutHeaderGroup({ title }: { title: string; }) {
   return (
     <div className="md:-mx-6 -mx-4 md:px-[26px] md:-mt-[11px] mb-6 px-4 md:pb-3 pb-[10px] border-b border-white-75">
       <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
@@ -386,11 +386,11 @@ interface IBuildSidebarItem {
   stagesStatus?: IBuildLayout['stagesStatus'];
 }
 
-function BuildSidebarItem({ data, screenSize, stagesStatus='auto' }: IBuildSidebarItem) {
+function BuildSidebarItem({ data, screenSize, stagesStatus = 'auto' }: IBuildSidebarItem) {
   const navigate = useNavigate()
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(componentBuildRoutes, location)
-  
+
   const [isCompleted, setIsCompleted] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState('')
@@ -408,9 +408,9 @@ function BuildSidebarItem({ data, screenSize, stagesStatus='auto' }: IBuildSideb
     }
   }, [isCompleted])
 
-  useLayoutEffect(() => { 
+  useLayoutEffect(() => {
     if (isOnBuildRoutes) {
-      
+
       if (isOnBuildRoutes[0].params.category_slug === data.slug) {
         setIsSelected(isOnBuildRoutes[0].params.category_slug === data.slug)
         setBackgroundColor('#00FFFC')
@@ -451,7 +451,7 @@ function BuildSidebarItem({ data, screenSize, stagesStatus='auto' }: IBuildSideb
                 "w-9 h-9",
                 { "text-white": isCompleted && !isSelected },
                 { "text-intel-cobalt-s2": isSelected && !isCompleted },
-                )}
+              )}
               >
                 {data.icon}
               </div>

@@ -16,13 +16,13 @@ function PreconfigedSystems() {
   useLayoutEffect(() => {
     togglePreBuildToCurrentBuildForPreview('add')
   }, [])
-  
+
   const componentItems = useMemo(() => currentBuild, [currentBuild])
   const [buildPrice, setBuildPrice] = useState<string>('')
   const [selectedItemID, setSelectedItemID] = useState<string | null>(null)
   const [_category_slug, setCategorySlug] = useState<IBuildStagesSlugs>();
 
-  useEffect(() => { 
+  useEffect(() => {
     if (componentItems) {
       setBuildPrice(
         `${componentItems.reduce((sum, product) => sum + (product?.price || 0), 0)}`
@@ -45,13 +45,23 @@ function PreconfigedSystems() {
     setSelectedItemID(_id)
   }
 
+  function scrollBodyToTop() {
+    console.log('scroll');
+
+    document.body.scrollTop = 0;
+  }
+
+  useEffect(() => {
+    scrollBodyToTop();
+  }, [])
+
   return (
     <BuildLayout
       showPriceSection
       // stagesStatus='complete'
       layout_r_title={!showCurrentModelSpecs ? `${_.capitalize(predefinedBuilds?.build_segment)} build` : ''}
       totalPrice={buildPrice}
-      // buildModel={enthusiast.buildModel}
+    // buildModel={enthusiast.buildModel}
     >
       {!showCurrentModelSpecs && (
         <>
@@ -79,7 +89,7 @@ function PreconfigedSystems() {
           selectedItemID={selectedItemID}
           isInBuild
           inBuildPage
-          // handleAddComponentToBuild={handleAddComponentToBuild}
+        // handleAddComponentToBuild={handleAddComponentToBuild}
         />
       )}
     </BuildLayout>

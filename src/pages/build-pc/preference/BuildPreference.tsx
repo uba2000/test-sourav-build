@@ -24,7 +24,7 @@ import { noPreferenceName } from "./BuildGamePreferences"
 function BuildPreference() {
   const location = useLocation()
   const [searchParams] = useSearchParams();
-  
+
   const navigate = useNavigate();
   const {
     preferences, setGamingPreference,
@@ -86,7 +86,7 @@ function BuildPreference() {
       // initiate decision on products based on preferences here...
       return;
     }
-    
+
     setCanProceed(false)
     setCurrentStage(prev => prev + 1)
     navigate(`${RouteNames.buildPreferenceIndex}?s=${currentStage + 1}`)
@@ -96,7 +96,7 @@ function BuildPreference() {
     window.history.back();
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     if ((currentStage === 0 && (preferences.game_type_title.length > 0))
       || ((currentStage === 1) && preferences.gaming_fps)
       || (currentStage === 2 && preferences.gaming_resolution)) {
@@ -126,13 +126,13 @@ function BuildPreference() {
     }
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     scrollDesktopChildDivToTop()
   }, [searchParams])
 
   return (
     <PageWrapper maxWidth={'100%'}>
-      <div ref={desktopChildDivRef} className="max-h-screen overflow-x-hidden overflow-y-auto scroll-smooth">
+      <div ref={desktopChildDivRef} className="max-h-full overflow-x-hidden scroll-smooth">
         <div className="animate-fadeInUp md:pt-10 pt-6 max-w-[1200px] mx-auto" >
           <div className="flex mb-10 md:justify-start justify-center max-[413px]:flex-wrap gap-y-3">
             <div className="max-[413px]:hidden">
@@ -191,7 +191,7 @@ function BuildPreference() {
 
           <div className="max-w-[1026px] mx-auto px-6">
             {/* Children Section */}
-            <div 
+            <div
               className={clsx(
                 { 'hidden': currentStage !== 0 },
                 { 'block': currentStage === 0 },
@@ -199,7 +199,7 @@ function BuildPreference() {
             >
               {preferenceStages[0].component}
             </div>
-            <div 
+            <div
               className={clsx(
                 { 'hidden': currentStage !== 1 },
                 { 'block': currentStage === 1 },
@@ -207,7 +207,7 @@ function BuildPreference() {
             >
               {preferenceStages[1].component}
             </div>
-            <div 
+            <div
               className={clsx(
                 { 'hidden': currentStage !== 2 },
                 { 'block': currentStage === 2 },
@@ -222,8 +222,8 @@ function BuildPreference() {
             <div
               className={clsx(
                 "max-w-[930px] flex mt-6 gap-6 items-center",
-                {"justify-between": preferenceStages[currentStage].description},
-                {"justify-end": !preferenceStages[currentStage].description},
+                { "justify-between": preferenceStages[currentStage].description },
+                { "justify-end": !preferenceStages[currentStage].description },
               )}
             >
               <p className="max-w-[459px] font-IntelOneBodyTextRegular text-intel-e-gray-t1 text-xs">

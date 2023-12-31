@@ -52,7 +52,7 @@ function MyBuild() {
     >
       {!showCurrentModelSpecs && (
         <div className='flex flex-col gap-y-[10px]'>
-          {(currentBuildStageIndex === 0 && currentBuild.length === 0) && (
+          {(currentBuild.length === 0) && (
             <CardWithNotch notchHeight='small'>
               <div className="py-1 px-6 flex gap-2">
                 <div className='flex flex-col gap-y-2'>
@@ -72,8 +72,7 @@ function MyBuild() {
             </CardWithNotch>
           )}
 
-          {((currentBuildStageIndex > 0 && currentBuildStageIndex < buildStages.length)
-          || (currentBuild.length !== 0 && currentBuildStageIndex > 0)) && (
+          {((currentBuildStageIndex >= 0 && currentBuildStageIndex < buildStages.length && currentBuild.length !== 0)) && (
             <div className="flex justify-end items-center gap-x-2">
               <span className="text-xs font-IntelOneBodyTextMedium"> Next, select a</span>
               <Button onClick={() => goToChooseComponent()} className="min-w-fit py-2 px-3">

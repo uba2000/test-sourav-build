@@ -7,11 +7,11 @@ import Desktop60FPSThumb from '../../../assets/fps/60fps-thumbnail.svg'
 import Desktop120FPSThumb from '../../../assets/fps/120fps-thumbnail.svg'
 import Desktop180FPSThumb from '../../../assets/fps/180fps-thumbnail.svg'
 
-import Desktop4KResImage from '../../../assets/res/resolution-4k-desktop.svg'
+import Desktop4KResImage from '../../../assets/res/resolution-4k-desktop.svg?react'
 import Desktop4KResFullImage from '../../../assets/res/resolution-4k-desktop.png'
-import DesktopQHDResImage from '../../../assets/res/resolution-qhd-desktop.svg'
+import DesktopQHDResImage from '../../../assets/res/resolution-qhd-desktop.svg?react'
 import DesktopQHDResFullImage from '../../../assets/res/resolution-qhd-desktop.png'
-import DesktopFHDResImage from '../../../assets/res/resolution-hd-desktop.svg'
+import DesktopFHDResImage from '../../../assets/res/resolution-hd-desktop.svg?react'
 import DesktopFHDResFullImage from '../../../assets/res/resolution-hd-desktop.png'
 
 import {
@@ -32,15 +32,15 @@ const initialPreferences: BuildPCPreferenceType = {
 }
 
 const initialMinMax: IMinMaxFPS = {
-    min: 0,
-    max: 0,
-  }
+  min: 0,
+  max: 0,
+}
 
 function usePreferencContext() {
   const preferenceGameTypes = useMemo<BuildGamePreferencesType[]>(() => BuildGamePreferences, []);
 
   const [preferences, setPreferences] = useState<BuildPCPreferenceType>(initialPreferences);
-  
+
   const [minMaxFPS, setMinMaxFPS] = useState<IMinMaxFPS>(initialMinMax)
   const [initialMinMaxFPS, setInitialMinMaxFPS] = useState<IMinMaxFPS>(initialMinMax)
   const [allGamesMinMaxFPS, setAllGamesMinMaxFPS] = useState<IAllGamesMinMaxFPS>()
@@ -105,7 +105,7 @@ function usePreferencContext() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function setGamingPreference(field: keyof BuildPCPreferenceType, value: string | string[] | IFPSTypesItem) {
     if (field) {
-      setPreferences(prev => ({...prev, [field]: value}))
+      setPreferences(prev => ({ ...prev, [field]: value }))
     }
   }
 
@@ -188,7 +188,7 @@ function usePreferencContext() {
         }
       });
     });
-    
+
     // Dynamic Minimum (Low) range
     // Max out of the min values
     // const _dmm_lower_bound = Math.max(...Object.values(result.min));
@@ -247,7 +247,7 @@ function usePreferencContext() {
     // });
 
     setAllGamesMinMaxFPS(result);
-    
+
     setMinMaxFPS({
       min: overallMin,
       max: overallMax

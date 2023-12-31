@@ -20,7 +20,7 @@ function useBuildPCStages() {
   useEffect(() => {
     const _next_index_to_build = buildStages.findIndex((d) => d.selectedItem === null)
     setCurrentBuildStageIndex(_next_index_to_build)
-  }, [buildStages, currentBuild, currentBuild.length])
+  }, [buildStages, currentBuild.length])
 
   useLayoutEffect(() => { 
     const _next_index_to_build = buildStages.findIndex((d) => d.selectedItem === null)
