@@ -20,6 +20,7 @@ import { IFormatPreferencesDataReturn } from "../../../lib/utils/util-build-pref
 import { PreferenceResolutionsTitleType } from "../../../lib/types/context-types"
 import NavLinkCopy from "../../../components/NavLinkCopy/NavLinkCopy"
 import { noPreferenceName } from "./BuildGamePreferences"
+import Div100vh from "../../../components/Widgets/Div100vh"
 
 function BuildPreference() {
   const location = useLocation()
@@ -119,7 +120,7 @@ function BuildPreference() {
   const desktopChildDivRef = useRef<HTMLDivElement>(null);
 
   const scrollDesktopChildDivToTop = () => {
-    const targetDiv = document.querySelector('#app_container');
+    const targetDiv = document.querySelector('#preference_container');
 
     if (targetDiv) {
       targetDiv.scrollTop = 0;
@@ -131,117 +132,119 @@ function BuildPreference() {
   }, [searchParams])
 
   return (
-    <PageWrapper maxWidth={'100%'}>
-      <div ref={desktopChildDivRef} className="max-h-full overflow-x-hidden scroll-smooth">
-        <div className="animate-fadeInUp md:pt-10 pt-6 max-w-[1200px] mx-auto" >
-          <div className="flex mb-10 md:justify-start justify-center max-[413px]:flex-wrap gap-y-3">
-            <div className="max-[413px]:hidden">
-              <PolygonContainer rightBorder={false} className="-mr-[1px]">
-                <div className="px-[10px] flex gap-1">
-                  <button type="button" onClick={() => previousStage()}>
-                    <ImageFigure icon={BackIcon} width={36} />
-                  </button>
-                  <button type="button" onClick={() => resetApp()}>
-                    <ImageFigure icon={ReloadIcon} width={36} />
-                  </button>
-                  <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
-                  {/* <button type="button">
-                    <ImageFigure icon={ExternalIcon} width={36} />
-                  </button> */}
-                </div>
-              </PolygonContainer>
-            </div>
-            <div className="max-[413px]:block hidden">
-              <PolygonContainer className="-mr-[1px]">
-                <div className="px-[10px] flex gap-1">
-                  <button type="button" onClick={() => previousStage()}>
-                    <ImageFigure icon={BackIcon} width={36} />
-                  </button>
-                  <button type="button" onClick={() => resetApp()}>
-                    <ImageFigure icon={ReloadIcon} width={36} />
-                  </button>
-                  <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
-                  {/* <button type="button">
-                    <ImageFigure icon={ExternalIcon} width={36} />
-                  </button> */}
-                </div>
-              </PolygonContainer>
-            </div>
-            <PolygonContainer className="min-w-[277px]">
-              <div className="flex items-center h-full gap-1 justify-center px-2">
-                <p className="text-white-75 uppercase text-xs w-[112px] text-center block">
-                  Preferences
-                </p>
-                <div className="flex items-center gap-x-[9px]">
-                  <div className="flex gap-[2px]">
-                    {preferenceStages.map((__, index) => (
-                      <Fragment key={_.uniqueId()}>
-                        <div className={clsx('min-w-[24px] h-1', {
-                          'bg-gaming-blue': currentStage >= index,
-                          'bg-[rgba(255,255,255,0.2)]': currentStage < index,
-                        })} />
-                      </Fragment>
-                    ))}
+    <Div100vh className='overflow-y-auto scroll-smooth' id="preference_container">
+      <PageWrapper maxWidth={'100%'}>
+        <div ref={desktopChildDivRef} className="max-h-full overflow-x-hidden scroll-smooth">
+          <div className="animate-fadeInUp md:pt-10 pt-6 max-w-[1200px] mx-auto" >
+            <div className="flex mb-10 md:justify-start justify-center max-[413px]:flex-wrap gap-y-3">
+              <div className="max-[413px]:hidden">
+                <PolygonContainer rightBorder={false} className="-mr-[1px]">
+                  <div className="px-[10px] flex gap-1">
+                    <button type="button" onClick={() => previousStage()}>
+                      <ImageFigure icon={BackIcon} width={36} />
+                    </button>
+                    <button type="button" onClick={() => resetApp()}>
+                      <ImageFigure icon={ReloadIcon} width={36} />
+                    </button>
+                    <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
+                    {/* <button type="button">
+                      <ImageFigure icon={ExternalIcon} width={36} />
+                    </button> */}
                   </div>
-                  <p className="text-sm font-medium">({currentStage + 1}/{preferenceStages.length})</p>
-                </div>
+                </PolygonContainer>
               </div>
-            </PolygonContainer>
-          </div>
-
-          <div className="max-w-[1026px] mx-auto px-6">
-            {/* Children Section */}
-            <div
-              className={clsx(
-                { 'hidden': currentStage !== 0 },
-                { 'block': currentStage === 0 },
-              )}
-            >
-              {preferenceStages[0].component}
-            </div>
-            <div
-              className={clsx(
-                { 'hidden': currentStage !== 1 },
-                { 'block': currentStage === 1 },
-              )}
-            >
-              {preferenceStages[1].component}
-            </div>
-            <div
-              className={clsx(
-                { 'hidden': currentStage !== 2 },
-                { 'block': currentStage === 2 },
-              )}
-            >
-              {preferenceStages[2].component}
-            </div>
-            {/* Children Section */}
-          </div>
-
-          <div className="max-w-[1026px] mx-auto mb-6 px-6">
-            <div
-              className={clsx(
-                "max-w-[930px] flex mt-6 gap-6 items-center",
-                { "justify-between": preferenceStages[currentStage].description },
-                { "justify-end": !preferenceStages[currentStage].description },
-              )}
-            >
-              <p className="max-w-[459px] font-IntelOneBodyTextRegular text-intel-e-gray-t1 text-xs">
-                {preferenceStages[currentStage].description}
-              </p>
-              <div>
-                <Button disabled={!canProceed} onClick={() => nextStage()} className="min-w-[103px] py-2 px-6">
-                  <div className="flex gap-2 items-center">
-                    <span className="text-intel-e-gray-s2 text-[15px] font-IntelOneBodyTextMedium leading-[15px]">Next</span>
-                    <ImageFigure icon={RightArrow} width={12} />
+              <div className="max-[413px]:block hidden">
+                <PolygonContainer className="-mr-[1px]">
+                  <div className="px-[10px] flex gap-1">
+                    <button type="button" onClick={() => previousStage()}>
+                      <ImageFigure icon={BackIcon} width={36} />
+                    </button>
+                    <button type="button" onClick={() => resetApp()}>
+                      <ImageFigure icon={ReloadIcon} width={36} />
+                    </button>
+                    <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
+                    {/* <button type="button">
+                      <ImageFigure icon={ExternalIcon} width={36} />
+                    </button> */}
                   </div>
-                </Button>
+                </PolygonContainer>
+              </div>
+              <PolygonContainer className="min-w-[277px]">
+                <div className="flex items-center h-full gap-1 justify-center px-2">
+                  <p className="text-white-75 uppercase text-xs w-[112px] text-center block">
+                    Preferences
+                  </p>
+                  <div className="flex items-center gap-x-[9px]">
+                    <div className="flex gap-[2px]">
+                      {preferenceStages.map((__, index) => (
+                        <Fragment key={_.uniqueId()}>
+                          <div className={clsx('min-w-[24px] h-1', {
+                            'bg-gaming-blue': currentStage >= index,
+                            'bg-[rgba(255,255,255,0.2)]': currentStage < index,
+                          })} />
+                        </Fragment>
+                      ))}
+                    </div>
+                    <p className="text-sm font-medium">({currentStage + 1}/{preferenceStages.length})</p>
+                  </div>
+                </div>
+              </PolygonContainer>
+            </div>
+
+            <div className="max-w-[1026px] mx-auto px-6">
+              {/* Children Section */}
+              <div
+                className={clsx(
+                  { 'hidden': currentStage !== 0 },
+                  { 'block': currentStage === 0 },
+                )}
+              >
+                {preferenceStages[0].component}
+              </div>
+              <div
+                className={clsx(
+                  { 'hidden': currentStage !== 1 },
+                  { 'block': currentStage === 1 },
+                )}
+              >
+                {preferenceStages[1].component}
+              </div>
+              <div
+                className={clsx(
+                  { 'hidden': currentStage !== 2 },
+                  { 'block': currentStage === 2 },
+                )}
+              >
+                {preferenceStages[2].component}
+              </div>
+              {/* Children Section */}
+            </div>
+
+            <div className="max-w-[1026px] mx-auto mb-6 px-6">
+              <div
+                className={clsx(
+                  "max-w-[930px] flex mt-6 gap-6 items-center",
+                  { "justify-between": preferenceStages[currentStage].description },
+                  { "justify-end": !preferenceStages[currentStage].description },
+                )}
+              >
+                <p className="max-w-[459px] font-IntelOneBodyTextRegular text-intel-e-gray-t1 text-xs">
+                  {preferenceStages[currentStage].description}
+                </p>
+                <div>
+                  <Button disabled={!canProceed} onClick={() => nextStage()} className="min-w-[103px] py-2 px-6">
+                    <div className="flex gap-2 items-center">
+                      <span className="text-intel-e-gray-s2 text-[15px] font-IntelOneBodyTextMedium leading-[15px]">Next</span>
+                      <ImageFigure icon={RightArrow} width={12} />
+                    </div>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </PageWrapper>
+      </PageWrapper>
+    </Div100vh>
   )
 }
 
