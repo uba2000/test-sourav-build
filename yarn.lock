@@ -206,6 +206,13 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
+"@epicgames-ps/lib-pixelstreamingfrontend-ue5.4@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@epicgames-ps/lib-pixelstreamingfrontend-ue5.4/-/lib-pixelstreamingfrontend-ue5.4-0.0.2.tgz#876432f9502ee455da2de342faa99f4423b39f4b"
+  integrity sha512-fbfKMt1D0+XDzHPP0GS5KZNH0pWe5QqVpTKMPInA3ATEmB2+GGO3z6kopHjGt1M3JUFV7Uql1vmtTV/wy6qFBA==
+  dependencies:
+    sdp "^3.1.0"
+
 "@esbuild/android-arm64@0.18.20":
   version "0.18.20"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm64/-/android-arm64-0.18.20.tgz#984b4f9c8d0377443cc2dfcef266d02244593622"
@@ -3132,6 +3139,11 @@ scheduler@^0.23.0:
   integrity sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==
   dependencies:
     loose-envify "^1.1.0"
+
+sdp@^3.1.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/sdp/-/sdp-3.2.0.tgz#8961420552b36663b4d13ddba6f478d1461896a5"
+  integrity sha512-d7wDPgDV3DDiqulJjKiV2865wKsJ34YI+NDREbm+FySq6WuKOikwyNQcm+doLAZ1O6ltdO0SeKle2xMpN3Brgw==
 
 semver@^6.3.0, semver@^6.3.1:
   version "6.3.1"
