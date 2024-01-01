@@ -14,7 +14,7 @@ export interface PixelStreamingWrapperProps {
 }
 
 interface IemitUIInteraction {
-    type: 'Show_Component',
+    type: 'Show_Component' | 'Show_PC',
     component_id: string,
 }
 
@@ -59,7 +59,7 @@ export const PixelStreamingWrapper = ({
         }
     }, []);
 
-    function emitUIInteraction({ type, component_id }: IemitUIInteraction) {
+    function emitSingleUIInteraction({ type, component_id }: IemitUIInteraction) {
         if (streamRef.current) {
             streamRef.current.emitUIInteraction({
                 Type: type,
@@ -73,44 +73,81 @@ export const PixelStreamingWrapper = ({
         }
     }
 
+    function sendPixelStreamingServer() {
+        if (streamRef.current) {
+            streamRef.current.emitUIInteraction({
+                Type: 'Show_PC',
+                FullPC: {
+                    Case: '20240135',
+                    CPU: '20240105',
+                    GPU: '20240117',
+                    Cooler: '20240122',
+                    Fans: '20240124',
+                    PSU: '20240120',
+                    Storage: '20240111',
+                    RAM: '20240131',
+                    Motherboard: '20240127',
+                },
+            });
+            const stringval = JSON.stringify({
+                Type: 'Show_PC',
+                FullPC: {
+                    Case: '20240135',
+                    CPU: '20240105',
+                    GPU: '20240117',
+                    Cooler: '20240122',
+                    Fans: '20240124',
+                    PSU: '20240120',
+                    Storage: '20240111',
+                    RAM: '20240131',
+                    Motherboard: '20240127',
+                },
+            });
+            console.log(stringval);
+        }
+    }
+
     return (
         <>
-            <button className='block' onClick={() => emitUIInteraction({
+            <button className='block' onClick={() => emitSingleUIInteraction({
                 type: 'Show_Component',
                 component_id: '20240135'
             })}>Show Case Component (Icue500xBlack, 20240135)</button>
-            <button className='block' onClick={() => emitUIInteraction({
+            <button className='block' onClick={() => emitSingleUIInteraction({
                 type: 'Show_Component',
                 component_id: '20240127'
             })}>Show Motherboard Component (Prime Z790-A, 20240127)</button>
-            <button className='block' onClick={() => emitUIInteraction({
+            <button className='block' onClick={() => emitSingleUIInteraction({
                 type: 'Show_Component',
                 component_id: '20240131'
             })}>Show RAM Component (Dominator RGB 32gb (2x16gb) DDR5, 20240131)</button>
-            <button className='block' onClick={() => emitUIInteraction({
+            <button className='block' onClick={() => emitSingleUIInteraction({
                 type: 'Show_Component',
                 component_id: '20240124'
             })}>Show Fans Component (AF120 RGB, 20240124)</button>
-            <button className='block' onClick={() => emitUIInteraction({
+            <button className='block' onClick={() => emitSingleUIInteraction({
                 type: 'Show_Component',
                 component_id: '20240122'
             })}>Show Cooler Component (UX200 SE 120 mm, 20240122)</button>
-            <button className='block' onClick={() => emitUIInteraction({
+            <button className='block' onClick={() => emitSingleUIInteraction({
                 type: 'Show_Component',
                 component_id: '20240120'
             })}>Show PSU Component (Toughpower GF A3 1050 Watt, 20240120)</button>
-            <button className='block' onClick={() => emitUIInteraction({
+            <button className='block' onClick={() => emitSingleUIInteraction({
                 type: 'Show_Component',
                 component_id: '20240117'
             })}>Show GPU Component (Dual GeForce RTX 4060 Ti, 20240117)</button>
-            <button className='block' onClick={() => emitUIInteraction({
+            <button className='block' onClick={() => emitSingleUIInteraction({
                 type: 'Show_Component',
                 component_id: '20240111'
             })}>Show Storage Component (870 QVO 1TB SATA, 20240111)</button>
-            <button className='block' onClick={() => emitUIInteraction({
+            <button className='block' onClick={() => emitSingleUIInteraction({
                 type: 'Show_Component',
                 component_id: '20240105'
             })}>Show CPU Component (Core i9-14900KF, 20240105)</button>
+            <button className='block' onClick={() => sendPixelStreamingServer()}>
+                Send to pixel streaming server
+            </button>
             <div
                 style={{
                     width: '100%',
