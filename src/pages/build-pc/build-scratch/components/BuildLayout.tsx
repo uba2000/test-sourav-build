@@ -177,7 +177,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
 
         <div
           className={clsx(
-            "min-h-[640px]",
+            "md:min-h-[640px]",
             { "grid md:grid-cols-[auto_544px] grid-cols-1 gap-x-4 gap-y-3": !isCompareMode },
           )}
         >
@@ -228,7 +228,12 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                   {children}
                 </div>
               </PolygonContainer>
-              <div className='md:hidden block mb-20'>
+              <div className={
+                clsx(
+                  'md:hidden block',
+                  { "mb-20": (currentBuild.length === buildStages.length || stagesStatus === 'complete' || showPriceSection) }
+                )
+              }>
                 {layout_r_title && (
                   <div className="md:px-[26px] px-4 md:py-3 pt-2 mt-1 pb-[10px] border-b border-[rgba(255,255,255,0.20)] md:border-white-75">
                     <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
@@ -236,7 +241,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                     </h1>
                   </div>
                 )}
-                <div className="pt-3 px-4 overflow-y-auto min-h-[610px]">
+                <div className="pt-3 px-4 overflow-y-auto md:min-h-[610px]">
                   {children}
                 </div>
               </div>

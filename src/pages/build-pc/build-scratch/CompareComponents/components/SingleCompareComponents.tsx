@@ -45,19 +45,19 @@ function SingleCompareComponents({
   } = useBuildPCContext()
 
   const { data: ratingsData } = useSWR(portinosRatingCacheKey, getPortinosRatings)
-  
+
   const { data: preferences_feed } = useSWR(preferenceCacheKey, getPreferencesData)
 
   const productRatings = useMemo<ProductRating>(() => ratingsData?.[selectedItemID as string] || {}, [ratingsData, selectedItemID])
-  
-  const _category_slug = useMemo(() => { 
+
+  const _category_slug = useMemo(() => {
     if (category_slug) {
       return category_slug;
     }
 
     return currentBuild.find((d) => d._id === selectedItemID)?.category_slug;
   }, [category_slug, currentBuild, selectedItemID])
-  
+
   const { getStageData } = useBuildPCStages();
 
   const stageDetails = useMemo<IBuildStages | null>(() => {
@@ -135,13 +135,13 @@ function SingleCompareComponents({
     setCurrentGameTitle(preferences?.game_type_title?.[0]);
   }, [preferences.game_type_title])
 
-  useEffect(() => { 
+  useEffect(() => {
     setGamingAt(preferences.gaming_resolution?.title as PreferenceResolutionsTitleType)
   }, [preferences.gaming_resolution])
 
   const percentageFPS = useMemo(() => {
     const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
-    
+
     let cpu: string | null, gpu: string | null;
 
     if (_category_slug === 'processor') {
@@ -155,17 +155,17 @@ function SingleCompareComponents({
     const _cleanGameInfoArray = _preferences_feed.find((d) => (d.cpu === cpu) && (d.gpu === gpu));
 
     const _game_fps = _cleanGameInfoArray?.gameTitles[currentGameTitle][gamingAt!]
-    
+
     const _game_max_fps = allGamesMinMaxFPS.max[currentGameTitle]
     return {
       fpsPercentage: !_game_fps
-      ? 0
+        ? 0
         : (parseInt(_game_fps || '0', 10) / _game_max_fps) * 100,
       fps: _game_fps || 0
     }
   }, [preferences_feed, _category_slug, currentGameTitle, gamingAt, allGamesMinMaxFPS.max, selectedItemID, pairedWith])
 
-  const pairedWithOptions = useMemo(() => { 
+  const pairedWithOptions = useMemo(() => {
     let _options: IBuildComponent[] = [];
 
     if (_category_slug === 'processor') {
@@ -185,11 +185,11 @@ function SingleCompareComponents({
       value: d._id
     }));
   }, [_category_slug, buildStages])
-  
+
   useEffect(() => {
     setPairedWith(pairedWithOptions[0]?.value)
   }, [pairedWithOptions])
-  
+
 
   function handleDeleteFromBuild() {
     if (componentItem) {
@@ -223,14 +223,14 @@ function SingleCompareComponents({
         ? (
           <>
             {false && (
-            <div className="justify-center hidden">
-              <div className='hidden md:block'>
-                <ImageFigure icon={componentItem?.image || ''} width={205} />
+              <div className="justify-center hidden">
+                <div className='hidden md:block'>
+                  <ImageFigure icon={componentItem?.image || ''} width={205} />
+                </div>
+                <div className='block md:hidden'>
+                  <ImageFigure icon={componentItem?.image || ''} width={190} />
+                </div>
               </div>
-              <div className='block md:hidden'>
-                <ImageFigure icon={componentItem?.image || ''} width={190} />
-              </div>
-            </div>
             )}
 
             <PolygonContainer btr={false} btl={false} bbr={false}>
@@ -278,7 +278,7 @@ function SingleCompareComponents({
               <div className="flex items-center gap-4">
                 <div className="bg-white-20 h-[6px] w-full">
                   <div
-                    style={{width: `${percentageFPS.fpsPercentage}%`}}
+                    style={{ width: `${percentageFPS.fpsPercentage}%` }}
                     className={clsx(
                       'bg-gaming-blue h-full with-ease',
                     )}
@@ -441,8 +441,8 @@ function SingleCompareComponents({
                           <div
                             className={clsx(
                               "w-2 min-w-[8px] h-[6px]",
-                              {"bg-gaming-blue": index <= _index},
-                              {"bg-gaming-cobalt": index > _index}
+                              { "bg-gaming-blue": index <= _index },
+                              { "bg-gaming-cobalt": index > _index }
                             )}
                           />
                         </Fragment>
@@ -499,7 +499,7 @@ function SingleCompareComponents({
                     <div className='text-xs flex-grow min-w-[120px]'>Valorant</div>
                     <div className='flex items-center w-[100px]'>
                       <div className='bg-[rgba(255,255,255,0.2)] h-[6px] w-full'>
-                        <div className="max-w-full h-full bg-gaming-blue" style={{width: '60%'}} />
+                        <div className="max-w-full h-full bg-gaming-blue" style={{ width: '60%' }} />
                       </div>
                     </div>
                     <div className='min-w-[32px] flex-grow font-IntelOneBodyTextMedium'>245</div>
@@ -509,7 +509,7 @@ function SingleCompareComponents({
                     <div className='text-xs flex-grow min-w-[120px]'>Ghostrunner 2</div>
                     <div className='flex items-center w-[100px]'>
                       <div className='bg-[rgba(255,255,255,0.2)] h-[6px] w-full'>
-                        <div className="max-w-full h-full bg-gaming-blue" style={{width: '60%'}} />
+                        <div className="max-w-full h-full bg-gaming-blue" style={{ width: '60%' }} />
                       </div>
                     </div>
                     <div className='min-w-[32px] flex-grow font-IntelOneBodyTextMedium'>168</div>
@@ -519,7 +519,7 @@ function SingleCompareComponents({
                     <div className='text-xs flex-grow min-w-[120px]'>League of Legends</div>
                     <div className='flex items-center w-[100px]'>
                       <div className='bg-[rgba(255,255,255,0.2)] h-[6px] w-full'>
-                        <div className="max-w-full h-full bg-gaming-blue" style={{width: '60%'}} />
+                        <div className="max-w-full h-full bg-gaming-blue" style={{ width: '60%' }} />
                       </div>
                     </div>
                     <div className='min-w-[32px] flex-grow font-IntelOneBodyTextMedium'>322</div>
