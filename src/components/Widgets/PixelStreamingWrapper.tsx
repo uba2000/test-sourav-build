@@ -75,10 +75,42 @@ export const PixelStreamingWrapper = ({
 
     return (
         <>
-            <button onClick={() => emitUIInteraction({
+            <button className='block' onClick={() => emitUIInteraction({
                 type: 'Show_Component',
                 component_id: '20240135'
-            })}>Show Case Component</button>
+            })}>Show Case Component (Icue500xBlack, 20240135)</button>
+            <button className='block' onClick={() => emitUIInteraction({
+                type: 'Show_Component',
+                component_id: '20240127'
+            })}>Show Motherboard Component (Prime Z790-A, 20240127)</button>
+            <button className='block' onClick={() => emitUIInteraction({
+                type: 'Show_Component',
+                component_id: '20240131'
+            })}>Show RAM Component (Dominator RGB 32gb (2x16gb) DDR5, 20240131)</button>
+            <button className='block' onClick={() => emitUIInteraction({
+                type: 'Show_Component',
+                component_id: '20240124'
+            })}>Show Fans Component (AF120 RGB, 20240124)</button>
+            <button className='block' onClick={() => emitUIInteraction({
+                type: 'Show_Component',
+                component_id: '20240122'
+            })}>Show Cooler Component (UX200 SE 120 mm, 20240122)</button>
+            <button className='block' onClick={() => emitUIInteraction({
+                type: 'Show_Component',
+                component_id: '20240120'
+            })}>Show PSU Component (Toughpower GF A3 1050 Watt, 20240120)</button>
+            <button className='block' onClick={() => emitUIInteraction({
+                type: 'Show_Component',
+                component_id: '20240117'
+            })}>Show GPU Component (Dual GeForce RTX 4060 Ti, 20240117)</button>
+            <button className='block' onClick={() => emitUIInteraction({
+                type: 'Show_Component',
+                component_id: '20240111'
+            })}>Show Storage Component (870 QVO 1TB SATA, 20240111)</button>
+            <button className='block' onClick={() => emitUIInteraction({
+                type: 'Show_Component',
+                component_id: '20240105'
+            })}>Show CPU Component (Core i9-14900KF, 20240105)</button>
             <div
                 style={{
                     width: '100%',
