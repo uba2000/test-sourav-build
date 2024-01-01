@@ -2,7 +2,7 @@
 /* eslint-disable no-empty */
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
     Config,
     AllSettings,

@@ -1,4 +1,3 @@
-import React from 'react'
 import { PixelStreamingWrapper } from '../components/Widgets/PixelStreamingWrapper'
 
 function Page3D() {
