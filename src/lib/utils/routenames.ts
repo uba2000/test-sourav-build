@@ -15,7 +15,7 @@ const RouteNames = {
   // Reset Session
   resetSessionPage: "/reset-session",
 
-  testStream: "/showcase",
+  testStream: "/test-stream",
 };
 
 export default RouteNames;
