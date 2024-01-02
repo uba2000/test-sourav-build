@@ -27,7 +27,6 @@ function PreferenceBox() {
         fps: _clean?.data?.fps || null,
       }
     })
-    console.log({ preferenceGameTypes, _selectedGameTitles, cleanGameInfoArray });
 
     return _selectedGameTitles.map((d: any) => ({ ...d, fps: d.fps ? d.fps : _minimum_fps }));
   }, [preferences, preferenceGameTypes, cleanGameInfoArray])

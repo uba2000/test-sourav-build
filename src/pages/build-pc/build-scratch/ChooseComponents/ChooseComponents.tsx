@@ -69,7 +69,6 @@ function ChooseComponents() {
       setIsInBuild(_current_in_build);
 
       if (_current_in_build) {
-        console.log('jj');
         setSelectedItemID(_current_in_build._id)
         onSelectComponentItem(_current_in_build._id)
       } else { // show image for current component instead then

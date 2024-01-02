@@ -39,7 +39,6 @@ function Build3DModel({
   useEffect(() => {
     if (videoParent.current && !pixelStreamRef.current) {
       // Attach Pixel Streaming library to videoParent element:
-      console.log({ initialModelSettings });
 
       const config = new Config({
         initialSettings: {
