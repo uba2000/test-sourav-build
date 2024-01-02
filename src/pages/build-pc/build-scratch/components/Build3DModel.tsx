@@ -15,7 +15,7 @@ export interface PixelStreamingWrapperProps {
 const initialModelSettings = {
   AutoPlayVideo: true,
   AutoConnect: true,
-  ss: `${import.meta.env.VITE_STREAM_IP}`,
+  ss: 'ws://18.205.109.214:80',
   StartVideoMuted: true,
   HoveringMouse: true,
   WaitForStreamer: true

@@ -19,6 +19,10 @@ type LandingPointsType = {
 
 
 function LandingPage() {
+  console.log({
+    imp: import.meta.env
+  });
+
   const LandingPoints = useMemo<LandingPointsType>(() => [
     { title: 'Set your targets', description: 'Game titles. Resolution. FPS. Tell us what you want, we’ll deliver the performance you need.' },
     { title: 'Choose your weapons', description: 'Compare components or systems for performance, specs and price to find the right fit.' },
