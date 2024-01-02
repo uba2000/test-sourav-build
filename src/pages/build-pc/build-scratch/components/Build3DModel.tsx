@@ -4,9 +4,8 @@ import {
   AllSettings,
   PixelStreaming
 } from '@epicgames-ps/lib-pixelstreamingfrontend-ue5.4';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
-import useSingleEffectCall from '../../../../lib/hooks/useSingleEffectCall';
 
 export interface PixelStreamingWrapperProps {
   initialSettings?: Partial<AllSettings>;
@@ -38,7 +37,7 @@ function Build3DModel({
   const [clickToPlayVisible, setClickToPlayVisible] = useState(false);
 
   // Run on component mount:
-  useSingleEffectCall(() => {
+  useEffect(() => {
     console.log('out', pixelStreamRef.current);
 
     if (videoParent.current) {
@@ -72,7 +71,7 @@ function Build3DModel({
         } catch { }
       };
     }
-  });
+  }, []);
 
   return (
     <div
