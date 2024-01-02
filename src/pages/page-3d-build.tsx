@@ -12,7 +12,7 @@ function Page3D() {
         initialSettings={{
           AutoPlayVideo: true,
           AutoConnect: true,
-          ss: 'ws://23.23.138.187:80',
+          ss: 'ws://18.205.109.214:80',
           StartVideoMuted: true,
           HoveringMouse: true,
           WaitForStreamer: true

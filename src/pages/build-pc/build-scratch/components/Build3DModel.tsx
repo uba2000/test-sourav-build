@@ -24,6 +24,8 @@ const initialModelSettings = {
 function Build3DModel({
   initialSettings = {}
 }: PixelStreamingWrapperProps) {
+  console.log('in');
+
   // A reference to parent div element that the Pixel Streaming library attaches into:
   const videoParent = useRef<HTMLDivElement>(null);
 
