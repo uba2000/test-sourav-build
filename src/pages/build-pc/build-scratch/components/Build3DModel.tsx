@@ -32,15 +32,17 @@ function Build3DModel({
   const { setPixelStream, pixelStreamRef } = useBuildPCContext()
 
   // Pixel streaming library instance is stored into this state variable after initialization:
-  const [pixelStreaming, setPixelStreaming] = useState<PixelStreaming>();
+  const [pixelStreaming, setPixelStreaming] = useState<PixelStreaming>(pixelStreamRef.current);
 
   // A boolean state variable that determines if the Click to play overlay is shown:
   const [clickToPlayVisible, setClickToPlayVisible] = useState(false);
 
   // Run on component mount:
   useSingleEffectCall(() => {
+    console.log('out', pixelStreamRef.current);
+
     if (videoParent.current && !pixelStreamRef.current) {
-      console.log('in');
+      console.log('in', pixelStreamRef.current);
       // Attach Pixel Streaming library to videoParent element:
 
       const config = new Config({
