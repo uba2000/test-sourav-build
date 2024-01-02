@@ -9,13 +9,19 @@ import { IBuildStagesSlugs } from '../../../lib/types/context-types';
 function PreconfigedSystems() {
   const {
     currentBuild, predefinedBuilds, togglePreBuildToCurrentBuildForPreview, addToRetailerUsersCart,
-    showCurrentModelSpecs,
+    showCurrentModelSpecs, completePixelStreaming, emitStreamSingleUIInteraction,
     toggleCanViewSpecs, setCurrentModelOnStage, toggleViewingComponentModel,
   } = useBuildPCContext();
 
   useLayoutEffect(() => {
     togglePreBuildToCurrentBuildForPreview('add')
   }, [])
+
+  useEffect(() => {
+    if (currentBuild.length > 0) {
+      completePixelStreaming();
+    }
+  }, [currentBuild])
 
   const componentItems = useMemo(() => currentBuild, [currentBuild])
   const [buildPrice, setBuildPrice] = useState<string>('')
@@ -39,6 +45,7 @@ function PreconfigedSystems() {
     toggleCanViewSpecs(true);
     setCategorySlug(_item?.category_slug);
     setCurrentModelOnStage(_item?.image as string);
+    emitStreamSingleUIInteraction({ component_id: _id })
     if ((selectedItemID === _id || !selectedItemID) && selectedItemID !== _id) {
       toggleViewingComponentModel();
     }

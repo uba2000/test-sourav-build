@@ -24,6 +24,7 @@ import RouteNames from '../../../../lib/utils/routenames';
 import { formatNumberWithCommas } from '../../../../lib/utils/util-numbers';
 import Modal from '../../../../components/Modal/Modal';
 import NavLinkCopy from '../../../../components/NavLinkCopy/NavLinkCopy';
+import Build3DModel from './Build3DModel';
 
 interface IBuildLayout {
   children: React.ReactNode;
@@ -184,11 +185,8 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
           {/* {!isCompareMode && ( */}
           <div className="md:py-6 pt-6 flex-col gap-y-4 flex md:pb-[57px]">
             <div className='flex-grow w-full min-w-[180px] min-h-[180px] flex justify-center items-center'>
-              <div className='hidden md:block max-w-[481px] w-full max-h-[481px] h-auto'>
-                <ImageFigure icon={currentModel} isContainerSize width={481} />
-              </div>
-              <div className='block md:hidden max-w-[190px] w-full max-h-[190px] h-auto'>
-                <ImageFigure icon={currentModel} isContainerSize width={190} />
+              <div className='md:max-w-[481px] max-w-[190px] w-full md:max-h-[481px] max-h-[190px] h-auto'>
+                <Build3DModel placeholder={currentModel} />
               </div>
             </div>
             <div className="flex justify-end md:pr-0 pr-4 min-h-[31px]">

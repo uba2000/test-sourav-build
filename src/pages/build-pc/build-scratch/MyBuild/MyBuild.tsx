@@ -19,6 +19,7 @@ function MyBuild() {
   const {
     buildStages, currentBuild, addToRetailerUsersCart, showCurrentModelSpecs,
     toggleCanViewSpecs, setCurrentModelOnStage, toggleViewingComponentModel,
+    emitStreamSingleUIInteraction, completePixelStreaming
   } = useBuildPCContext()
   const { currentBuildStageIndex, nextToBuildIndex } = useBuildPCStages();
 
@@ -39,6 +40,7 @@ function MyBuild() {
     const _item = currentBuild.find((d) => d._id === _id);
     toggleCanViewSpecs(true);
     setCurrentModelOnStage(_item?.image as string);
+    emitStreamSingleUIInteraction({ component_id: _id })
     if ((selectedItemID === _id || !selectedItemID) && selectedItemID !== _id) {
       toggleViewingComponentModel();
     }
@@ -56,6 +58,12 @@ function MyBuild() {
   useEffect(() => {
     scrollBodyToTop();
   }, [])
+
+  useEffect(() => {
+    if (currentBuild.length > 0) {
+      completePixelStreaming();
+    }
+  }, [currentBuild])
 
   return (
     <BuildLayout

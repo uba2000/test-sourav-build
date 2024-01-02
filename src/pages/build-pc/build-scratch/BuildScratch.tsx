@@ -13,7 +13,7 @@ import PreferenceBox from './components/PreferenceBox';
 
 function BuildScratch() {
   const { togglePreBuildToCurrentBuildForPreview } = useBuildPCContext()
-  const navigate = useNavigate()  
+  const navigate = useNavigate()
 
   function startBuildFromScratch() {
     navigate(RouteNames.buildPCMyBuild)
@@ -37,7 +37,7 @@ function BuildScratch() {
             <div className='flex flex-col gap-y-2'>
               <h3 className="text-M-h3 font-IntelOneBodyTextBold">Jumpstart your build</h3>
               <p className='text-sm'>
-                Need help getting started? We’ll show you a complete set of components that you can edit as you like. 
+                Need help getting started? We’ll show you a complete set of components that you can edit as you like.
               </p>
               <div className='pb-2'>
                 <Button onClick={() => choosePreconfiged()} className='p-2'>
@@ -59,7 +59,7 @@ function BuildScratch() {
             <div className='flex flex-col gap-y-2'>
               <h3 className="text-M-h3 font-IntelOneBodyTextMedium">Start from scratch</h3>
               <p className='text-sm'>
-                Select a product category to review and choose components for your build. 
+                Select a product category to review and choose components for your build.
               </p>
               <div className='pb-2'>
                 <Button onClick={() => startBuildFromScratch()} className='p-2'>
@@ -76,7 +76,7 @@ function BuildScratch() {
         <div className="py-2 px-3 flex flex-col gap-y-2">
           <h3 className="font-IntelOneBodyTextBold">Build with confidence</h3>
           <p className='text-sm font-IntelOneBodyTextRegular'>
-            These components have been selected to deliver FPS and resolution you want for your games. All components shown are compatible with each other. 
+            These components have been selected to deliver FPS and resolution you want for your games. All components shown are compatible with each other.
           </p>
         </div>
 

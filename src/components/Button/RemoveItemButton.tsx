@@ -6,13 +6,16 @@ import Button from './Button'
 import RightArrow from '../../assets/right-arrow.svg?react'
 import RemoveIcon from '../../assets/circle-close-icon-game-blue.svg'
 import ImageFigure from '../ImageFigure'
+import useBuildPCContext from '../../lib/hooks/contextHooks/useBuildPCContext'
 
 interface IRemoveItemButton {
   onClick?: () => void;
   variant?: 'large' | 'small';
 }
 
-function RemoveItemButton({ onClick = () => { }, variant='large' }: IRemoveItemButton) {
+function RemoveItemButton({ onClick = () => { }, variant = 'large' }: IRemoveItemButton) {
+  const { completePixelStreaming } = useBuildPCContext();
+
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   function initiateClickEvent() {
@@ -26,6 +29,8 @@ function RemoveItemButton({ onClick = () => { }, variant='large' }: IRemoveItemB
   function handleOnClick() {
     onClick();
     handleCloseModal();
+    // reset build model
+    completePixelStreaming();
   }
 
   return (
@@ -35,15 +40,15 @@ function RemoveItemButton({ onClick = () => { }, variant='large' }: IRemoveItemB
         onClick={() => initiateClickEvent()}
         className={clsx(
           'flex gap-x-[6px] items-center relative z-30',
-          {'py-[6px] px-2': variant === 'large'},
-          {'py-1 px-2': variant === 'small'}
+          { 'py-[6px] px-2': variant === 'large' },
+          { 'py-1 px-2': variant === 'small' }
         )}
       >
         <span
           className={clsx(
             'font-IntelOneBodyTextMedium whitespace-nowrap',
-            {'text-sm': variant === 'large'},
-            {'text-xs': variant === 'small'}
+            { 'text-sm': variant === 'large' },
+            { 'text-xs': variant === 'small' }
           )}
         >
           Remove item

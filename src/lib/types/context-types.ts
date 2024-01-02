@@ -1,5 +1,7 @@
 import React from "react";
 import { type IFormatPreferencesDataReturn } from "../utils/util-build-preference";
+import { PixelStreaming } from "@epicgames-ps/lib-pixelstreamingfrontend-ue5.4";
+import { type IEmitStreamUIInteraction } from "../hooks/contextHooks/usePixelStreamContext";
 
 export type ProductRating = {
   rating_count: number;
@@ -187,6 +189,14 @@ export interface IBuildPCContext {
   toggleShowSpecs: (_toggle?: boolean) => void;
   toggleViewingComponentModel: (_toggle?: boolean) => void;
   setCurrentModelOnStage: (model: string) => void;
+
+  // Pixel Streaming
+  pixelStreamRef: React.MutableRefObject<PixelStreaming>;
+
+  resetPixelStream: () => void;
+  setPixelStream: (_pixelStream: PixelStreaming) => void;
+  completePixelStreaming: () => void;
+  emitStreamSingleUIInteraction: (_args: IEmitStreamUIInteraction) => void;
 }
 
 export type IPortinosProductPresetKeys =

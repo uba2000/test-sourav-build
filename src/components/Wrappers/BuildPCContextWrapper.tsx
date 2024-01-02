@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import RouteNames from '../../lib/utils/routenames';
 import { AddToRetailerUsersCartPropsType, IBuildPCContext } from '../../lib/types/context-types';
 import useBuildPCLayoutContext from '../../lib/hooks/contextHooks/useBuildPCLayoutContext';
+import usePixelStreamContext from '../../lib/hooks/contextHooks/usePixelStreamContext';
 
 function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate()
@@ -16,10 +17,13 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
 
   const buildLayoutState = useBuildPCLayoutContext();
 
+  const pixel3DStreaming = usePixelStreamContext(buildState.currentBuild);
+
   const resetApp = useCallback(() => {
     preferenceState.resetPreferences();
     buildPCState.resetPCBuild();
     buildLayoutState.resetBuildPCLayout();
+    pixel3DStreaming.resetPixelStream();
     navigate(RouteNames.home);
   }, []);
 
@@ -38,6 +42,7 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
       ...preferenceState,
       ...buildState,
       ...buildLayoutState,
+      ...pixel3DStreaming,
       resetApp,
       addToCartState,
       addToRetailerUsersCart,
@@ -45,7 +50,7 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
   }, [
     preferenceState, buildLayoutState,
     buildState, resetApp,
-    addToCartState,
+    addToCartState, pixel3DStreaming,
     addToRetailerUsersCart
   ]);
 

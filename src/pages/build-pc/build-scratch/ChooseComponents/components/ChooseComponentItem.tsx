@@ -88,18 +88,18 @@ function ChooseComponentItem({
               ))}
             </div>
             <div className="flex flex-col gap-y-1 items-end min-w-[105px]">
-              <span className='font-IntelOneBodyTextMedium'>${data.price}</span>
+              <span className='font-IntelOneBodyTextMedium'>{'$'}{data.price}</span>
               {inBuild && (
                 <RemoveItemButton variant='small' onClick={() => handleRemoveFromBuild()} />
               )}
 
               {!inBuild && (
-              <Button disabled={inBuild} className='relative z-30' variant='gaming-cobalt' onClick={() => handleAddToBuild()}>
-                <div className="flex gap-x-[6px] items-center py-1 px-2 text-xs">
-                  Add to Build
-                  <ImageFigure icon={RightArrow} width={12} />
-                </div>
-              </Button>
+                <Button disabled={inBuild} className='relative z-30' variant='gaming-cobalt' onClick={() => handleAddToBuild()}>
+                  <div className="flex gap-x-[6px] items-center py-1 px-2 text-xs">
+                    Add to Build
+                    <ImageFigure icon={RightArrow} width={12} />
+                  </div>
+                </Button>
               )}
             </div>
           </div>

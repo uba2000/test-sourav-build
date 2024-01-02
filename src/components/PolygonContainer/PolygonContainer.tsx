@@ -21,9 +21,9 @@ interface IPolygonContainer {
 
 function PolygonContainer({
   children, rightBorder = true, leftBorder = true, className = '',
-  btl = true, btr = true, bbr = true, bbl = true, 
+  btl = true, btr = true, bbr = true, bbl = true,
   borderActive = false, backgroundActive = false,
-  topBackground, rightBackground, defaultBorderBackground='#4B4567'
+  topBackground, rightBackground, defaultBorderBackground = '#4B4567'
 }: IPolygonContainer) {
 
   const _style = useMemo(() => ({
@@ -35,7 +35,7 @@ function PolygonContainer({
     <div className={clsx('flex flex-col relative', className)} style={_style}>
       <div
         className={clsx(
-          'h-2 relative with-ease',
+          'h-2 relative',
           {
             "w-[calc(100%_-_16px)] mx-auto": btl && btr,
 
@@ -65,7 +65,7 @@ function PolygonContainer({
       >
         <div
           className={clsx(
-            'border-t absolute top-0 left-0 w-full with-ease',
+            'border-t absolute top-0 left-0 w-full',
             {
               "border-[var(--border-color)]": borderActive,
               "border-[#C5C5CB]": !borderActive,
@@ -75,12 +75,12 @@ function PolygonContainer({
         {btr && (
           <svg className='absolute -right-2 z-10' width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_3319_108092)">
-            <path fillRule="evenodd" clipRule="evenodd" d="M0.400879 -0.000488396L0.00146494 -0.000488375L0.0014649 1.01431L6.98666 7.99951L8.00146 7.99951L8.00146 7.6001L0.400879 -0.000488396Z" fill="currentColor" fillOpacity="0.75"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M0.400879 -0.000488396L0.00146494 -0.000488375L0.0014649 1.01431L6.98666 7.99951L8.00146 7.99951L8.00146 7.6001L0.400879 -0.000488396Z" fill="currentColor" fillOpacity="0.75" />
             </g>
             <defs>
-            <clipPath id="clip0_3319_108092">
-            <rect width="8" height="8" fill="currentColor"/>
-            </clipPath>
+              <clipPath id="clip0_3319_108092">
+                <rect width="8" height="8" fill="currentColor" />
+              </clipPath>
             </defs>
           </svg>
         )}
@@ -88,19 +88,19 @@ function PolygonContainer({
         {btl && (
           <svg className='absolute -left-2 z-10' width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_3319_108081)">
-            <path fillRule="evenodd" clipRule="evenodd" d="M7.59912 -0.000488396L7.99854 -0.000488375L7.99854 1.01431L1.01334 7.99951L-0.00146399 7.99951L-0.00146433 7.6001L7.59912 -0.000488396Z" fill="currentColor" fillOpacity="0.75"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M7.59912 -0.000488396L7.99854 -0.000488375L7.99854 1.01431L1.01334 7.99951L-0.00146399 7.99951L-0.00146433 7.6001L7.59912 -0.000488396Z" fill="currentColor" fillOpacity="0.75" />
             </g>
             <defs>
-            <clipPath id="clip0_3319_108081">
-            <rect width="8" height="8" fill="currentColor" transform="matrix(-1 0 0 1 8 0)"/>
-            </clipPath>
+              <clipPath id="clip0_3319_108081">
+                <rect width="8" height="8" fill="currentColor" transform="matrix(-1 0 0 1 8 0)" />
+              </clipPath>
             </defs>
           </svg>
         )}
       </div>
       {/* Children */}
       <div
-        className={clsx('flex-1 with-ease', `border-[${borderActive ? 'var(--border-color)' : '#C5C5CB'}]`,
+        className={clsx('flex-1', `border-[${borderActive ? 'var(--border-color)' : '#C5C5CB'}]`,
           {
             "border-[var(--border-color)]": borderActive,
             "border-[#C5C5CB]": !borderActive
@@ -109,16 +109,16 @@ function PolygonContainer({
             "bg-[var(--background-color)]": backgroundActive,
           },
           {
-          'border-l': leftBorder,
-          'border-r': rightBorder
-        })}
+            'border-l': leftBorder,
+            'border-r': rightBorder
+          })}
       >
         {children}
       </div>
       {/* Children */}
       <div
         className={clsx(
-          "h-2 relative with-ease",
+          "h-2 relative",
           {
             "w-[calc(100%_-_16px)] mx-auto": bbl && bbr,
 
@@ -149,12 +149,12 @@ function PolygonContainer({
         {bbl && (
           <svg className='absolute -left-2 z-10' width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_3319_108114)">
-            <path fillRule="evenodd" clipRule="evenodd" d="M7.59912 8.00049L7.99854 8.00049L7.99854 6.98569L1.01334 0.00048966L-0.00146399 0.000489323L-0.00146433 0.399903L7.59912 8.00049Z" fill="currentColor" fillOpacity="0.75"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M7.59912 8.00049L7.99854 8.00049L7.99854 6.98569L1.01334 0.00048966L-0.00146399 0.000489323L-0.00146433 0.399903L7.59912 8.00049Z" fill="currentColor" fillOpacity="0.75" />
             </g>
             <defs>
-            <clipPath id="clip0_3319_108114">
-            <rect width="8" height="8" fill="currentColor" transform="matrix(-1 0 0 -1 8 8)"/>
-            </clipPath>
+              <clipPath id="clip0_3319_108114">
+                <rect width="8" height="8" fill="currentColor" transform="matrix(-1 0 0 -1 8 8)" />
+              </clipPath>
             </defs>
           </svg>
         )}
@@ -162,19 +162,19 @@ function PolygonContainer({
         {bbr && (
           <svg className='absolute -right-2 z-10' width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_3319_108122)">
-            <path fillRule="evenodd" clipRule="evenodd" d="M0.400879 8.00049L0.00146494 8.00049L0.0014649 6.98569L6.98666 0.00048966L8.00146 0.000489323L8.00146 0.399903L0.400879 8.00049Z" fill="currentColor" fillOpacity="0.75"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M0.400879 8.00049L0.00146494 8.00049L0.0014649 6.98569L6.98666 0.00048966L8.00146 0.000489323L8.00146 0.399903L0.400879 8.00049Z" fill="currentColor" fillOpacity="0.75" />
             </g>
             <defs>
-            <clipPath id="clip0_3319_108122">
-            <rect width="8" height="8" fill="currentColor" transform="matrix(1 0 0 -1 0 8)"/>
-            </clipPath>
+              <clipPath id="clip0_3319_108122">
+                <rect width="8" height="8" fill="currentColor" transform="matrix(1 0 0 -1 0 8)" />
+              </clipPath>
             </defs>
           </svg>
         )}
 
         <div
           className={clsx(
-            'border-b absolute bottom-0 left-0 w-full with-ease',
+            'border-b absolute bottom-0 left-0 w-full',
             {
               "border-[var(--border-color)]": borderActive,
               "border-[#C5C5CB]": !borderActive,

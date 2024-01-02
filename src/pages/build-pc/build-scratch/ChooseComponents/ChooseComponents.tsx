@@ -23,7 +23,7 @@ function ChooseComponents() {
   const { getStageData } = useBuildPCStages();
   const {
     addComponentToBuild, currentBuild, buildFlowType, toggleCanViewSpecs,
-    showCurrentModelSpecs, toggleShowSpecs, predefinedBuilds,
+    showCurrentModelSpecs, toggleShowSpecs, predefinedBuilds, emitStreamSingleUIInteraction,
     setCurrentModelOnStage, toggleViewingComponentModel, removeComponentToBuild,
   } = useBuildPCContext()
 
@@ -39,9 +39,10 @@ function ChooseComponents() {
   const onSelectComponentItem = useCallback((_id: string) => {
     const _item = componentItems.find((d) => d._id === _id);
     toggleCanViewSpecs(true);
-    
+
     // setCurrentModelOnStage(selectedItemID === _id ? '' : _item?.image as string);
     setCurrentModelOnStage(_item?.image as string);
+    emitStreamSingleUIInteraction({ component_id: _id })
     if ((selectedItemID === _id || !selectedItemID) && selectedItemID !== _id) {
       toggleViewingComponentModel();
     }
@@ -59,20 +60,22 @@ function ChooseComponents() {
       _stage_image = placeholderImages[_flow_type][predefinedBuilds?.build_segment as ProductPredefinedPresets]
     }
     setCurrentModelOnStage(_stage_image);
-    
+
   }, [_category_slug, buildFlowType, placeholderImages, predefinedBuilds?.build_segment, setCurrentModelOnStage])
 
   useLayoutEffect(() => {
+
     if (currentBuild) {
       const _current_in_build = currentBuild.find((d) => d.category_slug === _category_slug) || null
       setIsInBuild(_current_in_build);
-      
+
       if (_current_in_build) {
+        console.log('jj');
         setSelectedItemID(_current_in_build._id)
         onSelectComponentItem(_current_in_build._id)
       } else { // show image for current component instead then
         // check for placeholder image
-      setSelectedItemID(null)
+        setSelectedItemID(null)
         handleSetCurrentPlaceholderImage();
         // check if single details is open so its closed
         if (showCurrentModelSpecs) {
@@ -150,7 +153,7 @@ function ChooseComponents() {
                       onClick={() => handleCompareSelection('product')}
                       className={clsx(
                         "flex items-center gap-x-[6px] py-1 px-2 text-xs font-IntelOneBodyTextMedium",
-                        {"bg-intel-cobalt-t1": compareSelection === 'product'}
+                        { "bg-intel-cobalt-t1": compareSelection === 'product' }
                       )}
                     >
                       Product
@@ -161,7 +164,7 @@ function ChooseComponents() {
                       onClick={() => handleCompareSelection('compare')}
                       className={clsx(
                         "flex items-center gap-x-[6px] py-1 px-2 text-xs font-IntelOneBodyTextMedium",
-                        {"bg-intel-cobalt-t1": compareSelection === 'compare'}
+                        { "bg-intel-cobalt-t1": compareSelection === 'compare' }
                       )}
                     >
                       Comparison
