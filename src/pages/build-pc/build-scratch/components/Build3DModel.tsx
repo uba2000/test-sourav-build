@@ -41,7 +41,7 @@ function Build3DModel({
   useSingleEffectCall(() => {
     console.log('out', pixelStreamRef.current);
 
-    if (videoParent.current && !pixelStreamRef.current) {
+    if (videoParent.current) {
       console.log('in', pixelStreamRef.current);
       // Attach Pixel Streaming library to videoParent element:
 
