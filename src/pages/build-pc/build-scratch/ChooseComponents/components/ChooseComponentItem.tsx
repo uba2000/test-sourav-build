@@ -1,7 +1,7 @@
 import PolygonContainer from '../../../../../components/PolygonContainer/PolygonContainer'
 import ImageFigure from '../../../../../components/ImageFigure'
 
-import RightArrow from '../../../../../assets/right-arrow-white.svg'
+import RightArrow from '../../../../../assets/right-arrow-white.svg?react'
 import Button from '../../../../../components/Button/Button'
 // import StarRatingComponent from '../../../../../components/StarRatingComponent/StarRatingComponent'
 // import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge'
@@ -97,7 +97,7 @@ function ChooseComponentItem({
                 <Button disabled={inBuild} className='relative z-30' variant='gaming-cobalt' onClick={() => handleAddToBuild()}>
                   <div className="flex gap-x-[6px] items-center py-1 px-2 text-xs">
                     Add to Build
-                    <ImageFigure icon={RightArrow} width={12} />
+                    <RightArrow className='w-3 h-3' />
                   </div>
                 </Button>
               )}

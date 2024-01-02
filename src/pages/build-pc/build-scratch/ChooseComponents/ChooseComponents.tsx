@@ -10,9 +10,8 @@ import useBuildPCStages from '../../../../lib/hooks/useBuildPCStages';
 import clsx from 'clsx';
 import RouteNames from '../../../../lib/utils/routenames';
 import SingleCompareComponents from '../CompareComponents/components/SingleCompareComponents';
-import ImageFigure from '../../../../components/ImageFigure';
 
-import RightArrow from '../../../../assets/right-arrow-white.svg'
+import RightArrow from '../../../../assets/right-arrow-white.svg?react'
 import { BuildFlowType, IBuildComponent, IBuildStages, IBuildStagesSlugs, ProductPredefinedPresets } from '../../../../lib/types/context-types';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
 import useBuildPlaceholders from '../../../../lib/hooks/useBuildPlaceholders';
@@ -157,7 +156,7 @@ function ChooseComponents() {
                       )}
                     >
                       Product
-                      <ImageFigure icon={RightArrow} width={12} />
+                      <RightArrow className='w-3 h-3' />
                     </button>
                     <button
                       type='button'
@@ -168,7 +167,7 @@ function ChooseComponents() {
                       )}
                     >
                       Comparison
-                      <ImageFigure icon={RightArrow} width={12} />
+                      <RightArrow className='w-3 h-3' />
                     </button>
                   </div>
                 </div>
@@ -186,7 +185,7 @@ function ChooseComponents() {
                   <Button variant='cobalt' className='h-fit' onClick={() => viewComparison()}>
                     <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
                       View specs
-                      <ImageFigure icon={RightArrow} width={12} />
+                      <RightArrow className='w-3 h-3' />
                     </div>
                   </Button>
                 </div>

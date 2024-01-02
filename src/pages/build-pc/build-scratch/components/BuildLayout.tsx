@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import PolygonContainer from '../../../../components/PolygonContainer/PolygonContainer';
-import ImageFigure from '../../../../components/ImageFigure';
 import clsx from 'clsx';
 import _ from 'lodash';
 
@@ -8,13 +7,13 @@ import PageWrapper from '../../../../components/Wrappers/PageWrapper';
 import Button from '../../../../components/Button/Button';
 
 // import BackIcon from "../../../../assets/nav-back-icon.svg"
-import ReloadIcon from "../../../../assets/nav-reload-icon.svg"
-import CartIcon from '../../../../assets/cart.svg'
-import RightArrow from "../../../../assets/right-arrow.svg"
-import BuildSpanner from '../../../../assets/component-icons/build.svg'
+import ReloadIcon from "../../../../assets/nav-reload-icon.svg?react"
+import CartIcon from '../../../../assets/cart.svg?react'
+import RightArrow from "../../../../assets/right-arrow.svg?react"
+import BuildSpanner from '../../../../assets/component-icons/build.svg?react'
 import Image3D from '../../../../assets/assets-3d/build-3d-image.svg'
-import NavLeftArrow from '../../../../assets/left-scroll-arrow.svg'
-import NavRightArrow from '../../../../assets/right-scroll-arrow.svg'
+import NavLeftArrow from '../../../../assets/left-scroll-arrow.svg?react'
+import NavRightArrow from '../../../../assets/right-scroll-arrow.svg?react'
 import useBuildPCStages from '../../../../lib/hooks/useBuildPCStages';
 import { matchRoutes, useLocation, useNavigate } from 'react-router-dom';
 import CardWithNotch from '../../../../components/CardWithNotch/CardWithNotch';
@@ -142,11 +141,8 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
         <div className="flex mb-2 md:justify-start justify-center">
           <PolygonContainer rightBorder={false} className="-mr-[1px] relative">
             <div className="px-[10px] flex gap-1 items-center">
-              {/* <button type="button" onClick={() => previousStage()}>
-                <ImageFigure icon={BackIcon} width={36} />
-              </button> */}
               <button type="button" onClick={() => resetApp()}>
-                <ImageFigure icon={ReloadIcon} width={36} />
+                <ReloadIcon className='w-[36px] h-[36px]' />
               </button>
               <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
             </div>
@@ -195,7 +191,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                 <Button className=" py-2 px-4" onClick={() => handleViewSpec()}>
                   <div className="flex gap-2 items-center">
                     <span className="text-intel-e-gray-s2 text-[15px] font-IntelOneBodyTextMedium leading-[15px]">View specs</span>
-                    <ImageFigure icon={RightArrow} width={12} />
+                    <RightArrow className='w-3 h-3' />
                   </div>
                 </Button>
               )}
@@ -273,7 +269,8 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                     <div className='flex items-center'>
                       <Button variant='secondary' className='flex-grow' onClick={() => handleAddAllToCart()}>
                         <div className="flex gap-[6px] items-center py-2 px-3">
-                          <ImageFigure icon={CartIcon} width={20} />
+                          <CartIcon className='w-5 h-5' />
+
                           <span className="text-black font-IntelOneBodyTextMedium whitespace-nowrap text-sm">Add all to cart</span>
                         </div>
                       </Button>
@@ -293,17 +290,17 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                     { "bg-gaming-cobalt": isOnBuildRoutes }
                   )}
                 >
-                  <ImageFigure icon={BuildSpanner} width={23} />
+                  <BuildSpanner className='w-[23px] h-[23px]' />
                   <span className='font-IntelOneBodyTextMedium text-[10px] leading-[9px] whitespace-nowrap'>My Build</span>
                 </div>
               </PolygonContainer>
               <PolygonContainer btr={false} bbr={false} leftBorder={false} className='flex-grow w-[calc(100%_-_69px)] -ml-[1px]'>
                 <div className="relative">
                   <button type='button' onClick={() => scrollByPixels({ dir: 'l' })} className="absolute left-0 z-10 -top-2 flex justify-center items-center border-r border-r-[#C5C5CB] h-[calc(100%_+_16px)] px-[6px]">
-                    <ImageFigure icon={NavLeftArrow} width={6} height={12} />
+                    <NavLeftArrow className='w-[6px] h-3' />
                   </button>
                   <button type='button' onClick={() => scrollByPixels({ dir: 'r' })} className="absolute right-0 z-10 -top-2 flex justify-center items-center border-l border-l-[#C5C5CB] h-[calc(100%_+_16px)] px-[6px]">
-                    <ImageFigure icon={NavRightArrow} width={6} height={12} />
+                    <NavRightArrow className='w-[6px] h-3' />
                   </button>
                   <div ref={mobileNavContainer} className='mr-[20px] px-[9px] ml-[20px] scroll-smooth flex gap-x-[6px] overflow-auto scrollbar-hide'>
                     {buildStages.map((d) => (
@@ -331,7 +328,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
                     { "bg-gaming-cobalt": isOnBuildRoutes }
                   )}
                 >
-                  <ImageFigure icon={BuildSpanner} width={34} />
+                  <BuildSpanner className='w-[34px] h-[34px]' />
                   <span className='font-IntelOneBodyTextMedium text-[10px] whitespace-nowrap'>My Build</span>
                 </div>
 
@@ -432,7 +429,6 @@ function BuildSidebarItem({ data, screenSize, stagesStatus = 'auto' }: IBuildSid
         <CardWithNotch backgroundColor={backgroundColor} notchHeight='small' btl={false} bbr={false} bbl>
           <div className="relative w-full min-w-[36px] h-5 cursor-pointer">
             <div className="relative w-full h-full flex justify-center items-center">
-              {/* <ImageFigure icon={data.icon} width={20} /> */}
               <div className={clsx(
                 "w-5 h-5",
                 { "text-white": isCompleted && !isSelected },
@@ -449,7 +445,6 @@ function BuildSidebarItem({ data, screenSize, stagesStatus = 'auto' }: IBuildSid
         <CardWithNotch backgroundColor={backgroundColor} notchHeight='small' btl={false} bbr={false} bbl>
           <div className="relative w-full h-8 cursor-pointer">
             <div className="relative w-full h-full flex justify-center items-center">
-              {/* <ImageFigure icon={data.icon} width={36} /> */}
               <div className={clsx(
                 "w-9 h-9",
                 { "text-white": isCompleted && !isSelected },

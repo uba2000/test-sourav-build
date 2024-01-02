@@ -4,7 +4,7 @@ import { IBuildComponent } from '../../../../../lib/types/context-types';
 // import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge';
 // import StarRatingComponent from '../../../../../components/StarRatingComponent/StarRatingComponent';
 
-import CartIcon from '../../../../../assets/add-cart.svg'
+import CartIcon from '../../../../../assets/add-cart.svg?react'
 import { Fragment } from 'react';
 import _ from 'lodash';
 
@@ -73,7 +73,7 @@ function BuildItem({
                   Add to cart
                 </div>
                 <div className='bg-[#FFF100] flex justify-center items-center p-[3px] h-[22px] w-[22px]'>
-                  <ImageFigure icon={CartIcon} width={13} />
+                  <CartIcon className='w-[13px] h-[13px]' />
                 </div>
               </button>
             </div>

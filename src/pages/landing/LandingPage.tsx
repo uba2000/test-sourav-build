@@ -1,12 +1,11 @@
-import ImageFigure from '../../components/ImageFigure'
 import PageWrapper from '../../components/Wrappers/PageWrapper'
 import CardWithNotch from '../../components/CardWithNotch/CardWithNotch'
 import { Fragment, useMemo } from 'react'
 
 // import RetailerIcon from '../../assets/retailer-logo.png'
-import InfoPointer from '../../assets/info-pointer.svg'
-import BuildScrewIcon from '../../assets/build-screw.svg'
-import FindMagnifierIcon from '../../assets/find-magnifier.svg'
+import InfoPointer from '../../assets/info-pointer.svg?react'
+import BuildScrewIcon from '../../assets/build-screw.svg?react'
+import FindMagnifierIcon from '../../assets/find-magnifier.svg?react'
 import LandingHeroImage from '../../assets/landing-page-hero-image.svg?react'
 // import LandingHeroMobileImage from '../../assets/landing-page-hero-image-moble.svg?react'
 import LandingHeroMobileImage2 from '../../assets/landing-page-hero-image-moble.svg'
@@ -57,7 +56,7 @@ function LandingPage() {
                 <CardWithNotch>
                   <div className="flex gap-[10px] py-2 px-5">
                     <div>
-                      <ImageFigure icon={InfoPointer} />
+                      <InfoPointer className='w-5 h-5' />
                     </div>
                     <div className='flex flex-col gap-y-3'>
                       <h3 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">{d.title}</h3>
@@ -76,7 +75,7 @@ function LandingPage() {
               <button type='button' className='relative flex py-3 px-4 bg-gaming-blue min-w-[192px] hover:bg-gaming-blue-hover with-ease'>
                 <div className='flex items-center gap-x-2'>
                   <div>
-                    <ImageFigure icon={BuildScrewIcon} width={20} />
+                    <BuildScrewIcon className='w-5 h-5' />
                   </div>
                   <span className='md:text-lg md:leading-[18px] text-base whitespace-nowrap text-intel-cobalt-s2 font-IntelOneDisplayMedium font-bold'>Build a gaming PC</span>
                 </div>
@@ -87,7 +86,7 @@ function LandingPage() {
               <button type='button' className='relative flex py-3 px-4 bg-intel-e-blue-t1 min-w-[192px] hover:bg-intel-e-blue-t1-hover with-ease'>
                 <div className='flex items-center gap-x-2'>
                   <div>
-                    <ImageFigure icon={FindMagnifierIcon} width={20} />
+                    <FindMagnifierIcon className='w-5 h-5' />
                   </div>
                   <span className='md:text-lg md:leading-[18px] text-base whitespace-nowrap text-intel-cobalt-s2 font-IntelOneDisplayMedium font-bold'>Find a gaming PC</span>
                 </div>

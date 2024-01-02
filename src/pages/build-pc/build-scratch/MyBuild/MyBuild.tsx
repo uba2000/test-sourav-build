@@ -4,8 +4,7 @@ import RouteNames from '../../../../lib/utils/routenames';
 import BuildLayout from '../components/BuildLayout';
 import CardWithNotch from '../../../../components/CardWithNotch/CardWithNotch';
 import Button from '../../../../components/Button/Button';
-import ImageFigure from '../../../../components/ImageFigure';
-import RightArrow from '../../../../assets/right-arrow.svg'
+import RightArrow from '../../../../assets/right-arrow.svg?react'
 import BuildItem from './components/BuildItem';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
 import { Fragment, useEffect, useMemo, useState } from 'react';
@@ -83,7 +82,7 @@ function MyBuild() {
                     <Button className='p-2' onClick={() => goToChooseComponent()}>
                       <div className="flex items-center gap-x-2">
                         <span className='text-black font-IntelOneBodyTextMedium text-sm leading-[13px]'>Select a processor</span>
-                        <ImageFigure icon={RightArrow} width={12} />
+                        <RightArrow className='w-3 h-3' />
                       </div>
                     </Button>
                   </div>
@@ -98,7 +97,7 @@ function MyBuild() {
               <Button onClick={() => goToChooseComponent()} className="min-w-fit py-2 px-3">
                 <div className="flex gap-2 items-center">
                   <span className="text-intel-e-gray-s2 text-xs font-IntelOneBodyTextMedium leading-[11px]">{_currentBuildStage?.title}</span>
-                  <ImageFigure icon={RightArrow} width={12} />
+                  <RightArrow className='w-3 h-3' />
                 </div>
               </Button>
             </div>

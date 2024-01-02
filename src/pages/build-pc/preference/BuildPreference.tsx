@@ -3,15 +3,14 @@ import _ from "lodash"
 import clsx from "clsx"
 
 import Button from "../../../components/Button/Button"
-import ImageFigure from "../../../components/ImageFigure"
 import PolygonContainer from "../../../components/PolygonContainer/PolygonContainer"
 import PageWrapper from "../../../components/Wrappers/PageWrapper"
 import Step1GameType from "./components/Step1GameType/Step1GameType"
 import Step2FPS from "./components/Step2FPS/Step2FPS"
 
-import BackIcon from "../../../assets/nav-back-icon.svg"
-import ReloadIcon from "../../../assets/nav-reload-icon.svg"
-import RightArrow from "../../../assets/right-arrow.svg"
+import BackIcon from "../../../assets/nav-back-icon.svg?react"
+import ReloadIcon from "../../../assets/nav-reload-icon.svg?react"
+import RightArrow from "../../../assets/right-arrow.svg?react"
 import Step3Resolution from "./components/Step3Resolution/Step3Resolution"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import RouteNames from "../../../lib/utils/routenames"
@@ -141,15 +140,12 @@ function BuildPreference() {
                 <PolygonContainer rightBorder={false} className="-mr-[1px]">
                   <div className="px-[10px] flex gap-1">
                     <button type="button" onClick={() => previousStage()}>
-                      <ImageFigure icon={BackIcon} width={36} />
+                      <BackIcon className="w-[36px] h-[36px]" />
                     </button>
                     <button type="button" onClick={() => resetApp()}>
-                      <ImageFigure icon={ReloadIcon} width={36} />
+                      <ReloadIcon className="w-[36px] h-[36px]" />
                     </button>
                     <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
-                    {/* <button type="button">
-                      <ImageFigure icon={ExternalIcon} width={36} />
-                    </button> */}
                   </div>
                 </PolygonContainer>
               </div>
@@ -157,15 +153,12 @@ function BuildPreference() {
                 <PolygonContainer className="-mr-[1px]">
                   <div className="px-[10px] flex gap-1">
                     <button type="button" onClick={() => previousStage()}>
-                      <ImageFigure icon={BackIcon} width={36} />
+                      <BackIcon className="w-[36px] h-[36px]" />
                     </button>
                     <button type="button" onClick={() => resetApp()}>
-                      <ImageFigure icon={ReloadIcon} width={36} />
+                      <ReloadIcon className="w-[36px] h-[36px]" />
                     </button>
                     <NavLinkCopy link={`${import.meta.env.VITE_BASE_URL}${location.pathname}`} />
-                    {/* <button type="button">
-                      <ImageFigure icon={ExternalIcon} width={36} />
-                    </button> */}
                   </div>
                 </PolygonContainer>
               </div>
@@ -235,7 +228,7 @@ function BuildPreference() {
                   <Button disabled={!canProceed} onClick={() => nextStage()} className="min-w-[103px] py-2 px-6">
                     <div className="flex gap-2 items-center">
                       <span className="text-intel-e-gray-s2 text-[15px] font-IntelOneBodyTextMedium leading-[15px]">Next</span>
-                      <ImageFigure icon={RightArrow} width={12} />
+                      <RightArrow className="w-3 h-3" />
                     </div>
                   </Button>
                 </div>

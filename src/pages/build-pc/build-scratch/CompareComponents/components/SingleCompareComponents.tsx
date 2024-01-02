@@ -4,7 +4,7 @@ import CircleCloseIcon from '../../../../../assets/circle-close-icon.svg'
 import StarRatingComponent from '../../../../../components/StarRatingComponent/StarRatingComponent'
 import CompatibilityBadge from '../../../../../components/CompatibilityBadge/CompatibilityBadge'
 import Button from '../../../../../components/Button/Button'
-import RightArrow from '../../../../../assets/right-arrow-white.svg'
+import RightArrow from '../../../../../assets/right-arrow-white.svg?react'
 import useBuildPCContext from '../../../../../lib/hooks/contextHooks/useBuildPCContext'
 import { Fragment, useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
@@ -256,7 +256,7 @@ function SingleCompareComponents({
                     <Button variant='gaming-cobalt' onClick={() => addToBuild()} disabled={isInBuild}>
                       <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
                         Add to Build
-                        <ImageFigure icon={RightArrow} width={12} />
+                        <RightArrow className='w-3 h-3' />
                       </div>
                     </Button>
                   )}
@@ -356,7 +356,7 @@ function SingleCompareComponents({
                     <Button variant='gaming-cobalt' onClick={() => addToBuild()} disabled={isInBuild}>
                       <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
                         Add to Build
-                        <ImageFigure icon={RightArrow} width={12} />
+                        <RightArrow className='w-3 h-3' />
                       </div>
                     </Button>
                   )}
@@ -391,7 +391,7 @@ function SingleCompareComponents({
                     <Button variant='gaming-cobalt' onClick={() => addToBuild()}>
                       <div className="flex items-center gap-x-[6px] py-1 px-2 text-xs">
                         Add to build
-                        <ImageFigure icon={RightArrow} width={12} />
+                        <RightArrow className='w-3 h-3' />
                       </div>
                     </Button>
                   </div>

@@ -1,5 +1,4 @@
-import ImageFigure from '../ImageFigure';
-import RightArrowBlack from '../../assets/right-arrow-white.svg'
+import RightArrowBlack from '../../assets/right-arrow-white.svg?react'
 import clsx from 'clsx';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 // import Portal from '../Widgets/Portal';
@@ -62,12 +61,12 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
 
     return () => {
       window.removeEventListener('scroll', handleSetCoordinates);
-      if (_parentDiv) { 
+      if (_parentDiv) {
         _parentDiv.removeEventListener('scroll', handleSetCoordinates);
       }
     }
   }, [])
-  
+
   useLayoutEffect(() => {
     if (initialValue) {
       const _selected_value = options.find((d) => d.value === initialValue);
@@ -78,7 +77,7 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
       handleSetSelectedLabel(options[0].label)
     }
   }, [initialValue])
-  
+
   return (
     <div className='relative w-full'>
       <button
@@ -92,9 +91,7 @@ function Select({ options = [], initialValue, onChange = () => { } }: ISelectPro
       >
         <span className='text-xs opacity-75 text-left line-clamp-1'>{_selectedLabel}</span>
 
-        <div className='rotate-90 opacity-75'>
-          <ImageFigure icon={RightArrowBlack} width={12} />
-        </div>
+        <RightArrowBlack className='min-w-[12px] min-h-[12px] w-3 h-3 rotate-90 opacity-75' />
       </button>
 
       {(optionsIsOpen && options.length > 0) && (

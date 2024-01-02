@@ -6,7 +6,7 @@ import CompatibilityBadge from '../../../../../components/CompatibilityBadge/Com
 import Button from '../../../../../components/Button/Button';
 import clsx from 'clsx';
 
-import RightArrow from '../../../../../assets/right-arrow-white.svg'
+import RightArrow from '../../../../../assets/right-arrow-white.svg?react'
 import _ from 'lodash';
 
 interface ICompareComponentItem {
@@ -67,7 +67,7 @@ function CompareComponentItem({ title, image, price }: ICompareComponentItem) {
             <Button variant='cobalt'>
               <div className="flex gap-x-[6px] py-1 px-2 text-xs items-center">
                 Add to build
-                <ImageFigure icon={RightArrow} width={12} />
+                <RightArrow className='w-3 h-3' />
               </div>
             </Button>
           </div>
@@ -90,8 +90,8 @@ function CompareComponentItem({ title, image, price }: ICompareComponentItem) {
                   <div
                     className={clsx(
                       "w-[3px] min-w-[3px] h-[6px]",
-                      {"bg-gaming-blue": index <= _index},
-                      {"bg-gaming-cobalt": index > _index}
+                      { "bg-gaming-blue": index <= _index },
+                      { "bg-gaming-cobalt": index > _index }
                     )}
                   />
                 </Fragment>
@@ -124,7 +124,7 @@ function CompareComponentItem({ title, image, price }: ICompareComponentItem) {
                 <div className='flex justify-between gap-4 w-full'>
                   <div className='flex items-center w-[calc(100%_-_32px)]'>
                     <div className='bg-[rgba(255,255,255,0.2)] h-[6px] w-full'>
-                      <div className="max-w-full h-full bg-gaming-blue" style={{width: d.fps}} />
+                      <div className="max-w-full h-full bg-gaming-blue" style={{ width: d.fps }} />
                     </div>
                   </div>
                   <div className='min-w-[32px] flex-grow font-IntelOneBodyTextMedium'>{d.fps_value}</div>

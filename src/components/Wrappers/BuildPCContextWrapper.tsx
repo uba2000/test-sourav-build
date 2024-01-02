@@ -24,6 +24,7 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
     buildPCState.resetPCBuild();
     buildLayoutState.resetBuildPCLayout();
     pixel3DStreaming.resetPixelStream();
+    // window.location.replace(`${import.meta.env.VITE_BASE_URL}${RouteNames.home}`);
     navigate(RouteNames.home);
   }, []);
 
