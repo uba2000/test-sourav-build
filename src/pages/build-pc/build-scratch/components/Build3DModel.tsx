@@ -15,7 +15,7 @@ export interface PixelStreamingWrapperProps {
 const initialModelSettings = {
   AutoPlayVideo: true,
   AutoConnect: true,
-  ss: 'ws://18.205.109.214:80',
+  ss: 'ws://44.211.27.226:80',
   StartVideoMuted: true,
   HoveringMouse: true,
   WaitForStreamer: true
