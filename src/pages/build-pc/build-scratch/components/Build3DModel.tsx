@@ -4,8 +4,9 @@ import {
   AllSettings,
   PixelStreaming
 } from '@epicgames-ps/lib-pixelstreamingfrontend-ue5.4';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
+import useSingleEffectCall from '../../../../lib/hooks/useSingleEffectCall';
 
 export interface PixelStreamingWrapperProps {
   initialSettings?: Partial<AllSettings>;
@@ -24,7 +25,6 @@ const initialModelSettings = {
 function Build3DModel({
   initialSettings = {}
 }: PixelStreamingWrapperProps) {
-  console.log('in');
 
   // A reference to parent div element that the Pixel Streaming library attaches into:
   const videoParent = useRef<HTMLDivElement>(null);
@@ -38,7 +38,8 @@ function Build3DModel({
   const [clickToPlayVisible, setClickToPlayVisible] = useState(false);
 
   // Run on component mount:
-  useEffect(() => {
+  useSingleEffectCall(() => {
+    console.log('in');
     if (videoParent.current && !pixelStreamRef.current) {
       // Attach Pixel Streaming library to videoParent element:
 
@@ -69,7 +70,7 @@ function Build3DModel({
         } catch { }
       };
     }
-  }, []);
+  });
 
   return (
     <div
