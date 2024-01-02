@@ -181,7 +181,7 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
           {/* {!isCompareMode && ( */}
           <div className="md:py-6 pt-6 flex-col gap-y-4 flex md:pb-[57px]">
             <div className='flex-grow w-full min-w-[180px] min-h-[180px] flex justify-center items-center'>
-              <div className='md:max-w-[481px] max-w-[190px] w-full md:max-h-[481px] max-h-[190px] h-auto'>
+              <div className='md:max-w-[481px] max-w-[190px] w-full md:max-h-[481px] max-h-[190px] h-full'>
                 <Build3DModel placeholder={currentModel} />
               </div>
             </div>

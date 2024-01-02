@@ -39,8 +39,8 @@ function Build3DModel({
 
   // Run on component mount:
   useSingleEffectCall(() => {
-    console.log('in');
     if (videoParent.current && !pixelStreamRef.current) {
+      console.log('in');
       // Attach Pixel Streaming library to videoParent element:
 
       const config = new Config({
