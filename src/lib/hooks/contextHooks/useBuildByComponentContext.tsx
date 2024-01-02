@@ -198,7 +198,7 @@ function useBuildByComponentContext() {
       // add componenet to build array
       const _current_component = _current_build_category.items.find((d) => d._id === component_id)
       const _current_component_index = _current_build_category.items.findIndex((d) => d._id === component_id)
-      
+
       // add component to build
       if (_current_component && _current_build_category) {
         _current_component.category_slug = _current_build_category.slug;
@@ -208,7 +208,7 @@ function useBuildByComponentContext() {
           ..._currentBuild,
         ]);
       }
-      
+
       if (_current_component_index >= 0 && _current_component && _current_build_category) {
         const _currrent_index_build = buildStages.findIndex((d) => d.slug === _current_build_category?.slug)
         _buildStages[_currrent_index_build].selectedItem = {
@@ -234,7 +234,7 @@ function useBuildByComponentContext() {
     if (selected_res) {
       all_data = _preferenceGameTypes.map((game_title) => {
         const game_products_in_range: ICleanPreferenceData['data'][] = [];
-        
+
         _preferences_feed.forEach((product) => {
           const current_game_value = product.gameTitles[game_title];
           const _fps_value = parseInt(current_game_value[selected_res], 10);
@@ -258,23 +258,23 @@ function useBuildByComponentContext() {
         let _data: ICleanPreferenceData['data'] = null;
 
         game_products_in_range.forEach((_d) => {
-        if (!_data) {
-          _data = _d;
-        } else if (_data) {
-          if (parseInt(_d?.fps as string, 10) < parseInt(_data.fps!, 10)) { 
+          if (!_data) {
             _data = _d;
+          } else if (_data) {
+            if (parseInt(_d?.fps as string, 10) < parseInt(_data.fps!, 10)) {
+              _data = _d;
+            }
           }
-        }
-      })
+        })
 
-      return {
-        title: game_title,
-        data: _data,
-        cpu_product: null,
-        gpu_product: null,
-        highest_segment: null,
-        // game_products_in_range,
-      }
+        return {
+          title: game_title,
+          data: _data,
+          cpu_product: null,
+          gpu_product: null,
+          highest_segment: null,
+          // game_products_in_range,
+        }
       })
     }
 
@@ -350,7 +350,7 @@ function useBuildByComponentContext() {
     return all_data;
   }
 
-  function analyzeNoPreferenceForBuild(preferences: BuildPCPreferenceType, preferenceGameTypes: PreferenceGameType[]) {   
+  function analyzeNoPreferenceForBuild(preferences: BuildPCPreferenceType, preferenceGameTypes: PreferenceGameType[]) {
     const _preferenceGameTypes = preferenceGameTypes.filter((d) => d.title !== noPreferenceName)
 
     let _highest_segment: ProductPredefinedPresets | null = null;
@@ -397,7 +397,7 @@ function useBuildByComponentContext() {
         }
       }
     })
-    
+
     setCleanGameInfoArray(all_data)
     setBuildSegment(_highest_segment)
     getPredefineBuilds(_highest_segment!)
@@ -467,7 +467,7 @@ function useBuildByComponentContext() {
           _current_segment = segment_arrays[1];
         }
       }
-      
+
       // upsell only one level
       if ((preferenceBuildSegmentWeight[_current_segment] === preferenceBuildSegmentWeight[build_segment]) // current level
         || (preferenceBuildSegmentWeight[_current_segment] === (preferenceBuildSegmentWeight[build_segment] + 1))) { // one level above
@@ -497,7 +497,7 @@ function useBuildByComponentContext() {
       items: formatted_products[pv.slug]
     })))
   }
-  
+
   const togglePreBuildToCurrentBuildForPreview = useCallback((action: 'add' | 'remove') => {
     switch (action) {
       case 'add':
@@ -505,14 +505,14 @@ function useBuildByComponentContext() {
         setBuildStages((prev) => prev.map((pv) => {
           const _item = predefinedBuilds.items.find((d) => d.category_slug === pv.slug) || null;
 
-          return { 
+          return {
             ...pv,
             selectedItem: _item
           } as IBuildStages
         }))
         setBuildTypeFlow('preconfiged_build')
         break;
-      
+
       case 'remove':
         setCurrentBuild([]);
         setBuildStages((prev) => prev.map((pv) => ({
@@ -521,11 +521,11 @@ function useBuildByComponentContext() {
         })))
         setBuildTypeFlow('build_components')
         break;
-    
+
       default:
         break;
     }
-  }, [predefinedBuilds.items]) 
+  }, [predefinedBuilds.items])
 
   function resetPCBuild() {
     setCurrentBuild([]);

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import BuildGamePreferences, { BuildGameNoPreferenceFPSConfig, BuildGamePreferencesType, noPreferenceName } from '../../../pages/build-pc/preference/BuildGamePreferences'
+import BuildGamePreferences, { BuildGamePreferencesType, noPreferenceName } from '../../../pages/build-pc/preference/BuildGamePreferences'
 
 import { getPreferencesData, preferenceUrlEndpoint as cacheKey } from "../../api/preferenceAPI"
 
@@ -283,10 +283,10 @@ function usePreferencContext() {
       qhd: []
     };
 
-    if (preferences.game_type_title.includes(noPreferenceName)) {
-      const _adjustedFPS = BuildGameNoPreferenceFPSConfig[(preferences.gaming_fps!).fps]
-      return _adjustedFPS;
-    }
+    // if (preferences.game_type_title.includes(noPreferenceName)) {
+    //   const _adjustedFPS = BuildGameNoPreferenceFPSConfig[(preferences.gaming_fps!).fps]
+    //   return _adjustedFPS;
+    // }
 
     resolutionValues.forEach(resolution => {
       presentResolutions[resolution] = _preferenceFeed
