@@ -31,8 +31,21 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
     }
   }, []);
 
+  function myHandleResponseFunction(data: any) {
+    console.warn("Response received!");
+    switch (data) {
+      case "MyCustomEvent":
+        // ... // handle one type of event
+        break;
+      case "AnotherEvent":
+        // ... // handle another event
+        break;
+    }
+  }
+
   const completePixelStreaming = useCallback(() => {
     if (pixelStreamRef.current) {
+
       const _interaction_obj = {
         Type: 'Show_PC',
         FullPC: {
@@ -93,7 +106,8 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       })
 
       _interaction_obj.FullPC = { ..._interaction_obj.FullPC, ..._pc_obj as (typeof _interaction_obj)['FullPC'] };
-      pixelStreamRef.current?.emitUIInteraction(_interaction_obj);
+      pixelStreamRef.current.emitUIInteraction(_interaction_obj);
+      pixelStreamRef.current.addResponseEventListener("handle_responses", myHandleResponseFunction);
       const stringval = JSON.stringify(_interaction_obj);
       console.log(stringval);
     }
