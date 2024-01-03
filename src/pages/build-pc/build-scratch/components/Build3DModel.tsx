@@ -39,7 +39,7 @@ function Build3DModel({
   // Run on component mount:
   useEffect(() => {
     console.log('out', pixelStreamRef.current);
-
+    handleStreamPlaying(false);
     if (videoParent.current) {
       console.log('in', pixelStreamRef.current);
       // Attach Pixel Streaming library to videoParent element:
