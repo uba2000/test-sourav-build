@@ -3,7 +3,7 @@ import { Outlet, matchRoutes, useLocation } from 'react-router-dom';
 import BuildPCContextWrapper from './BuildPCContextWrapper';
 import RouteNames from '../../lib/utils/routenames';
 import useBuildPCContext from '../../lib/hooks/contextHooks/useBuildPCContext';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 const normalFlow = [{ path: "/" }]
 const preferenceFlow = [{ path: RouteNames.buildPreferenceIndex }]
@@ -46,7 +46,7 @@ function ValidateBuildHasData({ children }: IValidateBuildHasData) {
   const isOnBuildRoutes = matchRoutes(buildRoutes, location)
   const { preferences, resetApp } = useBuildPCContext();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isOnBuildRoutes) {
       if (preferences.game_type_title.length === 0 && !preferences.gaming_fps && !preferences.gaming_resolution) {
         resetApp();
