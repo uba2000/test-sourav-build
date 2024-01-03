@@ -9,10 +9,19 @@ function PreferenceBox() {
   const { preferences, preferenceGameTypes, cleanGameInfoArray } = useBuildPCContext()
 
   const selectedGameTitles = useMemo(() => {
+    console.log({ cleanGameInfoArray, preferences });
 
     const _preferences_set = new Set(preferences.game_type_title);
     let _selectedGameTitles: any = preferenceGameTypes.filter(element => _preferences_set.has(element.title));
-    let _minimum_fps = '';
+    let _minimum_fps = ''
+
+    if (preferences.gaming_fps?.range) {
+      if (preferences.gaming_fps?.range.min === '0') {
+        _minimum_fps = (preferences.gaming_fps!).range.max as string
+      } else {
+        _minimum_fps = (preferences.gaming_fps!).range.min
+      }
+    }
 
     _selectedGameTitles = _selectedGameTitles.map((_d: any) => {
       const _clean = cleanGameInfoArray.find((d) => d.title === _d.title)
