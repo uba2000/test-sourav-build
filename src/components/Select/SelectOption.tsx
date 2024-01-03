@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import _ from 'lodash'
 import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
-import useWindowSize from '../../lib/hooks/useWindowSize';
 
 interface ISelectPropsOption {
   value: string;
@@ -26,8 +25,6 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
   const [listStyles, setListStyles] = useState({});
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const { windowSize } = useWindowSize();
-
   function handleWindowScroll() {
     setOptionsIsOpen(false)
   }
@@ -50,13 +47,14 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
 
   useLayoutEffect(() => {
     if (coordinates && containerRef?.current) {
+      const windowSizeHeight = window.innerHeight;
       const _containerRefHeight = containerRef.current?.offsetHeight;
       setListStyles({
         width: `${coordinates?.width}px`,
         maxWidth: `${coordinates?.width}px`,
         ...(
-          coordinates?.top + (_containerRefHeight) >= windowSize.height ? {
-            bottom: `${windowSize.height - coordinates?.top + 8}px`
+          coordinates?.top + (_containerRefHeight) >= windowSizeHeight ? {
+            bottom: `${windowSizeHeight - coordinates?.top + 8}px`
           } : {
             top: `${coordinates?.bottom - 2}px`,
           }
@@ -64,7 +62,7 @@ function SelectOption({ setOptionsIsOpen, options, handleSelectOption, coordinat
         left: `${(coordinates.left) + (coordinates.width / 2)}px`,
       });
     }
-  }, [coordinates, windowSize]);
+  }, [coordinates]);
 
   return (
     <OutsideClickHandler

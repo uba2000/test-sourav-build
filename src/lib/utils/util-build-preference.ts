@@ -88,7 +88,7 @@ export function determineProductSpecs(
           spec_value: `${_pricespider_passthrough?.hdmi_version || ""}`,
         },
         {
-          spec_title: _pricespider_passthrough?.number_of_slots ? "Slots" : "",
+          spec_title: "",
           spec_value: `${_pricespider_passthrough?.number_of_slots || ""}`,
         },
       ];
