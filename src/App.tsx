@@ -9,7 +9,7 @@ import RetailerLogo from './assets/dummy-retailer-logo.svg?react'
 function App() {
   const router = useRouterRoutes()
   const height = use100vh();
-  console.log('Bello');
+  console.log('v1.0.0');
 
   return (
     <React.Suspense fallback={<SuspenseScreen />}>
