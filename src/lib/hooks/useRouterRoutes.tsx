@@ -11,8 +11,6 @@ import CompareComponents from '../../pages/build-pc/build-scratch/CompareCompone
 import MyBuild from '../../pages/build-pc/build-scratch/MyBuild/MyBuild';
 import PreconfigedSystems from '../../pages/build-pc/preconfiged-systems/PreconfigedSystems';
 import ResetSession from '../../pages/reset-session/ResetSession';
-import Page3D from '../../pages/page-3d-build';
-// import Page3D from '../../pages/page-3d-build';
 
 const BuildPreference = React.lazy(() => import('../../pages/build-pc/preference/BuildPreference'));
 
@@ -39,10 +37,10 @@ function useRouterRoutes() {
           path: RouteNames.buildPCMyBuild,
           element: <MyBuild />
         },
-        {
-          path: RouteNames.testStream,
-          element: <Page3D />
-        },
+        // {
+        //   path: RouteNames.testStream,
+        //   element: <Page3D />
+        // },
         {
           path: `${RouteNames.buildChooseComponent}/:category_slug`,
           element: <ChooseComponents />
