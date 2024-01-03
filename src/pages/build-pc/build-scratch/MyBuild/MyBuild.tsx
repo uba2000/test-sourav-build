@@ -71,6 +71,7 @@ function MyBuild() {
     >
       {!showCurrentModelSpecs && (
         <div className='flex flex-col gap-y-[10px]'>
+          <Button onClick={() => completePixelStreaming()}>Dummy Add to build</Button>
           {(currentBuild.length === 0) && (
             <CardWithNotch notchHeight='small'>
               <div className="py-1 px-6 flex gap-2">
