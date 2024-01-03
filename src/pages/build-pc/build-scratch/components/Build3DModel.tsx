@@ -28,7 +28,7 @@ function Build3DModel({
   // A reference to parent div element that the Pixel Streaming library attaches into:
   const videoParent = useRef<HTMLDivElement>(null);
 
-  const { setPixelStream, pixelStreamRef } = useBuildPCContext()
+  const { setPixelStream, pixelStreamRef, handleStreamPlaying } = useBuildPCContext()
 
   // Pixel streaming library instance is stored into this state variable after initialization:
   const [pixelStreaming, setPixelStreaming] = useState<PixelStreaming>(pixelStreamRef.current);
@@ -59,6 +59,15 @@ function Build3DModel({
       streaming.addEventListener('playStreamRejected', () => {
         setClickToPlayVisible(true);
       });
+
+      streaming.addEventListener('playStream', () => {
+        console.log('play stream');
+        handleStreamPlaying(true);
+      })
+
+      // streaming.addEventListener('streamConnect', () => {
+      //   console.log('stream connect');
+      // })
 
       // Save the library instance into component state so that it can be accessed later:
       setPixelStreaming(streaming);

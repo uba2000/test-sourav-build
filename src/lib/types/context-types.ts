@@ -192,7 +192,9 @@ export interface IBuildPCContext {
 
   // Pixel Streaming
   pixelStreamRef: React.MutableRefObject<PixelStreaming>;
+  pixelStreamLoaded: boolean;
 
+  handleStreamPlaying: (_bool: boolean) => void;
   resetPixelStream: () => void;
   setPixelStream: (_pixelStream: PixelStreaming) => void;
   completePixelStreaming: () => void;

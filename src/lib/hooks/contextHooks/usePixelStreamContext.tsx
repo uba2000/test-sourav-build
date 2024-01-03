@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PixelStreaming } from '@epicgames-ps/lib-pixelstreamingfrontend-ue5.4'
-import { useCallback, useRef } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { IBuildComponent } from '../../types/context-types';
 
 export interface IEmitStreamUIInteraction {
@@ -10,6 +10,7 @@ export interface IEmitStreamUIInteraction {
 
 function usePixelStreamContext(_current_build: IBuildComponent[]) {
   const pixelStreamRef = useRef<any>(null)
+  const [streamLoaded, setStreamLoaded] = useState(false)
 
   function setPixelStream(_pixelStream: PixelStreaming) {
     console.log({ _pixelStream });
@@ -113,6 +114,10 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
     }
   }, [_current_build])
 
+  function handleStreamPlaying(_bool: boolean) {
+    setStreamLoaded(_bool);
+  }
+
   function resetPixelStream() {
     pixelStreamRef.current?.disconnect();
     pixelStreamRef.current = null;
@@ -120,7 +125,9 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
 
   return {
     pixelStreamRef: (pixelStreamRef as unknown) as React.MutableRefObject<PixelStreaming>,
+    pixelStreamLoaded: streamLoaded,
 
+    handleStreamPlaying,
     setPixelStream,
     resetPixelStream,
     completePixelStreaming,

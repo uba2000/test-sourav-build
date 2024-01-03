@@ -18,7 +18,7 @@ function MyBuild() {
   const {
     buildStages, currentBuild, addToRetailerUsersCart, showCurrentModelSpecs,
     toggleCanViewSpecs, setCurrentModelOnStage, toggleViewingComponentModel,
-    emitStreamSingleUIInteraction, completePixelStreaming
+    emitStreamSingleUIInteraction, completePixelStreaming, pixelStreamLoaded
   } = useBuildPCContext()
   const { currentBuildStageIndex, nextToBuildIndex } = useBuildPCStages();
 
@@ -59,10 +59,10 @@ function MyBuild() {
   }, [])
 
   useEffect(() => {
-    if (currentBuild.length > 0) {
+    if (currentBuild.length > 0 && pixelStreamLoaded) {
       completePixelStreaming();
     }
-  }, [currentBuild])
+  }, [currentBuild, pixelStreamLoaded])
 
   return (
     <BuildLayout
