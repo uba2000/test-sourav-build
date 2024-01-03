@@ -26,8 +26,8 @@ function LandingPage() {
   ], []);
 
   return (
-    <div className="animate-fadeInUp relative bg-no-repeat bg-top h-full bg-contain flex flex-col justify-center">
-      <PageWrapper className='flex md:justify-center overflow-y-auto h-full'>
+    <div className="animate-fadeInUp relative bg-no-repeat bg-top h-full bg-contain flex flex-col justify-center overflow-y-auto overflow-x-hidden">
+      <PageWrapper className='flex md:justify-center h-full'>
         {/* Hero Section */}
         <div className='md:absolute object-center md:block hidden left-1/2 -translate-x-1/2 top-0 w-full max-w-[1200px]'>
           <LandingHeroImage />
