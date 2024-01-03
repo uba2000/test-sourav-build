@@ -92,7 +92,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
         }
       })
 
-      _interaction_obj.FullPC = _pc_obj as (typeof _interaction_obj)['FullPC'];
+      _interaction_obj.FullPC = { ..._interaction_obj.FullPC, ..._pc_obj as (typeof _interaction_obj)['FullPC'] };
       pixelStreamRef.current?.emitUIInteraction(_interaction_obj);
       const stringval = JSON.stringify(_interaction_obj);
       console.log(stringval);
