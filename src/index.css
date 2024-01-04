@@ -140,5 +140,5 @@ body {
 }
 
 video#streamingVideo {
-  /* @apply object-cover; */
+  @apply object-cover;
 }
