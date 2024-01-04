@@ -120,9 +120,9 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
 
   function resetPixelStream() {
     pixelStreamRef.current?.disconnect();
-    // pixelStreamRef.current?.emitUIInteraction({
-    //   Type: 'Reset_PC'
-    // });
+    pixelStreamRef.current?.emitUIInteraction({
+      Type: 'Reset_PC'
+    });
     pixelStreamRef.current = null;
   }
 
