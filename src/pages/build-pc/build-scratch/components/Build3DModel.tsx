@@ -80,9 +80,9 @@ function Build3DModel({
       return () => {
         try {
           streaming.disconnect();
-          streaming.emitUIInteraction({
-            Type: 'Reset_PC'
-          });
+          // streaming.emitUIInteraction({
+          //   Type: 'Reset_PC'
+          // });
         } catch { }
       };
     }
