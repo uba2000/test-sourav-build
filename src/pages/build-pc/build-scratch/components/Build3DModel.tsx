@@ -62,6 +62,11 @@ function Build3DModel({
         setClickToPlayVisible(true);
       });
 
+      streaming.addEventListener('webRtcConnected', () => {
+        console.log('webRtcConnected');
+        handleStreamPlaying(true);
+      })
+
       streaming.addEventListener('playStream', () => {
         console.log('handleStreamPlaying(true)');
         console.log('play stream');
