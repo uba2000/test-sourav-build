@@ -60,6 +60,8 @@ function MyBuild() {
 
   useEffect(() => {
     if (currentBuild.length > 0 && pixelStreamLoaded) {
+      console.log('##########in - pixelStreamLoaded: ', pixelStreamLoaded);
+
       completePixelStreaming();
     }
   }, [currentBuild, pixelStreamLoaded])

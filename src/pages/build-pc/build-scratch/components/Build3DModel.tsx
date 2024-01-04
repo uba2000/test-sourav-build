@@ -39,6 +39,8 @@ function Build3DModel({
   // Run on component mount:
   useEffect(() => {
     console.log('out', pixelStreamRef.current);
+    console.log('handleStreamPlaying(false)');
+
     handleStreamPlaying(false);
     if (videoParent.current) {
       console.log('in', pixelStreamRef.current);
@@ -61,6 +63,7 @@ function Build3DModel({
       });
 
       streaming.addEventListener('playStream', () => {
+        console.log('handleStreamPlaying(true)');
         console.log('play stream');
         handleStreamPlaying(true);
       })
@@ -77,6 +80,9 @@ function Build3DModel({
       return () => {
         try {
           streaming.disconnect();
+          streaming.emitUIInteraction({
+            Type: 'Reset_PC'
+          });
         } catch { }
       };
     }
