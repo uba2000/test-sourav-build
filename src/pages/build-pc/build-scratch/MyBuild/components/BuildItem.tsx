@@ -67,7 +67,7 @@ function BuildItem({
               ))}
             </div>
             <div className="flex flex-col justify-between gap-y-1 items-end min-w-[105px]">
-              <span className='font-IntelOneBodyTextMedium'>{'$'}{data.price}</span>
+              <span className='font-IntelOneBodyTextMedium'>{`$${data.price}`}</span>
               <button type='button' className="flex gap-x-[6px] items-center relative z-30" onClick={() => handleAddToCart()}>
                 <div className='font-IntelOneBodyTextRegular text-sm'>
                   Add to cart
