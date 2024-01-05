@@ -82,7 +82,7 @@ function MyBuild() {
 
       setTimeout(() => {
         completePixelStreaming();
-      }, 3000);
+      }, 1000);
     }
   }, [currentBuild, canPlayStream])
 

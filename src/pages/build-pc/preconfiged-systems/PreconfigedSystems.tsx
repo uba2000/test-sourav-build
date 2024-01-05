@@ -39,7 +39,9 @@ function PreconfigedSystems() {
     if (currentBuild.length > 0 && canPlayStream) {
       console.log('##########in - canPlayStream: ', canPlayStream);
 
-      completePixelStreaming();
+      setTimeout(() => {
+        completePixelStreaming();
+      }, 1000);
     }
   }, [currentBuild, canPlayStream])
 
