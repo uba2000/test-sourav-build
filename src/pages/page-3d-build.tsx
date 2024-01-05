@@ -1,4 +1,5 @@
 import { PixelStreamingWrapper } from '../components/Widgets/PixelStreamingWrapper'
+import { PIXEL_STREAM_PUBLIC_IP } from '../lib/utils/util-constants'
 
 function Page3D() {
   return (
@@ -12,7 +13,7 @@ function Page3D() {
         initialSettings={{
           AutoPlayVideo: true,
           AutoConnect: true,
-          ss: 'ws://18.205.109.214:80',
+          ss: PIXEL_STREAM_PUBLIC_IP,
           StartVideoMuted: true,
           HoveringMouse: true,
           WaitForStreamer: true

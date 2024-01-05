@@ -6,6 +6,7 @@ import {
 } from '@epicgames-ps/lib-pixelstreamingfrontend-ue5.4';
 import { useEffect, useRef, useState } from 'react';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
+import { PIXEL_STREAM_PUBLIC_IP } from '../../../../lib/utils/util-constants';
 
 export interface PixelStreamingWrapperProps {
   initialSettings?: Partial<AllSettings>;
@@ -15,7 +16,7 @@ export interface PixelStreamingWrapperProps {
 const initialModelSettings = {
   AutoPlayVideo: true,
   AutoConnect: true,
-  ss: 'ws://23.23.138.187:80',
+  ss: PIXEL_STREAM_PUBLIC_IP,
   StartVideoMuted: true,
   HoveringMouse: true,
   WaitForStreamer: true
