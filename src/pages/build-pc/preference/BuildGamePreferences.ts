@@ -107,13 +107,13 @@ export const BuildGameNoPreferenceFPSConfig: BuildGameNoPreferenceConfigType = {
   },
   "Up to 175 FPS": {
     fhd: [1],
-    "4kuhd": [],
+    "4kuhd": [1],
     qhd: [1],
   },
   "175 and Up": {
     fhd: [1],
-    "4kuhd": [],
-    qhd: [],
+    "4kuhd": [1],
+    qhd: [1],
   },
 };
 

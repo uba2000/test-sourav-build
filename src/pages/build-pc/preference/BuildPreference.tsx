@@ -35,6 +35,7 @@ function BuildPreference() {
   } = useBuildPCContext()
 
   const [canProceed, setCanProceed] = useState(false);
+  const [onNoPreferenceFlow, setOnNoPreferenceFlow] = useState(false);
   const [currentStage, setCurrentStage] = useState(parseInt((searchParams.get('s') || '0'), 10));
   const [preferenceFeed, setPreferenceFeed] = useState<IFormatPreferencesDataReturn[]>([])
   const [presentResolutions, setPresentResolutions] = useState<{
@@ -65,6 +66,7 @@ function BuildPreference() {
     if (currentStage === 0) {
       // filter list for each product to contain just game titles
       _preferenceFeed = filterGameTitles(preferences.game_type_title);
+      setOnNoPreferenceFlow(preferences.game_type_title.includes(noPreferenceName));
       setPreferenceFeed(_preferenceFeed)
     } else if (currentStage === 1) {
       // reduce minmax fps
@@ -72,7 +74,7 @@ function BuildPreference() {
       const _presentResolutions = adjustFPSRange([...preferenceFeed])
       setPresentResolutions(_presentResolutions)
     } else if (currentStage === 2) {
-      if (!preferences.game_type_title.includes(noPreferenceName)) {
+      if (!onNoPreferenceFlow) {
         analyzePreferencesForBuild(preferences)
       } else {
         // no preference build

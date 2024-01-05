@@ -450,7 +450,10 @@ function useBuildByComponentContext() {
       _highest_segment = 'mainstream';
     } else if (
       (preferences.gaming_fps?.fps === '175 and Up' && preferences.gaming_resolution?.res === '1080P')
+      || (preferences.gaming_fps?.fps === '175 and Up' && preferences.gaming_resolution?.res === '2160P')
+      || (preferences.gaming_fps?.fps === '175 and Up' && preferences.gaming_resolution?.res === '1440P')
       || (preferences.gaming_fps?.fps === 'Up to 175 FPS' && preferences.gaming_resolution?.res === '1440P')
+      || (preferences.gaming_fps?.fps === 'Up to 175 FPS' && preferences.gaming_resolution?.res === '2160P')
       || (preferences.gaming_fps?.fps === 'Up to 60 FPS' && preferences.gaming_resolution?.res === '2160P')
     ) {
       // only enthusiast

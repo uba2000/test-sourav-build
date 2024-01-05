@@ -47,15 +47,15 @@ function usePreferencContext() {
 
   const [preferenceFPSTypes] = useState<IFPSTypesItem[]>([
     {
-      _id: 'max_high_range',
-      fps: '175 and Up',
+      _id: 'min_low_range',
+      fps: 'Up to 60 FPS',
       range: {
-        min: '175',
-        max: Infinity,
+        min: '0',
+        max: '60',
       },
-      video: 'FPS—ghostrunner2-timelapse—desktop—180',
-      videoM: 'FPS—ghostrunner2-timelapse—mobile—180',
-      thumbnail: Desktop180FPSThumb,
+      video: 'FPS—ghostrunner2-timelapse—desktop—60',
+      videoM: 'FPS—ghostrunner2-timelapse—mobile—60',
+      thumbnail: Desktop60FPSThumb,
     },
     {
       _id: 'mid_range',
@@ -69,24 +69,24 @@ function usePreferencContext() {
       thumbnail: Desktop120FPSThumb,
     },
     {
-      _id: 'min_low_range',
-      fps: 'Up to 60 FPS',
+      _id: 'max_high_range',
+      fps: '175 and Up',
       range: {
-        min: '0',
-        max: '60',
+        min: '175',
+        max: Infinity,
       },
-      video: 'FPS—ghostrunner2-timelapse—desktop—60',
-      videoM: 'FPS—ghostrunner2-timelapse—mobile—60',
-      thumbnail: Desktop60FPSThumb,
+      video: 'FPS—ghostrunner2-timelapse—desktop—180',
+      videoM: 'FPS—ghostrunner2-timelapse—mobile—180',
+      thumbnail: Desktop180FPSThumb,
     },
   ])
 
   const preferenceResolutions = useMemo<IPreferenceResolutions[]>(() => [
     {
-      title: '4kuhd',
-      res: '2160P',
-      image: Desktop4KResImage,
-      fullImage: Desktop4KResFullImage,
+      title: 'fhd',
+      res: '1080P',
+      image: DesktopFHDResImage,
+      fullImage: DesktopFHDResFullImage,
     },
     {
       title: 'qhd',
@@ -95,10 +95,10 @@ function usePreferencContext() {
       fullImage: DesktopQHDResFullImage,
     },
     {
-      title: 'fhd',
-      res: '1080P',
-      image: DesktopFHDResImage,
-      fullImage: DesktopFHDResFullImage,
+      title: '4kuhd',
+      res: '2160P',
+      image: Desktop4KResImage,
+      fullImage: Desktop4KResFullImage,
     },
   ], [])
 
