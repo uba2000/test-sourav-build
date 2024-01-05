@@ -26,7 +26,7 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
     buildLayoutState.resetBuildPCLayout();
     pixel3DStreaming.resetPixelStream();
     // window.location.replace(`${import.meta.env.VITE_BASE_URL}${RouteNames.home}`);
-    window.location.reload();
+    // window.location.reload();
   }, []);
 
   const [addToCartState, setAddToCartState] = useState<AddToRetailerUsersCartPropsType['state'] | null>(null)
