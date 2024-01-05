@@ -20,7 +20,7 @@ import {
   IMinMaxFPS, IPreferenceResolutions, PreferenceResolutionsTitleType
 } from '../../types/context-types';
 import {
-  IFormatPreferencesDataReturn, formatPreferencesData,
+  formatPreferencesData,
   // getNextRoundFigure, getPreviousRoundFigure
 } from '../../utils/util-build-preference';
 import useSWR from 'swr';
@@ -265,9 +265,8 @@ function usePreferencContext() {
   }
 
   // adjust fps based on user input then filter res in those ranges
-  function adjustFPSRange(preferenceFeed: IFormatPreferencesDataReturn[]) {
+  function adjustFPSRange() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _preferenceFeed = [...preferenceFeed]
     const { max, min } = preferences.gaming_fps!.range;
     const allowedResolutionRange = {
       min: parseInt(min),

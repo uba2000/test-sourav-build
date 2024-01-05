@@ -5,7 +5,7 @@ import { IFPSTypesItem } from '../types/context-types';
 function useFPSItemDisability(d: IFPSTypesItem) {
   const { initialMinMaxFPS: minMaxFPS } = useBuildPCContext()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled] = useState(false);
   const max = typeof d.range.max === 'number' ? d.range.max : parseInt(d.range.max);
 
   useLayoutEffect(() => {
