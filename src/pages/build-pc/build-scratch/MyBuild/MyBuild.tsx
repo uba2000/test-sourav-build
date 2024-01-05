@@ -80,7 +80,9 @@ function MyBuild() {
     if (currentBuild.length > 0 && canPlayStream) {
       console.log('##########in - canPlayStream: ', canPlayStream);
 
-      completePixelStreaming();
+      setTimeout(() => {
+        completePixelStreaming();
+      }, 3000);
     }
   }, [currentBuild, canPlayStream])
 
