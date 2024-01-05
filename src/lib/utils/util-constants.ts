@@ -1,1 +1,1 @@
-export const PIXEL_STREAM_PUBLIC_IP = "ws://23.23.138.187:80";
+export const PIXEL_STREAM_PUBLIC_IP = "ws://34.231.243.163:80";
