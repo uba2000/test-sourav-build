@@ -62,21 +62,6 @@ function Build3DModel({
         setClickToPlayVisible(true);
       });
 
-      streaming.addEventListener('webRtcConnected', () => {
-        console.log('webRtcConnected');
-        handleStreamPlaying(true);
-      })
-
-      streaming.addEventListener('playStream', () => {
-        console.log('handleStreamPlaying(true)');
-        console.log('play stream');
-        handleStreamPlaying(true);
-      })
-
-      // streaming.addEventListener('streamConnect', () => {
-      //   console.log('stream connect');
-      // })
-
       // Save the library instance into component state so that it can be accessed later:
       setPixelStreaming(streaming);
       setPixelStream(streaming)

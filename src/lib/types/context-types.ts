@@ -129,6 +129,7 @@ export interface IPreferenceResolutions {
 export interface IAddToBuildProps {
   category_slug: IBuildStages["slug"];
   component_id: IBuildComponent["_id"];
+  cb?: () => void;
 }
 
 export type IPreBuiltBuild = IBuildComponent;
@@ -318,6 +319,7 @@ export interface ICleanPreferenceData {
     fps: string; // fps score
     gpu: string; // id of gpu
     res: string; // resolution
+    segment?: ProductPredefinedPresets | null;
   } | null;
 }
 

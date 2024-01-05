@@ -40,7 +40,7 @@ function SingleCompareComponents({
 }: ISingleCompareComponents) {
   const {
     toggleShowSpecs, preferences, preferenceResolutions, currentBuild, toggleCanViewSpecs,
-    allGamesMinMaxFPS, removeComponentToBuild,
+    allGamesMinMaxFPS, removeComponentToBuild, completePixelStreaming,
     toggleViewingComponentModel, setCurrentModelOnStage, preferenceGameTypes, buildStages
   } = useBuildPCContext()
 
@@ -195,7 +195,10 @@ function SingleCompareComponents({
     if (componentItem) {
       toggleShowSpecs();
       removeComponentToBuild({
-        category_slug: _category_slug!, component_id: componentItem._id!
+        category_slug: _category_slug!, component_id: componentItem._id!,
+        cb: () => {
+          completePixelStreaming();
+        }
       })
 
       // if in build page, clear image

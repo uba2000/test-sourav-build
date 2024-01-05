@@ -10,6 +10,7 @@ import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCCont
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import SingleCompareComponents from '../CompareComponents/components/SingleCompareComponents';
 import { IBuildStagesSlugs } from '../../../../lib/types/context-types';
+import useSingleEffectCall from '../../../../lib/hooks/useSingleEffectCall';
 
 function MyBuild() {
   const matches = useMatches();
@@ -18,10 +19,12 @@ function MyBuild() {
   const {
     buildStages, currentBuild, addToRetailerUsersCart, showCurrentModelSpecs,
     toggleCanViewSpecs, setCurrentModelOnStage, toggleViewingComponentModel,
-    emitStreamSingleUIInteraction, completePixelStreaming, pixelStreamLoaded
+    emitStreamSingleUIInteraction, completePixelStreaming,
+    pixelStreamRef
   } = useBuildPCContext()
   const { currentBuildStageIndex, nextToBuildIndex } = useBuildPCStages();
 
+  const [canPlayStream, setCanPlayStream] = useState(false)
   const _category_slug = useMemo<IBuildStagesSlugs>(() => matches[0].params?.category_slug as IBuildStagesSlugs, [matches])
   const _currentBuildStage = useMemo(() => buildStages[nextToBuildIndex], [buildStages, nextToBuildIndex])
 
@@ -58,13 +61,28 @@ function MyBuild() {
     scrollBodyToTop();
   }, [])
 
+  useSingleEffectCall(() => {
+    if (pixelStreamRef.current) {
+      pixelStreamRef.current.addEventListener('webRtcConnected', () => {
+        console.log('webRtcConnected');
+        setCanPlayStream(true);
+      })
+
+      pixelStreamRef.current.addEventListener('playStream', () => {
+        console.log('handleStreamPlaying(true)');
+        console.log('play stream');
+        setCanPlayStream(true);
+      })
+    }
+  })
+
   useEffect(() => {
-    if (currentBuild.length > 0 && pixelStreamLoaded) {
-      console.log('##########in - pixelStreamLoaded: ', pixelStreamLoaded);
+    if (currentBuild.length > 0 && canPlayStream) {
+      console.log('##########in - canPlayStream: ', canPlayStream);
 
       completePixelStreaming();
     }
-  }, [currentBuild, pixelStreamLoaded])
+  }, [currentBuild, canPlayStream])
 
   return (
     <BuildLayout

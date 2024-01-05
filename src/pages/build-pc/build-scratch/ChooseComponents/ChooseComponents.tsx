@@ -23,7 +23,7 @@ function ChooseComponents() {
   const {
     addComponentToBuild, currentBuild, buildFlowType, toggleCanViewSpecs,
     showCurrentModelSpecs, toggleShowSpecs, predefinedBuilds, emitStreamSingleUIInteraction,
-    setCurrentModelOnStage, toggleViewingComponentModel, removeComponentToBuild,
+    setCurrentModelOnStage, toggleViewingComponentModel, removeComponentToBuild, completePixelStreaming,
   } = useBuildPCContext()
 
   const { placeholderImages } = useBuildPlaceholders()
@@ -113,7 +113,10 @@ function ChooseComponents() {
   function handleRemoveComponentFromBuild(_id: string) {
     // toggleShowSpecs();
     removeComponentToBuild({
-      category_slug: _category_slug, component_id: _id
+      category_slug: _category_slug, component_id: _id,
+      cb: () => {
+        completePixelStreaming();
+      }
     })
 
     // // if in build page, clear image

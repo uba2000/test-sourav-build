@@ -158,7 +158,7 @@ function useBuildByComponentContext() {
     refreshInterval: 30000,
   })
 
-  function removeFromBuild({ category_slug, component_id }: IAddToBuildProps) {
+  function removeFromBuild({ category_slug, component_id, cb }: IAddToBuildProps) {
     const _currentBuild = currentBuild.filter((d) => (d.category_slug !== category_slug && component_id !== d._id))
 
     const _buildStages = [...buildStages];
@@ -174,6 +174,13 @@ function useBuildByComponentContext() {
         setCurrentBuild([
           ..._currentBuild,
         ]);
+
+        setCurrentBuild((prev) => {
+          if (cb) {
+            cb();
+          }
+          return prev;
+        })
       }
 
       if (_current_component_index >= 0 && _current_component && _current_build_category) {
@@ -222,50 +229,180 @@ function useBuildByComponentContext() {
     setBuildStages(_buildStages);
   }
 
+  function _highestSegmentCPUGPU({ cpu_id, gpu_id }: { cpu_id: string; gpu_id: string; }) {
+    const _portinos_product_feed = portinos_product_feed as IPortinosProductFeed;
+
+    const cpu_product = _portinos_product_feed.products.find(
+      (pf) => pf.id === parseInt(cpu_id, 10)
+    );
+    const gpu_product = _portinos_product_feed.products.find(
+      (pf) => pf.id === parseInt(gpu_id, 10)
+    );
+
+    let highest_segment: ProductPredefinedPresets | null = null;
+    let cpu_product_segment: ProductPredefinedPresets | null = null;
+    let gpu_product_segment: ProductPredefinedPresets | null = null;
+
+    if (cpu_product) {
+      // get the segments for cpu product
+      const cpu_segments = cpu_product.segment.split('|') as ProductPredefinedPresets[];
+
+      if (cpu_segments.length === 1) { // a single cpu segment in string
+        cpu_product_segment = cpu_segments[0];
+      } else {
+        // more than one segment in string "segment1|segment2"
+        cpu_segments.forEach((cs) => {
+          if (!cpu_product_segment) { // initial item
+            cpu_product_segment = cs;
+          } else if (preferenceBuildSegmentWeight[cs] > preferenceBuildSegmentWeight[cpu_product_segment]) {
+            // weight of previous segment is less so update with higher segment
+            cpu_product_segment = cs;
+          }
+        })
+      }
+    }
+
+    if (gpu_product) {
+      // get the segments for gpu product
+      const gpu_segments = gpu_product.segment.split('|') as ProductPredefinedPresets[];
+
+      if (gpu_segments.length === 1) { // a single gpu segment in string
+        gpu_product_segment = gpu_segments[0];
+      } else {
+        // more than one segment in string "segment1|segment2"
+        gpu_segments.forEach((gs) => {
+          if (!gpu_product_segment) {
+            gpu_product_segment = gs;
+          } else if (preferenceBuildSegmentWeight[gs] > preferenceBuildSegmentWeight[gpu_product_segment]) {
+            // weight of previous segment is less so update with higher segment
+            gpu_product_segment = gs;
+          }
+        })
+      }
+    }
+
+    if (cpu_product_segment && gpu_product_segment) {
+      if (preferenceBuildSegmentWeight[cpu_product_segment] > preferenceBuildSegmentWeight[gpu_product_segment]) {
+        highest_segment = cpu_product_segment;
+      } else {
+        highest_segment = gpu_product_segment;
+      }
+    }
+
+    return {
+      highest_segment,
+      cpu_product,
+      cpu_product_segment,
+      gpu_product,
+      gpu_product_segment,
+    }
+  }
+
   function handleCleanGameTitlesData(preferenceGameTypes: string[], preferences: BuildPCPreferenceType): ICleanPreferenceData[] {
     const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
-    const _portinos_product_feed = portinos_product_feed as IPortinosProductFeed;
+    // const _portinos_product_feed = portinos_product_feed as IPortinosProductFeed;
     let all_data: ICleanPreferenceData[] = [];
     const _preferenceGameTypes = preferenceGameTypes
 
     const selected_res = preferences.gaming_resolution?.title;
     const selected_fps_range = preferences.gaming_fps!.range;
 
+    let _fps_above_range_max: ICleanPreferenceData['data'] = null; // minimum above max range
+    let _fps_below_range_max: ICleanPreferenceData['data'] = null; // maximum below max range
     if (selected_res) {
+      // debugger;
       all_data = _preferenceGameTypes.map((game_title) => {
+        _fps_above_range_max = null;
+        _fps_below_range_max = null;
         const game_products_in_range: ICleanPreferenceData['data'][] = [];
 
         _preferences_feed.forEach((product) => {
           const current_game_value = product.gameTitles[game_title];
           const _fps_value = parseInt(current_game_value[selected_res], 10);
+          const _max_value = typeof selected_fps_range?.max === 'number' ? selected_fps_range?.max : parseInt(selected_fps_range?.max, 10);
+
+          const { highest_segment } = _highestSegmentCPUGPU({ cpu_id: product.cpu, gpu_id: product.gpu });
 
           if (_fps_value >= parseInt(selected_fps_range?.min, 10)) {
-            if (
-              (typeof selected_fps_range?.max === 'number' && _fps_value <= selected_fps_range?.max)
-              || (typeof selected_fps_range?.max === 'string' && _fps_value <= parseInt(selected_fps_range?.max, 10))
-            ) {
+            if ((_fps_below_range_max?.fps && _fps_value < _max_value && _fps_value >= parseInt(_fps_below_range_max?.fps, 10))
+              || !_fps_below_range_max?.fps) {
+
+              const _final_obj = {
+                cpu: product.cpu,
+                cpu_gpu_key: product.cpu_gpu_key,
+                gpu: product.gpu,
+                res: selected_res,
+                fps: `${_fps_value}`,
+                segment: highest_segment,
+              }
+
+              if (_fps_below_range_max && _fps_value === parseInt(_fps_below_range_max?.fps as string, 10) && _fps_below_range_max?.segment) {
+
+                if (preferenceBuildSegmentWeight[highest_segment!] < preferenceBuildSegmentWeight[_fps_below_range_max.segment]) {
+                  _final_obj.segment = _fps_below_range_max.segment
+                }
+              }
+
+              _fps_below_range_max = _final_obj;
+            }
+
+            if (_fps_value <= _max_value) {
               game_products_in_range.push({
                 cpu: product.cpu,
                 cpu_gpu_key: product.cpu_gpu_key,
                 gpu: product.gpu,
                 res: selected_res,
                 fps: `${_fps_value}`,
+                segment: highest_segment,
               });
+            } else if (_fps_value > _max_value) {
+              // current fps value is higher than the max fps range,
+              // there is initial fps value and the initial fps value is less than current fps value
+              // OR there is no initial fps value
+              if ((_fps_above_range_max?.fps && _fps_value < parseInt(_fps_above_range_max?.fps, 10)) || !_fps_above_range_max?.fps) {
+                const _final_obj = {
+                  cpu: product.cpu,
+                  cpu_gpu_key: product.cpu_gpu_key,
+                  gpu: product.gpu,
+                  res: selected_res,
+                  fps: `${_fps_value}`,
+                  segment: highest_segment,
+                }
+
+                if (_fps_above_range_max && _fps_value === parseInt(_fps_above_range_max?.fps as string, 10) && _fps_above_range_max?.segment) {
+                  if (preferenceBuildSegmentWeight[highest_segment!] < preferenceBuildSegmentWeight[_fps_above_range_max.segment]) {
+                    _final_obj.segment = _fps_above_range_max.segment;
+                  }
+                }
+
+                _fps_above_range_max = _final_obj;
+              }
             }
           }
         })
 
         let _data: ICleanPreferenceData['data'] = null;
 
-        game_products_in_range.forEach((_d) => {
-          if (!_data) {
-            _data = _d;
-          } else if (_data) {
-            if (parseInt(_d?.fps as string, 10) < parseInt(_data.fps!, 10)) {
+        if (game_products_in_range.length > 0) {
+          game_products_in_range.forEach((_d) => {
+            if (!_data) {
               _data = _d;
+            } else if (_data) {
+              if (parseInt(_d?.fps as string, 10) <= parseInt(_data.fps!, 10)) {
+                if (_d?.segment && _data.segment) {
+                  if (preferenceBuildSegmentWeight[_d.segment!] > preferenceBuildSegmentWeight[_data.segment]) {
+                    _data = _d;
+                  }
+                } else {
+                  _data = _d;
+                }
+              }
             }
-          }
-        })
+          })
+        } else {
+          // get the next highest after max
+          _data = _fps_above_range_max ? _fps_above_range_max : _fps_below_range_max;
+        }
 
         return {
           title: game_title,
@@ -277,65 +414,12 @@ function useBuildByComponentContext() {
         }
       })
     }
-
     // get products for each game title
     all_data = all_data.map((a_d) => {
-      const cpu_product = _portinos_product_feed.products.find(
-        (pf) => pf.id === parseInt(a_d.data?.cpu as string, 10)
-      );
-      const gpu_product = _portinos_product_feed.products.find(
-        (pf) => pf.id === parseInt(a_d.data?.gpu as string, 10)
-      );
-
-      let highest_segment: ProductPredefinedPresets | null = null;
-      let cpu_product_segment: ProductPredefinedPresets | null = null;
-      let gpu_product_segment: ProductPredefinedPresets | null = null;
-
-      if (cpu_product) {
-        // get the segments for cpu product
-        const cpu_segments = cpu_product.segment.split('|') as ProductPredefinedPresets[];
-
-        if (cpu_segments.length === 1) { // a single cpu segment in string
-          cpu_product_segment = cpu_segments[0];
-        } else {
-          // more than one segment in string "segment1|segment2"
-          cpu_segments.forEach((cs) => {
-            if (!cpu_product_segment) { // initial item
-              cpu_product_segment = cs;
-            } else if (preferenceBuildSegmentWeight[cs] > preferenceBuildSegmentWeight[cpu_product_segment]) {
-              // weight of previous segment is less so update with higher segment
-              cpu_product_segment = cs;
-            }
-          })
-        }
-      }
-
-      if (gpu_product) {
-        // get the segments for gpu product
-        const gpu_segments = gpu_product.segment.split('|') as ProductPredefinedPresets[];
-
-        if (gpu_segments.length === 1) { // a single gpu segment in string
-          gpu_product_segment = gpu_segments[0];
-        } else {
-          // more than one segment in string "segment1|segment2"
-          gpu_segments.forEach((gs) => {
-            if (!gpu_product_segment) {
-              gpu_product_segment = gs;
-            } else if (preferenceBuildSegmentWeight[gs] > preferenceBuildSegmentWeight[gpu_product_segment]) {
-              // weight of previous segment is less so update with higher segment
-              gpu_product_segment = gs;
-            }
-          })
-        }
-      }
-
-      if (cpu_product_segment && gpu_product_segment) {
-        if (preferenceBuildSegmentWeight[cpu_product_segment] > preferenceBuildSegmentWeight[gpu_product_segment]) {
-          highest_segment = cpu_product_segment;
-        } else {
-          highest_segment = gpu_product_segment;
-        }
-      }
+      const { cpu_product,
+        gpu_product,
+        highest_segment,
+      } = _highestSegmentCPUGPU({ cpu_id: a_d.data?.cpu as string, gpu_id: a_d.data?.gpu as string })
 
       a_d = {
         ...a_d,
@@ -398,6 +482,7 @@ function useBuildByComponentContext() {
       }
     })
 
+    // console.log({ all_data, _highest_segment });
     setCleanGameInfoArray(all_data)
     setBuildSegment(_highest_segment)
     getPredefineBuilds(_highest_segment!)

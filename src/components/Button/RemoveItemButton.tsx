@@ -6,7 +6,6 @@ import Button from './Button'
 import RightArrow from '../../assets/right-arrow.svg?react'
 import RemoveIcon from '../../assets/circle-close-icon-game-blue.svg'
 import ImageFigure from '../ImageFigure'
-import useBuildPCContext from '../../lib/hooks/contextHooks/useBuildPCContext'
 
 interface IRemoveItemButton {
   onClick?: () => void;
@@ -14,8 +13,6 @@ interface IRemoveItemButton {
 }
 
 function RemoveItemButton({ onClick = () => { }, variant = 'large' }: IRemoveItemButton) {
-  const { completePixelStreaming } = useBuildPCContext();
-
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   function initiateClickEvent() {
@@ -30,7 +27,7 @@ function RemoveItemButton({ onClick = () => { }, variant = 'large' }: IRemoveIte
     onClick();
     handleCloseModal();
     // reset build model
-    completePixelStreaming();
+    // completePixelStreaming();
   }
 
   return (

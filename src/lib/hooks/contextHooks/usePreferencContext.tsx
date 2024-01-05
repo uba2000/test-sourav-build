@@ -266,6 +266,7 @@ function usePreferencContext() {
 
   // adjust fps based on user input then filter res in those ranges
   function adjustFPSRange(preferenceFeed: IFormatPreferencesDataReturn[]) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const _preferenceFeed = [...preferenceFeed]
     const { max, min } = preferences.gaming_fps!.range;
     const allowedResolutionRange = {
@@ -274,13 +275,13 @@ function usePreferencContext() {
     }
     setMinMaxFPS(allowedResolutionRange);
 
-    const resolutionValues: PreferenceResolutionsTitleType[] = ["fhd", "qhd", "4kuhd"];
+    // const resolutionValues: PreferenceResolutionsTitleType[] = ["fhd", "qhd", "4kuhd"];
     const presentResolutions: {
       [k in PreferenceResolutionsTitleType]: string[]
     } = {
-      "4kuhd": [],
-      fhd: [],
-      qhd: []
+      "4kuhd": ['1'],
+      fhd: ['1'],
+      qhd: ['1']
     };
 
     if (preferences.game_type_title.includes(noPreferenceName)) {
@@ -288,18 +289,18 @@ function usePreferencContext() {
       return _adjustedFPS;
     }
 
-    resolutionValues.forEach(resolution => {
-      presentResolutions[resolution] = _preferenceFeed
-        .map(config =>
-          Object.values(config.gameTitles)
-            .map(title => title[resolution])
-            .filter(value => {
-              const _value = parseInt(value);
-              return !(isNaN(_value) || _value < allowedResolutionRange.min || _value > allowedResolutionRange.max)
-            })
-        )
-        .flat();
-    });
+    // resolutionValues.forEach(resolution => {
+    //   presentResolutions[resolution] = _preferenceFeed
+    //     .map(config =>
+    //       Object.values(config.gameTitles)
+    //         .map(title => title[resolution])
+    //         .filter(value => {
+    //           const _value = parseInt(value);
+    //           return !(isNaN(_value) || _value < allowedResolutionRange.min || _value > allowedResolutionRange.max)
+    //         })
+    //     )
+    //     .flat();
+    // });
 
     // if the length is 0 then no values for it.
     return presentResolutions;

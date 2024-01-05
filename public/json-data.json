@@ -1,4 +1,484 @@
 {
+    "14600KFA750": {
+        "cpu": "20240101",
+        "gpu": "20240113",
+        "gameTitles": {
+            "Apex Legends": {
+                "fhd": "212",
+                "qhd": "182",
+                "4kuhd": "109"
+            },
+            "Rainbow Six Siege": {
+                "fhd": "207",
+                "qhd": "156",
+                "4kuhd": "81"
+            },
+            "Overwatch 2": {
+                "fhd": "388",
+                "qhd": "348",
+                "4kuhd": "253"
+            },
+            "Cyberpunk 2077": {
+                "fhd": "92",
+                "qhd": "69",
+                "4kuhd": "36"
+            },
+            "Rocket League Season 12": {
+                "fhd": "372",
+                "qhd": "281",
+                "4kuhd": "146"
+            },
+            "Halo Infinite": {
+                "fhd": "100",
+                "qhd": "87",
+                "4kuhd": "53"
+            },
+            "Fortnite": {
+                "fhd": "202",
+                "qhd": "182",
+                "4kuhd": "131"
+            },
+            "Hitman World of Assassination": {
+                "fhd": "178",
+                "qhd": "160",
+                "4kuhd": "114"
+            },
+            "Minecraft": {
+                "fhd": "845",
+                "qhd": "639",
+                "4kuhd": "332"
+            },
+            "Assassin's Creed Mirage": {
+                "fhd": "83",
+                "qhd": "63",
+                "4kuhd": "32"
+            },
+            "Counter Strike 2 ": {
+                "fhd": "400",
+                "qhd": "352",
+                "4kuhd": "237"
+            },
+            "Dauntless": {
+                "fhd": "153",
+                "qhd": "116",
+                "4kuhd": "60"
+            },
+            "Ghost Runner 2": {
+                "fhd": "151",
+                "qhd": "100",
+                "4kuhd": "48"
+            },
+            "Roblox": {
+                "fhd": "598",
+                "qhd": "498",
+                "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "12854",
+                "segment": "entry"
+            }
+        }
+    },
+    "14600KA750": {
+        "cpu": "20240100",
+        "gpu": "20240113",
+        "gameTitles": {
+            "Apex Legends": {
+                "fhd": "213",
+                "qhd": "182",
+                "4kuhd": "109"
+            },
+            "Rainbow Six Siege": {
+                "fhd": "207",
+                "qhd": "156",
+                "4kuhd": "81"
+            },
+            "Overwatch 2": {
+                "fhd": "389",
+                "qhd": "349",
+                "4kuhd": "254"
+            },
+            "Cyberpunk 2077": {
+                "fhd": "92",
+                "qhd": "69",
+                "4kuhd": "36"
+            },
+            "Rocket League Season 12": {
+                "fhd": "372",
+                "qhd": "281",
+                "4kuhd": "146"
+            },
+            "Halo Infinite": {
+                "fhd": "100",
+                "qhd": "87",
+                "4kuhd": "53"
+            },
+            "Fortnite": {
+                "fhd": "203",
+                "qhd": "183",
+                "4kuhd": "131"
+            },
+            "Hitman World of Assassination": {
+                "fhd": "179",
+                "qhd": "160",
+                "4kuhd": "115"
+            },
+            "Minecraft": {
+                "fhd": "845",
+                "qhd": "639",
+                "4kuhd": "332"
+            },
+            "Assassin's Creed Mirage": {
+                "fhd": "83",
+                "qhd": "63",
+                "4kuhd": "32"
+            },
+            "Counter Strike 2 ": {
+                "fhd": "403",
+                "qhd": "355",
+                "4kuhd": "240"
+            },
+            "Dauntless": {
+                "fhd": "153",
+                "qhd": "116",
+                "4kuhd": "60"
+            },
+            "Ghost Runner 2": {
+                "fhd": "151",
+                "qhd": "100",
+                "4kuhd": "48"
+            },
+            "Roblox": {
+                "fhd": "598",
+                "qhd": "498",
+                "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "12794",
+                "segment": "entry"
+            }
+        }
+    },
+    "14700KA750": {
+        "cpu": "20240102",
+        "gpu": "20240113",
+        "gameTitles": {
+            "Apex Legends": {
+                "fhd": "215",
+                "qhd": "185",
+                "4kuhd": "112"
+            },
+            "Rainbow Six Siege": {
+                "fhd": "207",
+                "qhd": "156",
+                "4kuhd": "81"
+            },
+            "Overwatch 2": {
+                "fhd": "396",
+                "qhd": "356",
+                "4kuhd": "261"
+            },
+            "Cyberpunk 2077": {
+                "fhd": "92",
+                "qhd": "69",
+                "4kuhd": "36"
+            },
+            "Rocket League Season 12": {
+                "fhd": "372",
+                "qhd": "281",
+                "4kuhd": "146"
+            },
+            "Halo Infinite": {
+                "fhd": "102",
+                "qhd": "89",
+                "4kuhd": "55"
+            },
+            "Fortnite": {
+                "fhd": "206",
+                "qhd": "186",
+                "4kuhd": "134"
+            },
+            "Hitman World of Assassination": {
+                "fhd": "184",
+                "qhd": "165",
+                "4kuhd": "120"
+            },
+            "Minecraft": {
+                "fhd": "845",
+                "qhd": "639",
+                "4kuhd": "332"
+            },
+            "Assassin's Creed Mirage": {
+                "fhd": "83",
+                "qhd": "63",
+                "4kuhd": "32"
+            },
+            "Counter Strike 2 ": {
+                "fhd": "425",
+                "qhd": "377",
+                "4kuhd": "262"
+            },
+            "Dauntless": {
+                "fhd": "153",
+                "qhd": "116",
+                "4kuhd": "60"
+            },
+            "Ghost Runner 2": {
+                "fhd": "151",
+                "qhd": "100",
+                "4kuhd": "48"
+            },
+            "Roblox": {
+                "fhd": "598",
+                "qhd": "498",
+                "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "12969",
+                "segment": "entry"
+            }
+        }
+    },
+    "14900KA750": {
+        "cpu": "20240104",
+        "gpu": "20240113",
+        "gameTitles": {
+            "Apex Legends": {
+                "fhd": "217",
+                "qhd": "187",
+                "4kuhd": "114"
+            },
+            "Rainbow Six Siege": {
+                "fhd": "207",
+                "qhd": "156",
+                "4kuhd": "81"
+            },
+            "Overwatch 2": {
+                "fhd": "403",
+                "qhd": "363",
+                "4kuhd": "268"
+            },
+            "Cyberpunk 2077": {
+                "fhd": "92",
+                "qhd": "69",
+                "4kuhd": "36"
+            },
+            "Rocket League Season 12": {
+                "fhd": "372",
+                "qhd": "281",
+                "4kuhd": "146"
+            },
+            "Halo Infinite": {
+                "fhd": "104",
+                "qhd": "91",
+                "4kuhd": "57"
+            },
+            "Fortnite": {
+                "fhd": "208",
+                "qhd": "188",
+                "4kuhd": "137"
+            },
+            "Hitman World of Assassination": {
+                "fhd": "188",
+                "qhd": "170",
+                "4kuhd": "125"
+            },
+            "Minecraft": {
+                "fhd": "845",
+                "qhd": "639",
+                "4kuhd": "332"
+            },
+            "Assassin's Creed Mirage": {
+                "fhd": "83",
+                "qhd": "63",
+                "4kuhd": "32"
+            },
+            "Counter Strike 2 ": {
+                "fhd": "447",
+                "qhd": "398",
+                "4kuhd": "283"
+            },
+            "Dauntless": {
+                "fhd": "153",
+                "qhd": "116",
+                "4kuhd": "60"
+            },
+            "Ghost Runner 2": {
+                "fhd": "151",
+                "qhd": "100",
+                "4kuhd": "48"
+            },
+            "Roblox": {
+                "fhd": "598",
+                "qhd": "498",
+                "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "12856",
+                "segment": "entry"
+            }
+        }
+    },
+    "14900KFA750": {
+        "cpu": "20240105",
+        "gpu": "20240113",
+        "gameTitles": {
+            "Apex Legends": {
+                "fhd": "218",
+                "qhd": "187",
+                "4kuhd": "114"
+            },
+            "Rainbow Six Siege": {
+                "fhd": "207",
+                "qhd": "156",
+                "4kuhd": "81"
+            },
+            "Overwatch 2": {
+                "fhd": "404",
+                "qhd": "364",
+                "4kuhd": "269"
+            },
+            "Cyberpunk 2077": {
+                "fhd": "92",
+                "qhd": "69",
+                "4kuhd": "36"
+            },
+            "Rocket League Season 12": {
+                "fhd": "372",
+                "qhd": "281",
+                "4kuhd": "146"
+            },
+            "Halo Infinite": {
+                "fhd": "105",
+                "qhd": "91",
+                "4kuhd": "57"
+            },
+            "Fortnite": {
+                "fhd": "209",
+                "qhd": "189",
+                "4kuhd": "137"
+            },
+            "Hitman World of Assassination": {
+                "fhd": "189",
+                "qhd": "170",
+                "4kuhd": "125"
+            },
+            "Minecraft": {
+                "fhd": "845",
+                "qhd": "639",
+                "4kuhd": "332"
+            },
+            "Assassin's Creed Mirage": {
+                "fhd": "83",
+                "qhd": "63",
+                "4kuhd": "32"
+            },
+            "Counter Strike 2 ": {
+                "fhd": "449",
+                "qhd": "400",
+                "4kuhd": "285"
+            },
+            "Dauntless": {
+                "fhd": "153",
+                "qhd": "116",
+                "4kuhd": "60"
+            },
+            "Ghost Runner 2": {
+                "fhd": "151",
+                "qhd": "100",
+                "4kuhd": "48"
+            },
+            "Roblox": {
+                "fhd": "598",
+                "qhd": "498",
+                "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13061",
+                "segment": "entry"
+            }
+        }
+    },
+    "14700KFA750": {
+        "cpu": "20240103",
+        "gpu": "20240113",
+        "gameTitles": {
+            "Apex Legends": {
+                "fhd": "215",
+                "qhd": "185",
+                "4kuhd": "112"
+            },
+            "Rainbow Six Siege": {
+                "fhd": "207",
+                "qhd": "156",
+                "4kuhd": "81"
+            },
+            "Overwatch 2": {
+                "fhd": "396",
+                "qhd": "356",
+                "4kuhd": "261"
+            },
+            "Cyberpunk 2077": {
+                "fhd": "92",
+                "qhd": "69",
+                "4kuhd": "36"
+            },
+            "Rocket League Season 12": {
+                "fhd": "372",
+                "qhd": "281",
+                "4kuhd": "146"
+            },
+            "Halo Infinite": {
+                "fhd": "103",
+                "qhd": "89",
+                "4kuhd": "55"
+            },
+            "Fortnite": {
+                "fhd": "206",
+                "qhd": "186",
+                "4kuhd": "134"
+            },
+            "Hitman World of Assassination": {
+                "fhd": "184",
+                "qhd": "165",
+                "4kuhd": "120"
+            },
+            "Minecraft": {
+                "fhd": "845",
+                "qhd": "639",
+                "4kuhd": "332"
+            },
+            "Assassin's Creed Mirage": {
+                "fhd": "83",
+                "qhd": "63",
+                "4kuhd": "32"
+            },
+            "Counter Strike 2 ": {
+                "fhd": "426",
+                "qhd": "378",
+                "4kuhd": "263"
+            },
+            "Dauntless": {
+                "fhd": "153",
+                "qhd": "116",
+                "4kuhd": "60"
+            },
+            "Ghost Runner 2": {
+                "fhd": "151",
+                "qhd": "100",
+                "4kuhd": "48"
+            },
+            "Roblox": {
+                "fhd": "598",
+                "qhd": "498",
+                "4kuhd": "316"
+            },
+            "No Preference": {
+                "ULscore": "13007",
+                "segment": "entry"
+            }
+        }
+    },
     "14600KA770": {
         "cpu": "20240100",
         "gpu": "20240112",
@@ -476,486 +956,6 @@
             "No Preference": {
                 "ULscore": "13864",
                 "segment": "mainstream"
-            }
-        }
-    },
-    "14600KA750": {
-        "cpu": "20240100",
-        "gpu": "20240113",
-        "gameTitles": {
-            "Apex Legends": {
-                "fhd": "213",
-                "qhd": "182",
-                "4kuhd": "109"
-            },
-            "Rainbow Six Siege": {
-                "fhd": "207",
-                "qhd": "156",
-                "4kuhd": "81"
-            },
-            "Overwatch 2": {
-                "fhd": "389",
-                "qhd": "349",
-                "4kuhd": "254"
-            },
-            "Cyberpunk 2077": {
-                "fhd": "92",
-                "qhd": "69",
-                "4kuhd": "36"
-            },
-            "Rocket League Season 12": {
-                "fhd": "372",
-                "qhd": "281",
-                "4kuhd": "146"
-            },
-            "Halo Infinite": {
-                "fhd": "100",
-                "qhd": "87",
-                "4kuhd": "53"
-            },
-            "Fortnite": {
-                "fhd": "203",
-                "qhd": "183",
-                "4kuhd": "131"
-            },
-            "Hitman World of Assassination": {
-                "fhd": "179",
-                "qhd": "160",
-                "4kuhd": "115"
-            },
-            "Minecraft": {
-                "fhd": "845",
-                "qhd": "639",
-                "4kuhd": "332"
-            },
-            "Assassin's Creed Mirage": {
-                "fhd": "83",
-                "qhd": "63",
-                "4kuhd": "32"
-            },
-            "Counter Strike 2 ": {
-                "fhd": "403",
-                "qhd": "355",
-                "4kuhd": "240"
-            },
-            "Dauntless": {
-                "fhd": "153",
-                "qhd": "116",
-                "4kuhd": "60"
-            },
-            "Ghost Runner 2": {
-                "fhd": "151",
-                "qhd": "100",
-                "4kuhd": "48"
-            },
-            "Roblox": {
-                "fhd": "598",
-                "qhd": "498",
-                "4kuhd": "316"
-            },
-            "No Preference": {
-                "ULscore": "12794",
-                "segment": "entry"
-            }
-        }
-    },
-    "14600KFA750": {
-        "cpu": "20240101",
-        "gpu": "20240113",
-        "gameTitles": {
-            "Apex Legends": {
-                "fhd": "212",
-                "qhd": "182",
-                "4kuhd": "109"
-            },
-            "Rainbow Six Siege": {
-                "fhd": "207",
-                "qhd": "156",
-                "4kuhd": "81"
-            },
-            "Overwatch 2": {
-                "fhd": "388",
-                "qhd": "348",
-                "4kuhd": "253"
-            },
-            "Cyberpunk 2077": {
-                "fhd": "92",
-                "qhd": "69",
-                "4kuhd": "36"
-            },
-            "Rocket League Season 12": {
-                "fhd": "372",
-                "qhd": "281",
-                "4kuhd": "146"
-            },
-            "Halo Infinite": {
-                "fhd": "100",
-                "qhd": "87",
-                "4kuhd": "53"
-            },
-            "Fortnite": {
-                "fhd": "202",
-                "qhd": "182",
-                "4kuhd": "131"
-            },
-            "Hitman World of Assassination": {
-                "fhd": "178",
-                "qhd": "160",
-                "4kuhd": "114"
-            },
-            "Minecraft": {
-                "fhd": "845",
-                "qhd": "639",
-                "4kuhd": "332"
-            },
-            "Assassin's Creed Mirage": {
-                "fhd": "83",
-                "qhd": "63",
-                "4kuhd": "32"
-            },
-            "Counter Strike 2 ": {
-                "fhd": "400",
-                "qhd": "352",
-                "4kuhd": "237"
-            },
-            "Dauntless": {
-                "fhd": "153",
-                "qhd": "116",
-                "4kuhd": "60"
-            },
-            "Ghost Runner 2": {
-                "fhd": "151",
-                "qhd": "100",
-                "4kuhd": "48"
-            },
-            "Roblox": {
-                "fhd": "598",
-                "qhd": "498",
-                "4kuhd": "316"
-            },
-            "No Preference": {
-                "ULscore": "12854",
-                "segment": "entry"
-            }
-        }
-    },
-    "14700KA750": {
-        "cpu": "20240102",
-        "gpu": "20240113",
-        "gameTitles": {
-            "Apex Legends": {
-                "fhd": "215",
-                "qhd": "185",
-                "4kuhd": "112"
-            },
-            "Rainbow Six Siege": {
-                "fhd": "207",
-                "qhd": "156",
-                "4kuhd": "81"
-            },
-            "Overwatch 2": {
-                "fhd": "396",
-                "qhd": "356",
-                "4kuhd": "261"
-            },
-            "Cyberpunk 2077": {
-                "fhd": "92",
-                "qhd": "69",
-                "4kuhd": "36"
-            },
-            "Rocket League Season 12": {
-                "fhd": "372",
-                "qhd": "281",
-                "4kuhd": "146"
-            },
-            "Halo Infinite": {
-                "fhd": "102",
-                "qhd": "89",
-                "4kuhd": "55"
-            },
-            "Fortnite": {
-                "fhd": "206",
-                "qhd": "186",
-                "4kuhd": "134"
-            },
-            "Hitman World of Assassination": {
-                "fhd": "184",
-                "qhd": "165",
-                "4kuhd": "120"
-            },
-            "Minecraft": {
-                "fhd": "845",
-                "qhd": "639",
-                "4kuhd": "332"
-            },
-            "Assassin's Creed Mirage": {
-                "fhd": "83",
-                "qhd": "63",
-                "4kuhd": "32"
-            },
-            "Counter Strike 2 ": {
-                "fhd": "425",
-                "qhd": "377",
-                "4kuhd": "262"
-            },
-            "Dauntless": {
-                "fhd": "153",
-                "qhd": "116",
-                "4kuhd": "60"
-            },
-            "Ghost Runner 2": {
-                "fhd": "151",
-                "qhd": "100",
-                "4kuhd": "48"
-            },
-            "Roblox": {
-                "fhd": "598",
-                "qhd": "498",
-                "4kuhd": "316"
-            },
-            "No Preference": {
-                "ULscore": "12969",
-                "segment": "entry"
-            }
-        }
-    },
-    "14700KFA750": {
-        "cpu": "20240103",
-        "gpu": "20240113",
-        "gameTitles": {
-            "Apex Legends": {
-                "fhd": "215",
-                "qhd": "185",
-                "4kuhd": "112"
-            },
-            "Rainbow Six Siege": {
-                "fhd": "207",
-                "qhd": "156",
-                "4kuhd": "81"
-            },
-            "Overwatch 2": {
-                "fhd": "396",
-                "qhd": "356",
-                "4kuhd": "261"
-            },
-            "Cyberpunk 2077": {
-                "fhd": "92",
-                "qhd": "69",
-                "4kuhd": "36"
-            },
-            "Rocket League Season 12": {
-                "fhd": "372",
-                "qhd": "281",
-                "4kuhd": "146"
-            },
-            "Halo Infinite": {
-                "fhd": "103",
-                "qhd": "89",
-                "4kuhd": "55"
-            },
-            "Fortnite": {
-                "fhd": "206",
-                "qhd": "186",
-                "4kuhd": "134"
-            },
-            "Hitman World of Assassination": {
-                "fhd": "184",
-                "qhd": "165",
-                "4kuhd": "120"
-            },
-            "Minecraft": {
-                "fhd": "845",
-                "qhd": "639",
-                "4kuhd": "332"
-            },
-            "Assassin's Creed Mirage": {
-                "fhd": "83",
-                "qhd": "63",
-                "4kuhd": "32"
-            },
-            "Counter Strike 2 ": {
-                "fhd": "426",
-                "qhd": "378",
-                "4kuhd": "263"
-            },
-            "Dauntless": {
-                "fhd": "153",
-                "qhd": "116",
-                "4kuhd": "60"
-            },
-            "Ghost Runner 2": {
-                "fhd": "151",
-                "qhd": "100",
-                "4kuhd": "48"
-            },
-            "Roblox": {
-                "fhd": "598",
-                "qhd": "498",
-                "4kuhd": "316"
-            },
-            "No Preference": {
-                "ULscore": "13007",
-                "segment": "entry"
-            }
-        }
-    },
-    "14900KA750": {
-        "cpu": "20240104",
-        "gpu": "20240113",
-        "gameTitles": {
-            "Apex Legends": {
-                "fhd": "217",
-                "qhd": "187",
-                "4kuhd": "114"
-            },
-            "Rainbow Six Siege": {
-                "fhd": "207",
-                "qhd": "156",
-                "4kuhd": "81"
-            },
-            "Overwatch 2": {
-                "fhd": "403",
-                "qhd": "363",
-                "4kuhd": "268"
-            },
-            "Cyberpunk 2077": {
-                "fhd": "92",
-                "qhd": "69",
-                "4kuhd": "36"
-            },
-            "Rocket League Season 12": {
-                "fhd": "372",
-                "qhd": "281",
-                "4kuhd": "146"
-            },
-            "Halo Infinite": {
-                "fhd": "104",
-                "qhd": "91",
-                "4kuhd": "57"
-            },
-            "Fortnite": {
-                "fhd": "208",
-                "qhd": "188",
-                "4kuhd": "137"
-            },
-            "Hitman World of Assassination": {
-                "fhd": "188",
-                "qhd": "170",
-                "4kuhd": "125"
-            },
-            "Minecraft": {
-                "fhd": "845",
-                "qhd": "639",
-                "4kuhd": "332"
-            },
-            "Assassin's Creed Mirage": {
-                "fhd": "83",
-                "qhd": "63",
-                "4kuhd": "32"
-            },
-            "Counter Strike 2 ": {
-                "fhd": "447",
-                "qhd": "398",
-                "4kuhd": "283"
-            },
-            "Dauntless": {
-                "fhd": "153",
-                "qhd": "116",
-                "4kuhd": "60"
-            },
-            "Ghost Runner 2": {
-                "fhd": "151",
-                "qhd": "100",
-                "4kuhd": "48"
-            },
-            "Roblox": {
-                "fhd": "598",
-                "qhd": "498",
-                "4kuhd": "316"
-            },
-            "No Preference": {
-                "ULscore": "12856",
-                "segment": "entry"
-            }
-        }
-    },
-    "14900KFA750": {
-        "cpu": "20240105",
-        "gpu": "20240113",
-        "gameTitles": {
-            "Apex Legends": {
-                "fhd": "218",
-                "qhd": "187",
-                "4kuhd": "114"
-            },
-            "Rainbow Six Siege": {
-                "fhd": "207",
-                "qhd": "156",
-                "4kuhd": "81"
-            },
-            "Overwatch 2": {
-                "fhd": "404",
-                "qhd": "364",
-                "4kuhd": "269"
-            },
-            "Cyberpunk 2077": {
-                "fhd": "92",
-                "qhd": "69",
-                "4kuhd": "36"
-            },
-            "Rocket League Season 12": {
-                "fhd": "372",
-                "qhd": "281",
-                "4kuhd": "146"
-            },
-            "Halo Infinite": {
-                "fhd": "105",
-                "qhd": "91",
-                "4kuhd": "57"
-            },
-            "Fortnite": {
-                "fhd": "209",
-                "qhd": "189",
-                "4kuhd": "137"
-            },
-            "Hitman World of Assassination": {
-                "fhd": "189",
-                "qhd": "170",
-                "4kuhd": "125"
-            },
-            "Minecraft": {
-                "fhd": "845",
-                "qhd": "639",
-                "4kuhd": "332"
-            },
-            "Assassin's Creed Mirage": {
-                "fhd": "83",
-                "qhd": "63",
-                "4kuhd": "32"
-            },
-            "Counter Strike 2 ": {
-                "fhd": "449",
-                "qhd": "400",
-                "4kuhd": "285"
-            },
-            "Dauntless": {
-                "fhd": "153",
-                "qhd": "116",
-                "4kuhd": "60"
-            },
-            "Ghost Runner 2": {
-                "fhd": "151",
-                "qhd": "100",
-                "4kuhd": "48"
-            },
-            "Roblox": {
-                "fhd": "598",
-                "qhd": "498",
-                "4kuhd": "316"
-            },
-            "No Preference": {
-                "ULscore": "13061",
-                "segment": "entry"
             }
         }
     },
