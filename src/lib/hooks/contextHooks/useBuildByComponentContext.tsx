@@ -310,7 +310,6 @@ function useBuildByComponentContext() {
     let _fps_above_range_max: ICleanPreferenceData['data'] = null; // minimum above max range
     let _fps_below_range_max: ICleanPreferenceData['data'] = null; // maximum below max range
     if (selected_res) {
-      // debugger;
       all_data = _preferenceGameTypes.map((game_title) => {
         _fps_above_range_max = null;
         _fps_below_range_max = null;
@@ -323,28 +322,28 @@ function useBuildByComponentContext() {
 
           const { highest_segment } = _highestSegmentCPUGPU({ cpu_id: product.cpu, gpu_id: product.gpu });
 
-          if (_fps_value >= parseInt(selected_fps_range?.min, 10)) {
-            if ((_fps_below_range_max?.fps && _fps_value < _max_value && _fps_value >= parseInt(_fps_below_range_max?.fps, 10))
-              || !_fps_below_range_max?.fps) {
+          if ((_fps_below_range_max?.fps && _fps_value < _max_value && _fps_value >= parseInt(_fps_below_range_max?.fps, 10))
+            || !_fps_below_range_max?.fps) {
 
-              const _final_obj = {
-                cpu: product.cpu,
-                cpu_gpu_key: product.cpu_gpu_key,
-                gpu: product.gpu,
-                res: selected_res,
-                fps: `${_fps_value}`,
-                segment: highest_segment,
-              }
-
-              if (_fps_below_range_max && _fps_value === parseInt(_fps_below_range_max?.fps as string, 10) && _fps_below_range_max?.segment) {
-
-                if (preferenceBuildSegmentWeight[highest_segment!] < preferenceBuildSegmentWeight[_fps_below_range_max.segment]) {
-                  _final_obj.segment = _fps_below_range_max.segment
-                }
-              }
-
-              _fps_below_range_max = _final_obj;
+            const _final_obj = {
+              cpu: product.cpu,
+              cpu_gpu_key: product.cpu_gpu_key,
+              gpu: product.gpu,
+              res: selected_res,
+              fps: `${_fps_value}`,
+              segment: highest_segment,
             }
+
+            if (_fps_below_range_max && _fps_value === parseInt(_fps_below_range_max?.fps as string, 10) && _fps_below_range_max?.segment) {
+
+              if (preferenceBuildSegmentWeight[highest_segment!] < preferenceBuildSegmentWeight[_fps_below_range_max.segment]) {
+                _final_obj.segment = _fps_below_range_max.segment
+              }
+            }
+
+            _fps_below_range_max = _final_obj;
+          }
+          if (_fps_value >= parseInt(selected_fps_range?.min, 10)) {
 
             if (_fps_value <= _max_value) {
               game_products_in_range.push({
@@ -472,6 +471,7 @@ function useBuildByComponentContext() {
 
   function analyzePreferencesForBuild(preferences: BuildPCPreferenceType) {
     const all_data = handleCleanGameTitlesData(preferences.game_type_title, preferences)
+    console.log({ all_data });
 
     let _highest_segment: ProductPredefinedPresets | null = null;
     // check the segments
