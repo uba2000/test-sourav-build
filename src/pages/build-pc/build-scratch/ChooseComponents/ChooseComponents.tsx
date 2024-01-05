@@ -63,7 +63,6 @@ function ChooseComponents() {
   }, [_category_slug, buildFlowType, placeholderImages, predefinedBuilds?.build_segment, setCurrentModelOnStage])
 
   useLayoutEffect(() => {
-
     if (currentBuild) {
       const _current_in_build = currentBuild.find((d) => d.category_slug === _category_slug) || null
       setIsInBuild(_current_in_build);
@@ -73,7 +72,13 @@ function ChooseComponents() {
         onSelectComponentItem(_current_in_build._id)
       } else { // show image for current component instead then
         // check for placeholder image
-        setSelectedItemID(null)
+        // setSelectedItemID(null)
+        if (componentItems) {
+          setSelectedItemID(componentItems[0]?._id)
+          if (componentItems[0]?._id) {
+            emitStreamSingleUIInteraction({ component_id: componentItems[0]?._id })
+          }
+        }
         handleSetCurrentPlaceholderImage();
         // check if single details is open so its closed
         if (showCurrentModelSpecs) {
@@ -81,11 +86,10 @@ function ChooseComponents() {
         }
       }
     } else {
-      // setSelectedItemID(null)
       // check for placeholder image
       handleSetCurrentPlaceholderImage();
     }
-  }, [_category_slug, currentBuild])
+  }, [_category_slug, currentBuild, componentItems])
 
   useEffect(() => {
     toggleCanViewSpecs(Boolean(selectedItemID));
