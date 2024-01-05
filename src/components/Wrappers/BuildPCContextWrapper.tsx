@@ -20,13 +20,13 @@ function BuildPCContextWrapper({ children }: { children: React.ReactNode }) {
   const pixel3DStreaming = usePixelStreamContext(buildState.currentBuild);
 
   const resetApp = useCallback(() => {
+    navigate(RouteNames.home);
     preferenceState.resetPreferences();
     buildPCState.resetPCBuild();
     buildLayoutState.resetBuildPCLayout();
     pixel3DStreaming.resetPixelStream();
     // window.location.replace(`${import.meta.env.VITE_BASE_URL}${RouteNames.home}`);
-    // window.location.reload();
-    navigate(RouteNames.home);
+    window.location.reload();
   }, []);
 
   const [addToCartState, setAddToCartState] = useState<AddToRetailerUsersCartPropsType['state'] | null>(null)
