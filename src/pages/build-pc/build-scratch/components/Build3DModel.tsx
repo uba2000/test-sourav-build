@@ -29,7 +29,7 @@ function Build3DModel({
   // A reference to parent div element that the Pixel Streaming library attaches into:
   const videoParent = useRef<HTMLDivElement>(null);
 
-  const { setPixelStream, pixelStreamRef, resetPixelStream } = useBuildPCContext()
+  const { setPixelStream, pixelStreamRef } = useBuildPCContext()
 
   // Pixel streaming library instance is stored into this state variable after initialization:
   const [pixelStreaming, setPixelStreaming] = useState<PixelStreaming>(pixelStreamRef.current);
@@ -39,7 +39,7 @@ function Build3DModel({
 
   // Run on component mount:
   useEffect(() => {
-    if (videoParent.current && !pixelStreamRef.current) {
+    if (videoParent.current) {
       console.log('in', pixelStreamRef.current);
       // Attach Pixel Streaming library to videoParent element:
 
@@ -66,12 +66,7 @@ function Build3DModel({
       // Clean up on component unmount:
       return () => {
         try {
-          resetPixelStream()
-          streaming.disconnect();
-          console.log('Unreal Event: Reset Fired');
-          streaming.emitUIInteraction({
-            Type: 'Reset_PC'
-          });
+          // resetPixelStream()
         } catch { }
       };
     }

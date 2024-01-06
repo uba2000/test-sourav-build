@@ -23,7 +23,9 @@ function BuildScratch() {
     navigate(RouteNames.preconfiguredSystemIndex)
   }
 
-  useStreamStarted(() => completePixelStreaming())
+  useStreamStarted(() => {
+    completePixelStreaming();
+  })
 
   return (
     <BuildLayout layout_r_title='Ready to start?'>

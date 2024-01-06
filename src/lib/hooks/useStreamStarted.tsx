@@ -27,7 +27,7 @@ function useStreamStarted(cb: () => void = () => { }) {
 
   useEffect(() => {
     if (currentBuild.length > 0 && canPlayStream) {
-      console.log('##########in - canPlayStream: ', canPlayStream);
+      console.log('Unreal Event: - canPlayStream: ', canPlayStream);
 
       setTimeout(() => {
         cb();

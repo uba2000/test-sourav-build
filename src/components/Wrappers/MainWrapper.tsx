@@ -17,7 +17,6 @@ export default function MainWrapper() {
   const isOnPreferenceFlow = matchRoutes(preferenceFlow, location)
   const isOnBuildFlow = matchRoutes(buildFlow, location)
   const height = use100vh();
-  console.log('Unreal Event: Build Version - v1.0.4');
 
   return (
     <BuildPCContextWrapper>
