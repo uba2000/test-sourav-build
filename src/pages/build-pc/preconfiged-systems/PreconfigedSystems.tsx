@@ -5,46 +5,22 @@ import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext
 import _ from 'lodash';
 import SingleCompareComponents from '../build-scratch/CompareComponents/components/SingleCompareComponents';
 import { IBuildStagesSlugs } from '../../../lib/types/context-types';
-import useSingleEffectCall from '../../../lib/hooks/useSingleEffectCall';
+import useStreamStarted from '../../../lib/hooks/useStreamStarted';
 import BuildLayoutChild from '../build-scratch/components/BuildLayoutChild';
 
 function PreconfigedSystems() {
   const {
     currentBuild, predefinedBuilds, togglePreBuildToCurrentBuildForPreview, addToRetailerUsersCart,
     showCurrentModelSpecs, completePixelStreaming, emitStreamSingleUIInteraction,
-    toggleCanViewSpecs, setCurrentModelOnStage, toggleViewingComponentModel, pixelStreamRef,
+    toggleCanViewSpecs, setCurrentModelOnStage, toggleViewingComponentModel,
   } = useBuildPCContext();
 
-  const [canPlayStream, setCanPlayStream] = useState(false)
 
   useLayoutEffect(() => {
     togglePreBuildToCurrentBuildForPreview('add')
   }, [])
 
-  useSingleEffectCall(() => {
-    if (pixelStreamRef.current) {
-      pixelStreamRef.current.addEventListener('webRtcConnected', () => {
-        console.log('webRtcConnected');
-        setCanPlayStream(true);
-      })
-
-      pixelStreamRef.current.addEventListener('playStream', () => {
-        console.log('handleStreamPlaying(true)');
-        console.log('play stream');
-        setCanPlayStream(true);
-      })
-    }
-  })
-
-  useEffect(() => {
-    if (currentBuild.length > 0 && canPlayStream) {
-      console.log('##########in - canPlayStream: ', canPlayStream);
-
-      setTimeout(() => {
-        completePixelStreaming();
-      }, 1000);
-    }
-  }, [currentBuild, canPlayStream])
+  useStreamStarted(() => completePixelStreaming());
 
   const componentItems = useMemo(() => currentBuild, [currentBuild])
   const [buildPrice, setBuildPrice] = useState<string>('')

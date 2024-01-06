@@ -66,10 +66,7 @@ function Build3DModel({
       // Clean up on component unmount:
       return () => {
         try {
-          streaming.disconnect();
-          streaming.emitUIInteraction({
-            Type: 'Reset_PC'
-          });
+          // resetPixelStream()
         } catch { }
       };
     }

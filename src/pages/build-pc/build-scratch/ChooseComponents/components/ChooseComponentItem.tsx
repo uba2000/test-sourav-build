@@ -88,7 +88,7 @@ function ChooseComponentItem({
               ))}
             </div>
             <div className="flex flex-col gap-y-1 items-end min-w-[105px]">
-              <span className='font-IntelOneBodyTextMedium'>{`$${data.price}`}</span>
+              <span className='font-IntelOneBodyTextMedium'><span className="font-sans">$</span>{`${data.price}`}</span>
               {inBuild && (
                 <RemoveItemButton variant='small' onClick={() => handleRemoveFromBuild()} />
               )}

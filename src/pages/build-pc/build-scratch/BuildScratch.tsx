@@ -8,9 +8,10 @@ import RouteNames from '../../../lib/utils/routenames';
 import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext';
 import PreferenceBox from './components/PreferenceBox';
 import BuildLayoutChild from './components/BuildLayoutChild';
+import useStreamStarted from '../../../lib/hooks/useStreamStarted';
 
 function BuildScratch() {
-  const { togglePreBuildToCurrentBuildForPreview } = useBuildPCContext()
+  const { togglePreBuildToCurrentBuildForPreview, completePixelStreaming } = useBuildPCContext()
   const navigate = useNavigate()
 
   function startBuildFromScratch() {
@@ -21,6 +22,10 @@ function BuildScratch() {
   function choosePreconfiged() {
     navigate(RouteNames.preconfiguredSystemIndex)
   }
+
+  useStreamStarted(() => {
+    completePixelStreaming();
+  })
 
   return (
     <BuildLayoutChild layout_r_title='Ready to start?'>

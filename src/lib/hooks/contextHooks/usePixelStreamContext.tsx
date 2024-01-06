@@ -12,7 +12,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
   const pixelStreamRef = useRef<any>(null)
 
   function setPixelStream(_pixelStream: PixelStreaming) {
-    console.log({ _pixelStream });
+    console.log('Unreal Event: Set Stream Instance', { _pixelStream });
 
     pixelStreamRef.current = _pixelStream
   }
@@ -27,7 +27,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
         Type: 'Show_Component',
         ComponentId: component_id,
       });
-      console.log(stringval);
+      console.log(`Unreal Event: View Product (${component_id})`, { stringval });
     }
   }, []);
 
@@ -43,7 +43,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
     }
   }
 
-  const completePixelStreaming = useCallback(() => {
+  const completePixelStreaming = useCallback((_local_build: IBuildComponent[] | null = null) => {
     if (pixelStreamRef.current) {
 
       const _interaction_obj = {
@@ -62,7 +62,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       }
       const _pc_obj: Partial<(typeof _interaction_obj)['FullPC']> = {};
 
-      _current_build.forEach((d) => {
+      (_local_build ? _local_build : _current_build).forEach((d) => {
         switch (d.original_slug) {
           case 'case':
             _pc_obj.Case = d._id;
@@ -109,16 +109,22 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       pixelStreamRef.current.emitUIInteraction(_interaction_obj);
       pixelStreamRef.current.addResponseEventListener("handle_responses", myHandleResponseFunction);
       const stringval = JSON.stringify(_interaction_obj);
-      console.log(stringval);
+      console.log(`Unreal Event: Full PC Build`, { stringval });
     }
   }, [_current_build])
 
+  // function resetAndStartStream() {
+
+  // }
+
   function resetPixelStream() {
+    console.log('Unreal Event: Reset Fired');
     pixelStreamRef.current?.disconnect();
     pixelStreamRef.current?.emitUIInteraction({
       Type: 'Reset_PC'
     });
-    pixelStreamRef.current = null;
+    completePixelStreaming([]);
+    // pixelStreamRef.current = null;
   }
 
   return {

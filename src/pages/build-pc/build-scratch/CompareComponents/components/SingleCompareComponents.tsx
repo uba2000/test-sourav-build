@@ -251,7 +251,7 @@ function SingleCompareComponents({
                 </div>
 
                 <div className="flex gap-x-3 items-center">
-                  <span className="font-IntelOneBodyTextMedium text-xs">${componentItem?.price}</span>
+                  <span className="font-IntelOneBodyTextMedium text-xs"><span className="font-sans text-xs">$</span>{componentItem?.price}</span>
                   {isInBuild && (
                     <RemoveItemButton onClick={() => handleDeleteFromBuild()} />
                   )}
@@ -351,7 +351,7 @@ function SingleCompareComponents({
                 </div>
 
                 <div className="flex gap-x-3 items-center">
-                  <span className="font-IntelOneBodyTextMedium text-xs">${componentItem?.price}</span>
+                  <span className="font-IntelOneBodyTextMedium text-xs"><span className="font-sans text-xs">$</span>{componentItem?.price}</span>
                   {isInBuild && (
                     <RemoveItemButton onClick={() => handleDeleteFromBuild()} />
                   )}
