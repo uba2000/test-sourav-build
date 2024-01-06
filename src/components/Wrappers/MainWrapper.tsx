@@ -3,7 +3,7 @@ import { Outlet, matchRoutes, useLocation } from 'react-router-dom';
 import BuildPCContextWrapper from './BuildPCContextWrapper';
 import RouteNames from '../../lib/utils/routenames';
 import useBuildPCContext from '../../lib/hooks/contextHooks/useBuildPCContext';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { use100vh } from '../Widgets/Div100vh';
 import RetailerLogo from '../../assets/dummy-retailer-logo.svg?react'
 
@@ -70,16 +70,21 @@ function ValidateBuildHasData({ children }: IValidateBuildHasData) {
   const location = useLocation()
   const isOnBuildRoutes = matchRoutes(buildRoutes, location)
   const { preferences, resetApp } = useBuildPCContext();
+  const [canViewApp, setCanViewApp] = useState(false)
 
   useEffect(() => {
     if (isOnBuildRoutes) {
       if (preferences.game_type_title.length === 0 && !preferences.gaming_fps && !preferences.gaming_resolution) {
         resetApp();
+      } else {
+        setCanViewApp(true)
       }
+    } else {
+      setCanViewApp(true)
     }
   }, [isOnBuildRoutes])
 
-  return children
+  return canViewApp ? children : null
 }
 
 function RetailerIcon() {

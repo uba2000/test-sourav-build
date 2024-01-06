@@ -11,15 +11,16 @@ function useStreamStarted(cb: () => void = () => { }) {
   const [canPlayStream, setCanPlayStream] = useState(false)
 
   useSingleEffectCall(() => {
+    console.log('Unreal Event: Add webRtcConnected and playStream listeners for stream');
+
     if (pixelStreamRef.current) {
       pixelStreamRef.current.addEventListener('webRtcConnected', () => {
-        console.log('webRtcConnected');
+        console.log('Unreal Event: webRtcConnected listeners fired for stream');
         setCanPlayStream(true);
       })
 
       pixelStreamRef.current.addEventListener('playStream', () => {
-        console.log('handleStreamPlaying(true)');
-        console.log('play stream');
+        console.log('Unreal Event: playStream listeners fired for stream');
         setCanPlayStream(true);
       })
     }
@@ -27,8 +28,7 @@ function useStreamStarted(cb: () => void = () => { }) {
 
   useEffect(() => {
     if (currentBuild.length > 0 && canPlayStream) {
-      console.log('Unreal Event: - canPlayStream: ', canPlayStream);
-
+      console.log('Unreal Event: Stream fired for stream - ', canPlayStream);
       setTimeout(() => {
         cb();
         // setCanPlayStream(false);

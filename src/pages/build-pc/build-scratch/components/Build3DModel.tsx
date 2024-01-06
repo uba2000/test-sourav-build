@@ -67,6 +67,8 @@ function Build3DModel({
       return () => {
         try {
           // resetPixelStream()
+          console.log('Unreal Event: Reset in useEffect');
+
         } catch { }
       };
     }

@@ -1,4 +1,4 @@
-import React, { Fragment, useLayoutEffect, useRef, useState } from 'react'
+import { Fragment, useLayoutEffect, useRef, useState } from 'react'
 
 import CartIcon from '../../../../assets/cart.svg?react'
 import BuildSpanner from '../../../../assets/component-icons/build.svg?react'
