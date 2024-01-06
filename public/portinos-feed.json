@@ -948,7 +948,7 @@
                 "90YV0II0-M0AA00"
             ],
             "model": "ROG-STRIX-RTX4070TI-O12G-GAMING",
-            "model_name": "ASUS ROG -STRIX-RTX4070TI-O12G-GAMING",
+            "model_name": "ASUS GeForce RTX 4070 Ti",
             "brand": "ASUS",
             "link": "https://bestbuyca.o93x.net/c/64065/898179/10221?prodsku=16649507&u=https%3A%2F%2Fwww.bestbuy.ca%2Fen-ca%2Fproduct%2Fasus-rog-strix-geforce-rtx-4070-ti-oc-12gb-gddr6x-video-card%2F16649507&intsrc=CATF_7094",
             "model_3d_status": null,
@@ -986,7 +986,7 @@
                 "processor_boost_clock_speed": "2760 MHz",
                 "displayport_version": "DisplayPort 1.4a",
                 "product_color": "Grey",
-                "discrete_graphics_card_memory": "12",
+                "discrete_graphics_card_memory": "12 GB",
                 "amd_freesync": "N",
                 "number_of_fans": "3",
                 "illumination": "Y",
@@ -1026,7 +1026,7 @@
                 "ATG-WSC-770014096817"
             ],
             "model": "DUAL-RTX4060TI-O8G",
-            "model_name": "ASUS Dual -RTX4060TI-O8G",
+            "model_name": "ASUS NVIDIA Dual GeForce RTX 4060 Ti OC Edition",
             "brand": "ASUS",
             "link": "https://bestbuyca.o93x.net/c/64065/898179/10221?prodsku=17159623&u=https%3A%2F%2Fwww.bestbuy.ca%2Fen-ca%2Fproduct%2Fasus-dual-nvidia-geforce-rtx-4060-oc-8gb-gddr6x-video-card%2F17159623&intsrc=CATF_7094",
             "model_3d_status": null,
@@ -1064,7 +1064,7 @@
                 "processor_boost_clock_speed": "2565 MHz",
                 "displayport_version": "DisplayPort 1.4a",
                 "product_color": "Black",
-                "discrete_graphics_card_memory": "8",
+                "discrete_graphics_card_memory": "8 GB",
                 "amd_freesync": "N",
                 "number_of_fans": "2",
                 "cooling_technology": "ASUS Axial-tech"
@@ -1083,7 +1083,7 @@
                 "CP9020201NA"
             ],
             "model": "RM1000x",
-            "model_name": "Corsair RM1000x power supply unit",
+            "model_name": "Corsair RM1000x",
             "brand": "Corsair",
             "link": "https://bestbuyca.o93x.net/c/64065/898179/10221?prodsku=15397406&u=https%3A%2F%2Fwww.bestbuy.ca%2Fen-ca%2Fproduct%2Fcorsair-rm-1000-watt-atx-modular-power-supply%2F15397406&intsrc=CATF_7094",
             "model_3d_status": null,
@@ -1155,7 +1155,7 @@
                 "12813_ihavecpu"
             ],
             "model": "MPG A1000G PCIE5",
-            "model_name": "MSI MPG A1000G PCIE5 power supply unit",
+            "model_name": "MSI MPG A1000G",
             "brand": "MSI",
             "link": "https://bestbuyca.o93x.net/c/64065/898179/10221?prodsku=17043693&u=https%3A%2F%2Fwww.bestbuy.ca%2Fen-ca%2Fproduct%2Fmsi-mpg-a1000g-pcie-5-80-plus-gold-1000w-full-modular-atx-3-0-gaming-power-supply-black%2F17043693&intsrc=CATF_7094",
             "model_3d_status": null,
@@ -1213,7 +1213,7 @@
                 "PS-TPD-1050FNFAGU-Y"
             ],
             "model": "TOUGHPOWER GF A3 Gold 1050W",
-            "model_name": "Thermaltake TOUGHPOWER GF A3 Gold 1050W power supply unit",
+            "model_name": "Thermaltake TOUGHPOWER GF A3",
             "brand": "Thermaltake",
             "link": "https://bestbuyca.o93x.net/c/64065/898179/10221?prodsku=17155012&u=https%3A%2F%2Fwww.bestbuy.ca%2Fen-ca%2Fproduct%2Fthermaltake-toughpower-gf-a3-gold-series-1050-watt-atx-modular-power-supply%2F17155012&intsrc=CATF_7094",
             "model_3d_status": null,
@@ -1274,7 +1274,7 @@
                 "CW9060070WW"
             ],
             "model": "iCUE H150i ELITE CAPELLIX XT",
-            "model_name": "Corsair iCUE H150i ELITE CAPELLIX XT Liquid CPU Cooler",
+            "model_name": "Corsair iCUE H150i ELITE CAPELLIX XT",
             "brand": "Corsair",
             "link": "https://www.bestbuy.ca/en-ca/product/corsair-icue-h150i-elite-capellix-xt-360mm-liquid-cpu-cooling-system/16658117",
             "model_3d_status": null,
@@ -1389,7 +1389,7 @@
             "brand_logo": "https://skuapi.s3.us-east-2.amazonaws.com/staging/gateway/assets/images/brand_logo/corsair.png",
             "stock": true,
             "category": "fan",
-            "segment": "enthusiast",
+            "segment": "entry|mainstream|enthusiast",
             "pricespider_passthrough": {
                 "weight": "260 mm",
                 "product_color": "Black,White",
@@ -1425,7 +1425,7 @@
                 "CO9050153WW"
             ],
             "model": "CO-9050153-WW",
-            "model_name": "Corsair CO-9050153-WW computer cooling system",
+            "model_name": "Corsair AF120 RGB Elite",
             "brand": "Corsair",
             "link": "https://bestbuyca.o93x.net/c/64065/898179/10221?prodsku=16658113&u=https%3A%2F%2Fwww.bestbuy.ca%2Fen-ca%2Fproduct%2Fcorsair-af120-rgb-elite-high-performance-120mm-case-fan%2F16658113&intsrc=CATF_7094",
             "model_3d_status": null,
@@ -1436,7 +1436,7 @@
             "brand_logo": "https://skuapi.s3.us-east-2.amazonaws.com/staging/gateway/assets/images/brand_logo/corsair.png",
             "stock": true,
             "category": "fan",
-            "segment": "enthusiast",
+            "segment": "entry|mainstream|enthusiast",
             "pricespider_passthrough": {
                 "weight": "240",
                 "product_color": "Black",
@@ -1786,7 +1786,7 @@
                 "CMK64GX5M2B5200C40"
             ],
             "model": "CMK64GX5M2B5200C40",
-            "model_name": "Corsair Vengeance CMK64GX5M2B5200C40 memory module",
+            "model_name": "Corsair Vengeance",
             "brand": "Corsair",
             "link": "https://bestbuyca.o93x.net/c/64065/898179/10221?prodsku=15958350&u=https%3A%2F%2Fwww.bestbuy.ca%2Fen-ca%2Fproduct%2Fcorsair-vengeance-64gb-2-x-32gb-ddr5-5200mhz-desktop-memory-cmk64gx5m2b5200c40%2F15958350&intsrc=CATF_7094",
             "model_3d_status": null,
@@ -1825,7 +1825,7 @@
                 "CMH32GX5M2B5600C40K"
             ],
             "model": "CMH32GX5M2B5600C40K",
-            "model_name": "Corsair Vengeance RGB CMH32GX5M2B5600C40K memory module",
+            "model_name": "Corsair Vengeance RGB",
             "brand": "Corsair",
             "link": "https://bestbuyca.o93x.net/c/64065/898179/10221?prodsku=16571963&u=https%3A%2F%2Fwww.bestbuy.ca%2Fen-ca%2Fproduct%2Fcorsair-vengeance-32gb-2x16gb-ddr5-5600mhz-desktop-memory-for-intel-motherboard-cmh32gx5m2b5600c40k%2F16571963&intsrc=CATF_7094",
             "model_3d_status": null,
@@ -1865,7 +1865,7 @@
                 "CMT32GX5M2X6200C36"
             ],
             "model": "CMT32GX5M2X6200C36",
-            "model_name": "Corsair Dominator CMT32GX5M2X6200C36 memory module",
+            "model_name": "Corsair Dominator",
             "brand": "Corsair",
             "link": "https://bestbuyca.o93x.net/c/64065/898179/10221?prodsku=16938178&u=https%3A%2F%2Fwww.bestbuy.ca%2Fen-ca%2Fproduct%2Fcorsair-dominator-platinum-rgb-32gb-2-x-16gb-ddr5-6200mhz-desktop-memory-cmt32gx5m2x6200c36%2F16938178&intsrc=CATF_7094",
             "model_3d_status": null,
