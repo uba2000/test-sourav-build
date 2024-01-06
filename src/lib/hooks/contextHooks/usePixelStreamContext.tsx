@@ -66,7 +66,9 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       }
       const _pc_obj: Partial<(typeof _interaction_obj)['FullPC']> = {};
 
-      (props?._local_build ? props._local_build : _current_build).forEach((d) => {
+      const _build_array = (props?._local_build ? props._local_build : _current_build);
+
+      _build_array.forEach((d) => {
         switch (d.original_slug) {
           case 'case':
             _pc_obj.Case = d._id;
@@ -109,11 +111,30 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
         }
       })
 
+      // if (_build_array && _build_array.length === 0) {
+      //   pixelStreamRef.current?.emitUIInteraction({
+      //     Type: 'Reset_PC'
+      //   });
+      //   const Resetstringval = JSON.stringify({
+      //     Type: 'Reset_PC'
+      //   });
+      //   console.log('Unreal Event: Reset Fired', { Resetstringval });
+      // }
+
       _interaction_obj.FullPC = { ..._interaction_obj.FullPC, ..._pc_obj as (typeof _interaction_obj)['FullPC'] };
       pixelStreamRef.current.emitUIInteraction(_interaction_obj);
       pixelStreamRef.current.addResponseEventListener("handle_responses", myHandleResponseFunction);
       const stringval = JSON.stringify(_interaction_obj);
-      console.log(`Unreal Event: ${props?.type === 'add' ? 'Add' : props?.type === 'remove' ? 'Remove' : ''}${props?.type === 'remove' ? ' from' : props?.type === 'add' ? ' to' : ''} Full PC Build`, { stringval });
+
+
+      // if (_build_array.length === 0) {
+      //   console.log(`Unreal Event: Show Empty PC Build`, { stringval });
+      // } else if (_build_array.length === 10) {
+      //   console.log(`Unreal Event: Show Full PC Build (All Components)`, { stringval });
+      // } else if (props?.type && props?.type === 'add') {
+      //   console.log(`Unreal Event: Show Full PC Build (All Components)`, { stringval });
+      // }
+      console.log(`Unreal Event: ${props?.type === 'add' ? 'Add ' : props?.type === 'remove' ? 'Remove ' : ''}${props?.type === 'remove' ? ' from' : props?.type === 'add' ? ' to' : ''} Full PC Build ${_build_array.length === 0 ? ' - Empty' : ''}`, { stringval });
     }
   }, [_current_build])
 
@@ -122,12 +143,15 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
   }
 
   function resetPixelStream() {
-    console.log('Unreal Event: Reset Fired');
     pixelStreamRef.current?.disconnect();
     pixelStreamRef.current?.emitUIInteraction({
       Type: 'Reset_PC'
     });
-    completePixelStreaming({ _local_build: [] });
+    const stringval = JSON.stringify({
+      Type: 'Reset_PC'
+    });
+    console.log('Unreal Event: PC Build Reset Fired', { stringval });
+    // completePixelStreaming({ _local_build: [] });
     // pixelStreamRef.current = null;
   }
 

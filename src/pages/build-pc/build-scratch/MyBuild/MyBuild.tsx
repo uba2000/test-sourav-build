@@ -18,7 +18,7 @@ function MyBuild() {
   const {
     buildStages, currentBuild, addToRetailerUsersCart, showCurrentModelSpecs,
     toggleCanViewSpecs, setCurrentModelOnStage, toggleViewingComponentModel,
-    emitStreamSingleUIInteraction, completePixelStreaming,
+    emitStreamSingleUIInteraction, completePixelStreaming, resetPixelStream,
   } = useBuildPCContext()
   const { currentBuildStageIndex, nextToBuildIndex } = useBuildPCStages();
 
@@ -75,6 +75,16 @@ function MyBuild() {
       {!showCurrentModelSpecs && (
         <div className='flex flex-col gap-y-[10px]'>
           {/* <Button onClick={() => completePixelStreaming()}>Dummy Add to build</Button> */}
+
+          <div className="flex justify-end items-center gap-x-2">
+            <Button onClick={() => resetPixelStream()} className="min-w-fit py-2 px-3">
+              <div className="flex gap-2 items-center">
+                <span className="text-intel-e-gray-s2 text-xs font-IntelOneBodyTextMedium leading-[11px]">Reset Stream (Reset_PC)</span>
+                <RightArrow className='w-3 h-3' />
+              </div>
+            </Button>
+          </div>
+
           {(currentBuild.length === 0) && (
             <CardWithNotch notchHeight='small'>
               <div className="py-1 px-6 flex gap-2">
