@@ -27,7 +27,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
         Type: 'Show_Component',
         ComponentId: component_id,
       });
-      console.log(`Unreal Event: Product (${component_id}) Added To Build`, { stringval });
+      console.log(`Unreal Event: View Product (${component_id})`, { stringval });
     }
   }, []);
 
