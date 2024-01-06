@@ -62,7 +62,8 @@ function MyBuild() {
     if (currentBuild && currentBuild.length > 0) {
       completePixelStreaming({
         _local_build: currentBuild,
-        type: 'add'
+        // type: 'add'
+        // , meta: { _id: componentItem._id! }
       })
     }
   }, [currentBuild])

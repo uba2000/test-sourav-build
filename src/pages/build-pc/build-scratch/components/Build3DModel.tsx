@@ -67,7 +67,7 @@ function Build3DModel({
       return () => {
         try {
           // resetPixelStream()
-          console.log('Unreal Event: Video Stream removed from DOM');
+          console.log('Unreal Event: Unreal Pixel Stream Ended');
 
         } catch { }
       };

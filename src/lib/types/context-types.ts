@@ -201,6 +201,7 @@ export interface IBuildPCContext {
   completePixelStreaming: (props?: {
     _local_build?: IBuildComponent[] | null;
     type?: "add" | "remove";
+    meta?: { _id?: string };
   }) => void;
   emitStreamSingleUIInteraction: (_args: IEmitStreamUIInteraction) => void;
 }

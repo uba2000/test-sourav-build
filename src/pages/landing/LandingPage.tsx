@@ -20,9 +20,13 @@ type LandingPointsType = {
 
 function LandingPage() {
   const LandingPoints = useMemo<LandingPointsType>(() => [
-    { title: 'Set your targets', description: 'Game titles. Resolution. FPS. Tell us what you want, we’ll deliver the performance you need.' },
-    { title: 'Choose your weapons', description: 'Compare components or systems for performance, specs and price to find the right fit.' },
-    { title: 'Optimize, Maximize', description: 'Fine tune preferences to perfect your build.' },
+    { title: 'Set your goals', description: 'Game titles. Resolution. FPS. Tell us what you want, we’ll deliver the performance you need.' },
+    {
+      title: 'Explore your options', description: 'Select components or systems for performance, specs and price to find the right fit.'
+    },
+    {
+      title: 'Optimize. Maximize.', description: 'Fine tune preferences to perfect your build.'
+    },
   ], []);
 
   return (

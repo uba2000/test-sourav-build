@@ -11,22 +11,21 @@ function useStreamStarted(cb: () => void = () => { }) {
 
   useEffect(() => {
     if (pixelStreamRef.current && !streamPlaying) {
-      console.log('Unreal Event: Add webRtcConnected and playStream listeners for stream');
+      console.log('Unreal Event: Unreal Pixel Stream \'webRtcConnected\' event listeners added');
       pixelStreamRef.current.addEventListener('webRtcConnected', () => {
-        console.log('Unreal Event: webRtcConnected listeners fired for stream');
+        console.log('Unreal Event: Unreal Pixel Stream \'webRtcConnected\' event listeners fired');
         handleSetStreamPlaying(true);
       })
 
-      pixelStreamRef.current.addEventListener('playStream', () => {
-        console.log('Unreal Event: playStream listeners fired for stream');
-        handleSetStreamPlaying(true);
-      })
+      // pixelStreamRef.current.addEventListener('playStream', () => {
+      //   console.log('Unreal Event: playStream listeners fired for stream');
+      //   handleSetStreamPlaying(true);
+      // })
     }
   }, [pixelStreamRef.current, streamPlaying])
 
   useEffect(() => {
     if (streamPlaying) {
-      console.log('Unreal Event: Stream fired for stream - ', streamPlaying);
       setTimeout(() => {
         cb();
         // handleSetStreamPlaying(false);

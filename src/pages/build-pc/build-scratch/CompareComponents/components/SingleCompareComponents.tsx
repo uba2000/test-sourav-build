@@ -220,7 +220,7 @@ function SingleCompareComponents({
       removeComponentToBuild({
         category_slug: _category_slug!, component_id: componentItem._id!,
         cb: (_build: IBuildComponent[]) => {
-          completePixelStreaming({ _local_build: _build, type: 'remove' });
+          completePixelStreaming({ _local_build: _build, type: 'remove', meta: { _id: componentItem._id! } });
         }
       })
 

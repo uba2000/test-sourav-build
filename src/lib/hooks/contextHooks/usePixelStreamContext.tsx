@@ -13,7 +13,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
   const [streamPlaying, setStreamPlaying] = useState(false);
 
   function setPixelStream(_pixelStream: PixelStreaming) {
-    console.log('Unreal Event: Set Stream Instance', { _pixelStream });
+    console.log('Unreal Event: Unreal Pixel Stream Started', { _pixelStream });
 
     pixelStreamRef.current = _pixelStream
   }
@@ -47,6 +47,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
   const completePixelStreaming = useCallback((props: {
     _local_build?: IBuildComponent[] | null;
     type?: "add" | "remove";
+    meta: { _id: string }
   }) => {
     if (pixelStreamRef.current) {
 
@@ -126,15 +127,20 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       pixelStreamRef.current.addResponseEventListener("handle_responses", myHandleResponseFunction);
       const stringval = JSON.stringify(_interaction_obj);
 
+      console.log(props?.type);
 
-      // if (_build_array.length === 0) {
-      //   console.log(`Unreal Event: Show Empty PC Build`, { stringval });
-      // } else if (_build_array.length === 10) {
-      //   console.log(`Unreal Event: Show Full PC Build (All Components)`, { stringval });
-      // } else if (props?.type && props?.type === 'add') {
-      //   console.log(`Unreal Event: Show Full PC Build (All Components)`, { stringval });
-      // }
-      console.log(`Unreal Event: ${props?.type === 'add' ? 'Add ' : props?.type === 'remove' ? 'Remove ' : ''}${props?.type === 'remove' ? ' from' : props?.type === 'add' ? ' to' : ''} Full PC Build ${_build_array.length === 0 ? ' - Empty' : ''}`, { stringval });
+      if (_build_array.length === 0) {
+        console.log(`Unreal Event: Show Empty PC Build`, { stringval });
+      } else if (_build_array.length === 10) {
+        console.log(`Unreal Event: Show Full PC Build (All Components)`, { stringval });
+      } else if (props?.type && props?.type === 'add') {
+        console.log(`Unreal Event: Unreal Product Added to PC Build (${props?.meta?._id})`, { stringval });
+      } else if (props?.type && props?.type === 'remove') {
+        console.log(`Unreal Event: Product Removed From PC Build (${props?.meta?._id})`, { stringval });
+      } else {
+        console.log(`Unreal Event: Current PC Build`, { stringval });
+      }
+      // console.log(`Unreal Event: ${props?.type === 'add' ? 'Add ' : props?.type === 'remove' ? 'Remove ' : ''}${props?.type === 'remove' ? ' from' : props?.type === 'add' ? ' to' : ''} Full PC Build ${_build_array.length === 0 ? ' - Empty' : ''}`, { stringval });
     }
   }, [_current_build])
 
