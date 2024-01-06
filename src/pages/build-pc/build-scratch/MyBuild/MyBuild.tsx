@@ -10,6 +10,7 @@ import { Fragment, useEffect, useMemo, useState } from 'react';
 import SingleCompareComponents from '../CompareComponents/components/SingleCompareComponents';
 import { IBuildStagesSlugs } from '../../../../lib/types/context-types';
 import BuildLayoutChild from '../components/BuildLayoutChild';
+import useSingleEffectCall from '../../../../lib/hooks/useSingleEffectCall';
 
 function MyBuild() {
   const matches = useMatches();
@@ -58,7 +59,7 @@ function MyBuild() {
     scrollBodyToTop();
   }, [])
 
-  useEffect(() => {
+  useSingleEffectCall(() => {
     if (currentBuild && currentBuild.length > 0) {
       completePixelStreaming({
         _local_build: currentBuild,
@@ -66,7 +67,7 @@ function MyBuild() {
         // , meta: { _id: componentItem._id! }
       })
     }
-  }, [currentBuild])
+  })
 
   return (
     <BuildLayoutChild

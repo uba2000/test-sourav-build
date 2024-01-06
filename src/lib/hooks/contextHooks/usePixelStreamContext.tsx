@@ -138,7 +138,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       } else if (props?.type && props?.type === 'remove') {
         console.log(`Unreal Event: Product Removed From PC Build (${props?.meta?._id})`, { stringval });
       } else {
-        console.log(`Unreal Event: Current PC Build`, { stringval });
+        console.log(`Unreal Event: Show Current PC Build`, { stringval });
       }
       // console.log(`Unreal Event: ${props?.type === 'add' ? 'Add ' : props?.type === 'remove' ? 'Remove ' : ''}${props?.type === 'remove' ? ' from' : props?.type === 'add' ? ' to' : ''} Full PC Build ${_build_array.length === 0 ? ' - Empty' : ''}`, { stringval });
     }
