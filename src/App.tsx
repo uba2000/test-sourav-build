@@ -15,7 +15,7 @@ import SuspenseScreen from './components/SuspenseScreen/SuspenseScreen';
 // App.tsx
 function App() {
   const router = useRouterRoutes()
-  console.log('Unreal Event: Build Version - v1.0.7');
+  console.log('Unreal Event: Build Version - v1.0.8');
 
   return (
     <React.Suspense fallback={<SuspenseScreen />}>

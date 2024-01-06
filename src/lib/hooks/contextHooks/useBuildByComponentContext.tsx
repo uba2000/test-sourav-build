@@ -240,7 +240,7 @@ function useBuildByComponentContext() {
     setBuildStages(_buildStages);
   }
 
-  function _highestSegmentCPUGPU({ cpu_id, gpu_id }: { cpu_id: string; gpu_id: string; }) {
+  function _highestSegmentCPUGPU({ cpu_id, gpu_id, }: { cpu_id: string; gpu_id: string; }) {
     const _portinos_product_feed = portinos_product_feed as IPortinosProductFeed;
 
     const cpu_product = _portinos_product_feed.products.find(
@@ -336,7 +336,7 @@ function useBuildByComponentContext() {
           if ((_fps_below_range_max?.fps && _fps_value < _max_value && _fps_value >= parseInt(_fps_below_range_max?.fps, 10))
             || !_fps_below_range_max?.fps) {
 
-            const _final_obj = {
+            let _final_obj = {
               cpu: product.cpu,
               cpu_gpu_key: product.cpu_gpu_key,
               gpu: product.gpu,
@@ -347,8 +347,8 @@ function useBuildByComponentContext() {
 
             if (_fps_below_range_max && _fps_value === parseInt(_fps_below_range_max?.fps as string, 10) && _fps_below_range_max?.segment) {
 
-              if (preferenceBuildSegmentWeight[highest_segment!] < preferenceBuildSegmentWeight[_fps_below_range_max.segment]) {
-                _final_obj.segment = _fps_below_range_max.segment
+              if (preferenceBuildSegmentWeight[highest_segment!] > preferenceBuildSegmentWeight[_fps_below_range_max.segment]) {
+                _final_obj = _fps_below_range_max as typeof _final_obj
               }
             }
 
@@ -370,7 +370,7 @@ function useBuildByComponentContext() {
               // there is initial fps value and the initial fps value is less than current fps value
               // OR there is no initial fps value
               if ((_fps_above_range_max?.fps && _fps_value < parseInt(_fps_above_range_max?.fps, 10)) || !_fps_above_range_max?.fps) {
-                const _final_obj = {
+                let _final_obj = {
                   cpu: product.cpu,
                   cpu_gpu_key: product.cpu_gpu_key,
                   gpu: product.gpu,
@@ -380,8 +380,8 @@ function useBuildByComponentContext() {
                 }
 
                 if (_fps_above_range_max && _fps_value === parseInt(_fps_above_range_max?.fps as string, 10) && _fps_above_range_max?.segment) {
-                  if (preferenceBuildSegmentWeight[highest_segment!] < preferenceBuildSegmentWeight[_fps_above_range_max.segment]) {
-                    _final_obj.segment = _fps_above_range_max.segment;
+                  if (preferenceBuildSegmentWeight[highest_segment!] > preferenceBuildSegmentWeight[_fps_above_range_max.segment]) {
+                    _final_obj = _fps_above_range_max as typeof _final_obj;
                   }
                 }
 
@@ -400,7 +400,7 @@ function useBuildByComponentContext() {
             } else if (_data) {
               if (parseInt(_d?.fps as string, 10) <= parseInt(_data.fps!, 10)) {
                 if (_d?.segment && _data.segment) {
-                  if (preferenceBuildSegmentWeight[_d.segment!] > preferenceBuildSegmentWeight[_data.segment]) {
+                  if (preferenceBuildSegmentWeight[_d.segment!] < preferenceBuildSegmentWeight[_data.segment]) {
                     _data = _d;
                   }
                 } else {
@@ -490,7 +490,7 @@ function useBuildByComponentContext() {
       if (a_d.highest_segment) {
         if (!_highest_segment) {
           _highest_segment = a_d.highest_segment;
-        } else if (preferenceBuildSegmentWeight[a_d.highest_segment] > preferenceBuildSegmentWeight[_highest_segment]) {
+        } else if (preferenceBuildSegmentWeight[a_d.highest_segment] < preferenceBuildSegmentWeight[_highest_segment]) {
           _highest_segment = a_d.highest_segment;
         }
       }
