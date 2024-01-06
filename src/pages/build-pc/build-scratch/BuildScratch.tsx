@@ -9,9 +9,10 @@ import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext
 import PreferenceBox from './components/PreferenceBox';
 import BuildLayoutChild from './components/BuildLayoutChild';
 import { useEffect } from 'react';
+import useStreamStarted from '../../../lib/hooks/useStreamStarted';
 
 function BuildScratch() {
-  const { togglePreBuildToCurrentBuildForPreview, completePixelStreaming } = useBuildPCContext()
+  const { togglePreBuildToCurrentBuildForPreview, completePixelStreaming, currentBuild } = useBuildPCContext()
   const navigate = useNavigate()
 
   function startBuildFromScratch() {
@@ -22,6 +23,18 @@ function BuildScratch() {
   function choosePreconfiged() {
     navigate(RouteNames.preconfiguredSystemIndex)
   }
+
+  useEffect(() => {
+    if (currentBuild && currentBuild.length > 0) {
+      togglePreBuildToCurrentBuildForPreview('remove');
+    }
+  }, [currentBuild])
+
+  useStreamStarted(() => {
+    completePixelStreaming({
+      _local_build: [],
+    })
+  })
 
   useEffect(() => {
     setTimeout(() => {
