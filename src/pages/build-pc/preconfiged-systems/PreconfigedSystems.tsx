@@ -6,6 +6,7 @@ import _ from 'lodash';
 import SingleCompareComponents from '../build-scratch/CompareComponents/components/SingleCompareComponents';
 import { IBuildStagesSlugs } from '../../../lib/types/context-types';
 import useSingleEffectCall from '../../../lib/hooks/useSingleEffectCall';
+import BuildLayoutChild from '../build-scratch/components/BuildLayoutChild';
 
 function PreconfigedSystems() {
   const {
@@ -87,7 +88,7 @@ function PreconfigedSystems() {
   }, [])
 
   return (
-    <BuildLayout
+    <BuildLayoutChild
       showPriceSection
       // stagesStatus='complete'
       layout_r_title={!showCurrentModelSpecs ? `${_.capitalize(predefinedBuilds?.build_segment)} build` : ''}
@@ -123,7 +124,7 @@ function PreconfigedSystems() {
         // handleAddComponentToBuild={handleAddComponentToBuild}
         />
       )}
-    </BuildLayout>
+    </BuildLayoutChild>
   )
 }
 

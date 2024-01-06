@@ -1,6 +1,5 @@
 import CardWithNotch from '../../../components/CardWithNotch/CardWithNotch';
 import Button from '../../../components/Button/Button';
-import BuildLayout from './components/BuildLayout';
 
 import InfoPointer from '../../../assets/info-pointer.svg?react'
 import RightArrow from '../../../assets/right-arrow.svg?react'
@@ -8,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import RouteNames from '../../../lib/utils/routenames';
 import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext';
 import PreferenceBox from './components/PreferenceBox';
+import BuildLayoutChild from './components/BuildLayoutChild';
 
 function BuildScratch() {
   const { togglePreBuildToCurrentBuildForPreview } = useBuildPCContext()
@@ -23,7 +23,7 @@ function BuildScratch() {
   }
 
   return (
-    <BuildLayout layout_r_title='Ready to start?'>
+    <BuildLayoutChild layout_r_title='Ready to start?'>
       {/* <BuildLayout.HeaderTitle title='Ready to build?' /> */}
 
       <div className="flex flex-col gap-y-4">
@@ -80,7 +80,7 @@ function BuildScratch() {
 
         <PreferenceBox />
       </div>
-    </BuildLayout>
+    </BuildLayoutChild>
   )
 }
 

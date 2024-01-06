@@ -1,7 +1,6 @@
 import { useMatches, useNavigate } from 'react-router-dom';
 import useBuildPCStages from '../../../../lib/hooks/useBuildPCStages';
 import RouteNames from '../../../../lib/utils/routenames';
-import BuildLayout from '../components/BuildLayout';
 import CardWithNotch from '../../../../components/CardWithNotch/CardWithNotch';
 import Button from '../../../../components/Button/Button';
 import RightArrow from '../../../../assets/right-arrow.svg?react'
@@ -11,6 +10,7 @@ import { Fragment, useEffect, useMemo, useState } from 'react';
 import SingleCompareComponents from '../CompareComponents/components/SingleCompareComponents';
 import { IBuildStagesSlugs } from '../../../../lib/types/context-types';
 import useSingleEffectCall from '../../../../lib/hooks/useSingleEffectCall';
+import BuildLayoutChild from '../components/BuildLayoutChild';
 
 function MyBuild() {
   const matches = useMatches();
@@ -87,7 +87,7 @@ function MyBuild() {
   }, [currentBuild, canPlayStream])
 
   return (
-    <BuildLayout
+    <BuildLayoutChild
       layout_r_title={`${!showCurrentModelSpecs ? 'My Build' : ''}`}
       showPriceSection={currentBuildStageIndex > 0}
     >
@@ -149,7 +149,7 @@ function MyBuild() {
         // handleAddComponentToBuild={handleAddComponentToBuild}
         />
       )}
-    </BuildLayout>
+    </BuildLayoutChild>
   )
 }
 

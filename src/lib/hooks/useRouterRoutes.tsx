@@ -14,6 +14,32 @@ import ResetSession from '../../pages/reset-session/ResetSession';
 
 const BuildPreference = React.lazy(() => import('../../pages/build-pc/preference/BuildPreference'));
 
+export const Build_Routes = [
+  // {
+  //   path: RouteNames.buildPC,
+  //   element: <BuildScratch />
+  // },
+  {
+    path: RouteNames.buildPCMyBuild,
+    element: <MyBuild />
+  },
+  // {
+  //   path: RouteNames.testStream,
+  //   element: <Page3D />
+  // },
+  {
+    path: `${RouteNames.buildChooseComponent}/:category_slug`,
+    element: <ChooseComponents />
+  },
+  {
+    path: `${RouteNames.buildCompareComponent}/:category_slug`,
+    element: <CompareComponents />
+  },
+  {
+    path: RouteNames.preconfiguredSystemIndex,
+    element: <PreconfigedSystems />
+  },
+];
 
 function useRouterRoutes() {
   const router = createBrowserRouter([
@@ -29,6 +55,7 @@ function useRouterRoutes() {
           path: RouteNames.buildPreferenceIndex,
           element: <BuildPreference />
         },
+        // Build routes
         {
           path: RouteNames.buildPC,
           element: <BuildScratch />
