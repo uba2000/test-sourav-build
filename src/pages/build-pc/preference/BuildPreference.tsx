@@ -20,6 +20,7 @@ import { PreferenceResolutionsTitleType } from "../../../lib/types/context-types
 import NavLinkCopy from "../../../components/NavLinkCopy/NavLinkCopy"
 import { noPreferenceName } from "./BuildGamePreferences"
 import Div100vh from "../../../components/Widgets/Div100vh"
+import { CONSTANT_BASE_URL } from "../../../lib/utils/util-constants"
 
 function BuildPreference() {
   const location = useLocation()
@@ -147,7 +148,7 @@ function BuildPreference() {
                     <button type="button" onClick={() => resetApp()}>
                       <ReloadIcon className="w-[36px] h-[36px]" />
                     </button>
-                    <NavLinkCopy link={`https://dev.d26ohjimvrz87s.amplifyapp.com${location.pathname}`} />
+                    <NavLinkCopy link={`${CONSTANT_BASE_URL}${location.pathname}`} />
                   </div>
                 </PolygonContainer>
               </div>
@@ -160,7 +161,7 @@ function BuildPreference() {
                     <button type="button" onClick={() => resetApp()}>
                       <ReloadIcon className="w-[36px] h-[36px]" />
                     </button>
-                    <NavLinkCopy link={`https://dev.d26ohjimvrz87s.amplifyapp.com${location.pathname}`} />
+                    <NavLinkCopy link={`${CONSTANT_BASE_URL}${location.pathname}`} />
                   </div>
                 </PolygonContainer>
               </div>

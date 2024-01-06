@@ -17,6 +17,7 @@ import Modal from '../../../../components/Modal/Modal';
 import NavLinkCopy from '../../../../components/NavLinkCopy/NavLinkCopy';
 import Build3DModel from './Build3DModel';
 import Div100vh from '../../../../components/Widgets/Div100vh';
+import { CONSTANT_BASE_URL } from '../../../../lib/utils/util-constants';
 
 export interface IBuildLayout {
   children: React.ReactNode;
@@ -106,7 +107,7 @@ function BuildLayout({ stagesStatus = 'auto' }) {
                 <button type="button" onClick={() => resetApp()}>
                   <ReloadIcon className='w-[36px] h-[36px]' />
                 </button>
-                <NavLinkCopy link={`https://dev.d26ohjimvrz87s.amplifyapp.com${location.pathname}`} />
+                <NavLinkCopy link={`${CONSTANT_BASE_URL}${location.pathname}`} />
               </div>
             </PolygonContainer>
             <PolygonContainer className="min-w-[246px]">
