@@ -122,7 +122,7 @@ function BuildLayoutChild({ children, stagesStatus = 'auto', layout_r_title, tot
                   <span className='text-white-75 text-[10px] leading-[11px] whitespace-nowrap font-IntelOneBodyTextMedium uppercase'>Total Price</span>
                   <span className=''>
                     <span className='font-IntelOneBodyTextMedium'>
-                      $
+                      <span className="font-sans">$</span>
                       {formatNumberWithCommas(parseInt(totalPrice || "0") || currentBuild.reduce((sum, product) => sum + (product?.price || 0), 0))}
                     </span>
                     {/* <span className='text-[22px] font-IntelOneBodyTextMedium'>$3,478.99</span> */}
