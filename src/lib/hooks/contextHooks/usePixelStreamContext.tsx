@@ -43,7 +43,10 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
     }
   }
 
-  const completePixelStreaming = useCallback((_local_build: IBuildComponent[] | null = null) => {
+  const completePixelStreaming = useCallback((props: {
+    _local_build?: IBuildComponent[] | null;
+    type?: "add" | "remove";
+  }) => {
     if (pixelStreamRef.current) {
 
       const _interaction_obj = {
@@ -62,7 +65,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       }
       const _pc_obj: Partial<(typeof _interaction_obj)['FullPC']> = {};
 
-      (_local_build ? _local_build : _current_build).forEach((d) => {
+      (props?._local_build ? props._local_build : _current_build).forEach((d) => {
         switch (d.original_slug) {
           case 'case':
             _pc_obj.Case = d._id;
@@ -109,7 +112,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       pixelStreamRef.current.emitUIInteraction(_interaction_obj);
       pixelStreamRef.current.addResponseEventListener("handle_responses", myHandleResponseFunction);
       const stringval = JSON.stringify(_interaction_obj);
-      console.log(`Unreal Event: Full PC Build`, { stringval });
+      console.log(`Unreal Event: ${props?.type === 'add' ? 'Add' : 'Remove'}${props?.type ? ' from ' : ''} Full PC Build`, { stringval });
     }
   }, [_current_build])
 
@@ -123,7 +126,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
     pixelStreamRef.current?.emitUIInteraction({
       Type: 'Reset_PC'
     });
-    completePixelStreaming([]);
+    completePixelStreaming({ _local_build: [] });
     // pixelStreamRef.current = null;
   }
 

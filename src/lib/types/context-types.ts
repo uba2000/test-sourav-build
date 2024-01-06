@@ -196,7 +196,13 @@ export interface IBuildPCContext {
 
   resetPixelStream: () => void;
   setPixelStream: (_pixelStream: PixelStreaming) => void;
-  completePixelStreaming: () => void;
+  completePixelStreaming: ({
+    _local_build,
+    type,
+  }?: {
+    _local_build?: IBuildComponent[] | null;
+    type?: "add" | "remove";
+  }) => void;
   emitStreamSingleUIInteraction: (_args: IEmitStreamUIInteraction) => void;
 }
 
