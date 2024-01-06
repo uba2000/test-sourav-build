@@ -40,7 +40,9 @@ function MyBuild() {
     const _item = currentBuild.find((d) => d._id === _id);
     toggleCanViewSpecs(true);
     setCurrentModelOnStage(_item?.image as string);
-    emitStreamSingleUIInteraction({ component_id: _id })
+    if (selectedItemID !== _id) {
+      emitStreamSingleUIInteraction({ component_id: _id })
+    }
     if ((selectedItemID === _id || !selectedItemID) && selectedItemID !== _id) {
       toggleViewingComponentModel();
     }

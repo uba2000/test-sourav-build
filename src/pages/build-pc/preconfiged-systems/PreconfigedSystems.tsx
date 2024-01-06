@@ -50,7 +50,9 @@ function PreconfigedSystems() {
     toggleCanViewSpecs(true);
     setCategorySlug(_item?.category_slug);
     setCurrentModelOnStage(_item?.image as string);
-    emitStreamSingleUIInteraction({ component_id: _id })
+    if (selectedItemID !== _id) {
+      emitStreamSingleUIInteraction({ component_id: _id })
+    }
     if ((selectedItemID === _id || !selectedItemID) && selectedItemID !== _id) {
       toggleViewingComponentModel();
     }
