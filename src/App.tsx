@@ -6,7 +6,6 @@ import SuspenseScreen from './components/SuspenseScreen/SuspenseScreen';
 // App.tsx
 function App() {
   const router = useRouterRoutes()
-  console.log('v1.0.0');
 
   return (
     <React.Suspense fallback={<SuspenseScreen />}>

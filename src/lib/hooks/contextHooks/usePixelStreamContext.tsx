@@ -12,7 +12,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
   const pixelStreamRef = useRef<any>(null)
 
   function setPixelStream(_pixelStream: PixelStreaming) {
-    console.log({ _pixelStream });
+    console.log('Unreal Event: Set Stream Instance', { _pixelStream });
 
     pixelStreamRef.current = _pixelStream
   }
@@ -27,7 +27,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
         Type: 'Show_Component',
         ComponentId: component_id,
       });
-      console.log(stringval);
+      console.log(`Unreal Event: Product (${component_id}) Added To Build`, { stringval });
     }
   }, []);
 
@@ -109,9 +109,13 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       pixelStreamRef.current.emitUIInteraction(_interaction_obj);
       pixelStreamRef.current.addResponseEventListener("handle_responses", myHandleResponseFunction);
       const stringval = JSON.stringify(_interaction_obj);
-      console.log(stringval);
+      console.log(`Unreal Event: Full PC Build`, { stringval });
     }
   }, [_current_build])
+
+  // function resetAndStartStream() {
+
+  // }
 
   function resetPixelStream() {
     console.log('Unreal Event: Reset Fired');
@@ -119,7 +123,8 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
     pixelStreamRef.current?.emitUIInteraction({
       Type: 'Reset_PC'
     });
-    pixelStreamRef.current = null;
+    completePixelStreaming();
+    // pixelStreamRef.current = null;
   }
 
   return {

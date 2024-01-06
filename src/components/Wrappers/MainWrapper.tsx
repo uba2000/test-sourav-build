@@ -17,6 +17,7 @@ export default function MainWrapper() {
   const isOnPreferenceFlow = matchRoutes(preferenceFlow, location)
   const isOnBuildFlow = matchRoutes(buildFlow, location)
   const height = use100vh();
+  console.log('Build Version: v1.0.1');
 
   return (
     <BuildPCContextWrapper>
