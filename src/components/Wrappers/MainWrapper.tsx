@@ -11,7 +11,7 @@ const normalFlow = [{ path: "/" }]
 const preferenceFlow = [{ path: RouteNames.buildPreferenceIndex }]
 const buildFlow = [{ path: "/build-pc/*" }, { path: RouteNames.resetSessionPage }]
 
-export default function MainWrapper() {
+export function MainWrappersWrapper({ children }: { children: React.ReactNode }) {
   const location = useLocation()
   const isOnNormalFlow = matchRoutes(normalFlow, location)
   const isOnPreferenceFlow = matchRoutes(preferenceFlow, location)
@@ -40,13 +40,21 @@ export default function MainWrapper() {
                   { "bg-gaming-navy": isOnBuildFlow },
                 )}
               >
-                <Outlet />
+                {children}
               </div>
             </ValidateBuildHasData>
           </div>
         </div>
       </div>
     </BuildPCContextWrapper>
+  )
+}
+
+export default function MainWrapper() {
+  return (
+    <MainWrappersWrapper>
+      <Outlet />
+    </MainWrappersWrapper>
   )
 }
 

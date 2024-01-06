@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import PolygonContainer from '../../../../components/PolygonContainer/PolygonContainer';
-import BuildLayout from '../components/BuildLayout'
 import ChooseComponentItem from './components/ChooseComponentItem';
 import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import Button from '../../../../components/Button/Button';
@@ -15,6 +14,7 @@ import RightArrow from '../../../../assets/right-arrow-white.svg?react'
 import { BuildFlowType, IBuildComponent, IBuildStages, IBuildStagesSlugs, ProductPredefinedPresets } from '../../../../lib/types/context-types';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
 import useBuildPlaceholders from '../../../../lib/hooks/useBuildPlaceholders';
+import BuildLayoutChild from '../components/BuildLayoutChild';
 
 function ChooseComponents() {
   const matches = useMatches();
@@ -143,7 +143,7 @@ function ChooseComponents() {
   }, [])
 
   return (
-    <BuildLayout layout_r_title={`${!showCurrentModelSpecs ? `Select a ${stageDetails?.title?.toLowerCase()}` : ''}`}>
+    <BuildLayoutChild layout_r_title={`${!showCurrentModelSpecs ? `Select a ${stageDetails?.title?.toLowerCase()}` : ''}`}>
       {!showCurrentModelSpecs && (
         <>
           {/* Comparison section */}
@@ -225,7 +225,7 @@ function ChooseComponents() {
           handleAddComponentToBuild={handleAddComponentToBuild}
         />
       )}
-    </BuildLayout>
+    </BuildLayoutChild>
   )
 }
 

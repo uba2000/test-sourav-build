@@ -196,8 +196,4 @@ BuildLayout.HeaderGroup = function BuildLayoutHeaderGroup({ title }: { title: st
   )
 }
 
-
-
-
-
 export default BuildLayout

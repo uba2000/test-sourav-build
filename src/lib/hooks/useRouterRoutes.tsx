@@ -11,6 +11,7 @@ import CompareComponents from '../../pages/build-pc/build-scratch/CompareCompone
 import MyBuild from '../../pages/build-pc/build-scratch/MyBuild/MyBuild';
 import PreconfigedSystems from '../../pages/build-pc/preconfiged-systems/PreconfigedSystems';
 import ResetSession from '../../pages/reset-session/ResetSession';
+import BuildLayout from '../../pages/build-pc/build-scratch/components/BuildLayout';
 
 const BuildPreference = React.lazy(() => import('../../pages/build-pc/preference/BuildPreference'));
 
@@ -55,35 +56,41 @@ function useRouterRoutes() {
           path: RouteNames.buildPreferenceIndex,
           element: <BuildPreference />
         },
-        // Build routes
-        {
-          path: RouteNames.buildPC,
-          element: <BuildScratch />
-        },
-        {
-          path: RouteNames.buildPCMyBuild,
-          element: <MyBuild />
-        },
-        // {
-        //   path: RouteNames.testStream,
-        //   element: <Page3D />
-        // },
-        {
-          path: `${RouteNames.buildChooseComponent}/:category_slug`,
-          element: <ChooseComponents />
-        },
-        {
-          path: `${RouteNames.buildCompareComponent}/:category_slug`,
-          element: <CompareComponents />
-        },
-        {
-          path: RouteNames.preconfiguredSystemIndex,
-          element: <PreconfigedSystems />
-        },
         {
           path: RouteNames.resetSessionPage,
           element: <ResetSession />
         },
+        {
+          path: RouteNames.buildPC,
+          element: <BuildLayout />,
+          children: [
+            // Build routes
+            {
+              index: true,
+              element: <BuildScratch />
+            },
+            {
+              path: RouteNames.buildPCMyBuild,
+              element: <MyBuild />
+            },
+            // {
+            //   path: RouteNames.testStream,
+            //   element: <Page3D />
+            // },
+            {
+              path: `${RouteNames.buildChooseComponent}/:category_slug`,
+              element: <ChooseComponents />
+            },
+            {
+              path: `${RouteNames.buildCompareComponent}/:category_slug`,
+              element: <CompareComponents />
+            },
+            {
+              path: RouteNames.preconfiguredSystemIndex,
+              element: <PreconfigedSystems />
+            },
+          ]
+        }
       ],
     },
   ]);
