@@ -36,13 +36,13 @@ function BuildScratch() {
     })
   })
 
-  useEffect(() => {
-    setTimeout(() => {
-      completePixelStreaming({
-        _local_build: [],
-      })
-    }, 1000)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     completePixelStreaming({
+  //       _local_build: [],
+  //     })
+  //   }, 1000)
+  // }, [])
 
   return (
     <BuildLayoutChild layout_r_title='Ready to start?'>

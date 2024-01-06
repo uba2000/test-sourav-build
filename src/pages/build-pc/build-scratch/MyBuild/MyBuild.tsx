@@ -81,7 +81,7 @@ function MyBuild() {
           <div className="flex justify-end items-center gap-x-2">
             <Button onClick={() => resetPixelStream()} className="min-w-fit py-2 px-3">
               <div className="flex gap-2 items-center">
-                <span className="text-intel-e-gray-s2 text-xs font-IntelOneBodyTextMedium leading-[11px]">Reset Stream (Reset_PC)</span>
+                <span className="text-intel-e-gray-s2 text-xs font-IntelOneBodyTextMedium leading-[11px]">Reset Build (Reset_PC)</span>
                 <RightArrow className='w-3 h-3' />
               </div>
             </Button>
