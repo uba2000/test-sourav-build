@@ -11,7 +11,7 @@ import clsx from 'clsx'
 import DoughnutChart from '../../../../../components/DoughnutChart/DoughnutChart'
 import type { IDoughnutChartData } from '../../../../../components/DoughnutChart/types'
 import useBuildPCStages from '../../../../../lib/hooks/useBuildPCStages'
-import { IBuildComponent, IBuildStages, IBuildStagesSlugs, PreferenceResolutionsTitleType, ProductRating } from '../../../../../lib/types/context-types'
+import { IAllGamesMinMaxFPS, IBuildComponent, IBuildStages, IBuildStagesSlugs, PreferenceResolutionsTitleType, ProductRating } from '../../../../../lib/types/context-types'
 import PolygonContainer from '../../../../../components/PolygonContainer/PolygonContainer'
 import { getSpecDetailsImage } from '../../../../../lib/utils/util-asset-urls'
 import Select from '../../../../../components/Select/Select'
@@ -23,7 +23,7 @@ import {
 } from '../../../../../lib/api/portinosAPI'
 import { getPreferencesData, preferenceUrlEndpoint as preferenceCacheKey } from '../../../../../lib/api/preferenceAPI'
 import { formatPreferencesData } from '../../../../../lib/utils/util-build-preference'
-import { noPreferenceName } from '../../../preference/BuildGamePreferences'
+import BuildGamePreferences, { noPreferenceName } from '../../../preference/BuildGamePreferences'
 
 interface ISingleCompareComponents {
   handleAddComponentToBuild?: (_id: string) => void;
@@ -140,6 +140,7 @@ function SingleCompareComponents({
   }, [preferences.gaming_resolution])
 
   const percentageFPS = useMemo(() => {
+    // total for a game and resolution then fps value for that cpu/gpu combination
     const _preferences_feed = formatPreferencesData({ _data: preferences_feed })
 
     let cpu: string | null, gpu: string | null;
@@ -156,7 +157,29 @@ function SingleCompareComponents({
 
     const _game_fps = _cleanGameInfoArray?.gameTitles[currentGameTitle][gamingAt!]
 
-    const _game_max_fps = allGamesMinMaxFPS.max[currentGameTitle]
+    const unfiltered_results_minMax: IAllGamesMinMaxFPS = { min: {}, max: {} };
+
+    BuildGamePreferences.filter(d => d.title !== noPreferenceName).forEach(({ title }) => {
+      unfiltered_results_minMax.min[title] = Number.MAX_SAFE_INTEGER;
+      unfiltered_results_minMax.max[title] = Number.MIN_SAFE_INTEGER;
+
+      _preferences_feed.forEach((item) => {
+        const game = item.gameTitles[title];
+        if (game) {
+          unfiltered_results_minMax.min[title] = Math.min(
+            unfiltered_results_minMax.min[title],
+            parseInt(game[gamingAt!])
+          );
+
+          unfiltered_results_minMax.max[title] = Math.max(
+            unfiltered_results_minMax.max[title],
+            parseInt(game[gamingAt!])
+          );
+        }
+      });
+    });
+
+    const _game_max_fps = unfiltered_results_minMax.max[currentGameTitle];
     return {
       fpsPercentage: !_game_fps
         ? 0
