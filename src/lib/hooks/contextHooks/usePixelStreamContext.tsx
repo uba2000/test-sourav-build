@@ -43,7 +43,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
     }
   }
 
-  const completePixelStreaming = useCallback(() => {
+  const completePixelStreaming = useCallback((_local_build: IBuildComponent[] | null = null) => {
     if (pixelStreamRef.current) {
 
       const _interaction_obj = {
@@ -62,7 +62,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       }
       const _pc_obj: Partial<(typeof _interaction_obj)['FullPC']> = {};
 
-      _current_build.forEach((d) => {
+      (_local_build ? _local_build : _current_build).forEach((d) => {
         switch (d.original_slug) {
           case 'case':
             _pc_obj.Case = d._id;
@@ -123,7 +123,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
     pixelStreamRef.current?.emitUIInteraction({
       Type: 'Reset_PC'
     });
-    completePixelStreaming();
+    completePixelStreaming([]);
     // pixelStreamRef.current = null;
   }
 
