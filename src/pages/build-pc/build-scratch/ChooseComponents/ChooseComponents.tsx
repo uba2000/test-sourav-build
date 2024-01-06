@@ -111,6 +111,9 @@ function ChooseComponents() {
     toggleViewingComponentModel(false);
     setCurrentModelOnStage('');
     addComponentToBuild({ category_slug: _category_slug as IBuildStages["slug"], component_id: _id })
+    console.log('Unreal Event Add to build');
+
+    completePixelStreaming();
     navigate(`${RouteNames.buildPCMyBuild}`)
   }
 
