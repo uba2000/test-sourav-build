@@ -129,7 +129,7 @@ export interface IPreferenceResolutions {
 export interface IAddToBuildProps {
   category_slug: IBuildStages["slug"];
   component_id: IBuildComponent["_id"];
-  cb?: () => void;
+  cb?: (_build: IBuildComponent[]) => void;
 }
 
 export type IPreBuiltBuild = IBuildComponent;
@@ -196,10 +196,7 @@ export interface IBuildPCContext {
 
   resetPixelStream: () => void;
   setPixelStream: (_pixelStream: PixelStreaming) => void;
-  completePixelStreaming: ({
-    _local_build,
-    type,
-  }?: {
+  completePixelStreaming: (props?: {
     _local_build?: IBuildComponent[] | null;
     type?: "add" | "remove";
   }) => void;

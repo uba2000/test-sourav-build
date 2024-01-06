@@ -177,7 +177,9 @@ function useBuildByComponentContext() {
 
         setCurrentBuild((prev) => {
           if (cb) {
-            cb();
+            cb([
+              ..._currentBuild,
+            ]);
           }
           return prev;
         })
@@ -192,7 +194,7 @@ function useBuildByComponentContext() {
     setBuildStages(_buildStages);
   }
 
-  function addToBuild({ category_slug, component_id }: IAddToBuildProps) {
+  function addToBuild({ category_slug, component_id, cb }: IAddToBuildProps) {
     const is_in_build = currentBuild.find((d) => d.category_slug === category_slug)
     let _currentBuild = [...currentBuild];
     if (is_in_build) {
@@ -214,6 +216,15 @@ function useBuildByComponentContext() {
           _current_component,
           ..._currentBuild,
         ]);
+        setCurrentBuild((prev) => {
+          if (cb) {
+            cb([
+              _current_component,
+              ..._currentBuild,
+            ]);
+          }
+          return prev;
+        })
       }
 
       if (_current_component_index >= 0 && _current_component && _current_build_category) {

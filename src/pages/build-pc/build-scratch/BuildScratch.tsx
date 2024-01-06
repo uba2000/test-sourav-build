@@ -8,7 +8,7 @@ import RouteNames from '../../../lib/utils/routenames';
 import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext';
 import PreferenceBox from './components/PreferenceBox';
 import BuildLayoutChild from './components/BuildLayoutChild';
-import useStreamStarted from '../../../lib/hooks/useStreamStarted';
+import { useEffect } from 'react';
 
 function BuildScratch() {
   const { togglePreBuildToCurrentBuildForPreview, completePixelStreaming } = useBuildPCContext()
@@ -23,9 +23,13 @@ function BuildScratch() {
     navigate(RouteNames.preconfiguredSystemIndex)
   }
 
-  useStreamStarted(() => {
-    completePixelStreaming();
-  })
+  useEffect(() => {
+    setTimeout(() => {
+      completePixelStreaming({
+        _local_build: [],
+      })
+    }, 1000)
+  }, [])
 
   return (
     <BuildLayoutChild layout_r_title='Ready to start?'>

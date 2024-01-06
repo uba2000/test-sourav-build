@@ -9,7 +9,6 @@ import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCCont
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import SingleCompareComponents from '../CompareComponents/components/SingleCompareComponents';
 import { IBuildStagesSlugs } from '../../../../lib/types/context-types';
-import useStreamStarted from '../../../../lib/hooks/useStreamStarted';
 import BuildLayoutChild from '../components/BuildLayoutChild';
 
 function MyBuild() {
@@ -59,7 +58,14 @@ function MyBuild() {
     scrollBodyToTop();
   }, [])
 
-  useStreamStarted(() => completePixelStreaming());
+  useEffect(() => {
+    if (currentBuild && currentBuild.length > 0) {
+      completePixelStreaming({
+        _local_build: currentBuild,
+        type: 'add'
+      })
+    }
+  }, [currentBuild])
 
   return (
     <BuildLayoutChild
@@ -68,7 +74,7 @@ function MyBuild() {
     >
       {!showCurrentModelSpecs && (
         <div className='flex flex-col gap-y-[10px]'>
-          <Button onClick={() => completePixelStreaming()}>Dummy Add to build</Button>
+          {/* <Button onClick={() => completePixelStreaming()}>Dummy Add to build</Button> */}
           {(currentBuild.length === 0) && (
             <CardWithNotch notchHeight='small'>
               <div className="py-1 px-6 flex gap-2">

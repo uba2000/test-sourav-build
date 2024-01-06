@@ -5,7 +5,6 @@ import useBuildPCContext from '../../../lib/hooks/contextHooks/useBuildPCContext
 import _ from 'lodash';
 import SingleCompareComponents from '../build-scratch/CompareComponents/components/SingleCompareComponents';
 import { IBuildStagesSlugs } from '../../../lib/types/context-types';
-import useStreamStarted from '../../../lib/hooks/useStreamStarted';
 import BuildLayoutChild from '../build-scratch/components/BuildLayoutChild';
 
 function PreconfigedSystems() {
@@ -20,7 +19,14 @@ function PreconfigedSystems() {
     togglePreBuildToCurrentBuildForPreview('add')
   }, [])
 
-  useStreamStarted(() => completePixelStreaming());
+  useEffect(() => {
+    if (currentBuild && currentBuild.length > 0) {
+      completePixelStreaming({
+        _local_build: currentBuild,
+        type: 'add'
+      })
+    }
+  }, [currentBuild])
 
   const componentItems = useMemo(() => currentBuild, [currentBuild])
   const [buildPrice, setBuildPrice] = useState<string>('')

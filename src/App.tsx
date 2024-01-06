@@ -15,29 +15,11 @@ import SuspenseScreen from './components/SuspenseScreen/SuspenseScreen';
 // App.tsx
 function App() {
   const router = useRouterRoutes()
-  console.log('Unreal Event: Build Version - v1.0.6');
+  console.log('Unreal Event: Build Version - v1.0.7');
 
   return (
     <React.Suspense fallback={<SuspenseScreen />}>
       <RouterProvider router={router} />
-
-      {/* <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<MainWrapper />}>
-            <Route index element={<LandingPage />} />
-            <Route path={RouteNames.buildPreferenceIndex} element={<BuildPreference />} />
-
-            <Route path={RouteNames.buildPC} element={<BuildLayout />}>
-              <Route index element={<BuildScratch />} />
-
-              {Build_Routes.map((route) => (
-                <Route key={_.uniqueId()} {...route} />
-              ))}
-            </Route>
-          </Route>
-
-        </Routes>
-      </BrowserRouter> */}
     </React.Suspense>
   );
 }

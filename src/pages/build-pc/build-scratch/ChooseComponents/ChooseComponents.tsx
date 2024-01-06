@@ -110,10 +110,16 @@ function ChooseComponents() {
     toggleCanViewSpecs(false);
     toggleViewingComponentModel(false);
     setCurrentModelOnStage('');
-    addComponentToBuild({ category_slug: _category_slug as IBuildStages["slug"], component_id: _id })
+    addComponentToBuild({
+      category_slug: _category_slug as IBuildStages["slug"],
+      component_id: _id,
+      cb: (_build: IBuildComponent[]) => {
+        completePixelStreaming({ _local_build: _build, type: 'add' });
+      }
+    })
     console.log('Unreal Event Add to build');
 
-    completePixelStreaming();
+
     navigate(`${RouteNames.buildPCMyBuild}`)
   }
 
@@ -121,8 +127,8 @@ function ChooseComponents() {
     // toggleShowSpecs();
     removeComponentToBuild({
       category_slug: _category_slug, component_id: _id,
-      cb: () => {
-        completePixelStreaming();
+      cb: (_build: IBuildComponent[]) => {
+        completePixelStreaming({ _local_build: _build, type: 'remove' });
       }
     })
 

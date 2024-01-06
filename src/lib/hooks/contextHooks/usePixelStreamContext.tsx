@@ -112,7 +112,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       pixelStreamRef.current.emitUIInteraction(_interaction_obj);
       pixelStreamRef.current.addResponseEventListener("handle_responses", myHandleResponseFunction);
       const stringval = JSON.stringify(_interaction_obj);
-      console.log(`Unreal Event: ${props?.type === 'add' ? 'Add' : 'Remove'}${props?.type ? ' from ' : ''} Full PC Build`, { stringval });
+      console.log(`Unreal Event: ${props?.type === 'add' ? 'Add' : props?.type === 'remove' ? 'Remove' : ''}${props?.type === 'remove' ? ' from' : props?.type === 'add' ? ' to' : ''} Full PC Build`, { stringval });
     }
   }, [_current_build])
 

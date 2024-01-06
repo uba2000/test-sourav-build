@@ -196,8 +196,8 @@ function SingleCompareComponents({
       toggleShowSpecs();
       removeComponentToBuild({
         category_slug: _category_slug!, component_id: componentItem._id!,
-        cb: () => {
-          completePixelStreaming();
+        cb: (_build: IBuildComponent[]) => {
+          completePixelStreaming({ _local_build: _build, type: 'remove' });
         }
       })
 
