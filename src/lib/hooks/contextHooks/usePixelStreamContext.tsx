@@ -114,6 +114,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
   }, [_current_build])
 
   function resetPixelStream() {
+    console.log('Unreal Event: Reset Fired');
     pixelStreamRef.current?.disconnect();
     pixelStreamRef.current?.emitUIInteraction({
       Type: 'Reset_PC'

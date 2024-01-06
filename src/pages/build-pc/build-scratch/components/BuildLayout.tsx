@@ -44,7 +44,7 @@ const buildRoutes = [
 
 function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', layout_r_title, totalPrice, showPriceSection = false }: IBuildLayout) {
   const {
-    currentBuild,
+    currentBuild, resetPixelStream,
     resetApp, canViewSpecs,
     addToRetailerUsersCart, addToCartState,
     currentModelOnStage, toggleShowSpecs,
@@ -205,6 +205,9 @@ function BuildLayout({ children, isCompareMode = false, stagesStatus = 'auto', l
 
                 {/* Right main section */}
                 <PolygonContainer bbr={false} btl={false} className='flex-grow max-w-[978px] w-full ml-auto md:block hidden'>
+                  <Button variant='secondary' onClick={() => resetPixelStream()}>
+                    <span className='text-black'>Reset Stream</span>
+                  </Button>
                   {layout_r_title && (
                     <div className="md:px-[26px] px-4 md:py-3 pt-2 pb-[10px] border-b border-white-75">
                       <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
