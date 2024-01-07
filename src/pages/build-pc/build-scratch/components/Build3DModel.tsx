@@ -67,7 +67,7 @@ function Build3DModel({
         useUrlParams: true,
       });
       config.setFlagEnabled(Flags.AFKDetection, true);
-      config.setNumericSetting(NumericParameters.AFKTimeoutSecs, 300);
+      config.setNumericSetting(NumericParameters.AFKTimeoutSecs, 600);
       const streaming = new PixelStreaming(config, {
         videoElementParent: videoParent.current
       });
