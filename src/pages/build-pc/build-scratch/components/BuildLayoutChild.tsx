@@ -104,7 +104,7 @@ function BuildLayoutChild({ children, stagesStatus = 'auto', layout_r_title, tot
         </div>
         {/* Right main section */}
         {/* Right price section */}
-        {(currentBuild.length === buildStages.length || stagesStatus === 'complete' || showPriceSection) && (
+        {(currentBuild.length === buildStages.length || stagesStatus === 'complete' || showPriceSection) ? (
           <div
             className={clsx(
               'md:min-h-[49px] max-w-full w-full md:px-0 px-4',
@@ -140,6 +140,8 @@ function BuildLayoutChild({ children, stagesStatus = 'auto', layout_r_title, tot
               </div>
             </div>
           </div>
+        ) : (
+          <div className='min-h-[49px] md:block hidden'></div>
         )}
         {/* Right price section */}
       </div>
