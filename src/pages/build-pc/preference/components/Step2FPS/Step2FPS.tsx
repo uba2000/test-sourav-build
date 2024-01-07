@@ -96,7 +96,7 @@ const FPSButton = React.memo(({ selectFPS, selectedFPS, d, index, hoverActive }:
         }
       )}
     >
-      <span className='font-IntelOneBodyTextMedium md:text-base text-xs'>{d.fps}</span>
+      <span className='font-IntelOneBodyTextMedium md:text-base text-xs'>{d.label}</span>
       {selectedFPS === d._id && (
         <div
           className={clsx(

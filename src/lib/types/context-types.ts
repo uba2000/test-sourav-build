@@ -94,9 +94,11 @@ export type IFPSTypesItemFPSTitle =
   | "Up to 60 FPS"
   | "Up to 175 FPS"
   | "175 and Up";
+
 export interface IFPSTypesItem {
   _id: IFPSTypesItemIDType;
   fps: IFPSTypesItemFPSTitle;
+  label: string;
   range: {
     min: string;
     max: string | number;

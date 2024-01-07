@@ -49,6 +49,7 @@ function usePreferencContext() {
     {
       _id: 'min_low_range',
       fps: 'Up to 60 FPS',
+      label: '60 FPS',
       range: {
         min: '0',
         max: '60',
@@ -60,23 +61,25 @@ function usePreferencContext() {
     {
       _id: 'mid_range',
       fps: 'Up to 175 FPS',
+      label: '60 to 175 FPS',
       range: {
         min: '61',
         max: '174',
       },
-      video: 'FPS—ghostrunner2-timelapse—desktop—120',
-      videoM: 'FPS—ghostrunner2-timelapse—mobile—120',
+      video: 'FPS—ghostrunner2-timelapse—desktop—up-to-175',
+      videoM: 'FPS—ghostrunner2-timelapse—mobile—up-to-175',
       thumbnail: Desktop120FPSThumb,
     },
     {
       _id: 'max_high_range',
       fps: '175 and Up',
+      label: '175 and Up',
       range: {
         min: '175',
         max: Infinity,
       },
-      video: 'FPS—ghostrunner2-timelapse—desktop—180',
-      videoM: 'FPS—ghostrunner2-timelapse—mobile—180',
+      video: 'FPS—ghostrunner2-timelapse—desktop—175-up',
+      videoM: 'FPS—ghostrunner2-timelapse—mobile—175-up',
       thumbnail: Desktop180FPSThumb,
     },
   ])

@@ -2,7 +2,9 @@
 import {
   Config,
   AllSettings,
-  PixelStreaming
+  PixelStreaming,
+  Flags,
+  NumericParameters
 } from '@epicgames-ps/lib-pixelstreamingfrontend-ue5.4';
 import { useEffect, useRef, useState } from 'react';
 import useBuildPCContext from '../../../../lib/hooks/contextHooks/useBuildPCContext';
@@ -37,6 +39,20 @@ function Build3DModel({
   // A boolean state variable that determines if the Click to play overlay is shown:
   const [clickToPlayVisible, setClickToPlayVisible] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function myHandleResponseFunction(data: any) {
+    console.warn("Unreal Event: Response received!", data);
+    switch (data) {
+      case "playStreamRejected":
+        console.warn('Unreal Event: Unreal Pixel Stream ');
+        // ... // handle one type of event
+        break;
+      case "AnotherEvent":
+        // ... // handle another event
+        break;
+    }
+  }
+
   // Run on component mount:
   useEffect(() => {
     if (videoParent.current) {
@@ -50,6 +66,8 @@ function Build3DModel({
         },
         useUrlParams: true,
       });
+      config.setFlagEnabled(Flags.AFKDetection, true);
+      config.setNumericSetting(NumericParameters.AFKTimeoutSecs, 300);
       const streaming = new PixelStreaming(config, {
         videoElementParent: videoParent.current
       });
@@ -58,6 +76,8 @@ function Build3DModel({
       streaming.addEventListener('playStreamRejected', () => {
         setClickToPlayVisible(true);
       });
+
+      streaming.addResponseEventListener("handle_responses", myHandleResponseFunction);
 
       // Save the library instance into component state so that it can be accessed later:
       setPixelStreaming(streaming);
