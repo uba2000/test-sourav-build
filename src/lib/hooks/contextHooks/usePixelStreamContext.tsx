@@ -35,7 +35,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
   const completePixelStreaming = useCallback((props: {
     _local_build?: IBuildComponent[] | null;
     type?: "add" | "remove";
-    meta: { _id: string }
+    meta?: { _id: string }
   }) => {
     if (pixelStreamRef.current) {
 
@@ -136,7 +136,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
   }
 
   function resetPixelStream() {
-    pixelStreamRef.current?.disconnect();
+    // pixelStreamRef.current?.disconnect();
     pixelStreamRef.current?.emitUIInteraction({
       Type: 'Reset_PC'
     });
