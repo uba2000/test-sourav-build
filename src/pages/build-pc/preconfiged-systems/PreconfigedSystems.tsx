@@ -11,7 +11,7 @@ function PreconfigedSystems() {
   const {
     currentBuild, predefinedBuilds, togglePreBuildToCurrentBuildForPreview, addToRetailerUsersCart,
     showCurrentModelSpecs, completePixelStreaming, emitStreamSingleUIInteraction,
-    toggleCanViewSpecs, setCurrentModelOnStage, toggleViewingComponentModel,
+    toggleCanViewSpecs, setCurrentModelOnStage, toggleViewingComponentModel, buildStages,
   } = useBuildPCContext();
 
 
@@ -75,6 +75,7 @@ function PreconfigedSystems() {
     <BuildLayoutChild
       showPriceSection
       // stagesStatus='complete'
+      layout_r_sub_title={`${currentBuild.length === buildStages.length ? 'Selections Completed!' : ''}`}
       layout_r_title={!showCurrentModelSpecs ? `${_.capitalize(predefinedBuilds?.build_segment)} build` : ''}
       totalPrice={buildPrice}
     // buildModel={enthusiast.buildModel}
