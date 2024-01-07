@@ -26,7 +26,10 @@ function useStreamStarted(cb: () => void = () => { }) {
 
   useEffect(() => {
     if (streamPlaying) {
-      cb();
+      setTimeout(() => {
+        cb();
+        // handleSetStreamPlaying(false);
+      }, 1000);
     }
   }, [currentBuild, streamPlaying])
 
