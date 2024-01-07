@@ -40,7 +40,7 @@ function PolygonContainer({
             "w-[calc(100%_-_16px)] mx-auto": btl && btr,
 
             "before:border-b-[8px] before:border-l-[8px] before:-left-2": btl,
-            "before:border-l-transparent before:w-0 before:h-0": btl,
+            "before:border-l-transparent before:w-[8px] before:h-[8px]": btl,
             "before:content-[''] before:absolute": btl,
 
             "w-full": !btl && !btr,
@@ -49,7 +49,7 @@ function PolygonContainer({
             "border-l": !btl,
 
             "after:border-b-[8px] after:border-r-[8px] after:-right-2": btr,
-            "after:border-r-transparent after:w-0 after:h-0": btr,
+            "after:border-r-transparent after:w-[8px] after:h-[8px]": btr,
             "after:content-[''] after:absolute": btr,
             "border-r": !btr,
           },
@@ -123,7 +123,7 @@ function PolygonContainer({
             "w-[calc(100%_-_16px)] mx-auto": bbl && bbr,
 
             "before:border-t-[8px] before:border-l-[8px] before:-left-2": bbl,
-            "before:border-l-transparent before:w-0 before:h-0": bbl,
+            "before:border-l-transparent before:w-[8px] before:h-[8px]": bbl,
             "before:content-[''] before:absolute": bbl,
             "before:border-t-transparent": topBackground && bbl,
 
@@ -133,7 +133,7 @@ function PolygonContainer({
             "border-l": !bbl,
 
             "after:border-t-[8px] after:border-r-[8px] after:-right-2": bbr,
-            "after:border-r-transparent after:w-0 after:h-0": bbr,
+            "after:border-r-transparent after:w-[8px] after:h-[8px]": bbr,
             "after:content-[''] after:absolute": bbr,
             "border-r": !bbr,
           },

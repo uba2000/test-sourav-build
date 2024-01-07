@@ -70,18 +70,18 @@ function CardWithNotch({
         { 'h-[1rem] min-h-[1rem]': notchHeight === 'normal' },
         { 'h-[0.5rem] min-h-[0.5rem]': notchHeight === 'small' },
 
-        { 'before:border-b-[1rem] before:border-l-[1rem] before:-left-4': notchHeight === 'normal' && btl },
-        { 'after:border-b-[1rem] after:border-r-[1rem] before:-right-4': notchHeight === 'normal' && btr },
+        { 'before:border-b-[1rem] before:border-l-[1rem] before:-left-4 before:w-[1rem] before:h-[1rem]': notchHeight === 'normal' && btl },
+        { 'after:border-b-[1rem] after:border-r-[1rem] before:-right-4 after:w-[1rem] after:h-[1rem]': notchHeight === 'normal' && btr },
 
-        { 'before:border-b-[0.5rem] before:border-l-[0.5rem] before:-left-2': notchHeight === 'small' && btl },
-        { 'after:border-b-[0.5rem] after:border-r-[0.5rem] after:-right-2': notchHeight === 'small' && btr },
+        { 'before:border-b-[0.5rem] before:border-l-[0.5rem] before:-left-2 before:w-[0.5rem] before:h-[0.5rem]': notchHeight === 'small' && btl },
+        { 'after:border-b-[0.5rem] after:border-r-[0.5rem] after:-right-2 after:w-[0.5rem] after:h-[0.5rem]': notchHeight === 'small' && btr },
 
         'bg-[var(--background-color)] relative',
 
-        { "before:border-b-[var(--background-color)] before:border-l-transparent before:w-0 before:h-0 ml-auto": btl },
+        { "before:border-b-[var(--background-color)] before:border-l-transparent ml-auto": btl },
         { "before:content-[''] before:absolute": btl },
 
-        { "after:border-b-[var(--background-color)] after:border-r-transparent after:w-0 after:h-0 mr-auto": btr },
+        { "after:border-b-[var(--background-color)] after:border-r-transparent mr-auto": btr },
         { "after:content-[''] after:absolute": btr },
       )} style={{ width: `calc(100% - ${_topWidthSize})`, margin: (btl && btr) ? '0 auto' : '' }} />
 
@@ -93,18 +93,18 @@ function CardWithNotch({
         { 'h-[1rem] min-h-[1rem]': notchHeight === 'normal' },
         { 'h-[0.5rem] min-h-[0.5rem]': notchHeight === 'small' },
 
-        { 'before:border-t-[1rem] before:border-r-[1rem] before:-right-4': notchHeight === 'normal' && bbr },
-        { 'after:border-t-[1rem] after:border-l-[1rem] after:-left-4': notchHeight === 'normal' && bbl },
+        { 'before:border-t-[1rem] before:border-r-[1rem] before:-right-4 before:w-[1rem] before:h-[1rem]': notchHeight === 'normal' && bbr },
+        { 'after:border-t-[1rem] after:border-l-[1rem] after:-left-4 after:w-[1rem] after:h-[1rem]': notchHeight === 'normal' && bbl },
 
-        { 'before:border-t-[0.5rem] before:border-r-[0.5rem] before:-right-2': notchHeight === 'small' && bbr },
-        { 'after:border-t-[0.5rem] after:border-l-[0.5rem] after:-left-2': notchHeight === 'small' && bbl },
+        { 'before:border-t-[0.5rem] before:border-r-[0.5rem] before:-right-2 before:w-[0.5rem] before:h-[0.5rem]': notchHeight === 'small' && bbr },
+        { 'after:border-t-[0.5rem] after:border-l-[0.5rem] after:-left-2 after:w-[0.5rem] after:h-[0.5rem]': notchHeight === 'small' && bbl },
 
         'bg-[var(--background-color)] relative',
 
-        { "before:border-t-[var(--background-color)] before:border-r-transparent before:w-0 before:h-0 mr-auto": bbr },
+        { "before:border-t-[var(--background-color)] before:border-r-transparent mr-auto": bbr },
         { "before:content-[''] before:absolute": bbr },
 
-        { "after:border-t-[var(--background-color)] after:border-l-transparent after:w-0 after:h-0 ml-auto": bbl },
+        { "after:border-t-[var(--background-color)] after:border-l-transparent ml-auto": bbl },
         { "after:content-[''] after:absolute": bbl },
       )} style={{ width: `calc(100% - ${_bottomWidthSize})`, margin: (bbl && bbr) ? '0 auto' : '' }} />
     </div>
