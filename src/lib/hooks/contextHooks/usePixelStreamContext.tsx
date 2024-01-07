@@ -144,7 +144,7 @@ function usePixelStreamContext(_current_build: IBuildComponent[]) {
       Type: 'Reset_PC'
     });
     console.log('Unreal Event: PC Build Reset Fired', { stringval });
-    // completePixelStreaming({ _local_build: [] });
+    completePixelStreaming({ _local_build: [] });
     // pixelStreamRef.current = null;
   }
 
