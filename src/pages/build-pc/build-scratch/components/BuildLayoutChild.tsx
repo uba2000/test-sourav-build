@@ -25,7 +25,7 @@ const buildRoutes = [
   { path: "/build-pc/preconfigured" },
 ]
 
-function BuildLayoutChild({ children, stagesStatus = 'auto', layout_r_title, totalPrice, showPriceSection = false }: IBuildLayout) {
+function BuildLayoutChild({ children, stagesStatus = 'auto', layout_r_title, layout_r_sub_title, totalPrice, showPriceSection = false }: IBuildLayout) {
   const navigate = useNavigate()
   const mobileNavContainer = useRef<HTMLDivElement>(null);
 
@@ -65,10 +65,14 @@ function BuildLayoutChild({ children, stagesStatus = 'auto', layout_r_title, tot
         {/* Right main section */}
         <PolygonContainer bbr={false} btl={false} className='flex-grow max-w-[978px] w-full ml-auto md:block hidden'>
           {layout_r_title && (
-            <div className="md:px-[26px] px-4 md:py-3 pt-2 pb-[10px] border-b border-white-75">
+            <div className="md:px-[26px] px-4 md:py-3 pt-2 pb-[10px] border-b border-white-75 flex items-end gap-4">
               <h1 className="md:text-h3 text-M-h2 font-IntelOneDisplayBold">
                 {layout_r_title}
               </h1>
+
+              {layout_r_sub_title && (
+                <p className="text-xs font-IntelOneBodyTextRegular">{layout_r_sub_title}</p>
+              )}
             </div>
           )}
           <div

@@ -11,6 +11,7 @@ import SingleCompareComponents from '../CompareComponents/components/SingleCompa
 import { IBuildStagesSlugs } from '../../../../lib/types/context-types';
 import BuildLayoutChild from '../components/BuildLayoutChild';
 import useSingleEffectCall from '../../../../lib/hooks/useSingleEffectCall';
+import BuildLayout from '../components/BuildLayout';
 
 function MyBuild() {
   const matches = useMatches();
@@ -75,10 +76,16 @@ function MyBuild() {
   return (
     <BuildLayoutChild
       layout_r_title={`${!showCurrentModelSpecs ? 'My Build' : ''}`}
+      layout_r_sub_title={`${currentBuild.length === buildStages.length ? 'Selections Completed!' : ''}`}
       showPriceSection={currentBuildStageIndex > 0}
     >
       {!showCurrentModelSpecs && (
         <div className='flex flex-col gap-y-[10px]'>
+          {(currentBuild.length === buildStages.length) && (
+            <BuildLayout.HeaderTitle
+              subTitle={`Congratulations, you have finished selecting components for your new build. Review your selections below, then add them to your cart for purchase.`}
+            />
+          )}
           {/* <Button onClick={() => completePixelStreaming()}>Dummy Add to build</Button> */}
 
           {/* <div className="flex justify-end items-center gap-x-2">

@@ -23,6 +23,7 @@ export interface IBuildLayout {
   isCompareMode?: boolean;
   stagesStatus?: 'complete' | 'auto';
   layout_r_title?: string;
+  layout_r_sub_title?: string;
   totalPrice?: string;
   showPriceSection?: boolean;
 }
