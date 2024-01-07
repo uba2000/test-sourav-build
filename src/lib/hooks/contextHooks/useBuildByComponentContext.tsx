@@ -600,7 +600,6 @@ function useBuildByComponentContext() {
   const togglePreBuildToCurrentBuildForPreview = useCallback((action: 'add' | 'remove') => {
     switch (action) {
       case 'add':
-        setCurrentBuild(predefinedBuilds.items);
         setBuildStages((prev) => prev.map((pv) => {
           const _item = predefinedBuilds.items.find((d) => d.category_slug === pv.slug) || null;
 
@@ -609,6 +608,16 @@ function useBuildByComponentContext() {
             selectedItem: _item
           } as IBuildStages
         }))
+        setBuildStages((prev) => {
+          const _current_build: IBuildComponent[] = [];
+          prev.map((_prev) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            _current_build.push(_prev.selectedItem! as any)
+          });
+          setCurrentBuild(_current_build);
+          return prev;
+        })
+        // setCurrentBuild(predefinedBuilds.items);
         setBuildTypeFlow('preconfiged_build')
         break;
 
