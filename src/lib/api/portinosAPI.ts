@@ -6,7 +6,7 @@ import { DATA_API } from "../utils/util-constants";
 // });
 
 const portinosAPI = axios.create({
-  baseURL: import.meta.env.PROD ? DATA_API : import.meta.env.BASE_URL,
+  baseURL: DATA_API,
 });
 
 export const portinosInventoryEndpoint = "/portinos-feed.json";

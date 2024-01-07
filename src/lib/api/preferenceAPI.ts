@@ -2,7 +2,7 @@ import axios from "axios";
 import { DATA_API } from "../utils/util-constants";
 
 const preferenceAPI = axios.create({
-  baseURL: import.meta.env.PROD ? DATA_API : import.meta.env.BASE_URL,
+  baseURL: DATA_API,
 });
 
 export const preferenceUrlEndpoint = "/json-data.json";
