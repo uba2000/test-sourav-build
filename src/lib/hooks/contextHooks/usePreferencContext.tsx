@@ -3,9 +3,9 @@ import BuildGamePreferences, { BuildGameNoPreferenceFPSConfig, BuildGamePreferen
 
 import { getPreferencesData, preferenceUrlEndpoint as cacheKey } from "../../api/preferenceAPI"
 
-import Desktop60FPSThumb from '../../../assets/fps/60fps-thumbnail.svg'
-import Desktop120FPSThumb from '../../../assets/fps/120fps-thumbnail.svg'
-import Desktop180FPSThumb from '../../../assets/fps/180fps-thumbnail.svg'
+import Desktop60FPSThumb from '../../../assets/fps/60fps-thumbnail-dsk.jpg'
+import Desktop120FPSThumb from '../../../assets/fps/up-to-175fps-thumbnail-dsk.jpg'
+import Desktop180FPSThumb from '../../../assets/fps/175fps-up-thumbnail-dsk.jpg'
 
 import Desktop4KResImage from '../../../assets/res/resolution-4k-desktop.svg?react'
 import Desktop4KResFullImage from '../../../assets/res/resolution-4k-desktop.png'
