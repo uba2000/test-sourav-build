@@ -31,7 +31,7 @@ function Build3DModel({
   // A reference to parent div element that the Pixel Streaming library attaches into:
   const videoParent = useRef<HTMLDivElement>(null);
 
-  const { setPixelStream, pixelStreamRef } = useBuildPCContext()
+  const { setPixelStream, pixelStreamRef, resetPixelStream } = useBuildPCContext()
 
   // Pixel streaming library instance is stored into this state variable after initialization:
   const [pixelStreaming, setPixelStreaming] = useState<PixelStreaming>(pixelStreamRef.current);
@@ -86,9 +86,8 @@ function Build3DModel({
       // Clean up on component unmount:
       return () => {
         try {
-          // resetPixelStream()
+          resetPixelStream();
           console.log('Unreal Event: Unreal Pixel Stream Ended');
-
         } catch { }
       };
     }
